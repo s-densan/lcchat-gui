@@ -13,8 +13,55 @@ yarn add @types/uuid
 yarn add clone
 yarn add @types/clone
 ```
+実行コマンド
+```
+yarn build
+yarn start
+```
 ![](img/2019-11-25-20-35-02.png)
 おお、手順通りにするだけでそれっぽい画面がでけたで！素敵！
+
+``yarn watch``を使えるように、``package.json``をいじる。
+```json
+{
+  "name": "test2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "electron ./",
+    "watch": "webpack --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/clone": "^0.1.30",
+    "@types/uuid": "^3.4.6",
+    "clone": "^2.1.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "styled-components": "^4.4.1",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "@types/react-redux": "^7.1.5",
+    "@types/redux": "^3.6.0",
+    "electron": "^7.0.1",
+    "ts-loader": "^6.2.1",
+    "tslint": "^4.5.1",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
+```
 
 ### 20191105
 #### TypescriptでElectron始め
