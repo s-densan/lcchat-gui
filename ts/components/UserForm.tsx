@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, MapStateToPropsParam } from 'react-redux'; // 追加
 import IUser from '../states/IUser';
-import store, { IState } from '../Store'; // 変更
+import store, { IState } from '../UserStore'; // 変更
 import { TextBox } from './TextBox';
 import { createChangeUserNameAction } from '../actions/UserNameEvents'; // 追加
 

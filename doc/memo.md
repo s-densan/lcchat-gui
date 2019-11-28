@@ -2,6 +2,23 @@
 
 ## 記録
 
+### 20191127 4日目～7日目
+一気に。中身は詳しくわからんけど、なんか雰囲気はつかめてきた。
+
+- [4日目](https://qiita.com/EBIHARA_kenji/items/80adee2214d439209f98)
+- [5日目](https://qiita.com/EBIHARA_kenji/items/6da1cebb65a18279d096)
+- [6日目](https://qiita.com/EBIHARA_kenji/items/26fa0d004cbaeea807e4)
+- [7日目](https://qiita.com/EBIHARA_kenji/items/19b13207b7a8055043c4)
+
+インストールしたもの。
+```
+yarn add moment @types/moment
+yarn add styled-components @types/styled-components
+yarn add reset-css
+yarn add style-loader css-loader
+yarn add react-datepicker@1.7.0 @types/react-datepicker@1.1.7
+yarn add fs-extra @types/fs-extra
+```
 ### 20191125 3日目
 いいかげんGUIも作っていこうかと。
 https://qiita.com/EBIHARA_kenji/items/25e59f7132b96cb886f3
