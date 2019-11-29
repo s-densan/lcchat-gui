@@ -2,6 +2,17 @@
 
 ## 記録
 
+### 20191129 
+さっぱりわからん。真っ白画面になる。どうもasyncとかawaitとかのあたりがだめっぽい。それかファイル保存しているところか。
+やってみたこと
+```
+yarn add async
+yarn add await
+yarn add @types/async
+yarn add typescript-async
+yarn add promise
+yarn add @types/promise
+```
 ### 20191127 4日目～7日目
 一気に。中身は詳しくわからんけど、なんか雰囲気はつかめてきた。
 

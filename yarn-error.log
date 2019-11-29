@@ -1,11 +1,11 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add stylcss-loader
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add typescript-await
 
 PATH: 
   C:\Program Files\ImageMagick-7.0.9-Q16;C:\Python38\Scripts\;C:\Python38\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\HaxeToolkit\haxe\;C:\HaxeToolkit\neko;C:\Program Files (x86)\Microsoft Visual Studio\2017\WDExpress\VC\Tools\MSVC\14.13.26128\bin\Hostx86\x86;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Common Files\Sony Shared\FeliCaLibrary;C:\Program Files\Common Files\Sony Shared\FeliCaLibrary;C:\Program Files (x86)\Common Files\Sony Shared\FeliCaNFCLibrary;C:\Program Files\Common Files\Sony Shared\FeliCaNFCLibrary;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\dotnet\;C:\Users\Shimpei\AppData\Local\Programs\Python\Python37;C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files (x86)\Yarn\bin\;C:\hl;C:\Users\Shimpei\AppData\Local\Julia-0.6.2\bin;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Shimpei\.cargo\bin;C:\Users\Shimpei\.windows-build-tools\python27\;C:\Users\Shimpei\.windows-build-tools\python27\;C:\Users\Shimpei\.windows-build-tools\python27\;C:\Users\Shimpei\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Shimpei\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\Shimpei\AppData\Local\atom\bin;C:\ProgramData\chocolatey\lib\ghc\tools\ghc-8.4.2\bin;C:\tools\msys64;C:\Program Files\MKVToolNix;C:\Users\Shimpei\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Shimpei\AppData\Local\Microsoft\WindowsApps;C:\ProgramData\chocolatey\lib\ghc\tools\ghc-8.6.2\bin;C:\Users\Shimpei\AppData\Roaming\local\bin;C:\Users\Shimpei\AppData\Roaming\cabal\bin;C:\Users\Shimpei\AppData\Local\Yarn\bin;C:\Program Files\GPAC;C:\Users\Shimpei\AppData\Roaming\npm
 
 Yarn version: 
-  1.19.1
+  1.19.2
 
 Node version: 
   13.2.0
@@ -14,13 +14,13 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/stylcss-loader: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66035:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140564:22)
+  Error: https://registry.yarnpkg.com/typescript-await: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66036:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140586:22)
       at Request.emit (events.js:210:5)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141536:10)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141558:10)
       at Request.emit (events.js:210:5)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141458:12)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141480:12)
       at Object.onceWrapper (events.js:299:28)
       at IncomingMessage.emit (events.js:215:7)
       at endReadableNT (_stream_readable.js:1200:12)
@@ -41,19 +41,28 @@ npm manifest:
     "author": "",
     "license": "ISC",
     "dependencies": {
+      "@types/async": "^3.0.3",
       "@types/clone": "^0.1.30",
+      "@types/fs-extra": "^8.0.1",
+      "@types/moment": "^2.13.0",
+      "@types/react-datepicker": "1.1.7",
       "@types/styled-components": "^4.4.0",
       "@types/uuid": "^3.4.6",
+      "async": "^3.1.0",
+      "await": "^0.2.6",
       "clone": "^2.1.2",
       "css-loader": "^3.2.0",
+      "fs-extra": "^8.1.0",
       "moment": "^2.24.0",
       "react": "^16.11.0",
+      "react-datepicker": "1.7.0",
       "react-dom": "^16.11.0",
       "react-redux": "^7.1.1",
       "redux": "^4.0.4",
       "reset-css": "^5.0.1",
       "style-loader": "^1.0.0",
       "styled-components": "^4.4.1",
+      "typescript-async": "^1.0.7",
       "uuid": "^3.3.3"
     },
     "devDependencies": {
@@ -147,7 +156,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.7.4.tgz#75ab2d7110c2cf2fa949959afb05fa346d2231bb"
     integrity sha512-jIwvLO0zCL+O/LmEJQjWA75MQTWwx3c3u2JOTDK5D3/9egrWRRA0/0hk9XXywYnXZVVpzrBYeIQTmhwUaePI9g==
   
-  "@babel/runtime@^7.5.5":
+  "@babel/runtime@^7.1.2", "@babel/runtime@^7.5.5":
     version "7.7.4"
     resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.4.tgz#b23a856751e4bf099262f867767889c0e3fe175b"
     integrity sha512-r24eVUUr0QqNZa+qrImUk8fn5SPhHq+IfYvIoIMg0do3GdK9sMdiLKP3GYVVaxpPKORgm8KRKaNTEhAjgIpLMw==
@@ -231,10 +240,22 @@ Lockfile:
     dependencies:
       defer-to-connect "^1.0.1"
   
+  "@types/async@^3.0.3":
+    version "3.0.3"
+    resolved "https://registry.yarnpkg.com/@types/async/-/async-3.0.3.tgz#ea3694128c757580e4f9328cd941b81d9c3e9bf6"
+    integrity sha512-FrIcC67Zpko1jO8K4d30C41/KVhAABbMbaSxccvXacxPcKbDBav+8WoFzv72BA2zJvyX4T9PFz0we1hcNymgGA==
+  
   "@types/clone@^0.1.30":
     version "0.1.30"
     resolved "https://registry.yarnpkg.com/@types/clone/-/clone-0.1.30.tgz#e7365648c1b42136a59c7d5040637b3b5c83b614"
     integrity sha1-5zZWSMG0ITalnH1QQGN7O1yDthQ=
+  
+  "@types/fs-extra@^8.0.1":
+    version "8.0.1"
+    resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-8.0.1.tgz#a2378d6e7e8afea1564e44aafa2e207dadf77686"
+    integrity sha512-J00cVDALmi/hJOYsunyT52Hva5TnJeKP5yd1r+mH/ZU0mbYZflR0Z5kw5kITtKTRYMhm1JMClOFYdHnQszEvqw==
+    dependencies:
+      "@types/node" "*"
   
   "@types/hoist-non-react-statics@^3.3.0":
     version "3.3.1"
@@ -243,6 +264,13 @@ Lockfile:
     dependencies:
       "@types/react" "*"
       hoist-non-react-statics "^3.3.0"
+  
+  "@types/moment@^2.13.0":
+    version "2.13.0"
+    resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
+    integrity sha1-YE69GJvDvDShVIaJQE5hoqSqyJY=
+    dependencies:
+      moment "*"
   
   "@types/node@*", "@types/node@^12.0.12":
     version "12.12.14"
@@ -253,6 +281,15 @@ Lockfile:
     version "15.7.3"
     resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
     integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
+  
+  "@types/react-datepicker@1.1.7":
+    version "1.1.7"
+    resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-1.1.7.tgz#0722040fbd0d3d39c3fdec21d2559acb9b15ec0a"
+    integrity sha512-zVztg+0vxR2IA6GQxQtutNCljQI/R8lVlLgfYfVALC3bcqCuo4vtoxF+2r4FEmvJwdi91MbuTgkyPWZ4uTG3GQ==
+    dependencies:
+      "@types/react" "*"
+      moment ">=2.14.0"
+      popper.js "^1.14.1"
   
   "@types/react-dom@^16.9.3":
     version "16.9.4"
@@ -598,10 +635,20 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.3.tgz#b727dbf87d7651602f06f4d4ac387f47d91b0cbf"
     integrity sha512-z/WhQ5FPySLdvREByI2vZiTWwCnF0moMJ1hK9YQwDTHKh6I7/uSckMetoRGb5UBZPC1z0jlw+n/XCgjeH7y1AQ==
   
+  async@^3.1.0:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/async/-/async-3.1.0.tgz#42b3b12ae1b74927b5217d8c0016baaf62463772"
+    integrity sha512-4vx/aaY6j/j3Lw3fbCHNWP0pPaTCew3F6F3hYyl/tHs/ndmV1q7NW9T5yuJ2XAGwdQrP+6Wu20x06U4APo/iQQ==
+  
   atob@^2.1.1:
     version "2.1.2"
     resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
     integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+  
+  await@^0.2.6:
+    version "0.2.6"
+    resolved "https://registry.yarnpkg.com/await/-/await-0.2.6.tgz#c88e6ee693d6ed372ff0f52ec15d5655908855ce"
+    integrity sha1-yI5u5pPW7Tcv8PUuwV1WVZCIVc4=
   
   babel-code-frame@^6.20.0:
     version "6.26.0"
@@ -661,9 +708,9 @@ Lockfile:
     integrity sha512-Un7MIEDdUC5gNpcGDV97op1Ywk748MpHcFTHoYs6qnj1Z3j7I53VG3nwZhKzoBZmbdRNnb6WRdFlwl7tSDuZGw==
   
   bluebird@^3.5.5:
-    version "3.7.1"
-    resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.1.tgz#df70e302b471d7473489acf26a93d63b53f874de"
-    integrity sha512-DdmyoGCleJnkbp3nkbxTLJ18rjDsE4yCggEwKNXkeV123sPNfOCYeDoeuOY+F2FrSjO1YXcTU+dsy96KMy+gcg==
+    version "3.7.2"
+    resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
+    integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
   
   bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
     version "4.11.8"
@@ -950,6 +997,11 @@ Lockfile:
       isobject "^3.0.0"
       static-extend "^0.1.1"
   
+  classnames@^2.2.5:
+    version "2.2.6"
+    resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+    integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+  
   cli-boxes@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/cli-boxes/-/cli-boxes-1.0.0.tgz#4fa917c3e59c94a004cd61f8ee509da651687143"
@@ -1089,9 +1141,9 @@ Lockfile:
     integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
   
   core-js@^3.4.1:
-    version "3.4.4"
-    resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.4.4.tgz#e3d422f8a51adc4cae2bfa04cef26a5ccc046d29"
-    integrity sha512-vKea1DrcLA80Hrfc7AQgfoGvEaByfR5mH08t+zuWOWY94TFBmabdEL56mUbcijvadG9RxsXR2gUUFrfj4/iTcA==
+    version "3.4.5"
+    resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.4.5.tgz#3dda65611d95699b5eb7742ea451ea052d37aa65"
+    integrity sha512-OuvejWH6vIaUo59Ndlh89purNm4DCIy/v3QoYlcGnn+PkYI8BhNHfCuAESrWX+ZPfq9JccVJ+XXgOMy77PJexg==
   
   core-util-is@~1.0.0:
     version "1.0.2"
@@ -1135,6 +1187,14 @@ Lockfile:
       ripemd160 "^2.0.0"
       safe-buffer "^5.0.1"
       sha.js "^2.4.8"
+  
+  create-react-context@^0.3.0:
+    version "0.3.0"
+    resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.3.0.tgz#546dede9dc422def0d3fc2fe03afe0bc0f4f7d8c"
+    integrity sha512-dNldIoSuNSvlTJ7slIKC/ZFGKexBMBrrcc+TTe1NdmROnaASuLPvqpwj9v4XS4uXZ8+YPu0sNmShX2rXI5LNsw==
+    dependencies:
+      gud "^1.0.0"
+      warning "^4.0.3"
   
   cross-spawn@6.0.5, cross-spawn@^6.0.0:
     version "6.0.5"
@@ -1920,6 +1980,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
     integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
   
+  gud@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/gud/-/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
+    integrity sha512-zGEOVKFM5sVPPrYs7J5/hYEw2Pof8KCyOwyhG8sAF26mCAeUFAcYPu1mwB7hhpIP29zOIBaDqwuHdLp0jvZXjw==
+  
   has-ansi@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-2.0.0.tgz#34f5049ce1ecdf2b0649af3ef24e45ed35416d91"
@@ -2693,7 +2758,7 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
-  moment@^2.24.0:
+  moment@*, moment@>=2.14.0, moment@^2.24.0:
     version "2.24.0"
     resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
     integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
@@ -3112,6 +3177,11 @@ Lockfile:
     dependencies:
       find-up "^3.0.0"
   
+  popper.js@^1.14.1, popper.js@^1.14.4:
+    version "1.16.0"
+    resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
+    integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
+  
   posix-character-classes@^0.1.0:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
@@ -3135,9 +3205,9 @@ Lockfile:
       postcss-value-parser "^4.0.0"
   
   postcss-modules-scope@^2.1.0:
-    version "2.1.0"
-    resolved "https://registry.yarnpkg.com/postcss-modules-scope/-/postcss-modules-scope-2.1.0.tgz#ad3f5bf7856114f6fcab901b0502e2a2bc39d4eb"
-    integrity sha512-91Rjps0JnmtUB0cujlc8KIKCsJXWjzuxGeT/+Q2i2HXKZ7nBUeF9YQTZZTNvHVoNYj1AthsjnGLtqDUE0Op79A==
+    version "2.1.1"
+    resolved "https://registry.yarnpkg.com/postcss-modules-scope/-/postcss-modules-scope-2.1.1.tgz#33d4fc946602eb5e9355c4165d68a10727689dba"
+    integrity sha512-OXRUPecnHCg8b9xWvldG/jUpRIGPNRka0r4D4j0ESUU2/5IOnpsjfPPmDprM3Ih8CgZ8FXjWqaniK5v4rWt3oQ==
     dependencies:
       postcss "^7.0.6"
       postcss-selector-parser "^6.0.0"
@@ -3203,7 +3273,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
     integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
   
-  prop-types@^15.5.4, prop-types@^15.6.2, prop-types@^15.7.2:
+  prop-types@^15.5.4, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -3314,6 +3384,16 @@ Lockfile:
       minimist "^1.2.0"
       strip-json-comments "~2.0.1"
   
+  react-datepicker@1.7.0:
+    version "1.7.0"
+    resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-1.7.0.tgz#a5d8c689e8c7a3753d3e277589b03f097dcb3392"
+    integrity sha512-2cRopX0/V05wMyhAG0JGw2vmYAxDTFJ+gkT8qZ3I1U9+SGrhccdpHF0WgMlcugOL7wT7zsWxMo4tpgHjJFQZ4A==
+    dependencies:
+      classnames "^2.2.5"
+      prop-types "^15.6.0"
+      react-onclickoutside "^6.7.1"
+      react-popper "^1.0.2"
+  
   react-dom@^16.11.0:
     version "16.12.0"
     resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
@@ -3328,6 +3408,23 @@ Lockfile:
     version "16.12.0"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
     integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
+  
+  react-onclickoutside@^6.7.1:
+    version "6.9.0"
+    resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.9.0.tgz#a54bc317ae8cf6131a5d78acea55a11067f37a1f"
+    integrity sha512-8ltIY3bC7oGhj2nPAvWOGi+xGFybPNhJM0V1H8hY/whNcXgmDeaeoCMPPd8VatrpTsUWjb/vGzrmu6SrXVty3A==
+  
+  react-popper@^1.0.2:
+    version "1.3.6"
+    resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-1.3.6.tgz#32122f83af8fda01bdd4f86625ddacaf64fdd06d"
+    integrity sha512-kLTfa9z8n+0jJvRVal9+vIuirg41rObg4Bbrvv/ZfsGPQDN9reyVVSxqnHF1ZNgXgV7x11PeUfd5ItF8DZnqhg==
+    dependencies:
+      "@babel/runtime" "^7.1.2"
+      create-react-context "^0.3.0"
+      popper.js "^1.14.4"
+      prop-types "^15.6.1"
+      typed-styles "^0.0.7"
+      warning "^4.0.2"
   
   react-redux@^7.1.1:
     version "7.1.3"
@@ -3568,9 +3665,9 @@ Lockfile:
       ajv-keywords "^3.1.0"
   
   schema-utils@^2.0.0, schema-utils@^2.0.1:
-    version "2.6.0"
-    resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-2.6.0.tgz#68a259aabbef9d08d1252c2e63c398e476308e80"
-    integrity sha512-UlPB1ME4i/71cih/Rv92gK8043CrJTc2mjkyxDp4pdJ7ZfzY0g0hdGjjDB23jX3X+NXSneCdQbScGhn6K2tbpQ==
+    version "2.6.1"
+    resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-2.6.1.tgz#eb78f0b945c7bcfa2082b3565e8db3548011dc4f"
+    integrity sha512-0WXHDs1VDJyo+Zqs9TKLKyD/h7yDpHUhEFsM2CzkICFdoX1av+GBq/J2xRTFfsQO5kBfhZzANf2VcIm84jqDbg==
     dependencies:
       ajv "^6.10.2"
       ajv-keywords "^3.4.1"
@@ -3854,9 +3951,9 @@ Lockfile:
     integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
   
   style-loader@^1.0.0:
-    version "1.0.0"
-    resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-1.0.0.tgz#1d5296f9165e8e2c85d24eee0b7caf9ec8ca1f82"
-    integrity sha512-B0dOCFwv7/eY31a5PCieNwMgMhVGFe9w+rh7s/Bx8kfFkrth9zfTZquoYvdw8URgiqxObQKcpW51Ugz1HjfdZw==
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-1.0.1.tgz#aec6d4c61d0ed8d0a442faed741d4dfc6573888a"
+    integrity sha512-CnpEkSR1C+REjudiTWCv4+ssP7SCiuaQZJTZDWBRwTJoS90mdqkB8uOGMHKgVeUzpaU7IfLWoyQbvvs5Joj3Xw==
     dependencies:
       loader-utils "^1.2.3"
       schema-utils "^2.0.1"
@@ -4106,10 +4203,20 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
     integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
   
+  typed-styles@^0.0.7:
+    version "0.0.7"
+    resolved "https://registry.yarnpkg.com/typed-styles/-/typed-styles-0.0.7.tgz#93392a008794c4595119ff62dde6809dbc40a3d9"
+    integrity sha512-pzP0PWoZUhsECYjABgCGQlRGL1n7tOHsgwYv3oIiEpJwGhFTuty/YNeduxQYzXXa3Ge5BdT6sHYIQYpl4uJ+5Q==
+  
   typedarray@^0.0.6:
     version "0.0.6"
     resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
     integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+  
+  typescript-async@^1.0.7:
+    version "1.0.7"
+    resolved "https://registry.yarnpkg.com/typescript-async/-/typescript-async-1.0.7.tgz#1960d3665cc5d19fcc8b7a33fd5b7f1228924798"
+    integrity sha1-GWDTZlzF0Z/Mi3oz/Vt/EiiSR5g=
   
   typescript@^3.6.4:
     version "3.7.2"
@@ -4268,6 +4375,13 @@ Lockfile:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
     integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+  
+  warning@^4.0.2, warning@^4.0.3:
+    version "4.0.3"
+    resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+    integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+    dependencies:
+      loose-envify "^1.0.0"
   
   watchpack@^1.6.0:
     version "1.6.0"

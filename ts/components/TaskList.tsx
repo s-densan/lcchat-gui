@@ -2,14 +2,15 @@ import Moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
 import Styled from 'styled-components';
-
-import { createShowTasksAction } from '../actions/TaskActionCreators';
-import { ITaskList } from '../states/ITask';
-import store from '../Store';
-import { IState } from '../IStore';
 import { AddTask } from './AddTask';
 import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
+import { Loading } from './Loading';
 import TaskRow from './TaskRow';
+import { createLoadTasksAction } from '../actions/TaskActionCreators';
+import { createShowTasksAction } from '../actions/TaskActionCreators';
+import { IState } from '../IStore';
+import { ITaskList } from '../states/ITask';
+import store from '../Store';
 
 //#region styled
 const MainContainer = Styled.div`
@@ -45,7 +46,8 @@ const TaskList = Styled.div`
 
 class TodoList extends React.Component<ITaskList, {}> {
     public componentDidMount() {
-        store.dispatch(createShowTasksAction([])); //...(a)
+        store.dispatch(createLoadTasksAction(store.dispatch));
+        //store.dispatch(createShowTasksAction([]));
     }
     public render() {
         const { tasks } = this.props;
@@ -61,13 +63,15 @@ class TodoList extends React.Component<ITaskList, {}> {
             <div>
                 <Header>TODO</Header>
                 <MainContainer>
-                    <AddTask taskName="" deadline={Moment().add(1, 'days').toDate()} />
+                    <AddTask taskName="" deadline={Moment().add(1 , 'days').toDate()} />
                     <TaskList>
-                        {taskListElems /* ...(b')*/}
+                        {taskListElems}
                     </TaskList>
                 </MainContainer>
+                <Loading shown={this.props.shownLoading} />{/* <-追加 */}
             </div>
         );
+
     }
 }
 

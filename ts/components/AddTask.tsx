@@ -28,8 +28,6 @@ interface ILocalState {
     deadline: Date;
 }
 
-
-
 //#region styled
 const Container = Styled.div`
     align-items: center;
@@ -65,7 +63,6 @@ const AddButton = Styled.button`
 //#endregion
 
 export class AddTask extends React.Component<IProps, ILocalState> {
-    
     public constructor(props: IProps) {
         super(props);
         this.state = {
@@ -95,19 +92,18 @@ export class AddTask extends React.Component<IProps, ILocalState> {
         );
     }
 
-
     /**
      * 追加ボタンを押すと、タスク一覧にタスクを追加する
      */
     private onClickAdd = (e: React.MouseEvent) => {
-        store.dispatch(createAddTaskAction(this.state.taskName, this.state.deadline ));
+        store.dispatch(createAddTaskAction(this.state.taskName, this.state.deadline, store ));
         const m = Moment(new Date()).add(1, 'days');
         this.setState({
             deadline: m.toDate(),
             taskName: '',
         });
     }
-        /**
+    /**
      * タスク名変更イベントハンドラ
      * 
      * テキストボックスの内容をローカルステートに反映する

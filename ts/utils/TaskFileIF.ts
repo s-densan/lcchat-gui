@@ -47,6 +47,8 @@ export const saveState = async (taskList: ITask[]) => {
         spaces: 2,
     });
 };
+export const tes = async () => {
+};
 /** 指定ミリ秒 待つ関数 */
 const setTimeoutPromise = (count: number) => {
     return new Promise((resolve) => {
