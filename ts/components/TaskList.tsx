@@ -94,6 +94,7 @@ import  { ITaskState } from '../ITaskStore';
 import { AddTask } from './AddTask';
 import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
 import TaskRow from './TaskRow';
+import {Loading} from './Loading';
 
 //#region styled
 const MainContainer = Styled.div`
@@ -129,27 +130,34 @@ const TaskList = Styled.div`
 
 class TodoList extends React.Component<ITaskList, {}> {
     public componentDidMount() {
-        store.dispatch(createShowTasksAction([])); //...(a)
+        // これがあると画面が真っ白になる
+
+        //store.dispatch(createShowTasksAction([])); 
     }
     public render() {
         const { tasks } = this.props;
-        const taskListElems = tasks.sort((a, b) => { // ...(b)
+        const taskListElems = tasks.sort((a, b) => { 
             return (a.deadline < b.deadline) ? -1
                 : (a.deadline.getTime() === b.deadline.getTime()) ? 0 : 1;
         }).map((it) => {
+            return <div></div>;
+            /*
             return (
-                <TaskRow key={it.id} {...it} /> // ...(c)
+                <TaskRow key={it.id} {...it} /> 
             );
+            */
         });
+        
         return (
             <div>
                 <Header>TODO</Header>
                 <MainContainer>
-                    <AddTask taskName="" deadline={Moment().add(1, 'days').toDate()} />
+                    <AddTask taskName="" deadline={Moment().add(1 , 'days').toDate()} />
                     <TaskList>
-                        {taskListElems /* ...(b')*/}
+                        {taskListElems}
                     </TaskList>
                 </MainContainer>
+                <Loading shown={this.props.shownLoading} />{/* <-追加 */}
             </div>
         );
     }

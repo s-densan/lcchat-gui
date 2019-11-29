@@ -73,6 +73,8 @@ export class AddTask extends React.Component<IProps, ILocalState> {
     }
         
     public render() {
+        return null;
+        /*
         const date = Moment(this.state.deadline);
         const taskNameId = UUID();
         const deadlineId = UUID();
@@ -91,11 +93,13 @@ export class AddTask extends React.Component<IProps, ILocalState> {
                 <AddButton onClick={this.onClickAdd}>+</AddButton>
             </Container>
         );
+        */
     }
 
     /**
      * 追加ボタンを押すと、タスク一覧にタスクを追加する
      */
+    /*
     private onClickAdd = (e: React.MouseEvent) => {
         store.dispatch(createAddTaskAction(this.state.taskName, this.state.deadline, store));
         const m = Moment(new Date()).add(1, 'days');
@@ -104,18 +108,20 @@ export class AddTask extends React.Component<IProps, ILocalState> {
             taskName: '',
         });
     }
+    */
     
-    // ↓ 追加
     /**
      * タスク名変更イベントハンドラ
      * 
      * テキストボックスの内容をローカルステートに反映する
      */
+    /*
     private onChangeTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             taskName: e.target.value,
         });
     }
+    */
     /**
      * 期日を変更したときのイベントハンドラ
      * 
