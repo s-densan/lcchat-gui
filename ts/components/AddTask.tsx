@@ -7,7 +7,7 @@ import Styled from 'styled-components';
 import { v4 as UUID } from 'uuid';
 
 import { createAddTaskAction } from '../actions/TaskActionCreators';
-import store from '../TaskStore';
+import store from '../Store';
 import { $COLOR_SECONDARY_1_3 } from './FoundationStyles';
 
 /**
@@ -27,6 +27,7 @@ interface ILocalState {
     /** 期限 */
     deadline: Date;
 }
+
 
 
 //#region styled
@@ -64,17 +65,16 @@ const AddButton = Styled.button`
 //#endregion
 
 export class AddTask extends React.Component<IProps, ILocalState> {
-    public constructor(props: IProps){
+    
+    public constructor(props: IProps) {
         super(props);
         this.state = {
             deadline: props.deadline,
             taskName: props.taskName,
         };
     }
-        
+
     public render() {
-        return null;
-        /*
         const date = Moment(this.state.deadline);
         const taskNameId = UUID();
         const deadlineId = UUID();
@@ -83,45 +83,40 @@ export class AddTask extends React.Component<IProps, ILocalState> {
                 <TaskNameBox>
                     <label htmlFor={taskNameId}>task name</label>
                     <TextBox id={taskNameId} type="text" value={this.state.taskName}
-                        onChange={this.onChangeTaskName} />
+                        onChange={this.onChangeTaskName /*← 変更*/} />
                 </TaskNameBox>
                 <DeadlineBox>
                     <label htmlFor={deadlineId}>dead line</label>
                     <DatePicker selected={date} showTimeSelect={true}
-                        dateFormat="YYYY-MM-DD HH:mm" onChange={this.onChangeDeadLine} />
+                        dateFormat="YYYY-MM-DD HH:mm" onChange={this.onChangeDeadLine /*← 変更*/} />
                 </DeadlineBox>
                 <AddButton onClick={this.onClickAdd}>+</AddButton>
             </Container>
         );
-        */
     }
+
 
     /**
      * 追加ボタンを押すと、タスク一覧にタスクを追加する
      */
-    /*
     private onClickAdd = (e: React.MouseEvent) => {
-        store.dispatch(createAddTaskAction(this.state.taskName, this.state.deadline, store));
+        store.dispatch(createAddTaskAction(this.state.taskName, this.state.deadline ));
         const m = Moment(new Date()).add(1, 'days');
         this.setState({
             deadline: m.toDate(),
             taskName: '',
         });
     }
-    */
-    
-    /**
+        /**
      * タスク名変更イベントハンドラ
      * 
      * テキストボックスの内容をローカルステートに反映する
      */
-    /*
     private onChangeTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             taskName: e.target.value,
         });
     }
-    */
     /**
      * 期日を変更したときのイベントハンドラ
      * 
@@ -133,5 +128,5 @@ export class AddTask extends React.Component<IProps, ILocalState> {
             deadline: !!date ? date.toDate() : new Date(),
         });
     }
-    // ↑ 追加
+
 }

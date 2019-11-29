@@ -4,7 +4,7 @@ import Styled from 'styled-components';
 
 import { createDeleteTaskAction, createToggleCompleteAction } from '../actions/TaskActionCreators';
 import { ITask } from '../states/ITask';
-import store from '../TaskStore';
+import store from '../Store';
 import { $COLOR_SECONDARY_1_3, $COLOR_SECONDARY_2_0 } from './FoundationStyles';
 
 //#region styled
@@ -86,8 +86,6 @@ const Deadline = Styled.div`
 
 class TaskRow extends React.Component<ITask, {}> {
     public render() {
-        return <div>hello</div>;
-        /*
         const it = this.props;
         const deadlineString = Moment(it.deadline).format('YYYY-MM-DD hh:mm');
         return (
@@ -105,7 +103,6 @@ class TaskRow extends React.Component<ITask, {}> {
                 <TaskRemove onClick={this.onClickDelete.bind(this, it.id)}>❌</TaskRemove>
             </Task>
         );
-        */
     }
     /**
      * ボックスをクリックすると、タスク完了 <-> 未完了 がトグルする

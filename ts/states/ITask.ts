@@ -16,8 +16,6 @@ export interface ITask {
  * タスクのリスト
  */
 export interface ITaskList {
-    /** ローディング表示 **/
-    shownLoading: boolean;
     /** タスクの一覧 */
     tasks: ITask[];
 }
@@ -25,7 +23,6 @@ export interface ITaskList {
  * タスクのリストの初期値
  */
 export const initTaskList: ITaskList = {
-    shownLoading: false,
     tasks: [],
 };
 /**

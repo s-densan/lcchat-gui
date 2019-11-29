@@ -4,7 +4,7 @@ import { ITaskList } from './states/ITask';
  *
  * プロパティには、管理する child_state を指定する
  */
-export interface ITaskState {
+export interface IState {
     taskList: ITaskList;
     // state が増えたら足していく
 }

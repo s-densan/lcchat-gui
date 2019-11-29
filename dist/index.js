@@ -86,6 +86,51 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
 /*!************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
@@ -140,6 +185,78 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   return target;
 }
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/extends.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/extends.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/inheritsLoose.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/inheritsLoose.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+module.exports = _inheritsLoose;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
 
 /***/ }),
 
@@ -253,6 +370,68 @@ var unitlessKeys = {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (unitlessKeys);
+
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
 
 
 /***/ }),
@@ -525,6 +704,240 @@ if ( true && module.exports) {
 
 /***/ }),
 
+/***/ "./node_modules/create-react-context/lib/implementation.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/create-react-context/lib/implementation.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _gud = __webpack_require__(/*! gud */ "./node_modules/gud/index.js");
+
+var _gud2 = _interopRequireDefault(_gud);
+
+var _warning = __webpack_require__(/*! warning */ "./node_modules/warning/warning.js");
+
+var _warning2 = _interopRequireDefault(_warning);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MAX_SIGNED_31_BIT_INT = 1073741823;
+
+// Inlined Object.is polyfill.
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+function objectIs(x, y) {
+  if (x === y) {
+    return x !== 0 || 1 / x === 1 / y;
+  } else {
+    return x !== x && y !== y;
+  }
+}
+
+function createEventEmitter(value) {
+  var handlers = [];
+  return {
+    on: function on(handler) {
+      handlers.push(handler);
+    },
+    off: function off(handler) {
+      handlers = handlers.filter(function (h) {
+        return h !== handler;
+      });
+    },
+    get: function get() {
+      return value;
+    },
+    set: function set(newValue, changedBits) {
+      value = newValue;
+      handlers.forEach(function (handler) {
+        return handler(value, changedBits);
+      });
+    }
+  };
+}
+
+function onlyChild(children) {
+  return Array.isArray(children) ? children[0] : children;
+}
+
+function createReactContext(defaultValue, calculateChangedBits) {
+  var _Provider$childContex, _Consumer$contextType;
+
+  var contextProp = '__create-react-context-' + (0, _gud2.default)() + '__';
+
+  var Provider = function (_Component) {
+    _inherits(Provider, _Component);
+
+    function Provider() {
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Provider);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.emitter = createEventEmitter(_this.props.value), _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    Provider.prototype.getChildContext = function getChildContext() {
+      var _ref;
+
+      return _ref = {}, _ref[contextProp] = this.emitter, _ref;
+    };
+
+    Provider.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+      if (this.props.value !== nextProps.value) {
+        var oldValue = this.props.value;
+        var newValue = nextProps.value;
+        var changedBits = void 0;
+
+        if (objectIs(oldValue, newValue)) {
+          changedBits = 0; // No change
+        } else {
+          changedBits = typeof calculateChangedBits === 'function' ? calculateChangedBits(oldValue, newValue) : MAX_SIGNED_31_BIT_INT;
+          if (true) {
+            (0, _warning2.default)((changedBits & MAX_SIGNED_31_BIT_INT) === changedBits, 'calculateChangedBits: Expected the return value to be a ' + '31-bit integer. Instead received: %s', changedBits);
+          }
+
+          changedBits |= 0;
+
+          if (changedBits !== 0) {
+            this.emitter.set(nextProps.value, changedBits);
+          }
+        }
+      }
+    };
+
+    Provider.prototype.render = function render() {
+      return this.props.children;
+    };
+
+    return Provider;
+  }(_react.Component);
+
+  Provider.childContextTypes = (_Provider$childContex = {}, _Provider$childContex[contextProp] = _propTypes2.default.object.isRequired, _Provider$childContex);
+
+  var Consumer = function (_Component2) {
+    _inherits(Consumer, _Component2);
+
+    function Consumer() {
+      var _temp2, _this2, _ret2;
+
+      _classCallCheck(this, Consumer);
+
+      for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, _Component2.call.apply(_Component2, [this].concat(args))), _this2), _this2.state = {
+        value: _this2.getValue()
+      }, _this2.onUpdate = function (newValue, changedBits) {
+        var observedBits = _this2.observedBits | 0;
+        if ((observedBits & changedBits) !== 0) {
+          _this2.setState({ value: _this2.getValue() });
+        }
+      }, _temp2), _possibleConstructorReturn(_this2, _ret2);
+    }
+
+    Consumer.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+      var observedBits = nextProps.observedBits;
+
+      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT // Subscribe to all changes by default
+      : observedBits;
+    };
+
+    Consumer.prototype.componentDidMount = function componentDidMount() {
+      if (this.context[contextProp]) {
+        this.context[contextProp].on(this.onUpdate);
+      }
+      var observedBits = this.props.observedBits;
+
+      this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT // Subscribe to all changes by default
+      : observedBits;
+    };
+
+    Consumer.prototype.componentWillUnmount = function componentWillUnmount() {
+      if (this.context[contextProp]) {
+        this.context[contextProp].off(this.onUpdate);
+      }
+    };
+
+    Consumer.prototype.getValue = function getValue() {
+      if (this.context[contextProp]) {
+        return this.context[contextProp].get();
+      } else {
+        return defaultValue;
+      }
+    };
+
+    Consumer.prototype.render = function render() {
+      return onlyChild(this.props.children)(this.state.value);
+    };
+
+    return Consumer;
+  }(_react.Component);
+
+  Consumer.contextTypes = (_Consumer$contextType = {}, _Consumer$contextType[contextProp] = _propTypes2.default.object, _Consumer$contextType);
+
+
+  return {
+    Provider: Provider,
+    Consumer: Consumer
+  };
+}
+
+exports.default = createReactContext;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/create-react-context/lib/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/create-react-context/lib/index.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _implementation = __webpack_require__(/*! ./implementation */ "./node_modules/create-react-context/lib/implementation.js");
+
+var _implementation2 = _interopRequireDefault(_implementation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _react2.default.createContext || _implementation2.default;
+module.exports = exports['default'];
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/react-datepicker/dist/react-datepicker.css":
 /*!*******************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/react-datepicker/dist/react-datepicker.css ***!
@@ -651,6 +1064,26 @@ function toComment(sourceMap) {
   var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
   return "/*# ".concat(data, " */");
 }
+
+/***/ }),
+
+/***/ "./node_modules/gud/index.js":
+/*!***********************************!*\
+  !*** ./node_modules/gud/index.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// @flow
+
+
+var key = '__global_unique_id__';
+
+module.exports = function() {
+  return global[key] = (global[key] || 0) + 1;
+};
+
 
 /***/ }),
 
@@ -18974,6 +19407,2635 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /***/ }),
 
+/***/ "./node_modules/popper.js/dist/esm/popper.js":
+/*!***************************************************!*\
+  !*** ./node_modules/popper.js/dist/esm/popper.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**!
+ * @fileOverview Kickass library to create and place poppers near their reference elements.
+ * @version 1.16.0
+ * @license
+ * Copyright (c) 2016 Federico Zivolo and contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined' && typeof navigator !== 'undefined';
+
+var timeoutDuration = function () {
+  var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+  for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+    if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+      return 1;
+    }
+  }
+  return 0;
+}();
+
+function microtaskDebounce(fn) {
+  var called = false;
+  return function () {
+    if (called) {
+      return;
+    }
+    called = true;
+    window.Promise.resolve().then(function () {
+      called = false;
+      fn();
+    });
+  };
+}
+
+function taskDebounce(fn) {
+  var scheduled = false;
+  return function () {
+    if (!scheduled) {
+      scheduled = true;
+      setTimeout(function () {
+        scheduled = false;
+        fn();
+      }, timeoutDuration);
+    }
+  };
+}
+
+var supportsMicroTasks = isBrowser && window.Promise;
+
+/**
+* Create a debounced version of a method, that's asynchronously deferred
+* but called in the minimum time possible.
+*
+* @method
+* @memberof Popper.Utils
+* @argument {Function} fn
+* @returns {Function}
+*/
+var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
+
+/**
+ * Check if the given variable is a function
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Any} functionToCheck - variable to check
+ * @returns {Boolean} answer to: is a function?
+ */
+function isFunction(functionToCheck) {
+  var getType = {};
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+}
+
+/**
+ * Get CSS computed property of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Eement} element
+ * @argument {String} property
+ */
+function getStyleComputedProperty(element, property) {
+  if (element.nodeType !== 1) {
+    return [];
+  }
+  // NOTE: 1 DOM access here
+  var window = element.ownerDocument.defaultView;
+  var css = window.getComputedStyle(element, null);
+  return property ? css[property] : css;
+}
+
+/**
+ * Returns the parentNode or the host of the element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} parent
+ */
+function getParentNode(element) {
+  if (element.nodeName === 'HTML') {
+    return element;
+  }
+  return element.parentNode || element.host;
+}
+
+/**
+ * Returns the scrolling parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} scroll parent
+ */
+function getScrollParent(element) {
+  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
+  if (!element) {
+    return document.body;
+  }
+
+  switch (element.nodeName) {
+    case 'HTML':
+    case 'BODY':
+      return element.ownerDocument.body;
+    case '#document':
+      return element.body;
+  }
+
+  // Firefox want us to check `-x` and `-y` variations as well
+
+  var _getStyleComputedProp = getStyleComputedProperty(element),
+      overflow = _getStyleComputedProp.overflow,
+      overflowX = _getStyleComputedProp.overflowX,
+      overflowY = _getStyleComputedProp.overflowY;
+
+  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
+    return element;
+  }
+
+  return getScrollParent(getParentNode(element));
+}
+
+/**
+ * Returns the reference node of the reference object, or the reference object itself.
+ * @method
+ * @memberof Popper.Utils
+ * @param {Element|Object} reference - the reference element (the popper will be relative to this)
+ * @returns {Element} parent
+ */
+function getReferenceNode(reference) {
+  return reference && reference.referenceNode ? reference.referenceNode : reference;
+}
+
+var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
+var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
+
+/**
+ * Determines if the browser is Internet Explorer
+ * @method
+ * @memberof Popper.Utils
+ * @param {Number} version to check
+ * @returns {Boolean} isIE
+ */
+function isIE(version) {
+  if (version === 11) {
+    return isIE11;
+  }
+  if (version === 10) {
+    return isIE10;
+  }
+  return isIE11 || isIE10;
+}
+
+/**
+ * Returns the offset parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} offset parent
+ */
+function getOffsetParent(element) {
+  if (!element) {
+    return document.documentElement;
+  }
+
+  var noOffsetParent = isIE(10) ? document.body : null;
+
+  // NOTE: 1 DOM access here
+  var offsetParent = element.offsetParent || null;
+  // Skip hidden elements which don't have an offsetParent
+  while (offsetParent === noOffsetParent && element.nextElementSibling) {
+    offsetParent = (element = element.nextElementSibling).offsetParent;
+  }
+
+  var nodeName = offsetParent && offsetParent.nodeName;
+
+  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+    return element ? element.ownerDocument.documentElement : document.documentElement;
+  }
+
+  // .offsetParent will return the closest TH, TD or TABLE in case
+  // no offsetParent is present, I hate this job...
+  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+    return getOffsetParent(offsetParent);
+  }
+
+  return offsetParent;
+}
+
+function isOffsetContainer(element) {
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY') {
+    return false;
+  }
+  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+}
+
+/**
+ * Finds the root node (document, shadowDOM root) of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} node
+ * @returns {Element} root node
+ */
+function getRoot(node) {
+  if (node.parentNode !== null) {
+    return getRoot(node.parentNode);
+  }
+
+  return node;
+}
+
+/**
+ * Finds the offset parent common to the two provided nodes
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element1
+ * @argument {Element} element2
+ * @returns {Element} common offset parent
+ */
+function findCommonOffsetParent(element1, element2) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
+    return document.documentElement;
+  }
+
+  // Here we make sure to give as "start" the element that comes first in the DOM
+  var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
+  var start = order ? element1 : element2;
+  var end = order ? element2 : element1;
+
+  // Get common ancestor container
+  var range = document.createRange();
+  range.setStart(start, 0);
+  range.setEnd(end, 0);
+  var commonAncestorContainer = range.commonAncestorContainer;
+
+  // Both nodes are inside #document
+
+  if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
+    if (isOffsetContainer(commonAncestorContainer)) {
+      return commonAncestorContainer;
+    }
+
+    return getOffsetParent(commonAncestorContainer);
+  }
+
+  // one of the nodes is inside shadowDOM, find which one
+  var element1root = getRoot(element1);
+  if (element1root.host) {
+    return findCommonOffsetParent(element1root.host, element2);
+  } else {
+    return findCommonOffsetParent(element1, getRoot(element2).host);
+  }
+}
+
+/**
+ * Gets the scroll value of the given element in the given side (top and left)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {String} side `top` or `left`
+ * @returns {number} amount of scrolled pixels
+ */
+function getScroll(element) {
+  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+
+  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    var html = element.ownerDocument.documentElement;
+    var scrollingElement = element.ownerDocument.scrollingElement || html;
+    return scrollingElement[upperSide];
+  }
+
+  return element[upperSide];
+}
+
+/*
+ * Sum or subtract the element scroll values (left and top) from a given rect object
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} rect - Rect object you want to change
+ * @param {HTMLElement} element - The element from the function reads the scroll values
+ * @param {Boolean} subtract - set to true if you want to subtract the scroll values
+ * @return {Object} rect - The modifier rect object
+ */
+function includeScroll(rect, element) {
+  var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var scrollTop = getScroll(element, 'top');
+  var scrollLeft = getScroll(element, 'left');
+  var modifier = subtract ? -1 : 1;
+  rect.top += scrollTop * modifier;
+  rect.bottom += scrollTop * modifier;
+  rect.left += scrollLeft * modifier;
+  rect.right += scrollLeft * modifier;
+  return rect;
+}
+
+/*
+ * Helper to detect borders of a given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {CSSStyleDeclaration} styles
+ * Result of `getStyleComputedProperty` on the given element
+ * @param {String} axis - `x` or `y`
+ * @return {number} borders - The borders size of the given axis
+ */
+
+function getBordersSize(styles, axis) {
+  var sideA = axis === 'x' ? 'Left' : 'Top';
+  var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
+
+  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
+}
+
+function getSize(axis, body, html, computedStyle) {
+  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')]) : 0);
+}
+
+function getWindowSizes(document) {
+  var body = document.body;
+  var html = document.documentElement;
+  var computedStyle = isIE(10) && getComputedStyle(html);
+
+  return {
+    height: getSize('Height', body, html, computedStyle),
+    width: getSize('Width', body, html, computedStyle)
+  };
+}
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+
+
+
+
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/**
+ * Given element offsets, generate an output similar to getBoundingClientRect
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} offsets
+ * @returns {Object} ClientRect like output
+ */
+function getClientRect(offsets) {
+  return _extends({}, offsets, {
+    right: offsets.left + offsets.width,
+    bottom: offsets.top + offsets.height
+  });
+}
+
+/**
+ * Get bounding client rect of given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} element
+ * @return {Object} client rect
+ */
+function getBoundingClientRect(element) {
+  var rect = {};
+
+  // IE10 10 FIX: Please, don't ask, the element isn't
+  // considered in DOM in some circumstances...
+  // This isn't reproducible in IE10 compatibility mode of IE11
+  try {
+    if (isIE(10)) {
+      rect = element.getBoundingClientRect();
+      var scrollTop = getScroll(element, 'top');
+      var scrollLeft = getScroll(element, 'left');
+      rect.top += scrollTop;
+      rect.left += scrollLeft;
+      rect.bottom += scrollTop;
+      rect.right += scrollLeft;
+    } else {
+      rect = element.getBoundingClientRect();
+    }
+  } catch (e) {}
+
+  var result = {
+    left: rect.left,
+    top: rect.top,
+    width: rect.right - rect.left,
+    height: rect.bottom - rect.top
+  };
+
+  // subtract scrollbar size from sizes
+  var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+  var width = sizes.width || element.clientWidth || result.width;
+  var height = sizes.height || element.clientHeight || result.height;
+
+  var horizScrollbar = element.offsetWidth - width;
+  var vertScrollbar = element.offsetHeight - height;
+
+  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
+  // we make this check conditional for performance reasons
+  if (horizScrollbar || vertScrollbar) {
+    var styles = getStyleComputedProperty(element);
+    horizScrollbar -= getBordersSize(styles, 'x');
+    vertScrollbar -= getBordersSize(styles, 'y');
+
+    result.width -= horizScrollbar;
+    result.height -= vertScrollbar;
+  }
+
+  return getClientRect(result);
+}
+
+function getOffsetRectRelativeToArbitraryNode(children, parent) {
+  var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var isIE10 = isIE(10);
+  var isHTML = parent.nodeName === 'HTML';
+  var childrenRect = getBoundingClientRect(children);
+  var parentRect = getBoundingClientRect(parent);
+  var scrollParent = getScrollParent(children);
+
+  var styles = getStyleComputedProperty(parent);
+  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
+  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
+
+  // In cases where the parent is fixed, we must ignore negative scroll in offset calc
+  if (fixedPosition && isHTML) {
+    parentRect.top = Math.max(parentRect.top, 0);
+    parentRect.left = Math.max(parentRect.left, 0);
+  }
+  var offsets = getClientRect({
+    top: childrenRect.top - parentRect.top - borderTopWidth,
+    left: childrenRect.left - parentRect.left - borderLeftWidth,
+    width: childrenRect.width,
+    height: childrenRect.height
+  });
+  offsets.marginTop = 0;
+  offsets.marginLeft = 0;
+
+  // Subtract margins of documentElement in case it's being used as parent
+  // we do this only on HTML because it's the only element that behaves
+  // differently when margins are applied to it. The margins are included in
+  // the box of the documentElement, in the other cases not.
+  if (!isIE10 && isHTML) {
+    var marginTop = parseFloat(styles.marginTop, 10);
+    var marginLeft = parseFloat(styles.marginLeft, 10);
+
+    offsets.top -= borderTopWidth - marginTop;
+    offsets.bottom -= borderTopWidth - marginTop;
+    offsets.left -= borderLeftWidth - marginLeft;
+    offsets.right -= borderLeftWidth - marginLeft;
+
+    // Attach marginTop and marginLeft because in some circumstances we may need them
+    offsets.marginTop = marginTop;
+    offsets.marginLeft = marginLeft;
+  }
+
+  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+    offsets = includeScroll(offsets, parent);
+  }
+
+  return offsets;
+}
+
+function getViewportOffsetRectRelativeToArtbitraryNode(element) {
+  var excludeScroll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var html = element.ownerDocument.documentElement;
+  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
+  var width = Math.max(html.clientWidth, window.innerWidth || 0);
+  var height = Math.max(html.clientHeight, window.innerHeight || 0);
+
+  var scrollTop = !excludeScroll ? getScroll(html) : 0;
+  var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
+
+  var offset = {
+    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
+    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
+    width: width,
+    height: height
+  };
+
+  return getClientRect(offset);
+}
+
+/**
+ * Check if the given element is fixed or is inside a fixed parent
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {Element} customContainer
+ * @returns {Boolean} answer to "isFixed?"
+ */
+function isFixed(element) {
+  var nodeName = element.nodeName;
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    return false;
+  }
+  if (getStyleComputedProperty(element, 'position') === 'fixed') {
+    return true;
+  }
+  var parentNode = getParentNode(element);
+  if (!parentNode) {
+    return false;
+  }
+  return isFixed(parentNode);
+}
+
+/**
+ * Finds the first parent of an element that has a transformed property defined
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} first transformed parent or documentElement
+ */
+
+function getFixedPositionOffsetParent(element) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element || !element.parentElement || isIE()) {
+    return document.documentElement;
+  }
+  var el = element.parentElement;
+  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
+    el = el.parentElement;
+  }
+  return el || document.documentElement;
+}
+
+/**
+ * Computed the boundaries limits and return them
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} popper
+ * @param {HTMLElement} reference
+ * @param {number} padding
+ * @param {HTMLElement} boundariesElement - Element used to define the boundaries
+ * @param {Boolean} fixedPosition - Is in fixed position mode
+ * @returns {Object} Coordinates of the boundaries
+ */
+function getBoundaries(popper, reference, padding, boundariesElement) {
+  var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+
+  // NOTE: 1 DOM access here
+
+  var boundaries = { top: 0, left: 0 };
+  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
+
+  // Handle viewport case
+  if (boundariesElement === 'viewport') {
+    boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
+  } else {
+    // Handle other cases based on DOM element used as boundaries
+    var boundariesNode = void 0;
+    if (boundariesElement === 'scrollParent') {
+      boundariesNode = getScrollParent(getParentNode(reference));
+      if (boundariesNode.nodeName === 'BODY') {
+        boundariesNode = popper.ownerDocument.documentElement;
+      }
+    } else if (boundariesElement === 'window') {
+      boundariesNode = popper.ownerDocument.documentElement;
+    } else {
+      boundariesNode = boundariesElement;
+    }
+
+    var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
+
+    // In case of HTML, we need a different computation
+    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+      var _getWindowSizes = getWindowSizes(popper.ownerDocument),
+          height = _getWindowSizes.height,
+          width = _getWindowSizes.width;
+
+      boundaries.top += offsets.top - offsets.marginTop;
+      boundaries.bottom = height + offsets.top;
+      boundaries.left += offsets.left - offsets.marginLeft;
+      boundaries.right = width + offsets.left;
+    } else {
+      // for all the other DOM elements, this one is good
+      boundaries = offsets;
+    }
+  }
+
+  // Add paddings
+  padding = padding || 0;
+  var isPaddingNumber = typeof padding === 'number';
+  boundaries.left += isPaddingNumber ? padding : padding.left || 0;
+  boundaries.top += isPaddingNumber ? padding : padding.top || 0;
+  boundaries.right -= isPaddingNumber ? padding : padding.right || 0;
+  boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0;
+
+  return boundaries;
+}
+
+function getArea(_ref) {
+  var width = _ref.width,
+      height = _ref.height;
+
+  return width * height;
+}
+
+/**
+ * Utility used to transform the `auto` placement to the placement with more
+ * available space.
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
+  var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+
+  if (placement.indexOf('auto') === -1) {
+    return placement;
+  }
+
+  var boundaries = getBoundaries(popper, reference, padding, boundariesElement);
+
+  var rects = {
+    top: {
+      width: boundaries.width,
+      height: refRect.top - boundaries.top
+    },
+    right: {
+      width: boundaries.right - refRect.right,
+      height: boundaries.height
+    },
+    bottom: {
+      width: boundaries.width,
+      height: boundaries.bottom - refRect.bottom
+    },
+    left: {
+      width: refRect.left - boundaries.left,
+      height: boundaries.height
+    }
+  };
+
+  var sortedAreas = Object.keys(rects).map(function (key) {
+    return _extends({
+      key: key
+    }, rects[key], {
+      area: getArea(rects[key])
+    });
+  }).sort(function (a, b) {
+    return b.area - a.area;
+  });
+
+  var filteredAreas = sortedAreas.filter(function (_ref2) {
+    var width = _ref2.width,
+        height = _ref2.height;
+    return width >= popper.clientWidth && height >= popper.clientHeight;
+  });
+
+  var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
+
+  var variation = placement.split('-')[1];
+
+  return computedPlacement + (variation ? '-' + variation : '');
+}
+
+/**
+ * Get offsets to the reference element
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} state
+ * @param {Element} popper - the popper element
+ * @param {Element} reference - the reference element (the popper will be relative to this)
+ * @param {Element} fixedPosition - is in fixed position mode
+ * @returns {Object} An object containing the offsets which will be applied to the popper
+ */
+function getReferenceOffsets(state, popper, reference) {
+  var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, getReferenceNode(reference));
+  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
+}
+
+/**
+ * Get the outer sizes of the given element (offset size + margins)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Object} object containing width and height properties
+ */
+function getOuterSizes(element) {
+  var window = element.ownerDocument.defaultView;
+  var styles = window.getComputedStyle(element);
+  var x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
+  var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
+  var result = {
+    width: element.offsetWidth + y,
+    height: element.offsetHeight + x
+  };
+  return result;
+}
+
+/**
+ * Get the opposite placement of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement
+ * @returns {String} flipped placement
+ */
+function getOppositePlacement(placement) {
+  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+  return placement.replace(/left|right|bottom|top/g, function (matched) {
+    return hash[matched];
+  });
+}
+
+/**
+ * Get offsets to the popper
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} position - CSS position the Popper will get applied
+ * @param {HTMLElement} popper - the popper element
+ * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
+ * @param {String} placement - one of the valid placement options
+ * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
+ */
+function getPopperOffsets(popper, referenceOffsets, placement) {
+  placement = placement.split('-')[0];
+
+  // Get popper node sizes
+  var popperRect = getOuterSizes(popper);
+
+  // Add position, width and height to our offsets object
+  var popperOffsets = {
+    width: popperRect.width,
+    height: popperRect.height
+  };
+
+  // depending by the popper placement we have to compute its offsets slightly differently
+  var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
+  var mainSide = isHoriz ? 'top' : 'left';
+  var secondarySide = isHoriz ? 'left' : 'top';
+  var measurement = isHoriz ? 'height' : 'width';
+  var secondaryMeasurement = !isHoriz ? 'height' : 'width';
+
+  popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
+  if (placement === secondarySide) {
+    popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
+  } else {
+    popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
+  }
+
+  return popperOffsets;
+}
+
+/**
+ * Mimics the `find` method of Array
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function find(arr, check) {
+  // use native find if supported
+  if (Array.prototype.find) {
+    return arr.find(check);
+  }
+
+  // use `filter` to obtain the same behavior of `find`
+  return arr.filter(check)[0];
+}
+
+/**
+ * Return the index of the matching object
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function findIndex(arr, prop, value) {
+  // use native findIndex if supported
+  if (Array.prototype.findIndex) {
+    return arr.findIndex(function (cur) {
+      return cur[prop] === value;
+    });
+  }
+
+  // use `find` + `indexOf` if `findIndex` isn't supported
+  var match = find(arr, function (obj) {
+    return obj[prop] === value;
+  });
+  return arr.indexOf(match);
+}
+
+/**
+ * Loop trough the list of modifiers and run them in order,
+ * each of them will then edit the data object.
+ * @method
+ * @memberof Popper.Utils
+ * @param {dataObject} data
+ * @param {Array} modifiers
+ * @param {String} ends - Optional modifier name used as stopper
+ * @returns {dataObject}
+ */
+function runModifiers(modifiers, data, ends) {
+  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+
+  modifiersToRun.forEach(function (modifier) {
+    if (modifier['function']) {
+      // eslint-disable-line dot-notation
+      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
+    }
+    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
+    if (modifier.enabled && isFunction(fn)) {
+      // Add properties to offsets to make them a complete clientRect object
+      // we do this before each modifier to make sure the previous one doesn't
+      // mess with these values
+      data.offsets.popper = getClientRect(data.offsets.popper);
+      data.offsets.reference = getClientRect(data.offsets.reference);
+
+      data = fn(data, modifier);
+    }
+  });
+
+  return data;
+}
+
+/**
+ * Updates the position of the popper, computing the new offsets and applying
+ * the new style.<br />
+ * Prefer `scheduleUpdate` over `update` because of performance reasons.
+ * @method
+ * @memberof Popper
+ */
+function update() {
+  // if popper is destroyed, don't perform any further update
+  if (this.state.isDestroyed) {
+    return;
+  }
+
+  var data = {
+    instance: this,
+    styles: {},
+    arrowStyles: {},
+    attributes: {},
+    flipped: false,
+    offsets: {}
+  };
+
+  // compute reference element offsets
+  data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
+
+  // store the computed placement inside `originalPlacement`
+  data.originalPlacement = data.placement;
+
+  data.positionFixed = this.options.positionFixed;
+
+  // compute the popper offsets
+  data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
+
+  data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
+
+  // run the modifiers
+  data = runModifiers(this.modifiers, data);
+
+  // the first `update` will call `onCreate` callback
+  // the other ones will call `onUpdate` callback
+  if (!this.state.isCreated) {
+    this.state.isCreated = true;
+    this.options.onCreate(data);
+  } else {
+    this.options.onUpdate(data);
+  }
+}
+
+/**
+ * Helper used to know if the given modifier is enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @returns {Boolean}
+ */
+function isModifierEnabled(modifiers, modifierName) {
+  return modifiers.some(function (_ref) {
+    var name = _ref.name,
+        enabled = _ref.enabled;
+    return enabled && name === modifierName;
+  });
+}
+
+/**
+ * Get the prefixed supported property name
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} property (camelCase)
+ * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
+ */
+function getSupportedPropertyName(property) {
+  var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
+  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
+
+  for (var i = 0; i < prefixes.length; i++) {
+    var prefix = prefixes[i];
+    var toCheck = prefix ? '' + prefix + upperProp : property;
+    if (typeof document.body.style[toCheck] !== 'undefined') {
+      return toCheck;
+    }
+  }
+  return null;
+}
+
+/**
+ * Destroys the popper.
+ * @method
+ * @memberof Popper
+ */
+function destroy() {
+  this.state.isDestroyed = true;
+
+  // touch DOM only if `applyStyle` modifier is enabled
+  if (isModifierEnabled(this.modifiers, 'applyStyle')) {
+    this.popper.removeAttribute('x-placement');
+    this.popper.style.position = '';
+    this.popper.style.top = '';
+    this.popper.style.left = '';
+    this.popper.style.right = '';
+    this.popper.style.bottom = '';
+    this.popper.style.willChange = '';
+    this.popper.style[getSupportedPropertyName('transform')] = '';
+  }
+
+  this.disableEventListeners();
+
+  // remove the popper if user explicitly asked for the deletion on destroy
+  // do not use `remove` because IE11 doesn't support it
+  if (this.options.removeOnDestroy) {
+    this.popper.parentNode.removeChild(this.popper);
+  }
+  return this;
+}
+
+/**
+ * Get the window associated with the element
+ * @argument {Element} element
+ * @returns {Window}
+ */
+function getWindow(element) {
+  var ownerDocument = element.ownerDocument;
+  return ownerDocument ? ownerDocument.defaultView : window;
+}
+
+function attachToScrollParents(scrollParent, event, callback, scrollParents) {
+  var isBody = scrollParent.nodeName === 'BODY';
+  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
+  target.addEventListener(event, callback, { passive: true });
+
+  if (!isBody) {
+    attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
+  }
+  scrollParents.push(target);
+}
+
+/**
+ * Setup needed event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function setupEventListeners(reference, options, state, updateBound) {
+  // Resize event listener on window
+  state.updateBound = updateBound;
+  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+
+  // Scroll event listener on scroll parents
+  var scrollElement = getScrollParent(reference);
+  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+  state.scrollElement = scrollElement;
+  state.eventsEnabled = true;
+
+  return state;
+}
+
+/**
+ * It will add resize/scroll events and start recalculating
+ * position of the popper element when they are triggered.
+ * @method
+ * @memberof Popper
+ */
+function enableEventListeners() {
+  if (!this.state.eventsEnabled) {
+    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
+  }
+}
+
+/**
+ * Remove event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function removeEventListeners(reference, state) {
+  // Remove resize event listener on window
+  getWindow(reference).removeEventListener('resize', state.updateBound);
+
+  // Remove scroll event listener on scroll parents
+  state.scrollParents.forEach(function (target) {
+    target.removeEventListener('scroll', state.updateBound);
+  });
+
+  // Reset state
+  state.updateBound = null;
+  state.scrollParents = [];
+  state.scrollElement = null;
+  state.eventsEnabled = false;
+  return state;
+}
+
+/**
+ * It will remove resize/scroll events and won't recalculate popper position
+ * when they are triggered. It also won't trigger `onUpdate` callback anymore,
+ * unless you call `update` method manually.
+ * @method
+ * @memberof Popper
+ */
+function disableEventListeners() {
+  if (this.state.eventsEnabled) {
+    cancelAnimationFrame(this.scheduleUpdate);
+    this.state = removeEventListeners(this.reference, this.state);
+  }
+}
+
+/**
+ * Tells if a given input is a number
+ * @method
+ * @memberof Popper.Utils
+ * @param {*} input to check
+ * @return {Boolean}
+ */
+function isNumeric(n) {
+  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/**
+ * Set the style to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the style to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setStyles(element, styles) {
+  Object.keys(styles).forEach(function (prop) {
+    var unit = '';
+    // add unit if the value is numeric and is one of the following
+    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+      unit = 'px';
+    }
+    element.style[prop] = styles[prop] + unit;
+  });
+}
+
+/**
+ * Set the attributes to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the attributes to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setAttributes(element, attributes) {
+  Object.keys(attributes).forEach(function (prop) {
+    var value = attributes[prop];
+    if (value !== false) {
+      element.setAttribute(prop, attributes[prop]);
+    } else {
+      element.removeAttribute(prop);
+    }
+  });
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} data.styles - List of style properties - values to apply to popper element
+ * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The same data object
+ */
+function applyStyle(data) {
+  // any property present in `data.styles` will be applied to the popper,
+  // in this way we can make the 3rd party modifiers add custom styles to it
+  // Be aware, modifiers could override the properties defined in the previous
+  // lines of this modifier!
+  setStyles(data.instance.popper, data.styles);
+
+  // any property present in `data.attributes` will be applied to the popper,
+  // they will be set as HTML attributes of the element
+  setAttributes(data.instance.popper, data.attributes);
+
+  // if arrowElement is defined and arrowStyles has some properties
+  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
+    setStyles(data.arrowElement, data.arrowStyles);
+  }
+
+  return data;
+}
+
+/**
+ * Set the x-placement attribute before everything else because it could be used
+ * to add margins to the popper margins needs to be calculated to get the
+ * correct popper offsets.
+ * @method
+ * @memberof Popper.modifiers
+ * @param {HTMLElement} reference - The reference element used to position the popper
+ * @param {HTMLElement} popper - The HTML element used as popper
+ * @param {Object} options - Popper.js options
+ */
+function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
+  // compute reference element offsets
+  var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
+
+  popper.setAttribute('x-placement', placement);
+
+  // Apply `position` to popper before anything else because
+  // without the position applied we can't guarantee correct computations
+  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+
+  return options;
+}
+
+/**
+ * @function
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Boolean} shouldRound - If the offsets should be rounded at all
+ * @returns {Object} The popper's position offsets rounded
+ *
+ * The tale of pixel-perfect positioning. It's still not 100% perfect, but as
+ * good as it can be within reason.
+ * Discussion here: https://github.com/FezVrasta/popper.js/pull/715
+ *
+ * Low DPI screens cause a popper to be blurry if not using full pixels (Safari
+ * as well on High DPI screens).
+ *
+ * Firefox prefers no rounding for positioning and does not have blurriness on
+ * high DPI screens.
+ *
+ * Only horizontal placement and left/right values need to be considered.
+ */
+function getRoundedOffsets(data, shouldRound) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+  var round = Math.round,
+      floor = Math.floor;
+
+  var noRound = function noRound(v) {
+    return v;
+  };
+
+  var referenceWidth = round(reference.width);
+  var popperWidth = round(popper.width);
+
+  var isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
+  var isVariation = data.placement.indexOf('-') !== -1;
+  var sameWidthParity = referenceWidth % 2 === popperWidth % 2;
+  var bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
+
+  var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWidthParity ? round : floor;
+  var verticalToInteger = !shouldRound ? noRound : round;
+
+  return {
+    left: horizontalToInteger(bothOddWidth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
+    top: verticalToInteger(popper.top),
+    bottom: verticalToInteger(popper.bottom),
+    right: horizontalToInteger(popper.right)
+  };
+}
+
+var isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeStyle(data, options) {
+  var x = options.x,
+      y = options.y;
+  var popper = data.offsets.popper;
+
+  // Remove this legacy support in Popper.js v2
+
+  var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'applyStyle';
+  }).gpuAcceleration;
+  if (legacyGpuAccelerationOption !== undefined) {
+    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+  }
+  var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
+
+  var offsetParent = getOffsetParent(data.instance.popper);
+  var offsetParentRect = getBoundingClientRect(offsetParent);
+
+  // Styles
+  var styles = {
+    position: popper.position
+  };
+
+  var offsets = getRoundedOffsets(data, window.devicePixelRatio < 2 || !isFirefox);
+
+  var sideA = x === 'bottom' ? 'top' : 'bottom';
+  var sideB = y === 'right' ? 'left' : 'right';
+
+  // if gpuAcceleration is set to `true` and transform is supported,
+  //  we use `translate3d` to apply the position to the popper we
+  // automatically use the supported prefixed version if needed
+  var prefixedProperty = getSupportedPropertyName('transform');
+
+  // now, let's make a step back and look at this code closely (wtf?)
+  // If the content of the popper grows once it's been positioned, it
+  // may happen that the popper gets misplaced because of the new content
+  // overflowing its reference element
+  // To avoid this problem, we provide two options (x and y), which allow
+  // the consumer to define the offset origin.
+  // If we position a popper on top of a reference element, we can set
+  // `x` to `top` to make the popper grow towards its top instead of
+  // its bottom.
+  var left = void 0,
+      top = void 0;
+  if (sideA === 'bottom') {
+    // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
+    // and not the bottom of the html element
+    if (offsetParent.nodeName === 'HTML') {
+      top = -offsetParent.clientHeight + offsets.bottom;
+    } else {
+      top = -offsetParentRect.height + offsets.bottom;
+    }
+  } else {
+    top = offsets.top;
+  }
+  if (sideB === 'right') {
+    if (offsetParent.nodeName === 'HTML') {
+      left = -offsetParent.clientWidth + offsets.right;
+    } else {
+      left = -offsetParentRect.width + offsets.right;
+    }
+  } else {
+    left = offsets.left;
+  }
+  if (gpuAcceleration && prefixedProperty) {
+    styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+    styles[sideA] = 0;
+    styles[sideB] = 0;
+    styles.willChange = 'transform';
+  } else {
+    // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
+    var invertTop = sideA === 'bottom' ? -1 : 1;
+    var invertLeft = sideB === 'right' ? -1 : 1;
+    styles[sideA] = top * invertTop;
+    styles[sideB] = left * invertLeft;
+    styles.willChange = sideA + ', ' + sideB;
+  }
+
+  // Attributes
+  var attributes = {
+    'x-placement': data.placement
+  };
+
+  // Update `data` attributes, styles and arrowStyles
+  data.attributes = _extends({}, attributes, data.attributes);
+  data.styles = _extends({}, styles, data.styles);
+  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
+
+  return data;
+}
+
+/**
+ * Helper used to know if the given modifier depends from another one.<br />
+ * It checks if the needed modifier is listed and enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @param {Array} modifiers - list of modifiers
+ * @param {String} requestingName - name of requesting modifier
+ * @param {String} requestedName - name of requested modifier
+ * @returns {Boolean}
+ */
+function isModifierRequired(modifiers, requestingName, requestedName) {
+  var requesting = find(modifiers, function (_ref) {
+    var name = _ref.name;
+    return name === requestingName;
+  });
+
+  var isRequired = !!requesting && modifiers.some(function (modifier) {
+    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
+  });
+
+  if (!isRequired) {
+    var _requesting = '`' + requestingName + '`';
+    var requested = '`' + requestedName + '`';
+    console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
+  }
+  return isRequired;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function arrow(data, options) {
+  var _data$offsets$arrow;
+
+  // arrow depends on keepTogether in order to work
+  if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
+    return data;
+  }
+
+  var arrowElement = options.element;
+
+  // if arrowElement is a string, suppose it's a CSS selector
+  if (typeof arrowElement === 'string') {
+    arrowElement = data.instance.popper.querySelector(arrowElement);
+
+    // if arrowElement is not found, don't run the modifier
+    if (!arrowElement) {
+      return data;
+    }
+  } else {
+    // if the arrowElement isn't a query selector we must check that the
+    // provided DOM node is child of its popper node
+    if (!data.instance.popper.contains(arrowElement)) {
+      console.warn('WARNING: `arrow.element` must be child of its popper element!');
+      return data;
+    }
+  }
+
+  var placement = data.placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isVertical = ['left', 'right'].indexOf(placement) !== -1;
+
+  var len = isVertical ? 'height' : 'width';
+  var sideCapitalized = isVertical ? 'Top' : 'Left';
+  var side = sideCapitalized.toLowerCase();
+  var altSide = isVertical ? 'left' : 'top';
+  var opSide = isVertical ? 'bottom' : 'right';
+  var arrowElementSize = getOuterSizes(arrowElement)[len];
+
+  //
+  // extends keepTogether behavior making sure the popper and its
+  // reference have enough pixels in conjunction
+  //
+
+  // top/left side
+  if (reference[opSide] - arrowElementSize < popper[side]) {
+    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
+  }
+  // bottom/right side
+  if (reference[side] + arrowElementSize > popper[opSide]) {
+    data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
+  }
+  data.offsets.popper = getClientRect(data.offsets.popper);
+
+  // compute center of the popper
+  var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
+
+  // Compute the sideValue using the updated popper offsets
+  // take popper margin in account because we don't have this info available
+  var css = getStyleComputedProperty(data.instance.popper);
+  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
+  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
+  var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
+
+  // prevent arrowElement from being placed not contiguously to its popper
+  sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
+
+  data.arrowElement = arrowElement;
+  data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
+
+  return data;
+}
+
+/**
+ * Get the opposite placement variation of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement variation
+ * @returns {String} flipped placement variation
+ */
+function getOppositeVariation(variation) {
+  if (variation === 'end') {
+    return 'start';
+  } else if (variation === 'start') {
+    return 'end';
+  }
+  return variation;
+}
+
+/**
+ * List of accepted placements to use as values of the `placement` option.<br />
+ * Valid placements are:
+ * - `auto`
+ * - `top`
+ * - `right`
+ * - `bottom`
+ * - `left`
+ *
+ * Each placement can have a variation from this list:
+ * - `-start`
+ * - `-end`
+ *
+ * Variations are interpreted easily if you think of them as the left to right
+ * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
+ * is right.<br />
+ * Vertically (`left` and `right`), `start` is top and `end` is bottom.
+ *
+ * Some valid examples are:
+ * - `top-end` (on top of reference, right aligned)
+ * - `right-start` (on right of reference, top aligned)
+ * - `bottom` (on bottom, centered)
+ * - `auto-end` (on the side with more space available, alignment depends by placement)
+ *
+ * @static
+ * @type {Array}
+ * @enum {String}
+ * @readonly
+ * @method placements
+ * @memberof Popper
+ */
+var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+
+// Get rid of `auto` `auto-start` and `auto-end`
+var validPlacements = placements.slice(3);
+
+/**
+ * Given an initial placement, returns all the subsequent placements
+ * clockwise (or counter-clockwise).
+ *
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement - A valid placement (it accepts variations)
+ * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
+ * @returns {Array} placements including their variations
+ */
+function clockwise(placement) {
+  var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var index = validPlacements.indexOf(placement);
+  var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
+  return counter ? arr.reverse() : arr;
+}
+
+var BEHAVIORS = {
+  FLIP: 'flip',
+  CLOCKWISE: 'clockwise',
+  COUNTERCLOCKWISE: 'counterclockwise'
+};
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function flip(data, options) {
+  // if `inner` modifier is enabled, we can't use the `flip` modifier
+  if (isModifierEnabled(data.instance.modifiers, 'inner')) {
+    return data;
+  }
+
+  if (data.flipped && data.placement === data.originalPlacement) {
+    // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
+    return data;
+  }
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
+
+  var placement = data.placement.split('-')[0];
+  var placementOpposite = getOppositePlacement(placement);
+  var variation = data.placement.split('-')[1] || '';
+
+  var flipOrder = [];
+
+  switch (options.behavior) {
+    case BEHAVIORS.FLIP:
+      flipOrder = [placement, placementOpposite];
+      break;
+    case BEHAVIORS.CLOCKWISE:
+      flipOrder = clockwise(placement);
+      break;
+    case BEHAVIORS.COUNTERCLOCKWISE:
+      flipOrder = clockwise(placement, true);
+      break;
+    default:
+      flipOrder = options.behavior;
+  }
+
+  flipOrder.forEach(function (step, index) {
+    if (placement !== step || flipOrder.length === index + 1) {
+      return data;
+    }
+
+    placement = data.placement.split('-')[0];
+    placementOpposite = getOppositePlacement(placement);
+
+    var popperOffsets = data.offsets.popper;
+    var refOffsets = data.offsets.reference;
+
+    // using floor because the reference offsets may contain decimals we are not going to consider here
+    var floor = Math.floor;
+    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
+
+    var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
+    var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
+    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
+    var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
+
+    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
+
+    // flip the variation if required
+    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+
+    // flips variation if reference element overflows boundaries
+    var flippedVariationByRef = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
+
+    // flips variation if popper content overflows boundaries
+    var flippedVariationByContent = !!options.flipVariationsByContent && (isVertical && variation === 'start' && overflowsRight || isVertical && variation === 'end' && overflowsLeft || !isVertical && variation === 'start' && overflowsBottom || !isVertical && variation === 'end' && overflowsTop);
+
+    var flippedVariation = flippedVariationByRef || flippedVariationByContent;
+
+    if (overlapsRef || overflowsBoundaries || flippedVariation) {
+      // this boolean to detect any flip loop
+      data.flipped = true;
+
+      if (overlapsRef || overflowsBoundaries) {
+        placement = flipOrder[index + 1];
+      }
+
+      if (flippedVariation) {
+        variation = getOppositeVariation(variation);
+      }
+
+      data.placement = placement + (variation ? '-' + variation : '');
+
+      // this object contains `position`, we want to preserve it along with
+      // any additional property we may add in the future
+      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
+
+      data = runModifiers(data.instance.modifiers, data, 'flip');
+    }
+  });
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function keepTogether(data) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var placement = data.placement.split('-')[0];
+  var floor = Math.floor;
+  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+  var side = isVertical ? 'right' : 'bottom';
+  var opSide = isVertical ? 'left' : 'top';
+  var measurement = isVertical ? 'width' : 'height';
+
+  if (popper[side] < floor(reference[opSide])) {
+    data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
+  }
+  if (popper[opSide] > floor(reference[side])) {
+    data.offsets.popper[opSide] = floor(reference[side]);
+  }
+
+  return data;
+}
+
+/**
+ * Converts a string containing value + unit into a px value number
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} str - Value + unit string
+ * @argument {String} measurement - `height` or `width`
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @returns {Number|String}
+ * Value in pixels, or original string if no values were extracted
+ */
+function toValue(str, measurement, popperOffsets, referenceOffsets) {
+  // separate value from unit
+  var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
+  var value = +split[1];
+  var unit = split[2];
+
+  // If it's not a number it's an operator, I guess
+  if (!value) {
+    return str;
+  }
+
+  if (unit.indexOf('%') === 0) {
+    var element = void 0;
+    switch (unit) {
+      case '%p':
+        element = popperOffsets;
+        break;
+      case '%':
+      case '%r':
+      default:
+        element = referenceOffsets;
+    }
+
+    var rect = getClientRect(element);
+    return rect[measurement] / 100 * value;
+  } else if (unit === 'vh' || unit === 'vw') {
+    // if is a vh or vw, we calculate the size based on the viewport
+    var size = void 0;
+    if (unit === 'vh') {
+      size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    } else {
+      size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    }
+    return size / 100 * value;
+  } else {
+    // if is an explicit pixel unit, we get rid of the unit and keep the value
+    // if is an implicit unit, it's px, and we return just the value
+    return value;
+  }
+}
+
+/**
+ * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} offset
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @argument {String} basePlacement
+ * @returns {Array} a two cells array with x and y offsets in numbers
+ */
+function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
+  var offsets = [0, 0];
+
+  // Use height if placement is left or right and index is 0 otherwise use width
+  // in this way the first offset will use an axis and the second one
+  // will use the other one
+  var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+
+  // Split the offset string to obtain a list of values and operands
+  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
+  var fragments = offset.split(/(\+|\-)/).map(function (frag) {
+    return frag.trim();
+  });
+
+  // Detect if the offset string contains a pair of values or a single one
+  // they could be separated by comma or space
+  var divider = fragments.indexOf(find(fragments, function (frag) {
+    return frag.search(/,|\s/) !== -1;
+  }));
+
+  if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
+    console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
+  }
+
+  // If divider is found, we divide the list of values and operands to divide
+  // them by ofset X and Y.
+  var splitRegex = /\s*,\s*|\s+/;
+  var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
+
+  // Convert the values with units to absolute pixels to allow our computations
+  ops = ops.map(function (op, index) {
+    // Most of the units rely on the orientation of the popper
+    var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+    var mergeWithPrevious = false;
+    return op
+    // This aggregates any `+` or `-` sign that aren't considered operators
+    // e.g.: 10 + +5 => [10, +, +5]
+    .reduce(function (a, b) {
+      if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
+        a[a.length - 1] = b;
+        mergeWithPrevious = true;
+        return a;
+      } else if (mergeWithPrevious) {
+        a[a.length - 1] += b;
+        mergeWithPrevious = false;
+        return a;
+      } else {
+        return a.concat(b);
+      }
+    }, [])
+    // Here we convert the string values into number values (in px)
+    .map(function (str) {
+      return toValue(str, measurement, popperOffsets, referenceOffsets);
+    });
+  });
+
+  // Loop trough the offsets arrays and execute the operations
+  ops.forEach(function (op, index) {
+    op.forEach(function (frag, index2) {
+      if (isNumeric(frag)) {
+        offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
+      }
+    });
+  });
+  return offsets;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @argument {Number|String} options.offset=0
+ * The offset value as described in the modifier description
+ * @returns {Object} The data object, properly modified
+ */
+function offset(data, _ref) {
+  var offset = _ref.offset;
+  var placement = data.placement,
+      _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var basePlacement = placement.split('-')[0];
+
+  var offsets = void 0;
+  if (isNumeric(+offset)) {
+    offsets = [+offset, 0];
+  } else {
+    offsets = parseOffset(offset, popper, reference, basePlacement);
+  }
+
+  if (basePlacement === 'left') {
+    popper.top += offsets[0];
+    popper.left -= offsets[1];
+  } else if (basePlacement === 'right') {
+    popper.top += offsets[0];
+    popper.left += offsets[1];
+  } else if (basePlacement === 'top') {
+    popper.left += offsets[0];
+    popper.top -= offsets[1];
+  } else if (basePlacement === 'bottom') {
+    popper.left += offsets[0];
+    popper.top += offsets[1];
+  }
+
+  data.popper = popper;
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function preventOverflow(data, options) {
+  var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
+
+  // If offsetParent is the reference element, we really want to
+  // go one step up and use the next offsetParent as reference to
+  // avoid to make this modifier completely useless and look like broken
+  if (data.instance.reference === boundariesElement) {
+    boundariesElement = getOffsetParent(boundariesElement);
+  }
+
+  // NOTE: DOM access here
+  // resets the popper's position so that the document size can be calculated excluding
+  // the size of the popper element itself
+  var transformProp = getSupportedPropertyName('transform');
+  var popperStyles = data.instance.popper.style; // assignment to help minification
+  var top = popperStyles.top,
+      left = popperStyles.left,
+      transform = popperStyles[transformProp];
+
+  popperStyles.top = '';
+  popperStyles.left = '';
+  popperStyles[transformProp] = '';
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
+
+  // NOTE: DOM access here
+  // restores the original style properties after the offsets have been computed
+  popperStyles.top = top;
+  popperStyles.left = left;
+  popperStyles[transformProp] = transform;
+
+  options.boundaries = boundaries;
+
+  var order = options.priority;
+  var popper = data.offsets.popper;
+
+  var check = {
+    primary: function primary(placement) {
+      var value = popper[placement];
+      if (popper[placement] < boundaries[placement] && !options.escapeWithReference) {
+        value = Math.max(popper[placement], boundaries[placement]);
+      }
+      return defineProperty({}, placement, value);
+    },
+    secondary: function secondary(placement) {
+      var mainSide = placement === 'right' ? 'left' : 'top';
+      var value = popper[mainSide];
+      if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
+        value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+      }
+      return defineProperty({}, mainSide, value);
+    }
+  };
+
+  order.forEach(function (placement) {
+    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+    popper = _extends({}, popper, check[side](placement));
+  });
+
+  data.offsets.popper = popper;
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function shift(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var shiftvariation = placement.split('-')[1];
+
+  // if shift shiftvariation is specified, run the modifier
+  if (shiftvariation) {
+    var _data$offsets = data.offsets,
+        reference = _data$offsets.reference,
+        popper = _data$offsets.popper;
+
+    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
+    var side = isVertical ? 'left' : 'top';
+    var measurement = isVertical ? 'width' : 'height';
+
+    var shiftOffsets = {
+      start: defineProperty({}, side, reference[side]),
+      end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
+    };
+
+    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function hide(data) {
+  if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
+    return data;
+  }
+
+  var refRect = data.offsets.reference;
+  var bound = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'preventOverflow';
+  }).boundaries;
+
+  if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === true) {
+      return data;
+    }
+
+    data.hide = true;
+    data.attributes['x-out-of-boundaries'] = '';
+  } else {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === false) {
+      return data;
+    }
+
+    data.hide = false;
+    data.attributes['x-out-of-boundaries'] = false;
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function inner(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
+
+  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
+
+  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+
+  data.placement = getOppositePlacement(placement);
+  data.offsets.popper = getClientRect(popper);
+
+  return data;
+}
+
+/**
+ * Modifier function, each modifier can have a function of this type assigned
+ * to its `fn` property.<br />
+ * These functions will be called on each update, this means that you must
+ * make sure they are performant enough to avoid performance bottlenecks.
+ *
+ * @function ModifierFn
+ * @argument {dataObject} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {dataObject} The data object, properly modified
+ */
+
+/**
+ * Modifiers are plugins used to alter the behavior of your poppers.<br />
+ * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
+ * needed by the library.
+ *
+ * Usually you don't want to override the `order`, `fn` and `onLoad` props.
+ * All the other properties are configurations that could be tweaked.
+ * @namespace modifiers
+ */
+var modifiers = {
+  /**
+   * Modifier used to shift the popper on the start or end of its reference
+   * element.<br />
+   * It will read the variation of the `placement` property.<br />
+   * It can be one either `-end` or `-start`.
+   * @memberof modifiers
+   * @inner
+   */
+  shift: {
+    /** @prop {number} order=100 - Index used to define the order of execution */
+    order: 100,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: shift
+  },
+
+  /**
+   * The `offset` modifier can shift your popper on both its axis.
+   *
+   * It accepts the following units:
+   * - `px` or unit-less, interpreted as pixels
+   * - `%` or `%r`, percentage relative to the length of the reference element
+   * - `%p`, percentage relative to the length of the popper element
+   * - `vw`, CSS viewport width unit
+   * - `vh`, CSS viewport height unit
+   *
+   * For length is intended the main axis relative to the placement of the popper.<br />
+   * This means that if the placement is `top` or `bottom`, the length will be the
+   * `width`. In case of `left` or `right`, it will be the `height`.
+   *
+   * You can provide a single value (as `Number` or `String`), or a pair of values
+   * as `String` divided by a comma or one (or more) white spaces.<br />
+   * The latter is a deprecated method because it leads to confusion and will be
+   * removed in v2.<br />
+   * Additionally, it accepts additions and subtractions between different units.
+   * Note that multiplications and divisions aren't supported.
+   *
+   * Valid examples are:
+   * ```
+   * 10
+   * '10%'
+   * '10, 10'
+   * '10%, 10'
+   * '10 + 10%'
+   * '10 - 5vh + 3%'
+   * '-10px + 5vh, 5px - 6%'
+   * ```
+   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
+   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
+   * > You can read more on this at this [issue](https://github.com/FezVrasta/popper.js/issues/373).
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  offset: {
+    /** @prop {number} order=200 - Index used to define the order of execution */
+    order: 200,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: offset,
+    /** @prop {Number|String} offset=0
+     * The offset value as described in the modifier description
+     */
+    offset: 0
+  },
+
+  /**
+   * Modifier used to prevent the popper from being positioned outside the boundary.
+   *
+   * A scenario exists where the reference itself is not within the boundaries.<br />
+   * We can say it has "escaped the boundaries" — or just "escaped".<br />
+   * In this case we need to decide whether the popper should either:
+   *
+   * - detach from the reference and remain "trapped" in the boundaries, or
+   * - if it should ignore the boundary and "escape with its reference"
+   *
+   * When `escapeWithReference` is set to`true` and reference is completely
+   * outside its boundaries, the popper will overflow (or completely leave)
+   * the boundaries in order to remain attached to the edge of the reference.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  preventOverflow: {
+    /** @prop {number} order=300 - Index used to define the order of execution */
+    order: 300,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: preventOverflow,
+    /**
+     * @prop {Array} [priority=['left','right','top','bottom']]
+     * Popper will try to prevent overflow following these priorities by default,
+     * then, it could overflow on the left and on top of the `boundariesElement`
+     */
+    priority: ['left', 'right', 'top', 'bottom'],
+    /**
+     * @prop {number} padding=5
+     * Amount of pixel used to define a minimum distance between the boundaries
+     * and the popper. This makes sure the popper always has a little padding
+     * between the edges of its container
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='scrollParent'
+     * Boundaries used by the modifier. Can be `scrollParent`, `window`,
+     * `viewport` or any DOM element.
+     */
+    boundariesElement: 'scrollParent'
+  },
+
+  /**
+   * Modifier used to make sure the reference and its popper stay near each other
+   * without leaving any gap between the two. Especially useful when the arrow is
+   * enabled and you want to ensure that it points to its reference element.
+   * It cares only about the first axis. You can still have poppers with margin
+   * between the popper and its reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  keepTogether: {
+    /** @prop {number} order=400 - Index used to define the order of execution */
+    order: 400,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: keepTogether
+  },
+
+  /**
+   * This modifier is used to move the `arrowElement` of the popper to make
+   * sure it is positioned between the reference element and its popper element.
+   * It will read the outer size of the `arrowElement` node to detect how many
+   * pixels of conjunction are needed.
+   *
+   * It has no effect if no `arrowElement` is provided.
+   * @memberof modifiers
+   * @inner
+   */
+  arrow: {
+    /** @prop {number} order=500 - Index used to define the order of execution */
+    order: 500,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: arrow,
+    /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
+    element: '[x-arrow]'
+  },
+
+  /**
+   * Modifier used to flip the popper's placement when it starts to overlap its
+   * reference element.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   *
+   * **NOTE:** this modifier will interrupt the current update cycle and will
+   * restart it if it detects the need to flip the placement.
+   * @memberof modifiers
+   * @inner
+   */
+  flip: {
+    /** @prop {number} order=600 - Index used to define the order of execution */
+    order: 600,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: flip,
+    /**
+     * @prop {String|Array} behavior='flip'
+     * The behavior used to change the popper's placement. It can be one of
+     * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
+     * placements (with optional variations)
+     */
+    behavior: 'flip',
+    /**
+     * @prop {number} padding=5
+     * The popper will flip if it hits the edges of the `boundariesElement`
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='viewport'
+     * The element which will define the boundaries of the popper position.
+     * The popper will never be placed outside of the defined boundaries
+     * (except if `keepTogether` is enabled)
+     */
+    boundariesElement: 'viewport',
+    /**
+     * @prop {Boolean} flipVariations=false
+     * The popper will switch placement variation between `-start` and `-end` when
+     * the reference element overlaps its boundaries.
+     *
+     * The original placement should have a set variation.
+     */
+    flipVariations: false,
+    /**
+     * @prop {Boolean} flipVariationsByContent=false
+     * The popper will switch placement variation between `-start` and `-end` when
+     * the popper element overlaps its reference boundaries.
+     *
+     * The original placement should have a set variation.
+     */
+    flipVariationsByContent: false
+  },
+
+  /**
+   * Modifier used to make the popper flow toward the inner of the reference element.
+   * By default, when this modifier is disabled, the popper will be placed outside
+   * the reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  inner: {
+    /** @prop {number} order=700 - Index used to define the order of execution */
+    order: 700,
+    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
+    enabled: false,
+    /** @prop {ModifierFn} */
+    fn: inner
+  },
+
+  /**
+   * Modifier used to hide the popper when its reference element is outside of the
+   * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
+   * be used to hide with a CSS selector the popper when its reference is
+   * out of boundaries.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   * @memberof modifiers
+   * @inner
+   */
+  hide: {
+    /** @prop {number} order=800 - Index used to define the order of execution */
+    order: 800,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: hide
+  },
+
+  /**
+   * Computes the style that will be applied to the popper element to gets
+   * properly positioned.
+   *
+   * Note that this modifier will not touch the DOM, it just prepares the styles
+   * so that `applyStyle` modifier can apply it. This separation is useful
+   * in case you need to replace `applyStyle` with a custom implementation.
+   *
+   * This modifier has `850` as `order` value to maintain backward compatibility
+   * with previous versions of Popper.js. Expect the modifiers ordering method
+   * to change in future major versions of the library.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  computeStyle: {
+    /** @prop {number} order=850 - Index used to define the order of execution */
+    order: 850,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: computeStyle,
+    /**
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: true,
+    /**
+     * @prop {string} [x='bottom']
+     * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
+     * Change this if your popper should grow in a direction different from `bottom`
+     */
+    x: 'bottom',
+    /**
+     * @prop {string} [x='left']
+     * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
+     * Change this if your popper should grow in a direction different from `right`
+     */
+    y: 'right'
+  },
+
+  /**
+   * Applies the computed styles to the popper element.
+   *
+   * All the DOM manipulations are limited to this modifier. This is useful in case
+   * you want to integrate Popper.js inside a framework or view library and you
+   * want to delegate all the DOM manipulations to it.
+   *
+   * Note that if you disable this modifier, you must make sure the popper element
+   * has its position set to `absolute` before Popper.js can do its work!
+   *
+   * Just disable this modifier and define your own to achieve the desired effect.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  applyStyle: {
+    /** @prop {number} order=900 - Index used to define the order of execution */
+    order: 900,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: applyStyle,
+    /** @prop {Function} */
+    onLoad: applyStyleOnLoad,
+    /**
+     * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: undefined
+  }
+};
+
+/**
+ * The `dataObject` is an object containing all the information used by Popper.js.
+ * This object is passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
+ * @name dataObject
+ * @property {Object} data.instance The Popper.js instance
+ * @property {String} data.placement Placement applied to popper
+ * @property {String} data.originalPlacement Placement originally defined on init
+ * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
+ * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
+ * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
+ * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.boundaries Offsets of the popper boundaries
+ * @property {Object} data.offsets The measurements of popper, reference and arrow elements
+ * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
+ */
+
+/**
+ * Default options provided to Popper.js constructor.<br />
+ * These can be overridden using the `options` argument of Popper.js.<br />
+ * To override an option, simply pass an object with the same
+ * structure of the `options` object, as the 3rd argument. For example:
+ * ```
+ * new Popper(ref, pop, {
+ *   modifiers: {
+ *     preventOverflow: { enabled: false }
+ *   }
+ * })
+ * ```
+ * @type {Object}
+ * @static
+ * @memberof Popper
+ */
+var Defaults = {
+  /**
+   * Popper's placement.
+   * @prop {Popper.placements} placement='bottom'
+   */
+  placement: 'bottom',
+
+  /**
+   * Set this to true if you want popper to position it self in 'fixed' mode
+   * @prop {Boolean} positionFixed=false
+   */
+  positionFixed: false,
+
+  /**
+   * Whether events (resize, scroll) are initially enabled.
+   * @prop {Boolean} eventsEnabled=true
+   */
+  eventsEnabled: true,
+
+  /**
+   * Set to true if you want to automatically remove the popper when
+   * you call the `destroy` method.
+   * @prop {Boolean} removeOnDestroy=false
+   */
+  removeOnDestroy: false,
+
+  /**
+   * Callback called when the popper is created.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onCreate}
+   */
+  onCreate: function onCreate() {},
+
+  /**
+   * Callback called when the popper is updated. This callback is not called
+   * on the initialization/creation of the popper, but only on subsequent
+   * updates.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onUpdate}
+   */
+  onUpdate: function onUpdate() {},
+
+  /**
+   * List of modifiers used to modify the offsets before they are applied to the popper.
+   * They provide most of the functionalities of Popper.js.
+   * @prop {modifiers}
+   */
+  modifiers: modifiers
+};
+
+/**
+ * @callback onCreate
+ * @param {dataObject} data
+ */
+
+/**
+ * @callback onUpdate
+ * @param {dataObject} data
+ */
+
+// Utils
+// Methods
+var Popper = function () {
+  /**
+   * Creates a new Popper.js instance.
+   * @class Popper
+   * @param {Element|referenceObject} reference - The reference element used to position the popper
+   * @param {Element} popper - The HTML / XML element used as the popper
+   * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
+   * @return {Object} instance - The generated Popper.js instance
+   */
+  function Popper(reference, popper) {
+    var _this = this;
+
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    classCallCheck(this, Popper);
+
+    this.scheduleUpdate = function () {
+      return requestAnimationFrame(_this.update);
+    };
+
+    // make update() debounced, so that it only runs at most once-per-tick
+    this.update = debounce(this.update.bind(this));
+
+    // with {} we create a new object with the options inside it
+    this.options = _extends({}, Popper.Defaults, options);
+
+    // init state
+    this.state = {
+      isDestroyed: false,
+      isCreated: false,
+      scrollParents: []
+    };
+
+    // get reference and popper elements (allow jQuery wrappers)
+    this.reference = reference && reference.jquery ? reference[0] : reference;
+    this.popper = popper && popper.jquery ? popper[0] : popper;
+
+    // Deep merge modifiers options
+    this.options.modifiers = {};
+    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
+      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
+    });
+
+    // Refactoring modifiers' list (Object => Array)
+    this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
+      return _extends({
+        name: name
+      }, _this.options.modifiers[name]);
+    })
+    // sort the modifiers by order
+    .sort(function (a, b) {
+      return a.order - b.order;
+    });
+
+    // modifiers have the ability to execute arbitrary code when Popper.js get inited
+    // such code is executed in the same order of its modifier
+    // they could add new properties to their options configuration
+    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
+    this.modifiers.forEach(function (modifierOptions) {
+      if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
+        modifierOptions.onLoad(_this.reference, _this.popper, _this.options, modifierOptions, _this.state);
+      }
+    });
+
+    // fire the first update to position the popper in the right place
+    this.update();
+
+    var eventsEnabled = this.options.eventsEnabled;
+    if (eventsEnabled) {
+      // setup event listeners, they will take care of update the position in specific situations
+      this.enableEventListeners();
+    }
+
+    this.state.eventsEnabled = eventsEnabled;
+  }
+
+  // We can't use class properties because they don't get listed in the
+  // class prototype and break stuff like Sinon stubs
+
+
+  createClass(Popper, [{
+    key: 'update',
+    value: function update$$1() {
+      return update.call(this);
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy$$1() {
+      return destroy.call(this);
+    }
+  }, {
+    key: 'enableEventListeners',
+    value: function enableEventListeners$$1() {
+      return enableEventListeners.call(this);
+    }
+  }, {
+    key: 'disableEventListeners',
+    value: function disableEventListeners$$1() {
+      return disableEventListeners.call(this);
+    }
+
+    /**
+     * Schedules an update. It will run on the next UI update available.
+     * @method scheduleUpdate
+     * @memberof Popper
+     */
+
+
+    /**
+     * Collection of utilities useful when writing custom modifiers.
+     * Starting from version 1.7, this method is available only if you
+     * include `popper-utils.js` before `popper.js`.
+     *
+     * **DEPRECATION**: This way to access PopperUtils is deprecated
+     * and will be removed in v2! Use the PopperUtils module directly instead.
+     * Due to the high instability of the methods contained in Utils, we can't
+     * guarantee them to follow semver. Use them at your own risk!
+     * @static
+     * @private
+     * @type {Object}
+     * @deprecated since version 1.8
+     * @member Utils
+     * @memberof Popper
+     */
+
+  }]);
+  return Popper;
+}();
+
+/**
+ * The `referenceObject` is an object that provides an interface compatible with Popper.js
+ * and lets you use it as replacement of a real DOM node.<br />
+ * You can use this method to position a popper relatively to a set of coordinates
+ * in case you don't have a DOM node to use as reference.
+ *
+ * ```
+ * new Popper(referenceObject, popperNode);
+ * ```
+ *
+ * NB: This feature isn't supported in Internet Explorer 10.
+ * @name referenceObject
+ * @property {Function} data.getBoundingClientRect
+ * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
+ * @property {number} data.clientWidth
+ * An ES6 getter that will return the width of the virtual reference element.
+ * @property {number} data.clientHeight
+ * An ES6 getter that will return the height of the virtual reference element.
+ */
+
+
+Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+Popper.placements = placements;
+Popper.Defaults = Defaults;
+
+/* harmony default export */ __webpack_exports__["default"] = (Popper);
+//# sourceMappingURL=popper.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/prop-types/checkPropTypes.js":
 /*!***************************************************!*\
   !*** ./node_modules/prop-types/checkPropTypes.js ***!
@@ -19764,6 +22826,3263 @@ var update = __webpack_require__(/*! ../../style-loader/dist/runtime/injectStyle
 if (content.locals) {
   module.exports = content.locals;
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/react-datepicker/es/index.js":
+/*!***************************************************!*\
+  !*** ./node_modules/react-datepicker/es/index.js ***!
+  \***************************************************/
+/*! exports provided: CalendarContainer, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CalendarContainer", function() { return CalendarContainer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_onclickoutside__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-onclickoutside */ "./node_modules/react-onclickoutside/dist/react-onclickoutside.es.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_popper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-popper */ "./node_modules/react-popper/lib/esm/index.js");
+
+
+
+
+
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+
+
+
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+
+
+
+
+
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+
+
+var inherits = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+
+
+
+
+
+
+
+
+
+
+var possibleConstructorReturn = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+function generateYears(year, noOfYear, minDate, maxDate) {
+  var list = [];
+  for (var i = 0; i < 2 * noOfYear + 1; i++) {
+    var newYear = year + noOfYear - i;
+    var isInRange = true;
+
+    if (minDate) {
+      isInRange = minDate.year() <= newYear;
+    }
+
+    if (maxDate && isInRange) {
+      isInRange = maxDate.year() >= newYear;
+    }
+
+    if (isInRange) {
+      list.push(newYear);
+    }
+  }
+
+  return list;
+}
+
+var YearDropdownOptions = function (_React$Component) {
+  inherits(YearDropdownOptions, _React$Component);
+
+  function YearDropdownOptions(props) {
+    classCallCheck(this, YearDropdownOptions);
+
+    var _this = possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.renderOptions = function () {
+      var selectedYear = _this.props.year;
+      var options = _this.state.yearsList.map(function (year) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          {
+            className: selectedYear === year ? "react-datepicker__year-option react-datepicker__year-option--selected_year" : "react-datepicker__year-option",
+            key: year,
+            ref: year,
+            onClick: _this.onChange.bind(_this, year)
+          },
+          selectedYear === year ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+            "span",
+            { className: "react-datepicker__year-option--selected" },
+            "\u2713"
+          ) : "",
+          year
+        );
+      });
+
+      var minYear = _this.props.minDate ? _this.props.minDate.year() : null;
+      var maxYear = _this.props.maxDate ? _this.props.maxDate.year() : null;
+
+      if (!maxYear || !_this.state.yearsList.find(function (year) {
+        return year === maxYear;
+      })) {
+        options.unshift(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          {
+            className: "react-datepicker__year-option",
+            ref: "upcoming",
+            key: "upcoming",
+            onClick: _this.incrementYears
+          },
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", { className: "react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming" })
+        ));
+      }
+
+      if (!minYear || !_this.state.yearsList.find(function (year) {
+        return year === minYear;
+      })) {
+        options.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          {
+            className: "react-datepicker__year-option",
+            ref: "previous",
+            key: "previous",
+            onClick: _this.decrementYears
+          },
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", { className: "react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous" })
+        ));
+      }
+
+      return options;
+    };
+
+    _this.onChange = function (year) {
+      _this.props.onChange(year);
+    };
+
+    _this.handleClickOutside = function () {
+      _this.props.onCancel();
+    };
+
+    _this.shiftYears = function (amount) {
+      var years = _this.state.yearsList.map(function (year) {
+        return year + amount;
+      });
+
+      _this.setState({
+        yearsList: years
+      });
+    };
+
+    _this.incrementYears = function () {
+      return _this.shiftYears(1);
+    };
+
+    _this.decrementYears = function () {
+      return _this.shiftYears(-1);
+    };
+
+    var yearDropdownItemNumber = props.yearDropdownItemNumber,
+        scrollableYearDropdown = props.scrollableYearDropdown;
+
+    var noOfYear = yearDropdownItemNumber || (scrollableYearDropdown ? 10 : 5);
+
+    _this.state = {
+      yearsList: generateYears(_this.props.year, noOfYear, _this.props.minDate, _this.props.maxDate)
+    };
+    return _this;
+  }
+
+  YearDropdownOptions.prototype.render = function render() {
+    var dropdownClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+      "react-datepicker__year-dropdown": true,
+      "react-datepicker__year-dropdown--scrollable": this.props.scrollableYearDropdown
+    });
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      { className: dropdownClass },
+      this.renderOptions()
+    );
+  };
+
+  return YearDropdownOptions;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+YearDropdownOptions.propTypes = {
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onCancel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  scrollableYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  year: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,
+  yearDropdownItemNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number
+};
+
+var dayOfWeekCodes = {
+  1: "mon",
+  2: "tue",
+  3: "wed",
+  4: "thu",
+  5: "fri",
+  6: "sat",
+  7: "sun"
+};
+
+// These functions are not exported so
+// that we avoid magic strings like 'days'
+function set$1(date, unit, to) {
+  return date.set(unit, to);
+}
+
+function add(date, amount, unit) {
+  return date.add(amount, unit);
+}
+
+function subtract(date, amount, unit) {
+  return date.subtract(amount, unit);
+}
+
+function get$1(date, unit) {
+  return date.get(unit);
+}
+
+function getStartOf(date, unit) {
+  return date.startOf(unit);
+}
+
+// ** Date Constructors **
+
+function newDate(point) {
+  return moment__WEBPACK_IMPORTED_MODULE_4___default()(point);
+}
+
+function newDateWithOffset(utcOffset) {
+  return moment__WEBPACK_IMPORTED_MODULE_4___default()().utc().utcOffset(utcOffset);
+}
+
+function now(maybeFixedUtcOffset) {
+  if (maybeFixedUtcOffset == null) {
+    return newDate();
+  }
+  return newDateWithOffset(maybeFixedUtcOffset);
+}
+
+function cloneDate(date) {
+  return date.clone();
+}
+
+function parseDate(value, _ref) {
+  var dateFormat = _ref.dateFormat,
+      locale = _ref.locale;
+
+  var m = moment__WEBPACK_IMPORTED_MODULE_4___default()(value, dateFormat, locale || moment__WEBPACK_IMPORTED_MODULE_4___default.a.locale(), true);
+  return m.isValid() ? m : null;
+}
+
+// ** Date "Reflection" **
+
+function isMoment(date) {
+  return moment__WEBPACK_IMPORTED_MODULE_4___default.a.isMoment(date);
+}
+
+function isDate(date) {
+  return moment__WEBPACK_IMPORTED_MODULE_4___default.a.isDate(date);
+}
+
+// ** Date Formatting **
+
+function formatDate(date, format) {
+  return date.format(format);
+}
+
+function safeDateFormat(date, _ref2) {
+  var dateFormat = _ref2.dateFormat,
+      locale = _ref2.locale;
+
+  return date && date.clone().locale(locale || moment__WEBPACK_IMPORTED_MODULE_4___default.a.locale()).format(Array.isArray(dateFormat) ? dateFormat[0] : dateFormat) || "";
+}
+
+// ** Date Setters **
+
+function setTime(date, _ref3) {
+  var hour = _ref3.hour,
+      minute = _ref3.minute,
+      second = _ref3.second;
+
+  date.set({ hour: hour, minute: minute, second: second });
+  return date;
+}
+
+function setMonth(date, month) {
+  return set$1(date, "month", month);
+}
+
+function setYear(date, year) {
+  return set$1(date, "year", year);
+}
+
+
+
+// ** Date Getters **
+
+function getSecond(date) {
+  return get$1(date, "second");
+}
+
+function getMinute(date) {
+  return get$1(date, "minute");
+}
+
+function getHour(date) {
+  return get$1(date, "hour");
+}
+
+// Returns day of week
+function getDay(date) {
+  return get$1(date, "day");
+}
+
+function getWeek(date) {
+  return get$1(date, "week");
+}
+
+function getMonth(date) {
+  return get$1(date, "month");
+}
+
+function getYear(date) {
+  return get$1(date, "year");
+}
+
+// Returns day of month
+function getDate(date) {
+  return get$1(date, "date");
+}
+
+
+
+function getDayOfWeekCode(day) {
+  return dayOfWeekCodes[day.isoWeekday()];
+}
+
+// *** Start of ***
+
+function getStartOfDay(date) {
+  return getStartOf(date, "day");
+}
+
+function getStartOfWeek(date) {
+  return getStartOf(date, "week");
+}
+function getStartOfMonth(date) {
+  return getStartOf(date, "month");
+}
+
+function getStartOfDate(date) {
+  return getStartOf(date, "date");
+}
+
+// *** End of ***
+
+
+
+
+
+// ** Date Math **
+
+// *** Addition ***
+
+function addMinutes(date, amount) {
+  return add(date, amount, "minutes");
+}
+
+function addHours(date, amount) {
+  return add(date, amount, "hours");
+}
+
+function addDays(date, amount) {
+  return add(date, amount, "days");
+}
+
+function addWeeks(date, amount) {
+  return add(date, amount, "weeks");
+}
+
+function addMonths(date, amount) {
+  return add(date, amount, "months");
+}
+
+function addYears(date, amount) {
+  return add(date, amount, "years");
+}
+
+// *** Subtraction ***
+function subtractDays(date, amount) {
+  return subtract(date, amount, "days");
+}
+
+function subtractWeeks(date, amount) {
+  return subtract(date, amount, "weeks");
+}
+
+function subtractMonths(date, amount) {
+  return subtract(date, amount, "months");
+}
+
+function subtractYears(date, amount) {
+  return subtract(date, amount, "years");
+}
+
+// ** Date Comparison **
+
+function isBefore(date1, date2) {
+  return date1.isBefore(date2);
+}
+
+function isAfter(date1, date2) {
+  return date1.isAfter(date2);
+}
+
+function equals(date1, date2) {
+  return date1.isSame(date2);
+}
+
+function isSameYear(date1, date2) {
+  if (date1 && date2) {
+    return date1.isSame(date2, "year");
+  } else {
+    return !date1 && !date2;
+  }
+}
+
+function isSameMonth(date1, date2) {
+  if (date1 && date2) {
+    return date1.isSame(date2, "month");
+  } else {
+    return !date1 && !date2;
+  }
+}
+
+function isSameDay(moment1, moment2) {
+  if (moment1 && moment2) {
+    return moment1.isSame(moment2, "day");
+  } else {
+    return !moment1 && !moment2;
+  }
+}
+
+
+
+function isDayInRange(day, startDate, endDate) {
+  var before = startDate.clone().startOf("day").subtract(1, "seconds");
+  var after = endDate.clone().startOf("day").add(1, "seconds");
+  return day.clone().startOf("day").isBetween(before, after);
+}
+
+// *** Diffing ***
+
+
+
+// ** Date Localization **
+
+function localizeDate(date, locale) {
+  return date.clone().locale(locale || moment__WEBPACK_IMPORTED_MODULE_4___default.a.locale());
+}
+
+
+
+
+
+
+
+function getLocaleData(date) {
+  return date.localeData();
+}
+
+function getLocaleDataForLocale(locale) {
+  return moment__WEBPACK_IMPORTED_MODULE_4___default.a.localeData(locale);
+}
+
+function getFormattedWeekdayInLocale(locale, date, formatFunc) {
+  return formatFunc(locale.weekdays(date));
+}
+
+function getWeekdayMinInLocale(locale, date) {
+  return locale.weekdaysMin(date);
+}
+
+function getWeekdayShortInLocale(locale, date) {
+  return locale.weekdaysShort(date);
+}
+
+// TODO what is this format exactly?
+function getMonthInLocale(locale, date, format) {
+  return locale.months(date, format);
+}
+
+function getMonthShortInLocale(locale, date) {
+  return locale.monthsShort(date);
+}
+
+// ** Utils for some components **
+
+function isDayDisabled(day) {
+  var _ref4 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      minDate = _ref4.minDate,
+      maxDate = _ref4.maxDate,
+      excludeDates = _ref4.excludeDates,
+      includeDates = _ref4.includeDates,
+      filterDate = _ref4.filterDate;
+
+  return minDate && day.isBefore(minDate, "day") || maxDate && day.isAfter(maxDate, "day") || excludeDates && excludeDates.some(function (excludeDate) {
+    return isSameDay(day, excludeDate);
+  }) || includeDates && !includeDates.some(function (includeDate) {
+    return isSameDay(day, includeDate);
+  }) || filterDate && !filterDate(day.clone()) || false;
+}
+
+function isOutOfBounds(day) {
+  var _ref5 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      minDate = _ref5.minDate,
+      maxDate = _ref5.maxDate;
+
+  return minDate && day.isBefore(minDate, "day") || maxDate && day.isAfter(maxDate, "day");
+}
+
+function isTimeDisabled(time, disabledTimes) {
+  var l = disabledTimes.length;
+  for (var i = 0; i < l; i++) {
+    if (disabledTimes[i].get("hours") === time.get("hours") && disabledTimes[i].get("minutes") === time.get("minutes")) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function isTimeInDisabledRange(time, _ref6) {
+  var minTime = _ref6.minTime,
+      maxTime = _ref6.maxTime;
+
+  if (!minTime || !maxTime) {
+    throw new Error("Both minTime and maxTime props required");
+  }
+
+  var base = moment__WEBPACK_IMPORTED_MODULE_4___default()().hours(0).minutes(0).seconds(0);
+  var baseTime = base.clone().hours(time.get("hours")).minutes(time.get("minutes"));
+  var min = base.clone().hours(minTime.get("hours")).minutes(minTime.get("minutes"));
+  var max = base.clone().hours(maxTime.get("hours")).minutes(maxTime.get("minutes"));
+
+  return !(baseTime.isSameOrAfter(min) && baseTime.isSameOrBefore(max));
+}
+
+function allDaysDisabledBefore(day, unit) {
+  var _ref7 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      minDate = _ref7.minDate,
+      includeDates = _ref7.includeDates;
+
+  var dateBefore = day.clone().subtract(1, unit);
+  return minDate && dateBefore.isBefore(minDate, unit) || includeDates && includeDates.every(function (includeDate) {
+    return dateBefore.isBefore(includeDate, unit);
+  }) || false;
+}
+
+function allDaysDisabledAfter(day, unit) {
+  var _ref8 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      maxDate = _ref8.maxDate,
+      includeDates = _ref8.includeDates;
+
+  var dateAfter = day.clone().add(1, unit);
+  return maxDate && dateAfter.isAfter(maxDate, unit) || includeDates && includeDates.every(function (includeDate) {
+    return dateAfter.isAfter(includeDate, unit);
+  }) || false;
+}
+
+function getEffectiveMinDate(_ref9) {
+  var minDate = _ref9.minDate,
+      includeDates = _ref9.includeDates;
+
+  if (includeDates && minDate) {
+    return moment__WEBPACK_IMPORTED_MODULE_4___default.a.min(includeDates.filter(function (includeDate) {
+      return minDate.isSameOrBefore(includeDate, "day");
+    }));
+  } else if (includeDates) {
+    return moment__WEBPACK_IMPORTED_MODULE_4___default.a.min(includeDates);
+  } else {
+    return minDate;
+  }
+}
+
+function getEffectiveMaxDate(_ref10) {
+  var maxDate = _ref10.maxDate,
+      includeDates = _ref10.includeDates;
+
+  if (includeDates && maxDate) {
+    return moment__WEBPACK_IMPORTED_MODULE_4___default.a.max(includeDates.filter(function (includeDate) {
+      return maxDate.isSameOrAfter(includeDate, "day");
+    }));
+  } else if (includeDates) {
+    return moment__WEBPACK_IMPORTED_MODULE_4___default.a.max(includeDates);
+  } else {
+    return maxDate;
+  }
+}
+
+function getHightLightDaysMap() {
+  var highlightDates = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var defaultClassName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "react-datepicker__day--highlighted";
+
+  var dateClasses = new Map();
+  for (var i = 0, len = highlightDates.length; i < len; i++) {
+    var obj = highlightDates[i];
+    if (isMoment(obj)) {
+      var key = obj.format("MM.DD.YYYY");
+      var classNamesArr = dateClasses.get(key) || [];
+      if (!classNamesArr.includes(defaultClassName)) {
+        classNamesArr.push(defaultClassName);
+        dateClasses.set(key, classNamesArr);
+      }
+    } else if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) === "object") {
+      var keys = Object.keys(obj);
+      var className = keys[0];
+      var arrOfMoments = obj[keys[0]];
+      if (typeof className === "string" && arrOfMoments.constructor === Array) {
+        for (var k = 0, _len = arrOfMoments.length; k < _len; k++) {
+          var _key = arrOfMoments[k].format("MM.DD.YYYY");
+          var _classNamesArr = dateClasses.get(_key) || [];
+          if (!_classNamesArr.includes(className)) {
+            _classNamesArr.push(className);
+            dateClasses.set(_key, _classNamesArr);
+          }
+        }
+      }
+    }
+  }
+
+  return dateClasses;
+}
+
+function timesToInjectAfter(startOfDay, currentTime, currentMultiplier, intervals, injectedTimes) {
+  var l = injectedTimes.length;
+  var times = [];
+  for (var i = 0; i < l; i++) {
+    var injectedTime = addMinutes(addHours(cloneDate(startOfDay), getHour(injectedTimes[i])), getMinute(injectedTimes[i]));
+    var nextTime = addMinutes(cloneDate(startOfDay), (currentMultiplier + 1) * intervals);
+
+    if (injectedTime.isBetween(currentTime, nextTime)) {
+      times.push(injectedTimes[i]);
+    }
+  }
+
+  return times;
+}
+
+var WrappedYearDropdownOptions = Object(react_onclickoutside__WEBPACK_IMPORTED_MODULE_3__["default"])(YearDropdownOptions);
+
+var YearDropdown = function (_React$Component) {
+  inherits(YearDropdown, _React$Component);
+
+  function YearDropdown() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, YearDropdown);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+      dropdownVisible: false
+    }, _this.renderSelectOptions = function () {
+      var minYear = _this.props.minDate ? getYear(_this.props.minDate) : 1900;
+      var maxYear = _this.props.maxDate ? getYear(_this.props.maxDate) : 2100;
+
+      var options = [];
+      for (var i = minYear; i <= maxYear; i++) {
+        options.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "option",
+          { key: i, value: i },
+          i
+        ));
+      }
+      return options;
+    }, _this.onSelectChange = function (e) {
+      _this.onChange(e.target.value);
+    }, _this.renderSelectMode = function () {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "select",
+        {
+          value: _this.props.year,
+          className: "react-datepicker__year-select",
+          onChange: _this.onSelectChange
+        },
+        _this.renderSelectOptions()
+      );
+    }, _this.renderReadView = function (visible) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        {
+          key: "read",
+          style: { visibility: visible ? "visible" : "hidden" },
+          className: "react-datepicker__year-read-view",
+          onClick: function onClick(event) {
+            return _this.toggleDropdown(event);
+          }
+        },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", { className: "react-datepicker__year-read-view--down-arrow" }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "span",
+          { className: "react-datepicker__year-read-view--selected-year" },
+          _this.props.year
+        )
+      );
+    }, _this.renderDropdown = function () {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WrappedYearDropdownOptions, {
+        key: "dropdown",
+        ref: "options",
+        year: _this.props.year,
+        onChange: _this.onChange,
+        onCancel: _this.toggleDropdown,
+        minDate: _this.props.minDate,
+        maxDate: _this.props.maxDate,
+        scrollableYearDropdown: _this.props.scrollableYearDropdown,
+        yearDropdownItemNumber: _this.props.yearDropdownItemNumber
+      });
+    }, _this.renderScrollMode = function () {
+      var dropdownVisible = _this.state.dropdownVisible;
+
+      var result = [_this.renderReadView(!dropdownVisible)];
+      if (dropdownVisible) {
+        result.unshift(_this.renderDropdown());
+      }
+      return result;
+    }, _this.onChange = function (year) {
+      _this.toggleDropdown();
+      if (year === _this.props.year) return;
+      _this.props.onChange(year);
+    }, _this.toggleDropdown = function (event) {
+      _this.setState({
+        dropdownVisible: !_this.state.dropdownVisible
+      }, function () {
+        if (_this.props.adjustDateOnChange) {
+          _this.handleYearChange(_this.props.date, event);
+        }
+      });
+    }, _this.handleYearChange = function (date, event) {
+      _this.onSelect(date, event);
+      _this.setOpen();
+    }, _this.onSelect = function (date, event) {
+      if (_this.props.onSelect) {
+        _this.props.onSelect(date, event);
+      }
+    }, _this.setOpen = function () {
+      if (_this.props.setOpen) {
+        _this.props.setOpen(true);
+      }
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  YearDropdown.prototype.render = function render() {
+    var renderedDropdown = void 0;
+    switch (this.props.dropdownMode) {
+      case "scroll":
+        renderedDropdown = this.renderScrollMode();
+        break;
+      case "select":
+        renderedDropdown = this.renderSelectMode();
+        break;
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      {
+        className: "react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--" + this.props.dropdownMode
+      },
+      renderedDropdown
+    );
+  };
+
+  return YearDropdown;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+YearDropdown.propTypes = {
+  adjustDateOnChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  dropdownMode: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(["scroll", "select"]).isRequired,
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  scrollableYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  year: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,
+  yearDropdownItemNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  date: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  setOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+
+var MonthDropdownOptions = function (_React$Component) {
+  inherits(MonthDropdownOptions, _React$Component);
+
+  function MonthDropdownOptions() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, MonthDropdownOptions);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.renderOptions = function () {
+      return _this.props.monthNames.map(function (month, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          {
+            className: _this.props.month === i ? "react-datepicker__month-option --selected_month" : "react-datepicker__month-option",
+            key: month,
+            ref: month,
+            onClick: _this.onChange.bind(_this, i)
+          },
+          _this.props.month === i ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+            "span",
+            { className: "react-datepicker__month-option--selected" },
+            "\u2713"
+          ) : "",
+          month
+        );
+      });
+    }, _this.onChange = function (month) {
+      return _this.props.onChange(month);
+    }, _this.handleClickOutside = function () {
+      return _this.props.onCancel();
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  MonthDropdownOptions.prototype.render = function render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      { className: "react-datepicker__month-dropdown" },
+      this.renderOptions()
+    );
+  };
+
+  return MonthDropdownOptions;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+MonthDropdownOptions.propTypes = {
+  onCancel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  month: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,
+  monthNames: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired).isRequired
+};
+
+var WrappedMonthDropdownOptions = Object(react_onclickoutside__WEBPACK_IMPORTED_MODULE_3__["default"])(MonthDropdownOptions);
+
+var MonthDropdown = function (_React$Component) {
+  inherits(MonthDropdown, _React$Component);
+
+  function MonthDropdown() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, MonthDropdown);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+      dropdownVisible: false
+    }, _this.renderSelectOptions = function (monthNames) {
+      return monthNames.map(function (M, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "option",
+          { key: i, value: i },
+          M
+        );
+      });
+    }, _this.renderSelectMode = function (monthNames) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "select",
+        {
+          value: _this.props.month,
+          className: "react-datepicker__month-select",
+          onChange: function onChange(e) {
+            return _this.onChange(e.target.value);
+          }
+        },
+        _this.renderSelectOptions(monthNames)
+      );
+    }, _this.renderReadView = function (visible, monthNames) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        {
+          key: "read",
+          style: { visibility: visible ? "visible" : "hidden" },
+          className: "react-datepicker__month-read-view",
+          onClick: _this.toggleDropdown
+        },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", { className: "react-datepicker__month-read-view--down-arrow" }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "span",
+          { className: "react-datepicker__month-read-view--selected-month" },
+          monthNames[_this.props.month]
+        )
+      );
+    }, _this.renderDropdown = function (monthNames) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WrappedMonthDropdownOptions, {
+        key: "dropdown",
+        ref: "options",
+        month: _this.props.month,
+        monthNames: monthNames,
+        onChange: _this.onChange,
+        onCancel: _this.toggleDropdown
+      });
+    }, _this.renderScrollMode = function (monthNames) {
+      var dropdownVisible = _this.state.dropdownVisible;
+
+      var result = [_this.renderReadView(!dropdownVisible, monthNames)];
+      if (dropdownVisible) {
+        result.unshift(_this.renderDropdown(monthNames));
+      }
+      return result;
+    }, _this.onChange = function (month) {
+      _this.toggleDropdown();
+      if (month !== _this.props.month) {
+        _this.props.onChange(month);
+      }
+    }, _this.toggleDropdown = function () {
+      return _this.setState({
+        dropdownVisible: !_this.state.dropdownVisible
+      });
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  MonthDropdown.prototype.render = function render() {
+    var _this2 = this;
+
+    var localeData = getLocaleDataForLocale(this.props.locale);
+    var monthNames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(this.props.useShortMonthInDropdown ? function (M) {
+      return getMonthShortInLocale(localeData, newDate({ M: M }));
+    } : function (M) {
+      return getMonthInLocale(localeData, newDate({ M: M }), _this2.props.dateFormat);
+    });
+
+    var renderedDropdown = void 0;
+    switch (this.props.dropdownMode) {
+      case "scroll":
+        renderedDropdown = this.renderScrollMode(monthNames);
+        break;
+      case "select":
+        renderedDropdown = this.renderSelectMode(monthNames);
+        break;
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      {
+        className: "react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--" + this.props.dropdownMode
+      },
+      renderedDropdown
+    );
+  };
+
+  return MonthDropdown;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+MonthDropdown.propTypes = {
+  dropdownMode: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(["scroll", "select"]).isRequired,
+  locale: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  dateFormat: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  month: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  useShortMonthInDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool
+};
+
+function generateMonthYears(minDate, maxDate) {
+  var list = [];
+
+  var currDate = getStartOfMonth(cloneDate(minDate));
+  var lastDate = getStartOfMonth(cloneDate(maxDate));
+
+  while (!isAfter(currDate, lastDate)) {
+    list.push(cloneDate(currDate));
+
+    addMonths(currDate, 1);
+  }
+
+  return list;
+}
+
+var MonthYearDropdownOptions = function (_React$Component) {
+  inherits(MonthYearDropdownOptions, _React$Component);
+
+  function MonthYearDropdownOptions(props) {
+    classCallCheck(this, MonthYearDropdownOptions);
+
+    var _this = possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.renderOptions = function () {
+      return _this.state.monthYearsList.map(function (monthYear) {
+        var monthYearPoint = monthYear.valueOf();
+
+        var isSameMonthYear = isSameYear(_this.props.date, monthYear) && isSameMonth(_this.props.date, monthYear);
+
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          {
+            className: isSameMonthYear ? "react-datepicker__month-year-option --selected_month-year" : "react-datepicker__month-year-option",
+            key: monthYearPoint,
+            ref: monthYearPoint,
+            onClick: _this.onChange.bind(_this, monthYearPoint)
+          },
+          isSameMonthYear ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+            "span",
+            { className: "react-datepicker__month-year-option--selected" },
+            "\u2713"
+          ) : "",
+          formatDate(monthYear, _this.props.dateFormat)
+        );
+      });
+    };
+
+    _this.onChange = function (monthYear) {
+      return _this.props.onChange(monthYear);
+    };
+
+    _this.handleClickOutside = function () {
+      _this.props.onCancel();
+    };
+
+    _this.state = {
+      monthYearsList: generateMonthYears(_this.props.minDate, _this.props.maxDate)
+    };
+    return _this;
+  }
+
+  MonthYearDropdownOptions.prototype.render = function render() {
+    var dropdownClass = classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+      "react-datepicker__month-year-dropdown": true,
+      "react-datepicker__month-year-dropdown--scrollable": this.props.scrollableMonthYearDropdown
+    });
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      { className: dropdownClass },
+      this.renderOptions()
+    );
+  };
+
+  return MonthYearDropdownOptions;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+MonthYearDropdownOptions.propTypes = {
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  onCancel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  scrollableMonthYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  date: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  dateFormat: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
+};
+
+var WrappedMonthYearDropdownOptions = Object(react_onclickoutside__WEBPACK_IMPORTED_MODULE_3__["default"])(MonthYearDropdownOptions);
+
+var MonthYearDropdown = function (_React$Component) {
+  inherits(MonthYearDropdown, _React$Component);
+
+  function MonthYearDropdown() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, MonthYearDropdown);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.state = {
+      dropdownVisible: false
+    }, _this.renderSelectOptions = function () {
+      var currDate = getStartOfMonth(localizeDate(_this.props.minDate, _this.props.locale));
+      var lastDate = getStartOfMonth(localizeDate(_this.props.maxDate, _this.props.locale));
+
+      var options = [];
+
+      while (!isAfter(currDate, lastDate)) {
+        var timepoint = currDate.valueOf();
+        options.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "option",
+          { key: timepoint, value: timepoint },
+          formatDate(currDate, _this.props.dateFormat)
+        ));
+
+        addMonths(currDate, 1);
+      }
+
+      return options;
+    }, _this.onSelectChange = function (e) {
+      _this.onChange(e.target.value);
+    }, _this.renderSelectMode = function () {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "select",
+        {
+          value: getStartOfMonth(_this.props.date).valueOf(),
+          className: "react-datepicker__month-year-select",
+          onChange: _this.onSelectChange
+        },
+        _this.renderSelectOptions()
+      );
+    }, _this.renderReadView = function (visible) {
+      var yearMonth = formatDate(localizeDate(newDate(_this.props.date), _this.props.locale), _this.props.dateFormat);
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        {
+          key: "read",
+          style: { visibility: visible ? "visible" : "hidden" },
+          className: "react-datepicker__month-year-read-view",
+          onClick: function onClick(event) {
+            return _this.toggleDropdown(event);
+          }
+        },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", { className: "react-datepicker__month-year-read-view--down-arrow" }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "span",
+          { className: "react-datepicker__month-year-read-view--selected-month-year" },
+          yearMonth
+        )
+      );
+    }, _this.renderDropdown = function () {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WrappedMonthYearDropdownOptions, {
+        key: "dropdown",
+        ref: "options",
+        date: _this.props.date,
+        dateFormat: _this.props.dateFormat,
+        onChange: _this.onChange,
+        onCancel: _this.toggleDropdown,
+        minDate: localizeDate(_this.props.minDate, _this.props.locale),
+        maxDate: localizeDate(_this.props.maxDate, _this.props.locale),
+        scrollableMonthYearDropdown: _this.props.scrollableMonthYearDropdown
+      });
+    }, _this.renderScrollMode = function () {
+      var dropdownVisible = _this.state.dropdownVisible;
+
+      var result = [_this.renderReadView(!dropdownVisible)];
+      if (dropdownVisible) {
+        result.unshift(_this.renderDropdown());
+      }
+      return result;
+    }, _this.onChange = function (monthYearPoint) {
+      _this.toggleDropdown();
+
+      var changedDate = newDate(parseInt(monthYearPoint));
+
+      if (isSameYear(_this.props.date, changedDate) && isSameMonth(_this.props.date, changedDate)) {
+        return;
+      }
+
+      _this.props.onChange(changedDate);
+    }, _this.toggleDropdown = function () {
+      return _this.setState({
+        dropdownVisible: !_this.state.dropdownVisible
+      });
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  MonthYearDropdown.prototype.render = function render() {
+    var renderedDropdown = void 0;
+    switch (this.props.dropdownMode) {
+      case "scroll":
+        renderedDropdown = this.renderScrollMode();
+        break;
+      case "select":
+        renderedDropdown = this.renderSelectMode();
+        break;
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      {
+        className: "react-datepicker__month-year-dropdown-container react-datepicker__month-year-dropdown-container--" + this.props.dropdownMode
+      },
+      renderedDropdown
+    );
+  };
+
+  return MonthYearDropdown;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+MonthYearDropdown.propTypes = {
+  dropdownMode: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(["scroll", "select"]).isRequired,
+  dateFormat: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  locale: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  date: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  scrollableMonthYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool
+};
+
+var Day = function (_React$Component) {
+  inherits(Day, _React$Component);
+
+  function Day() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Day);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleClick = function (event) {
+      if (!_this.isDisabled() && _this.props.onClick) {
+        _this.props.onClick(event);
+      }
+    }, _this.handleMouseEnter = function (event) {
+      if (!_this.isDisabled() && _this.props.onMouseEnter) {
+        _this.props.onMouseEnter(event);
+      }
+    }, _this.isSameDay = function (other) {
+      return isSameDay(_this.props.day, other);
+    }, _this.isKeyboardSelected = function () {
+      return !_this.props.disabledKeyboardNavigation && !_this.props.inline && !_this.isSameDay(_this.props.selected) && _this.isSameDay(_this.props.preSelection);
+    }, _this.isDisabled = function () {
+      return isDayDisabled(_this.props.day, _this.props);
+    }, _this.getHighLightedClass = function (defaultClassName) {
+      var _this$props = _this.props,
+          day = _this$props.day,
+          highlightDates = _this$props.highlightDates;
+
+
+      if (!highlightDates) {
+        return false;
+      }
+
+      // Looking for className in the Map of {'day string, 'className'}
+      var dayStr = day.format("MM.DD.YYYY");
+      return highlightDates.get(dayStr);
+    }, _this.isInRange = function () {
+      var _this$props2 = _this.props,
+          day = _this$props2.day,
+          startDate = _this$props2.startDate,
+          endDate = _this$props2.endDate;
+
+      if (!startDate || !endDate) {
+        return false;
+      }
+      return isDayInRange(day, startDate, endDate);
+    }, _this.isInSelectingRange = function () {
+      var _this$props3 = _this.props,
+          day = _this$props3.day,
+          selectsStart = _this$props3.selectsStart,
+          selectsEnd = _this$props3.selectsEnd,
+          selectingDate = _this$props3.selectingDate,
+          startDate = _this$props3.startDate,
+          endDate = _this$props3.endDate;
+
+
+      if (!(selectsStart || selectsEnd) || !selectingDate || _this.isDisabled()) {
+        return false;
+      }
+
+      if (selectsStart && endDate && selectingDate.isSameOrBefore(endDate)) {
+        return isDayInRange(day, selectingDate, endDate);
+      }
+
+      if (selectsEnd && startDate && selectingDate.isSameOrAfter(startDate)) {
+        return isDayInRange(day, startDate, selectingDate);
+      }
+
+      return false;
+    }, _this.isSelectingRangeStart = function () {
+      if (!_this.isInSelectingRange()) {
+        return false;
+      }
+
+      var _this$props4 = _this.props,
+          day = _this$props4.day,
+          selectingDate = _this$props4.selectingDate,
+          startDate = _this$props4.startDate,
+          selectsStart = _this$props4.selectsStart;
+
+
+      if (selectsStart) {
+        return isSameDay(day, selectingDate);
+      } else {
+        return isSameDay(day, startDate);
+      }
+    }, _this.isSelectingRangeEnd = function () {
+      if (!_this.isInSelectingRange()) {
+        return false;
+      }
+
+      var _this$props5 = _this.props,
+          day = _this$props5.day,
+          selectingDate = _this$props5.selectingDate,
+          endDate = _this$props5.endDate,
+          selectsEnd = _this$props5.selectsEnd;
+
+
+      if (selectsEnd) {
+        return isSameDay(day, selectingDate);
+      } else {
+        return isSameDay(day, endDate);
+      }
+    }, _this.isRangeStart = function () {
+      var _this$props6 = _this.props,
+          day = _this$props6.day,
+          startDate = _this$props6.startDate,
+          endDate = _this$props6.endDate;
+
+      if (!startDate || !endDate) {
+        return false;
+      }
+      return isSameDay(startDate, day);
+    }, _this.isRangeEnd = function () {
+      var _this$props7 = _this.props,
+          day = _this$props7.day,
+          startDate = _this$props7.startDate,
+          endDate = _this$props7.endDate;
+
+      if (!startDate || !endDate) {
+        return false;
+      }
+      return isSameDay(endDate, day);
+    }, _this.isWeekend = function () {
+      var weekday = getDay(_this.props.day);
+      return weekday === 0 || weekday === 6;
+    }, _this.isOutsideMonth = function () {
+      return _this.props.month !== undefined && _this.props.month !== getMonth(_this.props.day);
+    }, _this.getClassNames = function (date) {
+      var dayClassName = _this.props.dayClassName ? _this.props.dayClassName(date) : undefined;
+      return classnames__WEBPACK_IMPORTED_MODULE_2___default()("react-datepicker__day", dayClassName, "react-datepicker__day--" + getDayOfWeekCode(_this.props.day), {
+        "react-datepicker__day--disabled": _this.isDisabled(),
+        "react-datepicker__day--selected": _this.isSameDay(_this.props.selected),
+        "react-datepicker__day--keyboard-selected": _this.isKeyboardSelected(),
+        "react-datepicker__day--range-start": _this.isRangeStart(),
+        "react-datepicker__day--range-end": _this.isRangeEnd(),
+        "react-datepicker__day--in-range": _this.isInRange(),
+        "react-datepicker__day--in-selecting-range": _this.isInSelectingRange(),
+        "react-datepicker__day--selecting-range-start": _this.isSelectingRangeStart(),
+        "react-datepicker__day--selecting-range-end": _this.isSelectingRangeEnd(),
+        "react-datepicker__day--today": _this.isSameDay(now(_this.props.utcOffset)),
+        "react-datepicker__day--weekend": _this.isWeekend(),
+        "react-datepicker__day--outside-month": _this.isOutsideMonth()
+      }, _this.getHighLightedClass("react-datepicker__day--highlighted"));
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  Day.prototype.render = function render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      {
+        className: this.getClassNames(this.props.day),
+        onClick: this.handleClick,
+        onMouseEnter: this.handleMouseEnter,
+        "aria-label": "day-" + getDate(this.props.day),
+        role: "option"
+      },
+      getDate(this.props.day)
+    );
+  };
+
+  return Day;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+Day.propTypes = {
+  disabledKeyboardNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  day: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  dayClassName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  endDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  highlightDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.instanceOf(Map),
+  inline: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  month: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  onClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onMouseEnter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  preSelection: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selectingDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selectsEnd: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  selectsStart: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  startDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  utcOffset: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
+};
+
+var WeekNumber = function (_React$Component) {
+  inherits(WeekNumber, _React$Component);
+
+  function WeekNumber() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, WeekNumber);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleClick = function (event) {
+      if (_this.props.onClick) {
+        _this.props.onClick(event);
+      }
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  WeekNumber.prototype.render = function render() {
+    var weekNumberClasses = {
+      "react-datepicker__week-number": true,
+      "react-datepicker__week-number--clickable": !!this.props.onClick
+    };
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      {
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(weekNumberClasses),
+        "aria-label": "week-" + this.props.weekNumber,
+        onClick: this.handleClick
+      },
+      this.props.weekNumber
+    );
+  };
+
+  return WeekNumber;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+WeekNumber.propTypes = {
+  weekNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,
+  onClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+
+var Week = function (_React$Component) {
+  inherits(Week, _React$Component);
+
+  function Week() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Week);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleDayClick = function (day, event) {
+      if (_this.props.onDayClick) {
+        _this.props.onDayClick(day, event);
+      }
+    }, _this.handleDayMouseEnter = function (day) {
+      if (_this.props.onDayMouseEnter) {
+        _this.props.onDayMouseEnter(day);
+      }
+    }, _this.handleWeekClick = function (day, weekNumber, event) {
+      if (typeof _this.props.onWeekSelect === "function") {
+        _this.props.onWeekSelect(day, weekNumber, event);
+      }
+    }, _this.formatWeekNumber = function (startOfWeek) {
+      if (_this.props.formatWeekNumber) {
+        return _this.props.formatWeekNumber(startOfWeek);
+      }
+      return getWeek(startOfWeek);
+    }, _this.renderDays = function () {
+      var startOfWeek = getStartOfWeek(cloneDate(_this.props.day));
+      var days = [];
+      var weekNumber = _this.formatWeekNumber(startOfWeek);
+      if (_this.props.showWeekNumber) {
+        var onClickAction = _this.props.onWeekSelect ? _this.handleWeekClick.bind(_this, startOfWeek, weekNumber) : undefined;
+        days.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WeekNumber, { key: "W", weekNumber: weekNumber, onClick: onClickAction }));
+      }
+      return days.concat([0, 1, 2, 3, 4, 5, 6].map(function (offset) {
+        var day = addDays(cloneDate(startOfWeek), offset);
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Day, {
+          key: offset,
+          day: day,
+          month: _this.props.month,
+          onClick: _this.handleDayClick.bind(_this, day),
+          onMouseEnter: _this.handleDayMouseEnter.bind(_this, day),
+          minDate: _this.props.minDate,
+          maxDate: _this.props.maxDate,
+          excludeDates: _this.props.excludeDates,
+          includeDates: _this.props.includeDates,
+          inline: _this.props.inline,
+          highlightDates: _this.props.highlightDates,
+          selectingDate: _this.props.selectingDate,
+          filterDate: _this.props.filterDate,
+          preSelection: _this.props.preSelection,
+          selected: _this.props.selected,
+          selectsStart: _this.props.selectsStart,
+          selectsEnd: _this.props.selectsEnd,
+          startDate: _this.props.startDate,
+          endDate: _this.props.endDate,
+          dayClassName: _this.props.dayClassName,
+          utcOffset: _this.props.utcOffset,
+          disabledKeyboardNavigation: _this.props.disabledKeyboardNavigation
+        });
+      }));
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  Week.prototype.render = function render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      { className: "react-datepicker__week" },
+      this.renderDays()
+    );
+  };
+
+  return Week;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+Week.propTypes = {
+  disabledKeyboardNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  day: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  dayClassName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  endDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  excludeDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  filterDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  formatWeekNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  highlightDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.instanceOf(Map),
+  includeDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  inline: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  month: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  onDayClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onDayMouseEnter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onWeekSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  preSelection: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selectingDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selectsEnd: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  selectsStart: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showWeekNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  startDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  utcOffset: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
+};
+
+var FIXED_HEIGHT_STANDARD_WEEK_COUNT = 6;
+
+var Month = function (_React$Component) {
+  inherits(Month, _React$Component);
+
+  function Month() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Month);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleDayClick = function (day, event) {
+      if (_this.props.onDayClick) {
+        _this.props.onDayClick(day, event);
+      }
+    }, _this.handleDayMouseEnter = function (day) {
+      if (_this.props.onDayMouseEnter) {
+        _this.props.onDayMouseEnter(day);
+      }
+    }, _this.handleMouseLeave = function () {
+      if (_this.props.onMouseLeave) {
+        _this.props.onMouseLeave();
+      }
+    }, _this.isWeekInMonth = function (startOfWeek) {
+      var day = _this.props.day;
+      var endOfWeek = addDays(cloneDate(startOfWeek), 6);
+      return isSameMonth(startOfWeek, day) || isSameMonth(endOfWeek, day);
+    }, _this.renderWeeks = function () {
+      var weeks = [];
+      var isFixedHeight = _this.props.fixedHeight;
+      var currentWeekStart = getStartOfWeek(getStartOfMonth(cloneDate(_this.props.day)));
+      var i = 0;
+      var breakAfterNextPush = false;
+
+      while (true) {
+        weeks.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Week, {
+          key: i,
+          day: currentWeekStart,
+          month: getMonth(_this.props.day),
+          onDayClick: _this.handleDayClick,
+          onDayMouseEnter: _this.handleDayMouseEnter,
+          onWeekSelect: _this.props.onWeekSelect,
+          formatWeekNumber: _this.props.formatWeekNumber,
+          minDate: _this.props.minDate,
+          maxDate: _this.props.maxDate,
+          excludeDates: _this.props.excludeDates,
+          includeDates: _this.props.includeDates,
+          inline: _this.props.inline,
+          highlightDates: _this.props.highlightDates,
+          selectingDate: _this.props.selectingDate,
+          filterDate: _this.props.filterDate,
+          preSelection: _this.props.preSelection,
+          selected: _this.props.selected,
+          selectsStart: _this.props.selectsStart,
+          selectsEnd: _this.props.selectsEnd,
+          showWeekNumber: _this.props.showWeekNumbers,
+          startDate: _this.props.startDate,
+          endDate: _this.props.endDate,
+          dayClassName: _this.props.dayClassName,
+          utcOffset: _this.props.utcOffset,
+          disabledKeyboardNavigation: _this.props.disabledKeyboardNavigation
+        }));
+
+        if (breakAfterNextPush) break;
+
+        i++;
+        currentWeekStart = addWeeks(cloneDate(currentWeekStart), 1);
+
+        // If one of these conditions is true, we will either break on this week
+        // or break on the next week
+        var isFixedAndFinalWeek = isFixedHeight && i >= FIXED_HEIGHT_STANDARD_WEEK_COUNT;
+        var isNonFixedAndOutOfMonth = !isFixedHeight && !_this.isWeekInMonth(currentWeekStart);
+
+        if (isFixedAndFinalWeek || isNonFixedAndOutOfMonth) {
+          if (_this.props.peekNextMonth) {
+            breakAfterNextPush = true;
+          } else {
+            break;
+          }
+        }
+      }
+
+      return weeks;
+    }, _this.getClassNames = function () {
+      var _this$props = _this.props,
+          selectingDate = _this$props.selectingDate,
+          selectsStart = _this$props.selectsStart,
+          selectsEnd = _this$props.selectsEnd;
+
+      return classnames__WEBPACK_IMPORTED_MODULE_2___default()("react-datepicker__month", {
+        "react-datepicker__month--selecting-range": selectingDate && (selectsStart || selectsEnd)
+      });
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  Month.prototype.render = function render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      {
+        className: this.getClassNames(),
+        onMouseLeave: this.handleMouseLeave,
+        role: "listbox",
+        "aria-label": "month-" + this.props.day.format("YYYY-MM")
+      },
+      this.renderWeeks()
+    );
+  };
+
+  return Month;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+Month.propTypes = {
+  disabledKeyboardNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  day: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  dayClassName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  endDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  excludeDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  filterDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  fixedHeight: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  formatWeekNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  highlightDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.instanceOf(Map),
+  includeDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  inline: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onDayClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onDayMouseEnter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onMouseLeave: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onWeekSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  peekNextMonth: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  preSelection: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selectingDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selectsEnd: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  selectsStart: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showWeekNumbers: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  startDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  utcOffset: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string])
+};
+
+var Time = function (_React$Component) {
+  inherits(Time, _React$Component);
+
+  function Time() {
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Time);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleClick = function (time) {
+      if ((_this.props.minTime || _this.props.maxTime) && isTimeInDisabledRange(time, _this.props) || _this.props.excludeTimes && isTimeDisabled(time, _this.props.excludeTimes) || _this.props.includeTimes && !isTimeDisabled(time, _this.props.includeTimes)) {
+        return;
+      }
+
+      _this.props.onChange(time);
+    }, _this.liClasses = function (time, currH, currM) {
+      var classes = ["react-datepicker__time-list-item"];
+
+      if (currH === getHour(time) && currM === getMinute(time)) {
+        classes.push("react-datepicker__time-list-item--selected");
+      }
+      if ((_this.props.minTime || _this.props.maxTime) && isTimeInDisabledRange(time, _this.props) || _this.props.excludeTimes && isTimeDisabled(time, _this.props.excludeTimes) || _this.props.includeTimes && !isTimeDisabled(time, _this.props.includeTimes)) {
+        classes.push("react-datepicker__time-list-item--disabled");
+      }
+      if (_this.props.injectTimes && (getHour(time) * 60 + getMinute(time)) % _this.props.intervals !== 0) {
+        classes.push("react-datepicker__time-list-item--injected");
+      }
+
+      return classes.join(" ");
+    }, _this.renderTimes = function () {
+      var times = [];
+      var format = _this.props.format ? _this.props.format : "hh:mm A";
+      var intervals = _this.props.intervals;
+      var activeTime = _this.props.selected ? _this.props.selected : newDate();
+      var currH = getHour(activeTime);
+      var currM = getMinute(activeTime);
+      var base = getStartOfDay(newDate());
+      var multiplier = 1440 / intervals;
+      var sortedInjectTimes = _this.props.injectTimes && _this.props.injectTimes.sort(function (a, b) {
+        return a - b;
+      });
+      for (var i = 0; i < multiplier; i++) {
+        var currentTime = addMinutes(cloneDate(base), i * intervals);
+        times.push(currentTime);
+
+        if (sortedInjectTimes) {
+          var timesToInject = timesToInjectAfter(base, currentTime, i, intervals, sortedInjectTimes);
+          times = times.concat(timesToInject);
+        }
+      }
+
+      return times.map(function (time, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "li",
+          {
+            key: i,
+            onClick: _this.handleClick.bind(_this, time),
+            className: _this.liClasses(time, currH, currM),
+            ref: function ref(li) {
+              if (currH === getHour(time) && currM === getMinute(time) || currH === getHour(time) && !_this.centerLi) {
+                _this.centerLi = li;
+              }
+            }
+          },
+          formatDate(time, format)
+        );
+      });
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  Time.prototype.componentDidMount = function componentDidMount() {
+    // code to ensure selected time will always be in focus within time window when it first appears
+    this.list.scrollTop = Time.calcCenterPosition(this.props.monthRef ? this.props.monthRef.clientHeight - this.header.clientHeight : this.list.clientHeight, this.centerLi);
+  };
+
+  Time.prototype.render = function render() {
+    var _this2 = this;
+
+    var height = null;
+    if (this.props.monthRef && this.header) {
+      height = this.props.monthRef.clientHeight - this.header.clientHeight;
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      {
+        className: "react-datepicker__time-container " + (this.props.todayButton ? "react-datepicker__time-container--with-today-button" : "")
+      },
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        {
+          className: "react-datepicker__header react-datepicker__header--time",
+          ref: function ref(header) {
+            _this2.header = header;
+          }
+        },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          { className: "react-datepicker-time__header" },
+          this.props.timeCaption
+        )
+      ),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        { className: "react-datepicker__time" },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          { className: "react-datepicker__time-box" },
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+            "ul",
+            {
+              className: "react-datepicker__time-list",
+              ref: function ref(list) {
+                _this2.list = list;
+              },
+              style: height ? { height: height } : {}
+            },
+            this.renderTimes.bind(this)()
+          )
+        )
+      )
+    );
+  };
+
+  createClass(Time, null, [{
+    key: "defaultProps",
+    get: function get$$1() {
+      return {
+        intervals: 30,
+        onTimeChange: function onTimeChange() {},
+        todayButton: null,
+        timeCaption: "Time"
+      };
+    }
+  }]);
+  return Time;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+Time.propTypes = {
+  format: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  includeTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  intervals: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  selected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  todayButton: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+  minTime: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  maxTime: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  excludeTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  monthRef: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  timeCaption: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  injectTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array
+};
+
+Time.calcCenterPosition = function (listHeight, centerLiRef) {
+  return centerLiRef.offsetTop - (listHeight / 2 - centerLiRef.clientHeight / 2);
+};
+
+function CalendarContainer(_ref) {
+  var className = _ref.className,
+      children = _ref.children,
+      _ref$arrowProps = _ref.arrowProps,
+      arrowProps = _ref$arrowProps === undefined ? {} : _ref$arrowProps;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+    "div",
+    { className: className },
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({ className: "react-datepicker__triangle" }, arrowProps)),
+    children
+  );
+}
+
+CalendarContainer.propTypes = {
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+  arrowProps: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object // react-popper arrow props
+};
+
+var DROPDOWN_FOCUS_CLASSNAMES = ["react-datepicker__year-select", "react-datepicker__month-select", "react-datepicker__month-year-select"];
+
+var isDropdownSelect = function isDropdownSelect() {
+  var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var classNames = (element.className || "").split(/\s+/);
+  return DROPDOWN_FOCUS_CLASSNAMES.some(function (testClassname) {
+    return classNames.indexOf(testClassname) >= 0;
+  });
+};
+
+var Calendar = function (_React$Component) {
+  inherits(Calendar, _React$Component);
+  createClass(Calendar, null, [{
+    key: "defaultProps",
+    get: function get$$1() {
+      return {
+        onDropdownFocus: function onDropdownFocus() {},
+        monthsShown: 1,
+        forceShowMonthNavigation: false,
+        timeCaption: "Time",
+        previousMonthButtonLabel: "Previous Month",
+        nextMonthButtonLabel: "Next Month"
+      };
+    }
+  }]);
+
+  function Calendar(props) {
+    classCallCheck(this, Calendar);
+
+    var _this = possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.handleClickOutside = function (event) {
+      _this.props.onClickOutside(event);
+    };
+
+    _this.handleDropdownFocus = function (event) {
+      if (isDropdownSelect(event.target)) {
+        _this.props.onDropdownFocus();
+      }
+    };
+
+    _this.getDateInView = function () {
+      var _this$props = _this.props,
+          preSelection = _this$props.preSelection,
+          selected = _this$props.selected,
+          openToDate = _this$props.openToDate,
+          utcOffset = _this$props.utcOffset;
+
+      var minDate = getEffectiveMinDate(_this.props);
+      var maxDate = getEffectiveMaxDate(_this.props);
+      var current = now(utcOffset);
+      var initialDate = openToDate || selected || preSelection;
+      if (initialDate) {
+        return initialDate;
+      } else {
+        if (minDate && isBefore(current, minDate)) {
+          return minDate;
+        } else if (maxDate && isAfter(current, maxDate)) {
+          return maxDate;
+        }
+      }
+      return current;
+    };
+
+    _this.localizeDate = function (date) {
+      return localizeDate(date, _this.props.locale);
+    };
+
+    _this.increaseMonth = function () {
+      _this.setState({
+        date: addMonths(cloneDate(_this.state.date), 1)
+      }, function () {
+        return _this.handleMonthChange(_this.state.date);
+      });
+    };
+
+    _this.decreaseMonth = function () {
+      _this.setState({
+        date: subtractMonths(cloneDate(_this.state.date), 1)
+      }, function () {
+        return _this.handleMonthChange(_this.state.date);
+      });
+    };
+
+    _this.handleDayClick = function (day, event) {
+      return _this.props.onSelect(day, event);
+    };
+
+    _this.handleDayMouseEnter = function (day) {
+      return _this.setState({ selectingDate: day });
+    };
+
+    _this.handleMonthMouseLeave = function () {
+      return _this.setState({ selectingDate: null });
+    };
+
+    _this.handleYearChange = function (date) {
+      if (_this.props.onYearChange) {
+        _this.props.onYearChange(date);
+      }
+    };
+
+    _this.handleMonthChange = function (date) {
+      if (_this.props.onMonthChange) {
+        _this.props.onMonthChange(date);
+      }
+      if (_this.props.adjustDateOnChange) {
+        if (_this.props.onSelect) {
+          _this.props.onSelect(date);
+        }
+        if (_this.props.setOpen) {
+          _this.props.setOpen(true);
+        }
+      }
+    };
+
+    _this.handleMonthYearChange = function (date) {
+      _this.handleYearChange(date);
+      _this.handleMonthChange(date);
+    };
+
+    _this.changeYear = function (year) {
+      _this.setState({
+        date: setYear(cloneDate(_this.state.date), year)
+      }, function () {
+        return _this.handleYearChange(_this.state.date);
+      });
+    };
+
+    _this.changeMonth = function (month) {
+      _this.setState({
+        date: setMonth(cloneDate(_this.state.date), month)
+      }, function () {
+        return _this.handleMonthChange(_this.state.date);
+      });
+    };
+
+    _this.changeMonthYear = function (monthYear) {
+      _this.setState({
+        date: setYear(setMonth(cloneDate(_this.state.date), getMonth(monthYear)), getYear(monthYear))
+      }, function () {
+        return _this.handleMonthYearChange(_this.state.date);
+      });
+    };
+
+    _this.header = function () {
+      var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.state.date;
+
+      var startOfWeek = getStartOfWeek(cloneDate(date));
+      var dayNames = [];
+      if (_this.props.showWeekNumbers) {
+        dayNames.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          { key: "W", className: "react-datepicker__day-name" },
+          _this.props.weekLabel || "#"
+        ));
+      }
+      return dayNames.concat([0, 1, 2, 3, 4, 5, 6].map(function (offset) {
+        var day = addDays(cloneDate(startOfWeek), offset);
+        var localeData = getLocaleData(day);
+        var weekDayName = _this.formatWeekday(localeData, day);
+
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          { key: offset, className: "react-datepicker__day-name" },
+          weekDayName
+        );
+      }));
+    };
+
+    _this.formatWeekday = function (localeData, day) {
+      if (_this.props.formatWeekDay) {
+        return getFormattedWeekdayInLocale(localeData, day, _this.props.formatWeekDay);
+      }
+      return _this.props.useWeekdaysShort ? getWeekdayShortInLocale(localeData, day) : getWeekdayMinInLocale(localeData, day);
+    };
+
+    _this.renderPreviousMonthButton = function () {
+      if (_this.props.renderCustomHeader) {
+        return;
+      }
+
+      var allPrevDaysDisabled = allDaysDisabledBefore(_this.state.date, "month", _this.props);
+
+      if (!_this.props.forceShowMonthNavigation && !_this.props.showDisabledMonthNavigation && allPrevDaysDisabled || _this.props.showTimeSelectOnly) {
+        return;
+      }
+
+      var classes = ["react-datepicker__navigation", "react-datepicker__navigation--previous"];
+
+      var clickHandler = _this.decreaseMonth;
+
+      if (allPrevDaysDisabled && _this.props.showDisabledMonthNavigation) {
+        classes.push("react-datepicker__navigation--previous--disabled");
+        clickHandler = null;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "button",
+        {
+          type: "button",
+          className: classes.join(" "),
+          onClick: clickHandler
+        },
+        _this.props.previousMonthButtonLabel
+      );
+    };
+
+    _this.renderNextMonthButton = function () {
+      if (_this.props.renderCustomHeader) {
+        return;
+      }
+
+      var allNextDaysDisabled = allDaysDisabledAfter(_this.state.date, "month", _this.props);
+
+      if (!_this.props.forceShowMonthNavigation && !_this.props.showDisabledMonthNavigation && allNextDaysDisabled || _this.props.showTimeSelectOnly) {
+        return;
+      }
+
+      var classes = ["react-datepicker__navigation", "react-datepicker__navigation--next"];
+      if (_this.props.showTimeSelect) {
+        classes.push("react-datepicker__navigation--next--with-time");
+      }
+      if (_this.props.todayButton) {
+        classes.push("react-datepicker__navigation--next--with-today-button");
+      }
+
+      var clickHandler = _this.increaseMonth;
+
+      if (allNextDaysDisabled && _this.props.showDisabledMonthNavigation) {
+        classes.push("react-datepicker__navigation--next--disabled");
+        clickHandler = null;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "button",
+        {
+          type: "button",
+          className: classes.join(" "),
+          onClick: clickHandler
+        },
+        _this.props.nextMonthButtonLabel
+      );
+    };
+
+    _this.renderCurrentMonth = function () {
+      var date = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.state.date;
+
+      var classes = ["react-datepicker__current-month"];
+
+      if (_this.props.showYearDropdown) {
+        classes.push("react-datepicker__current-month--hasYearDropdown");
+      }
+      if (_this.props.showMonthDropdown) {
+        classes.push("react-datepicker__current-month--hasMonthDropdown");
+      }
+      if (_this.props.showMonthYearDropdown) {
+        classes.push("react-datepicker__current-month--hasMonthYearDropdown");
+      }
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        { className: classes.join(" ") },
+        formatDate(date, _this.props.dateFormat)
+      );
+    };
+
+    _this.renderYearDropdown = function () {
+      var overrideHide = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      if (!_this.props.showYearDropdown || overrideHide) {
+        return;
+      }
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(YearDropdown, {
+        adjustDateOnChange: _this.props.adjustDateOnChange,
+        date: _this.state.date,
+        onSelect: _this.props.onSelect,
+        setOpen: _this.props.setOpen,
+        dropdownMode: _this.props.dropdownMode,
+        onChange: _this.changeYear,
+        minDate: _this.props.minDate,
+        maxDate: _this.props.maxDate,
+        year: getYear(_this.state.date),
+        scrollableYearDropdown: _this.props.scrollableYearDropdown,
+        yearDropdownItemNumber: _this.props.yearDropdownItemNumber
+      });
+    };
+
+    _this.renderMonthDropdown = function () {
+      var overrideHide = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      if (!_this.props.showMonthDropdown || overrideHide) {
+        return;
+      }
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MonthDropdown, {
+        dropdownMode: _this.props.dropdownMode,
+        locale: _this.props.locale,
+        dateFormat: _this.props.dateFormat,
+        onChange: _this.changeMonth,
+        month: getMonth(_this.state.date),
+        useShortMonthInDropdown: _this.props.useShortMonthInDropdown
+      });
+    };
+
+    _this.renderMonthYearDropdown = function () {
+      var overrideHide = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      if (!_this.props.showMonthYearDropdown || overrideHide) {
+        return;
+      }
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MonthYearDropdown, {
+        dropdownMode: _this.props.dropdownMode,
+        locale: _this.props.locale,
+        dateFormat: _this.props.dateFormat,
+        onChange: _this.changeMonthYear,
+        minDate: _this.props.minDate,
+        maxDate: _this.props.maxDate,
+        date: _this.state.date,
+        scrollableMonthYearDropdown: _this.props.scrollableMonthYearDropdown
+      });
+    };
+
+    _this.renderTodayButton = function () {
+      if (!_this.props.todayButton || _this.props.showTimeSelectOnly) {
+        return;
+      }
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        {
+          className: "react-datepicker__today-button",
+          onClick: function onClick(e) {
+            return _this.props.onSelect(getStartOfDate(now(_this.props.utcOffset)), e);
+          }
+        },
+        _this.props.todayButton
+      );
+    };
+
+    _this.renderDefaultHeader = function (_ref) {
+      var monthDate = _ref.monthDate,
+          i = _ref.i;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        { className: "react-datepicker__header" },
+        _this.renderCurrentMonth(monthDate),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          {
+            className: "react-datepicker__header__dropdown react-datepicker__header__dropdown--" + _this.props.dropdownMode,
+            onFocus: _this.handleDropdownFocus
+          },
+          _this.renderMonthDropdown(i !== 0),
+          _this.renderMonthYearDropdown(i !== 0),
+          _this.renderYearDropdown(i !== 0)
+        ),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          { className: "react-datepicker__day-names" },
+          _this.header(monthDate)
+        )
+      );
+    };
+
+    _this.renderCustomHeader = function (_ref2) {
+      var monthDate = _ref2.monthDate,
+          i = _ref2.i;
+
+      if (i !== 0) {
+        return null;
+      }
+
+      var prevMonthButtonDisabled = allDaysDisabledBefore(_this.state.date, "month", _this.props);
+
+      var nextMonthButtonDisabled = allDaysDisabledAfter(_this.state.date, "month", _this.props);
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        {
+          className: "react-datepicker__header react-datepicker__header--custom",
+          onFocus: _this.props.onDropdownFocus
+        },
+        _this.props.renderCustomHeader(_extends({}, _this.state, {
+          changeMonth: _this.changeMonth,
+          changeYear: _this.changeYear,
+          decreaseMonth: _this.decreaseMonth,
+          increaseMonth: _this.increaseMonth,
+          prevMonthButtonDisabled: prevMonthButtonDisabled,
+          nextMonthButtonDisabled: nextMonthButtonDisabled
+        })),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          { className: "react-datepicker__day-names" },
+          _this.header(monthDate)
+        )
+      );
+    };
+
+    _this.renderMonths = function () {
+      if (_this.props.showTimeSelectOnly) {
+        return;
+      }
+
+      var monthList = [];
+      for (var i = 0; i < _this.props.monthsShown; ++i) {
+        var monthDate = addMonths(cloneDate(_this.state.date), i);
+        var monthKey = "month-" + i;
+        monthList.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          {
+            key: monthKey,
+            ref: function ref(div) {
+              _this.monthContainer = div;
+            },
+            className: "react-datepicker__month-container"
+          },
+          _this.props.renderCustomHeader ? _this.renderCustomHeader({ monthDate: monthDate, i: i }) : _this.renderDefaultHeader({ monthDate: monthDate, i: i }),
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Month, {
+            day: monthDate,
+            dayClassName: _this.props.dayClassName,
+            onDayClick: _this.handleDayClick,
+            onDayMouseEnter: _this.handleDayMouseEnter,
+            onMouseLeave: _this.handleMonthMouseLeave,
+            onWeekSelect: _this.props.onWeekSelect,
+            formatWeekNumber: _this.props.formatWeekNumber,
+            minDate: _this.props.minDate,
+            maxDate: _this.props.maxDate,
+            excludeDates: _this.props.excludeDates,
+            highlightDates: _this.props.highlightDates,
+            selectingDate: _this.state.selectingDate,
+            includeDates: _this.props.includeDates,
+            inline: _this.props.inline,
+            fixedHeight: _this.props.fixedHeight,
+            filterDate: _this.props.filterDate,
+            preSelection: _this.props.preSelection,
+            selected: _this.props.selected,
+            selectsStart: _this.props.selectsStart,
+            selectsEnd: _this.props.selectsEnd,
+            showWeekNumbers: _this.props.showWeekNumbers,
+            startDate: _this.props.startDate,
+            endDate: _this.props.endDate,
+            peekNextMonth: _this.props.peekNextMonth,
+            utcOffset: _this.props.utcOffset,
+            disabledKeyboardNavigation: _this.props.disabledKeyboardNavigation
+          })
+        ));
+      }
+      return monthList;
+    };
+
+    _this.renderTimeSection = function () {
+      if (_this.props.showTimeSelect && (_this.state.monthContainer || _this.props.showTimeSelectOnly)) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Time, {
+          selected: _this.props.selected,
+          onChange: _this.props.onTimeChange,
+          format: _this.props.timeFormat,
+          includeTimes: _this.props.includeTimes,
+          intervals: _this.props.timeIntervals,
+          minTime: _this.props.minTime,
+          maxTime: _this.props.maxTime,
+          excludeTimes: _this.props.excludeTimes,
+          timeCaption: _this.props.timeCaption,
+          todayButton: _this.props.todayButton,
+          showMonthDropdown: _this.props.showMonthDropdown,
+          showMonthYearDropdown: _this.props.showMonthYearDropdown,
+          showYearDropdown: _this.props.showYearDropdown,
+          withPortal: _this.props.withPortal,
+          monthRef: _this.state.monthContainer,
+          injectTimes: _this.props.injectTimes
+        });
+      }
+    };
+
+    _this.state = {
+      date: _this.localizeDate(_this.getDateInView()),
+      selectingDate: null,
+      monthContainer: null
+    };
+    return _this;
+  }
+
+  Calendar.prototype.componentDidMount = function componentDidMount() {
+    var _this2 = this;
+
+    // monthContainer height is needed in time component
+    // to determine the height for the ul in the time component
+    // setState here so height is given after final component
+    // layout is rendered
+    if (this.props.showTimeSelect) {
+      this.assignMonthContainer = function () {
+        _this2.setState({ monthContainer: _this2.monthContainer });
+      }();
+    }
+  };
+
+  Calendar.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
+    if (this.props.preSelection && !isSameDay(this.props.preSelection, prevProps.preSelection)) {
+      this.setState({
+        date: this.localizeDate(this.props.preSelection)
+      });
+    } else if (this.props.openToDate && !isSameDay(this.props.openToDate, prevProps.openToDate)) {
+      this.setState({
+        date: this.localizeDate(this.props.openToDate)
+      });
+    }
+  };
+
+  Calendar.prototype.render = function render() {
+    var Container = this.props.container || CalendarContainer;
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      Container,
+      {
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()("react-datepicker", this.props.className, {
+          "react-datepicker--time-only": this.props.showTimeSelectOnly
+        })
+      },
+      this.renderPreviousMonthButton(),
+      this.renderNextMonthButton(),
+      this.renderMonths(),
+      this.renderTodayButton(),
+      this.renderTimeSection(),
+      this.props.children
+    );
+  };
+
+  return Calendar;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+Calendar.propTypes = {
+  adjustDateOnChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+  container: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  dateFormat: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array]).isRequired,
+  dayClassName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  disabledKeyboardNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  dropdownMode: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(["scroll", "select"]),
+  endDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  excludeDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  filterDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  fixedHeight: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  formatWeekNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  highlightDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.instanceOf(Map),
+  includeDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  includeTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  injectTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  inline: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  locale: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  monthsShown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  onClickOutside: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  onMonthChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onYearChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  forceShowMonthNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  onDropdownFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  onWeekSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  showTimeSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showTimeSelectOnly: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  timeFormat: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  timeIntervals: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  onTimeChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  minTime: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  maxTime: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  excludeTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  timeCaption: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  openToDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  peekNextMonth: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  scrollableYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  scrollableMonthYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  preSelection: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selectsEnd: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  selectsStart: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showMonthDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showMonthYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showWeekNumbers: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  startDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  todayButton: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+  useWeekdaysShort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  formatWeekDay: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  withPortal: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  utcOffset: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  weekLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  yearDropdownItemNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  setOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  useShortMonthInDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showDisabledMonthNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  previousMonthButtonLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  nextMonthButtonLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  renderCustomHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+
+var popperPlacementPositions = ["bottom", "bottom-end", "bottom-start", "left", "left-end", "left-start", "right", "right-end", "right-start", "top", "top-end", "top-start"];
+
+var PopperComponent = function (_React$Component) {
+  inherits(PopperComponent, _React$Component);
+
+  function PopperComponent() {
+    classCallCheck(this, PopperComponent);
+    return possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+  }
+
+  PopperComponent.prototype.render = function render() {
+    var _props = this.props,
+        className = _props.className,
+        hidePopper = _props.hidePopper,
+        popperComponent = _props.popperComponent,
+        popperModifiers = _props.popperModifiers,
+        popperPlacement = _props.popperPlacement,
+        targetComponent = _props.targetComponent;
+
+
+    var popper = void 0;
+
+    if (!hidePopper) {
+      var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()("react-datepicker-popper", className);
+      popper = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        react_popper__WEBPACK_IMPORTED_MODULE_5__["Popper"],
+        { modifiers: popperModifiers, placement: popperPlacement },
+        function (_ref) {
+          var ref = _ref.ref,
+              style = _ref.style,
+              placement = _ref.placement,
+              arrowProps = _ref.arrowProps;
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+            "div",
+            _extends({ ref: ref, style: style }, {
+              className: classes,
+              "data-placement": placement
+            }),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(popperComponent, { arrowProps: arrowProps })
+          );
+        }
+      );
+    }
+
+    if (this.props.popperContainer) {
+      popper = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(this.props.popperContainer, {}, popper);
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      null,
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        react_popper__WEBPACK_IMPORTED_MODULE_5__["Manager"],
+        null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          react_popper__WEBPACK_IMPORTED_MODULE_5__["Reference"],
+          null,
+          function (_ref2) {
+            var ref = _ref2.ref;
+            return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+              "div",
+              { ref: ref, className: "react-datepicker-wrapper" },
+              targetComponent
+            );
+          }
+        ),
+        popper
+      )
+    );
+  };
+
+  createClass(PopperComponent, null, [{
+    key: "defaultProps",
+    get: function get$$1() {
+      return {
+        hidePopper: true,
+        popperModifiers: {
+          preventOverflow: {
+            enabled: true,
+            escapeWithReference: true,
+            boundariesElement: "viewport"
+          }
+        },
+        popperPlacement: "bottom-start"
+      };
+    }
+  }]);
+  return PopperComponent;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+PopperComponent.propTypes = {
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  hidePopper: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  popperComponent: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.element,
+  popperModifiers: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, // <datepicker/> props
+  popperPlacement: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(popperPlacementPositions), // <datepicker/> props
+  popperContainer: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  targetComponent: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.element
+};
+
+var outsideClickIgnoreClass = "react-datepicker-ignore-onclickoutside";
+var WrappedCalendar = Object(react_onclickoutside__WEBPACK_IMPORTED_MODULE_3__["default"])(Calendar);
+
+// Compares dates year+month combinations
+function hasPreSelectionChanged(date1, date2) {
+  if (date1 && date2) {
+    return getMonth(date1) !== getMonth(date2) || getYear(date1) !== getYear(date2);
+  }
+
+  return date1 !== date2;
+}
+
+function hasSelectionChanged(date1, date2) {
+  if (date1 && date2) {
+    return !equals(date1, date2);
+  }
+
+  return false;
+}
+
+/**
+ * General datepicker component.
+ */
+
+var DatePicker = function (_React$Component) {
+  inherits(DatePicker, _React$Component);
+  createClass(DatePicker, null, [{
+    key: "defaultProps",
+    get: function get$$1() {
+      return {
+        allowSameDay: false,
+        dateFormat: "L",
+        dateFormatCalendar: "MMMM YYYY",
+        onChange: function onChange() {},
+
+        disabled: false,
+        disabledKeyboardNavigation: false,
+        dropdownMode: "scroll",
+        onFocus: function onFocus() {},
+        onBlur: function onBlur() {},
+        onKeyDown: function onKeyDown() {},
+        onInputClick: function onInputClick() {},
+        onSelect: function onSelect() {},
+        onClickOutside: function onClickOutside$$1() {},
+        onMonthChange: function onMonthChange() {},
+
+        preventOpenOnFocus: false,
+        onYearChange: function onYearChange() {},
+
+        monthsShown: 1,
+        readOnly: false,
+        withPortal: false,
+        shouldCloseOnSelect: true,
+        showTimeSelect: false,
+        timeIntervals: 30,
+        timeCaption: "Time",
+        previousMonthButtonLabel: "Previous Month",
+        nextMonthButtonLabel: "Next month"
+      };
+    }
+  }]);
+
+  function DatePicker(props) {
+    classCallCheck(this, DatePicker);
+
+    var _this = possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.getPreSelection = function () {
+      return _this.props.openToDate ? newDate(_this.props.openToDate) : _this.props.selectsEnd && _this.props.startDate ? newDate(_this.props.startDate) : _this.props.selectsStart && _this.props.endDate ? newDate(_this.props.endDate) : now(_this.props.utcOffset);
+    };
+
+    _this.calcInitialState = function () {
+      var defaultPreSelection = _this.getPreSelection();
+      var minDate = getEffectiveMinDate(_this.props);
+      var maxDate = getEffectiveMaxDate(_this.props);
+      var boundedPreSelection = minDate && isBefore(defaultPreSelection, minDate) ? minDate : maxDate && isAfter(defaultPreSelection, maxDate) ? maxDate : defaultPreSelection;
+      return {
+        open: _this.props.startOpen || false,
+        preventFocus: false,
+        preSelection: _this.props.selected ? newDate(_this.props.selected) : boundedPreSelection,
+        // transforming highlighted days (perhaps nested array)
+        // to flat Map for faster access in day.jsx
+        highlightDates: getHightLightDaysMap(_this.props.highlightDates),
+        focused: false
+      };
+    };
+
+    _this.clearPreventFocusTimeout = function () {
+      if (_this.preventFocusTimeout) {
+        clearTimeout(_this.preventFocusTimeout);
+      }
+    };
+
+    _this.setFocus = function () {
+      if (_this.input && _this.input.focus) {
+        _this.input.focus();
+      }
+    };
+
+    _this.setOpen = function (open) {
+      _this.setState({
+        open: open,
+        preSelection: open && _this.state.open ? _this.state.preSelection : _this.calcInitialState().preSelection,
+        lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE
+      });
+    };
+
+    _this.isCalendarOpen = function () {
+      return _this.props.open === undefined ? _this.state.open && !_this.props.disabled && !_this.props.readOnly : _this.props.open;
+    };
+
+    _this.handleFocus = function (event) {
+      if (!_this.state.preventFocus) {
+        _this.props.onFocus(event);
+        if (!_this.props.preventOpenOnFocus && !_this.props.readOnly) {
+          _this.setOpen(true);
+        }
+      }
+      _this.setState({ focused: true });
+    };
+
+    _this.cancelFocusInput = function () {
+      clearTimeout(_this.inputFocusTimeout);
+      _this.inputFocusTimeout = null;
+    };
+
+    _this.deferFocusInput = function () {
+      _this.cancelFocusInput();
+      _this.inputFocusTimeout = setTimeout(function () {
+        return _this.setFocus();
+      }, 1);
+    };
+
+    _this.handleDropdownFocus = function () {
+      _this.cancelFocusInput();
+    };
+
+    _this.handleBlur = function (event) {
+      if (_this.state.open && !_this.props.withPortal) {
+        _this.deferFocusInput();
+      } else {
+        _this.props.onBlur(event);
+      }
+      _this.setState({ focused: false });
+    };
+
+    _this.handleCalendarClickOutside = function (event) {
+      if (!_this.props.inline) {
+        _this.setOpen(false);
+      }
+      _this.props.onClickOutside(event);
+      if (_this.props.withPortal) {
+        event.preventDefault();
+      }
+    };
+
+    _this.handleChange = function () {
+      for (var _len = arguments.length, allArgs = Array(_len), _key = 0; _key < _len; _key++) {
+        allArgs[_key] = arguments[_key];
+      }
+
+      var event = allArgs[0];
+      if (_this.props.onChangeRaw) {
+        _this.props.onChangeRaw.apply(_this, allArgs);
+        if (typeof event.isDefaultPrevented !== "function" || event.isDefaultPrevented()) {
+          return;
+        }
+      }
+      _this.setState({
+        inputValue: event.target.value,
+        lastPreSelectChange: PRESELECT_CHANGE_VIA_INPUT
+      });
+      var date = parseDate(event.target.value, _this.props);
+      if (date || !event.target.value) {
+        _this.setSelected(date, event, true);
+      }
+    };
+
+    _this.handleSelect = function (date, event) {
+      // Preventing onFocus event to fix issue
+      // https://github.com/Hacker0x01/react-datepicker/issues/628
+      _this.setState({ preventFocus: true }, function () {
+        _this.preventFocusTimeout = setTimeout(function () {
+          return _this.setState({ preventFocus: false });
+        }, 50);
+        return _this.preventFocusTimeout;
+      });
+      _this.setSelected(date, event);
+      if (!_this.props.shouldCloseOnSelect || _this.props.showTimeSelect) {
+        _this.setPreSelection(date);
+      } else if (!_this.props.inline) {
+        _this.props.onBlur(date);
+        _this.cancelFocusInput();
+
+        _this.setOpen(false);
+      }
+    };
+
+    _this.setSelected = function (date, event, keepInput) {
+      var changedDate = date;
+
+      if (changedDate !== null && isDayDisabled(changedDate, _this.props)) {
+        if (isOutOfBounds(changedDate, _this.props)) {
+          _this.props.onChange(date, event);
+          _this.props.onSelect(changedDate, event);
+          _this.setState({ inputValue: changedDate, preSelection: changedDate });
+        }
+
+        return;
+      }
+
+      if (!isSameDay(_this.props.selected, changedDate) || _this.props.allowSameDay) {
+        if (changedDate !== null) {
+          if (_this.props.selected) {
+            var selected = _this.props.selected;
+            if (keepInput) selected = newDate(changedDate);
+            changedDate = setTime(newDate(changedDate), {
+              hour: getHour(selected),
+              minute: getMinute(selected),
+              second: getSecond(selected)
+            });
+          }
+          if (!_this.props.inline) {
+            _this.setState({
+              preSelection: changedDate
+            });
+          }
+        }
+        _this.props.onChange(changedDate, event);
+      }
+
+      _this.props.onSelect(changedDate, event);
+
+      if (!keepInput) {
+        _this.setState({ inputValue: null });
+      }
+    };
+
+    _this.setPreSelection = function (date) {
+      var isDateRangePresent = typeof _this.props.minDate !== "undefined" && typeof _this.props.maxDate !== "undefined";
+      var isValidDateSelection = isDateRangePresent && date ? isDayInRange(date, _this.props.minDate, _this.props.maxDate) : true;
+      if (isValidDateSelection) {
+        _this.setState({
+          preSelection: date
+        });
+      }
+    };
+
+    _this.handleTimeChange = function (time) {
+      var selected = _this.props.selected ? _this.props.selected : _this.getPreSelection();
+      var changedDate = setTime(cloneDate(selected), {
+        hour: getHour(time),
+        minute: getMinute(time)
+      });
+
+      _this.setState({
+        preSelection: changedDate
+      });
+
+      _this.props.onChange(changedDate);
+      _this.setOpen(false);
+      _this.setState({ inputValue: null });
+    };
+
+    _this.onInputClick = function () {
+      if (!_this.props.disabled && !_this.props.readOnly) {
+        _this.setOpen(true);
+      }
+
+      _this.props.onInputClick();
+    };
+
+    _this.onInputKeyDown = function (event) {
+      _this.props.onKeyDown(event);
+      var eventKey = event.key;
+      if (!_this.state.open && !_this.props.inline && !_this.props.preventOpenOnFocus) {
+        if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
+          _this.onInputClick();
+        }
+        return;
+      }
+      var copy = newDate(_this.state.preSelection);
+      if (eventKey === "Enter") {
+        event.preventDefault();
+        if ((isMoment(_this.state.preSelection) || isDate(_this.state.preSelection)) && _this.state.lastPreSelectChange === PRESELECT_CHANGE_VIA_NAVIGATE) {
+          _this.handleSelect(copy, event);
+          !_this.props.shouldCloseOnSelect && _this.setPreSelection(copy);
+        } else {
+          _this.input.blur();
+          _this.props.onBlur(copy);
+          _this.cancelFocusInput();
+
+          _this.setOpen(false);
+        }
+      } else if (eventKey === "Escape") {
+        event.preventDefault();
+
+        _this.input.blur();
+        _this.props.onBlur(copy);
+        _this.cancelFocusInput();
+
+        _this.setOpen(false);
+      } else if (eventKey === "Tab") {
+        _this.setOpen(false);
+      } else if (!_this.props.disabledKeyboardNavigation) {
+        var newSelection = void 0;
+        switch (eventKey) {
+          case "ArrowLeft":
+            newSelection = subtractDays(copy, 1);
+            break;
+          case "ArrowRight":
+            newSelection = addDays(copy, 1);
+            break;
+          case "ArrowUp":
+            newSelection = subtractWeeks(copy, 1);
+            break;
+          case "ArrowDown":
+            newSelection = addWeeks(copy, 1);
+            break;
+          case "PageUp":
+            newSelection = subtractMonths(copy, 1);
+            break;
+          case "PageDown":
+            newSelection = addMonths(copy, 1);
+            break;
+          case "Home":
+            newSelection = subtractYears(copy, 1);
+            break;
+          case "End":
+            newSelection = addYears(copy, 1);
+            break;
+        }
+        if (!newSelection) return; // Let the input component handle this keydown
+        event.preventDefault();
+        _this.setState({ lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE });
+        if (_this.props.adjustDateOnChange) {
+          _this.setSelected(newSelection);
+        }
+        _this.setPreSelection(newSelection);
+      }
+    };
+
+    _this.onClearClick = function (event) {
+      if (event) {
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+      }
+      _this.props.onChange(null, event);
+      _this.setState({ inputValue: null });
+    };
+
+    _this.clear = function () {
+      _this.onClearClick();
+    };
+
+    _this.renderCalendar = function () {
+      if (!_this.props.inline && !_this.isCalendarOpen()) {
+        return null;
+      }
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        WrappedCalendar,
+        {
+          ref: function ref(elem) {
+            _this.calendar = elem;
+          },
+          locale: _this.props.locale,
+          adjustDateOnChange: _this.props.adjustDateOnChange,
+          setOpen: _this.setOpen,
+          dateFormat: _this.props.dateFormatCalendar,
+          useWeekdaysShort: _this.props.useWeekdaysShort,
+          formatWeekDay: _this.props.formatWeekDay,
+          dropdownMode: _this.props.dropdownMode,
+          selected: _this.props.selected,
+          preSelection: _this.state.preSelection,
+          onSelect: _this.handleSelect,
+          onWeekSelect: _this.props.onWeekSelect,
+          openToDate: _this.props.openToDate,
+          minDate: _this.props.minDate,
+          maxDate: _this.props.maxDate,
+          selectsStart: _this.props.selectsStart,
+          selectsEnd: _this.props.selectsEnd,
+          startDate: _this.props.startDate,
+          endDate: _this.props.endDate,
+          excludeDates: _this.props.excludeDates,
+          filterDate: _this.props.filterDate,
+          onClickOutside: _this.handleCalendarClickOutside,
+          formatWeekNumber: _this.props.formatWeekNumber,
+          highlightDates: _this.state.highlightDates,
+          includeDates: _this.props.includeDates,
+          includeTimes: _this.props.includeTimes,
+          injectTimes: _this.props.injectTimes,
+          inline: _this.props.inline,
+          peekNextMonth: _this.props.peekNextMonth,
+          showMonthDropdown: _this.props.showMonthDropdown,
+          useShortMonthInDropdown: _this.props.useShortMonthInDropdown,
+          showMonthYearDropdown: _this.props.showMonthYearDropdown,
+          showWeekNumbers: _this.props.showWeekNumbers,
+          showYearDropdown: _this.props.showYearDropdown,
+          withPortal: _this.props.withPortal,
+          forceShowMonthNavigation: _this.props.forceShowMonthNavigation,
+          showDisabledMonthNavigation: _this.props.showDisabledMonthNavigation,
+          scrollableYearDropdown: _this.props.scrollableYearDropdown,
+          scrollableMonthYearDropdown: _this.props.scrollableMonthYearDropdown,
+          todayButton: _this.props.todayButton,
+          weekLabel: _this.props.weekLabel,
+          utcOffset: _this.props.utcOffset,
+          outsideClickIgnoreClass: outsideClickIgnoreClass,
+          fixedHeight: _this.props.fixedHeight,
+          monthsShown: _this.props.monthsShown,
+          onDropdownFocus: _this.handleDropdownFocus,
+          onMonthChange: _this.props.onMonthChange,
+          onYearChange: _this.props.onYearChange,
+          dayClassName: _this.props.dayClassName,
+          showTimeSelect: _this.props.showTimeSelect,
+          showTimeSelectOnly: _this.props.showTimeSelectOnly,
+          onTimeChange: _this.handleTimeChange,
+          timeFormat: _this.props.timeFormat,
+          timeIntervals: _this.props.timeIntervals,
+          minTime: _this.props.minTime,
+          maxTime: _this.props.maxTime,
+          excludeTimes: _this.props.excludeTimes,
+          timeCaption: _this.props.timeCaption,
+          className: _this.props.calendarClassName,
+          container: _this.props.calendarContainer,
+          yearDropdownItemNumber: _this.props.yearDropdownItemNumber,
+          previousMonthButtonLabel: _this.props.previousMonthButtonLabel,
+          nextMonthButtonLabel: _this.props.nextMonthButtonLabel,
+          disabledKeyboardNavigation: _this.props.disabledKeyboardNavigation,
+          renderCustomHeader: _this.props.renderCustomHeader
+        },
+        _this.props.children
+      );
+    };
+
+    _this.renderDateInput = function () {
+      var _classnames, _React$cloneElement;
+
+      var className = classnames__WEBPACK_IMPORTED_MODULE_2___default()(_this.props.className, (_classnames = {}, _classnames[outsideClickIgnoreClass] = _this.state.open, _classnames));
+
+      var customInput = _this.props.customInput || react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", { type: "text" });
+      var customInputRef = _this.props.customInputRef || "ref";
+      var inputValue = typeof _this.props.value === "string" ? _this.props.value : typeof _this.state.inputValue === "string" ? _this.state.inputValue : safeDateFormat(_this.props.selected, _this.props);
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(customInput, (_React$cloneElement = {}, _React$cloneElement[customInputRef] = function (input) {
+        _this.input = input;
+      }, _React$cloneElement.value = inputValue, _React$cloneElement.onBlur = _this.handleBlur, _React$cloneElement.onChange = _this.handleChange, _React$cloneElement.onClick = _this.onInputClick, _React$cloneElement.onFocus = _this.handleFocus, _React$cloneElement.onKeyDown = _this.onInputKeyDown, _React$cloneElement.id = _this.props.id, _React$cloneElement.name = _this.props.name, _React$cloneElement.autoFocus = _this.props.autoFocus, _React$cloneElement.placeholder = _this.props.placeholderText, _React$cloneElement.disabled = _this.props.disabled, _React$cloneElement.autoComplete = _this.props.autoComplete, _React$cloneElement.className = className, _React$cloneElement.title = _this.props.title, _React$cloneElement.readOnly = _this.props.readOnly, _React$cloneElement.required = _this.props.required, _React$cloneElement.tabIndex = _this.props.tabIndex, _React$cloneElement));
+    };
+
+    _this.renderClearButton = function () {
+      if (_this.props.isClearable && _this.props.selected != null) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "react-datepicker__close-icon",
+          onClick: _this.onClearClick,
+          title: _this.props.clearButtonTitle,
+          tabIndex: -1
+        });
+      } else {
+        return null;
+      }
+    };
+
+    _this.state = _this.calcInitialState();
+    return _this;
+  }
+
+  DatePicker.prototype.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
+    if (prevProps.inline && hasPreSelectionChanged(prevProps.selected, this.props.selected)) {
+      this.setPreSelection(this.props.selected);
+    }
+    if (prevProps.highlightDates !== this.props.highlightDates) {
+      this.setState({
+        highlightDates: getHightLightDaysMap(this.props.highlightDates)
+      });
+    }
+    if (!prevState.focused && hasSelectionChanged(prevProps.selected, this.props.selected)) {
+      this.setState({ inputValue: null });
+    }
+  };
+
+  DatePicker.prototype.componentWillUnmount = function componentWillUnmount() {
+    this.clearPreventFocusTimeout();
+  };
+
+  DatePicker.prototype.render = function render() {
+    var calendar = this.renderCalendar();
+
+    if (this.props.inline && !this.props.withPortal) {
+      return calendar;
+    }
+
+    if (this.props.withPortal) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        null,
+        !this.props.inline ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          { className: "react-datepicker__input-container" },
+          this.renderDateInput(),
+          this.renderClearButton()
+        ) : null,
+        this.state.open || this.props.inline ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          "div",
+          { className: "react-datepicker__portal" },
+          calendar
+        ) : null
+      );
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PopperComponent, {
+      className: this.props.popperClassName,
+      hidePopper: !this.isCalendarOpen(),
+      popperModifiers: this.props.popperModifiers,
+      targetComponent: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        "div",
+        { className: "react-datepicker__input-container" },
+        this.renderDateInput(),
+        this.renderClearButton()
+      ),
+      popperContainer: this.props.popperContainer,
+      popperComponent: calendar,
+      popperPlacement: this.props.popperPlacement
+    });
+  };
+
+  return DatePicker;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+DatePicker.propTypes = {
+  adjustDateOnChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  allowSameDay: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  autoComplete: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  autoFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  calendarClassName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  calendarContainer: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  customInput: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.element,
+  customInputRef: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  // eslint-disable-next-line react/no-unused-prop-types
+  dateFormat: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array]),
+  dateFormatCalendar: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  dayClassName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  disabledKeyboardNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  dropdownMode: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(["scroll", "select"]).isRequired,
+  endDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  excludeDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  filterDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  fixedHeight: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  formatWeekNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  highlightDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  includeDates: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  includeTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  injectTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  inline: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  isClearable: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  locale: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  maxDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  minDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  monthsShown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  name: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  onBlur: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  onSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onWeekSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onClickOutside: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onChangeRaw: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onInputClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onKeyDown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onMonthChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onYearChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  open: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  openToDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  peekNextMonth: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  placeholderText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  popperContainer: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  popperClassName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, // <PopperComponent/> props
+  popperModifiers: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, // <PopperComponent/> props
+  popperPlacement: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(popperPlacementPositions), // <PopperComponent/> props
+  preventOpenOnFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  readOnly: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  required: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  scrollableYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  scrollableMonthYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  selected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  selectsEnd: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  selectsStart: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showMonthDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showMonthYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showWeekNumbers: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showYearDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  forceShowMonthNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showDisabledMonthNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  startDate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  startOpen: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  tabIndex: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  timeCaption: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  title: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  todayButton: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+  useWeekdaysShort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  formatWeekDay: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  utcOffset: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+  value: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  weekLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  withPortal: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  yearDropdownItemNumber: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  shouldCloseOnSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showTimeSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  showTimeSelectOnly: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  timeFormat: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  timeIntervals: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+  minTime: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  maxTime: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+  excludeTimes: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  useShortMonthInDropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  clearButtonTitle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  previousMonthButtonLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  nextMonthButtonLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  renderCustomHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+var PRESELECT_CHANGE_VIA_INPUT = "input";
+var PRESELECT_CHANGE_VIA_NAVIGATE = "navigate";
+
+
+/* harmony default export */ __webpack_exports__["default"] = (DatePicker);
 
 
 /***/ }),
@@ -47885,6 +54204,877 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-onclickoutside/dist/react-onclickoutside.es.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-onclickoutside/dist/react-onclickoutside.es.js ***!
+  \***************************************************************************/
+/*! exports provided: IGNORE_CLASS_NAME, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IGNORE_CLASS_NAME", function() { return IGNORE_CLASS_NAME; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+/**
+ * Check whether some DOM node is our Component's node.
+ */
+function isNodeFound(current, componentNode, ignoreClass) {
+  if (current === componentNode) {
+    return true;
+  } // SVG <use/> elements do not technically reside in the rendered DOM, so
+  // they do not have classList directly, but they offer a link to their
+  // corresponding element, which can have classList. This extra check is for
+  // that case.
+  // See: http://www.w3.org/TR/SVG11/struct.html#InterfaceSVGUseElement
+  // Discussion: https://github.com/Pomax/react-onclickoutside/pull/17
+
+
+  if (current.correspondingElement) {
+    return current.correspondingElement.classList.contains(ignoreClass);
+  }
+
+  return current.classList.contains(ignoreClass);
+}
+/**
+ * Try to find our node in a hierarchy of nodes, returning the document
+ * node as highest node if our node is not found in the path up.
+ */
+
+function findHighest(current, componentNode, ignoreClass) {
+  if (current === componentNode) {
+    return true;
+  } // If source=local then this event came from 'somewhere'
+  // inside and should be ignored. We could handle this with
+  // a layered approach, too, but that requires going back to
+  // thinking in terms of Dom node nesting, running counter
+  // to React's 'you shouldn't care about the DOM' philosophy.
+
+
+  while (current.parentNode) {
+    if (isNodeFound(current, componentNode, ignoreClass)) {
+      return true;
+    }
+
+    current = current.parentNode;
+  }
+
+  return current;
+}
+/**
+ * Check if the browser scrollbar was clicked
+ */
+
+function clickedScrollbar(evt) {
+  return document.documentElement.clientWidth <= evt.clientX || document.documentElement.clientHeight <= evt.clientY;
+}
+
+// ideally will get replaced with external dep
+// when rafrex/detect-passive-events#4 and rafrex/detect-passive-events#5 get merged in
+var testPassiveEventSupport = function testPassiveEventSupport() {
+  if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') {
+    return;
+  }
+
+  var passive = false;
+  var options = Object.defineProperty({}, 'passive', {
+    get: function get() {
+      passive = true;
+    }
+  });
+
+  var noop = function noop() {};
+
+  window.addEventListener('testPassiveEventSupport', noop, options);
+  window.removeEventListener('testPassiveEventSupport', noop, options);
+  return passive;
+};
+
+function autoInc(seed) {
+  if (seed === void 0) {
+    seed = 0;
+  }
+
+  return function () {
+    return ++seed;
+  };
+}
+
+var uid = autoInc();
+
+var passiveEventSupport;
+var handlersMap = {};
+var enabledInstances = {};
+var touchEvents = ['touchstart', 'touchmove'];
+var IGNORE_CLASS_NAME = 'ignore-react-onclickoutside';
+/**
+ * Options for addEventHandler and removeEventHandler
+ */
+
+function getEventHandlerOptions(instance, eventName) {
+  var handlerOptions = null;
+  var isTouchEvent = touchEvents.indexOf(eventName) !== -1;
+
+  if (isTouchEvent && passiveEventSupport) {
+    handlerOptions = {
+      passive: !instance.props.preventDefault
+    };
+  }
+
+  return handlerOptions;
+}
+/**
+ * This function generates the HOC function that you'll use
+ * in order to impart onOutsideClick listening to an
+ * arbitrary component. It gets called at the end of the
+ * bootstrapping code to yield an instance of the
+ * onClickOutsideHOC function defined inside setupHOC().
+ */
+
+
+function onClickOutsideHOC(WrappedComponent, config) {
+  var _class, _temp;
+
+  var componentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+  return _temp = _class =
+  /*#__PURE__*/
+  function (_Component) {
+    _inheritsLoose(onClickOutside, _Component);
+
+    function onClickOutside(props) {
+      var _this;
+
+      _this = _Component.call(this, props) || this;
+
+      _this.__outsideClickHandler = function (event) {
+        if (typeof _this.__clickOutsideHandlerProp === 'function') {
+          _this.__clickOutsideHandlerProp(event);
+
+          return;
+        }
+
+        var instance = _this.getInstance();
+
+        if (typeof instance.props.handleClickOutside === 'function') {
+          instance.props.handleClickOutside(event);
+          return;
+        }
+
+        if (typeof instance.handleClickOutside === 'function') {
+          instance.handleClickOutside(event);
+          return;
+        }
+
+        throw new Error("WrappedComponent: " + componentName + " lacks a handleClickOutside(event) function for processing outside click events.");
+      };
+
+      _this.__getComponentNode = function () {
+        var instance = _this.getInstance();
+
+        if (config && typeof config.setClickOutsideRef === 'function') {
+          return config.setClickOutsideRef()(instance);
+        }
+
+        if (typeof instance.setClickOutsideRef === 'function') {
+          return instance.setClickOutsideRef();
+        }
+
+        return Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["findDOMNode"])(instance);
+      };
+
+      _this.enableOnClickOutside = function () {
+        if (typeof document === 'undefined' || enabledInstances[_this._uid]) {
+          return;
+        }
+
+        if (typeof passiveEventSupport === 'undefined') {
+          passiveEventSupport = testPassiveEventSupport();
+        }
+
+        enabledInstances[_this._uid] = true;
+        var events = _this.props.eventTypes;
+
+        if (!events.forEach) {
+          events = [events];
+        }
+
+        handlersMap[_this._uid] = function (event) {
+          if (_this.componentNode === null) return;
+
+          if (_this.props.preventDefault) {
+            event.preventDefault();
+          }
+
+          if (_this.props.stopPropagation) {
+            event.stopPropagation();
+          }
+
+          if (_this.props.excludeScrollbar && clickedScrollbar(event)) return;
+          var current = event.target;
+
+          if (findHighest(current, _this.componentNode, _this.props.outsideClickIgnoreClass) !== document) {
+            return;
+          }
+
+          _this.__outsideClickHandler(event);
+        };
+
+        events.forEach(function (eventName) {
+          document.addEventListener(eventName, handlersMap[_this._uid], getEventHandlerOptions(_this, eventName));
+        });
+      };
+
+      _this.disableOnClickOutside = function () {
+        delete enabledInstances[_this._uid];
+        var fn = handlersMap[_this._uid];
+
+        if (fn && typeof document !== 'undefined') {
+          var events = _this.props.eventTypes;
+
+          if (!events.forEach) {
+            events = [events];
+          }
+
+          events.forEach(function (eventName) {
+            return document.removeEventListener(eventName, fn, getEventHandlerOptions(_this, eventName));
+          });
+          delete handlersMap[_this._uid];
+        }
+      };
+
+      _this.getRef = function (ref) {
+        return _this.instanceRef = ref;
+      };
+
+      _this._uid = uid();
+      return _this;
+    }
+    /**
+     * Access the WrappedComponent's instance.
+     */
+
+
+    var _proto = onClickOutside.prototype;
+
+    _proto.getInstance = function getInstance() {
+      if (!WrappedComponent.prototype.isReactComponent) {
+        return this;
+      }
+
+      var ref = this.instanceRef;
+      return ref.getInstance ? ref.getInstance() : ref;
+    };
+
+    /**
+     * Add click listeners to the current document,
+     * linked to this component's state.
+     */
+    _proto.componentDidMount = function componentDidMount() {
+      // If we are in an environment without a DOM such
+      // as shallow rendering or snapshots then we exit
+      // early to prevent any unhandled errors being thrown.
+      if (typeof document === 'undefined' || !document.createElement) {
+        return;
+      }
+
+      var instance = this.getInstance();
+
+      if (config && typeof config.handleClickOutside === 'function') {
+        this.__clickOutsideHandlerProp = config.handleClickOutside(instance);
+
+        if (typeof this.__clickOutsideHandlerProp !== 'function') {
+          throw new Error("WrappedComponent: " + componentName + " lacks a function for processing outside click events specified by the handleClickOutside config option.");
+        }
+      }
+
+      this.componentNode = this.__getComponentNode(); // return early so we dont initiate onClickOutside
+
+      if (this.props.disableOnClickOutside) return;
+      this.enableOnClickOutside();
+    };
+
+    _proto.componentDidUpdate = function componentDidUpdate() {
+      this.componentNode = this.__getComponentNode();
+    };
+    /**
+     * Remove all document's event listeners for this component
+     */
+
+
+    _proto.componentWillUnmount = function componentWillUnmount() {
+      this.disableOnClickOutside();
+    };
+    /**
+     * Can be called to explicitly enable event listening
+     * for clicks and touches outside of this element.
+     */
+
+
+    /**
+     * Pass-through render
+     */
+    _proto.render = function render() {
+      // eslint-disable-next-line no-unused-vars
+      var _props = this.props,
+          excludeScrollbar = _props.excludeScrollbar,
+          props = _objectWithoutProperties(_props, ["excludeScrollbar"]);
+
+      if (WrappedComponent.prototype.isReactComponent) {
+        props.ref = this.getRef;
+      } else {
+        props.wrappedRef = this.getRef;
+      }
+
+      props.disableOnClickOutside = this.disableOnClickOutside;
+      props.enableOnClickOutside = this.enableOnClickOutside;
+      return Object(react__WEBPACK_IMPORTED_MODULE_0__["createElement"])(WrappedComponent, props);
+    };
+
+    return onClickOutside;
+  }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]), _class.displayName = "OnClickOutside(" + componentName + ")", _class.defaultProps = {
+    eventTypes: ['mousedown', 'touchstart'],
+    excludeScrollbar: config && config.excludeScrollbar || false,
+    outsideClickIgnoreClass: IGNORE_CLASS_NAME,
+    preventDefault: false,
+    stopPropagation: false
+  }, _class.getClass = function () {
+    return WrappedComponent.getClass ? WrappedComponent.getClass() : WrappedComponent;
+  }, _temp;
+}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (onClickOutsideHOC);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-popper/lib/esm/Manager.js":
+/*!******************************************************!*\
+  !*** ./node_modules/react-popper/lib/esm/Manager.js ***!
+  \******************************************************/
+/*! exports provided: ManagerReferenceNodeContext, ManagerReferenceNodeSetterContext, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ManagerReferenceNodeContext", function() { return ManagerReferenceNodeContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ManagerReferenceNodeSetterContext", function() { return ManagerReferenceNodeSetterContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Manager; });
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ "./node_modules/@babel/runtime/helpers/inheritsLoose.js");
+/* harmony import */ var _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var create_react_context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! create-react-context */ "./node_modules/create-react-context/lib/index.js");
+/* harmony import */ var create_react_context__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(create_react_context__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+var ManagerReferenceNodeContext = create_react_context__WEBPACK_IMPORTED_MODULE_4___default()();
+var ManagerReferenceNodeSetterContext = create_react_context__WEBPACK_IMPORTED_MODULE_4___default()();
+
+var Manager =
+/*#__PURE__*/
+function (_React$Component) {
+  _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_1___default()(Manager, _React$Component);
+
+  function Manager() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0___default()(_this), "referenceNode", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0___default()(_this), "setReferenceNode", function (newReferenceNode) {
+      if (newReferenceNode && _this.referenceNode !== newReferenceNode) {
+        _this.referenceNode = newReferenceNode;
+
+        _this.forceUpdate();
+      }
+    });
+
+    return _this;
+  }
+
+  var _proto = Manager.prototype;
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.referenceNode = null;
+  };
+
+  _proto.render = function render() {
+    return react__WEBPACK_IMPORTED_MODULE_3__["createElement"](ManagerReferenceNodeContext.Provider, {
+      value: this.referenceNode
+    }, react__WEBPACK_IMPORTED_MODULE_3__["createElement"](ManagerReferenceNodeSetterContext.Provider, {
+      value: this.setReferenceNode
+    }, this.props.children));
+  };
+
+  return Manager;
+}(react__WEBPACK_IMPORTED_MODULE_3__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/react-popper/lib/esm/Popper.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-popper/lib/esm/Popper.js ***!
+  \*****************************************************/
+/*! exports provided: InnerPopper, placements, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InnerPopper", function() { return InnerPopper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "placements", function() { return placements; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Popper; });
+/* harmony import */ var _babel_runtime_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ "./node_modules/@babel/runtime/helpers/inheritsLoose.js");
+/* harmony import */ var _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var popper_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
+/* harmony import */ var _Manager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Manager */ "./node_modules/react-popper/lib/esm/Manager.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils */ "./node_modules/react-popper/lib/esm/utils.js");
+
+
+
+
+
+
+
+
+
+var initialStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  opacity: 0,
+  pointerEvents: 'none'
+};
+var initialArrowStyle = {};
+var InnerPopper =
+/*#__PURE__*/
+function (_React$Component) {
+  _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3___default()(InnerPopper, _React$Component);
+
+  function InnerPopper() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "state", {
+      data: undefined,
+      placement: undefined
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "popperInstance", void 0);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "popperNode", null);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "arrowNode", null);
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "setPopperNode", function (popperNode) {
+      if (!popperNode || _this.popperNode === popperNode) return;
+      Object(_utils__WEBPACK_IMPORTED_MODULE_8__["setRef"])(_this.props.innerRef, popperNode);
+      _this.popperNode = popperNode;
+
+      _this.updatePopperInstance();
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "setArrowNode", function (arrowNode) {
+      _this.arrowNode = arrowNode;
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "updateStateModifier", {
+      enabled: true,
+      order: 900,
+      fn: function fn(data) {
+        var placement = data.placement;
+
+        _this.setState({
+          data: data,
+          placement: placement
+        });
+
+        return data;
+      }
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "getOptions", function () {
+      return {
+        placement: _this.props.placement,
+        eventsEnabled: _this.props.eventsEnabled,
+        positionFixed: _this.props.positionFixed,
+        modifiers: _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.props.modifiers, {
+          arrow: _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({}, _this.props.modifiers && _this.props.modifiers.arrow, {
+            enabled: !!_this.arrowNode,
+            element: _this.arrowNode
+          }),
+          applyStyle: {
+            enabled: false
+          },
+          updateStateModifier: _this.updateStateModifier
+        })
+      };
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "getPopperStyle", function () {
+      return !_this.popperNode || !_this.state.data ? initialStyle : _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({
+        position: _this.state.data.offsets.popper.position
+      }, _this.state.data.styles);
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "getPopperPlacement", function () {
+      return !_this.state.data ? undefined : _this.state.placement;
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "getArrowStyle", function () {
+      return !_this.arrowNode || !_this.state.data ? initialArrowStyle : _this.state.data.arrowStyles;
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "getOutOfBoundariesState", function () {
+      return _this.state.data ? _this.state.data.hide : undefined;
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "destroyPopperInstance", function () {
+      if (!_this.popperInstance) return;
+
+      _this.popperInstance.destroy();
+
+      _this.popperInstance = null;
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "updatePopperInstance", function () {
+      _this.destroyPopperInstance();
+
+      var _assertThisInitialize = _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this),
+          popperNode = _assertThisInitialize.popperNode;
+
+      var referenceElement = _this.props.referenceElement;
+      if (!referenceElement || !popperNode) return;
+      _this.popperInstance = new popper_js__WEBPACK_IMPORTED_MODULE_6__["default"](referenceElement, popperNode, _this.getOptions());
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this), "scheduleUpdate", function () {
+      if (_this.popperInstance) {
+        _this.popperInstance.scheduleUpdate();
+      }
+    });
+
+    return _this;
+  }
+
+  var _proto = InnerPopper.prototype;
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
+    // If the Popper.js options have changed, update the instance (destroy + create)
+    if (this.props.placement !== prevProps.placement || this.props.referenceElement !== prevProps.referenceElement || this.props.positionFixed !== prevProps.positionFixed || this.props.modifiers !== prevProps.modifiers) {
+      // develop only check that modifiers isn't being updated needlessly
+      if (true) {
+        if (this.props.modifiers !== prevProps.modifiers && this.props.modifiers != null && prevProps.modifiers != null && Object(_utils__WEBPACK_IMPORTED_MODULE_8__["shallowEqual"])(this.props.modifiers, prevProps.modifiers)) {
+          console.warn("'modifiers' prop reference updated even though all values appear the same.\nConsider memoizing the 'modifiers' object to avoid needless rendering.");
+        }
+      }
+
+      this.updatePopperInstance();
+    } else if (this.props.eventsEnabled !== prevProps.eventsEnabled && this.popperInstance) {
+      this.props.eventsEnabled ? this.popperInstance.enableEventListeners() : this.popperInstance.disableEventListeners();
+    } // A placement difference in state means popper determined a new placement
+    // apart from the props value. By the time the popper element is rendered with
+    // the new position Popper has already measured it, if the place change triggers
+    // a size change it will result in a misaligned popper. So we schedule an update to be sure.
+
+
+    if (prevState.placement !== this.state.placement) {
+      this.scheduleUpdate();
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_8__["setRef"])(this.props.innerRef, null);
+    this.destroyPopperInstance();
+  };
+
+  _proto.render = function render() {
+    return Object(_utils__WEBPACK_IMPORTED_MODULE_8__["unwrapArray"])(this.props.children)({
+      ref: this.setPopperNode,
+      style: this.getPopperStyle(),
+      placement: this.getPopperPlacement(),
+      outOfBoundaries: this.getOutOfBoundariesState(),
+      scheduleUpdate: this.scheduleUpdate,
+      arrowProps: {
+        ref: this.setArrowNode,
+        style: this.getArrowStyle()
+      }
+    });
+  };
+
+  return InnerPopper;
+}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
+
+_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4___default()(InnerPopper, "defaultProps", {
+  placement: 'bottom',
+  eventsEnabled: true,
+  referenceElement: undefined,
+  positionFixed: false
+});
+
+var placements = popper_js__WEBPACK_IMPORTED_MODULE_6__["default"].placements;
+
+function Popper(_ref) {
+  var referenceElement = _ref.referenceElement,
+      props = _babel_runtime_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0___default()(_ref, ["referenceElement"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_5__["createElement"](_Manager__WEBPACK_IMPORTED_MODULE_7__["ManagerReferenceNodeContext"].Consumer, null, function (referenceNode) {
+    return react__WEBPACK_IMPORTED_MODULE_5__["createElement"](InnerPopper, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_1___default()({
+      referenceElement: referenceElement !== undefined ? referenceElement : referenceNode
+    }, props));
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-popper/lib/esm/Reference.js":
+/*!********************************************************!*\
+  !*** ./node_modules/react-popper/lib/esm/Reference.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Reference; });
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ "./node_modules/@babel/runtime/helpers/inheritsLoose.js");
+/* harmony import */ var _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var warning__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! warning */ "./node_modules/warning/warning.js");
+/* harmony import */ var warning__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(warning__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Manager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Manager */ "./node_modules/react-popper/lib/esm/Manager.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils */ "./node_modules/react-popper/lib/esm/utils.js");
+
+
+
+
+
+
+
+
+
+var InnerReference =
+/*#__PURE__*/
+function (_React$Component) {
+  _babel_runtime_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2___default()(InnerReference, _React$Component);
+
+  function InnerReference() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1___default()(_this), "refHandler", function (node) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_7__["setRef"])(_this.props.innerRef, node);
+      Object(_utils__WEBPACK_IMPORTED_MODULE_7__["safeInvoke"])(_this.props.setReferenceNode, node);
+    });
+
+    return _this;
+  }
+
+  var _proto = InnerReference.prototype;
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_7__["setRef"])(this.props.innerRef, null);
+  };
+
+  _proto.render = function render() {
+    warning__WEBPACK_IMPORTED_MODULE_5___default()(Boolean(this.props.setReferenceNode), '`Reference` should not be used outside of a `Manager` component.');
+    return Object(_utils__WEBPACK_IMPORTED_MODULE_7__["unwrapArray"])(this.props.children)({
+      ref: this.refHandler
+    });
+  };
+
+  return InnerReference;
+}(react__WEBPACK_IMPORTED_MODULE_4__["Component"]);
+
+function Reference(props) {
+  return react__WEBPACK_IMPORTED_MODULE_4__["createElement"](_Manager__WEBPACK_IMPORTED_MODULE_6__["ManagerReferenceNodeSetterContext"].Consumer, null, function (setReferenceNode) {
+    return react__WEBPACK_IMPORTED_MODULE_4__["createElement"](InnerReference, _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({
+      setReferenceNode: setReferenceNode
+    }, props));
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-popper/lib/esm/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/react-popper/lib/esm/index.js ***!
+  \****************************************************/
+/*! exports provided: Popper, placements, Manager, Reference */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Popper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Popper */ "./node_modules/react-popper/lib/esm/Popper.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Popper", function() { return _Popper__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "placements", function() { return _Popper__WEBPACK_IMPORTED_MODULE_0__["placements"]; });
+
+/* harmony import */ var _Manager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Manager */ "./node_modules/react-popper/lib/esm/Manager.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Manager", function() { return _Manager__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _Reference__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Reference */ "./node_modules/react-popper/lib/esm/Reference.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Reference", function() { return _Reference__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+// Public components
+
+
+
+ // Public types
+
+/***/ }),
+
+/***/ "./node_modules/react-popper/lib/esm/utils.js":
+/*!****************************************************!*\
+  !*** ./node_modules/react-popper/lib/esm/utils.js ***!
+  \****************************************************/
+/*! exports provided: unwrapArray, safeInvoke, shallowEqual, setRef */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unwrapArray", function() { return unwrapArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "safeInvoke", function() { return safeInvoke; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shallowEqual", function() { return shallowEqual; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setRef", function() { return setRef; });
+/**
+ * Takes an argument and if it's an array, returns the first item in the array,
+ * otherwise returns the argument. Used for Preact compatibility.
+ */
+var unwrapArray = function unwrapArray(arg) {
+  return Array.isArray(arg) ? arg[0] : arg;
+};
+/**
+ * Takes a maybe-undefined function and arbitrary args and invokes the function
+ * only if it is defined.
+ */
+
+var safeInvoke = function safeInvoke(fn) {
+  if (typeof fn === "function") {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    return fn.apply(void 0, args);
+  }
+};
+/**
+ * Does a shallow equality check of two objects by comparing the reference
+ * equality of each value.
+ */
+
+var shallowEqual = function shallowEqual(objA, objB) {
+  var aKeys = Object.keys(objA);
+  var bKeys = Object.keys(objB);
+
+  if (bKeys.length !== aKeys.length) {
+    return false;
+  }
+
+  for (var i = 0; i < bKeys.length; i++) {
+    var key = aKeys[i];
+
+    if (objA[key] !== objB[key]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+/**
+ * Sets a ref using either a ref callback or a ref object
+ */
+
+var setRef = function setRef(ref, node) {
+  // if its a function call it
+  if (typeof ref === "function") {
+    return safeInvoke(ref, node);
+  } // otherwise we should treat it as a ref object
+  else if (ref != null) {
+      ref.current = node;
+    }
+};
+
+/***/ }),
+
 /***/ "./node_modules/react-redux/es/components/Context.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-redux/es/components/Context.js ***!
@@ -57124,6 +64314,80 @@ module.exports = v4;
 
 /***/ }),
 
+/***/ "./node_modules/warning/warning.js":
+/*!*****************************************!*\
+  !*** ./node_modules/warning/warning.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var __DEV__ = "development" !== 'production';
+
+var warning = function() {};
+
+if (__DEV__) {
+  var printWarning = function printWarning(format, args) {
+    var len = arguments.length;
+    args = new Array(len > 1 ? len - 1 : 0);
+    for (var key = 1; key < len; key++) {
+      args[key - 1] = arguments[key];
+    }
+    var argIndex = 0;
+    var message = 'Warning: ' +
+      format.replace(/%s/g, function() {
+        return args[argIndex++];
+      });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  }
+
+  warning = function(condition, format, args) {
+    var len = arguments.length;
+    args = new Array(len > 2 ? len - 2 : 0);
+    for (var key = 2; key < len; key++) {
+      args[key - 2] = arguments[key];
+    }
+    if (format === undefined) {
+      throw new Error(
+          '`warning(condition, format, ...args)` requires a warning ' +
+          'message argument'
+      );
+    }
+    if (!condition) {
+      printWarning.apply(null, [format].concat(args));
+    }
+  };
+}
+
+module.exports = warning;
+
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/harmony-module.js":
 /*!*******************************************!*\
   !*** (webpack)/buildin/harmony-module.js ***!
@@ -57192,10 +64456,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./ts/TaskStore.ts":
-/*!*************************!*\
-  !*** ./ts/TaskStore.ts ***!
-  \*************************/
+/***/ "./ts/Store.ts":
+/*!*********************!*\
+  !*** ./ts/Store.ts ***!
+  \*********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57211,7 +64475,96 @@ var combinedReducer = redux_1.combineReducers({
 // グローバルオブジェクトとして、store を作成する。
 var store = redux_1.createStore(combinedReducer);
 exports.default = store;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGFza1N0b3JlLmpzIiwic291cmNlUm9vdCI6Ii4vdHN4LyIsInNvdXJjZXMiOlsiVGFza1N0b3JlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsK0JBQXFEO0FBQ3JELHNEQUFxRDtBQUtyRCxtQkFBbUI7QUFDbkIsSUFBTSxlQUFlLEdBQUcsdUJBQWUsQ0FBYTtJQUM1QyxRQUFRLEVBQUUseUJBQVc7Q0FFNUIsQ0FBQyxDQUFDO0FBRUgsOEJBQThCO0FBQzlCLElBQU0sS0FBSyxHQUFHLG1CQUFXLENBQUMsZUFBZSxDQUFDLENBQUM7QUFDM0Msa0JBQWUsS0FBSyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY29tYmluZVJlZHVjZXJzLCBjcmVhdGVTdG9yZSB9IGZyb20gJ3JlZHV4JztcclxuaW1wb3J0IHsgVGFza1JlZHVjZXIgfSBmcm9tICcuL3JlZHVjZXJzL1Rhc2tSZWR1Y2VyJztcclxuaW1wb3J0IHsgSVRhc2tTdGF0ZSB9IGZyb20gJy4vSVRhc2tTdG9yZSc7XHJcblxyXG5cclxuXHJcbi8vIOikh+aVsOOBriByZWR1Y2VyIOOCkuadn+OBreOCi1xyXG5jb25zdCBjb21iaW5lZFJlZHVjZXIgPSBjb21iaW5lUmVkdWNlcnM8SVRhc2tTdGF0ZT4oe1xyXG4gICAgICAgIHRhc2tMaXN0OiBUYXNrUmVkdWNlciwgLy8g6L+95YqgXHJcblxyXG59KTtcclxuXHJcbi8vIOOCsOODreODvOODkOODq+OCquODluOCuOOCp+OCr+ODiOOBqOOBl+OBpuOAgXN0b3JlIOOCkuS9nOaIkOOBmeOCi+OAglxyXG5jb25zdCBzdG9yZSA9IGNyZWF0ZVN0b3JlKGNvbWJpbmVkUmVkdWNlcik7XHJcbmV4cG9ydCBkZWZhdWx0IHN0b3JlOyJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU3RvcmUuanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJTdG9yZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLCtCQUFxRDtBQUNyRCxzREFBcUQ7QUFLckQsbUJBQW1CO0FBQ25CLElBQU0sZUFBZSxHQUFHLHVCQUFlLENBQVM7SUFDeEMsUUFBUSxFQUFFLHlCQUFXO0NBRTVCLENBQUMsQ0FBQztBQUVILDhCQUE4QjtBQUM5QixJQUFNLEtBQUssR0FBRyxtQkFBVyxDQUFDLGVBQWUsQ0FBQyxDQUFDO0FBQzNDLGtCQUFlLEtBQUssQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNvbWJpbmVSZWR1Y2VycywgY3JlYXRlU3RvcmUgfSBmcm9tICdyZWR1eCc7XHJcbmltcG9ydCB7IFRhc2tSZWR1Y2VyIH0gZnJvbSAnLi9yZWR1Y2Vycy9UYXNrUmVkdWNlcic7XHJcbmltcG9ydCB7IElTdGF0ZSB9IGZyb20gJy4vSVN0b3JlJztcclxuXHJcblxyXG5cclxuLy8g6KSH5pWw44GuIHJlZHVjZXIg44KS5p2f44Gt44KLXHJcbmNvbnN0IGNvbWJpbmVkUmVkdWNlciA9IGNvbWJpbmVSZWR1Y2VyczxJU3RhdGU+KHtcclxuICAgICAgICB0YXNrTGlzdDogVGFza1JlZHVjZXIsIC8vIOi/veWKoFxyXG5cclxufSk7XHJcblxyXG4vLyDjgrDjg63jg7zjg5Djg6vjgqrjg5bjgrjjgqfjgq/jg4jjgajjgZfjgabjgIFzdG9yZSDjgpLkvZzmiJDjgZnjgovjgIJcclxuY29uc3Qgc3RvcmUgPSBjcmVhdGVTdG9yZShjb21iaW5lZFJlZHVjZXIpO1xyXG5leHBvcnQgZGVmYXVsdCBzdG9yZTsiXX0=
+
+/***/ }),
+
+/***/ "./ts/actions/TaskActionCreators.ts":
+/*!******************************************!*\
+  !*** ./ts/actions/TaskActionCreators.ts ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
+var TaskActions_1 = __webpack_require__(/*! ./TaskActions */ "./ts/actions/TaskActions.ts");
+/**
+ * タスクの表示アクションを作成する
+ * @param tasks 表示するタスクのリスト
+ */
+exports.createShowTasksAction = function (tasks) {
+    // 確認のため、ダミーデータをハードコーディングする
+    var dummyTasks = [
+        {
+            complete: false,
+            deadline: moment_1.default().add(1, 'day').toDate(),
+            id: '0',
+            taskName: 'task01',
+        },
+        {
+            complete: true,
+            deadline: moment_1.default().add(1, 'day').toDate(),
+            id: '1',
+            taskName: 'task02',
+        },
+        {
+            complete: false,
+            deadline: moment_1.default().add(-1, 'day').toDate(),
+            id: '2',
+            taskName: 'task03',
+        },
+        {
+            complete: true,
+            deadline: moment_1.default().add(-1, 'day').toDate(),
+            id: '3',
+            taskName: 'task04',
+        },
+    ];
+    return {
+        // tasks, // 本来はこっち
+        tasks: dummyTasks,
+        type: TaskActions_1.SHOW_TASKS,
+    };
+};
+/**
+ * 新しいタスクを作成するアクションを作成する
+ * @param taskName 新しいタスクの名前
+ * @param deadline 新しいタクスの期限
+ */
+exports.createAddTaskAction = function (taskName, deadline) {
+    return {
+        deadline: deadline,
+        taskName: taskName,
+        type: TaskActions_1.ADD_TASK,
+    };
+};
+/**
+ * タスクの完了状態を切り替える
+ * @param taskId 完了状態を切り替える対象のタスクのID
+ */
+exports.createToggleCompleteAction = function (taskId) {
+    return {
+        taskId: taskId,
+        type: TaskActions_1.TOGGLE_COMPLETE_TASK,
+    };
+};
+/**
+ * タスクを削除するアクションを作成する
+ * @param taskId 削除するタスクのID
+ */
+exports.createDeleteTaskAction = function (taskId) {
+    return {
+        taskId: taskId,
+        type: TaskActions_1.DELETE_TASK,
+    };
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGFza0FjdGlvbkNyZWF0b3JzLmpzIiwic291cmNlUm9vdCI6Ii4vdHN4LyIsInNvdXJjZXMiOlsiYWN0aW9ucy9UYXNrQWN0aW9uQ3JlYXRvcnMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxrREFBNEI7QUFFNUIsNkNBU3VCO0FBRXZCOzs7R0FHRztBQUNVLFFBQUEscUJBQXFCLEdBQUcsVUFBQyxLQUFjO0lBQ2hELDJCQUEyQjtJQUMzQixJQUFNLFVBQVUsR0FBWTtRQUN4QjtZQUNJLFFBQVEsRUFBRSxLQUFLO1lBQ2YsUUFBUSxFQUFFLGdCQUFNLEVBQUUsQ0FBQyxHQUFHLENBQUMsQ0FBQyxFQUFFLEtBQUssQ0FBQyxDQUFDLE1BQU0sRUFBRTtZQUN6QyxFQUFFLEVBQUUsR0FBRztZQUNQLFFBQVEsRUFBRSxRQUFRO1NBQ3JCO1FBQ0Q7WUFDSSxRQUFRLEVBQUUsSUFBSTtZQUNkLFFBQVEsRUFBRSxnQkFBTSxFQUFFLENBQUMsR0FBRyxDQUFDLENBQUMsRUFBRSxLQUFLLENBQUMsQ0FBQyxNQUFNLEVBQUU7WUFDekMsRUFBRSxFQUFFLEdBQUc7WUFDUCxRQUFRLEVBQUUsUUFBUTtTQUNyQjtRQUNEO1lBQ0ksUUFBUSxFQUFFLEtBQUs7WUFDZixRQUFRLEVBQUUsZ0JBQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsRUFBRSxLQUFLLENBQUMsQ0FBQyxNQUFNLEVBQUU7WUFDMUMsRUFBRSxFQUFFLEdBQUc7WUFDUCxRQUFRLEVBQUUsUUFBUTtTQUNyQjtRQUNEO1lBQ0ksUUFBUSxFQUFFLElBQUk7WUFDZCxRQUFRLEVBQUUsZ0JBQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsRUFBRSxLQUFLLENBQUMsQ0FBQyxNQUFNLEVBQUU7WUFDMUMsRUFBRSxFQUFFLEdBQUc7WUFDUCxRQUFRLEVBQUUsUUFBUTtTQUNyQjtLQUNKLENBQUM7SUFDRixPQUFPO1FBQ0gsbUJBQW1CO1FBQ25CLEtBQUssRUFBRSxVQUFVO1FBQ2pCLElBQUksRUFBRSx3QkFBVTtLQUNuQixDQUFDO0FBQ04sQ0FBQyxDQUFDO0FBQ0Y7Ozs7R0FJRztBQUNVLFFBQUEsbUJBQW1CLEdBQUcsVUFBQyxRQUFnQixFQUFFLFFBQWM7SUFDaEUsT0FBTztRQUNILFFBQVEsVUFBQTtRQUNSLFFBQVEsVUFBQTtRQUNSLElBQUksRUFBRSxzQkFBUTtLQUNqQixDQUFDO0FBQ04sQ0FBQyxDQUFDO0FBQ0Y7OztHQUdHO0FBQ1UsUUFBQSwwQkFBMEIsR0FBRyxVQUFDLE1BQWM7SUFDckQsT0FBTztRQUNILE1BQU0sUUFBQTtRQUNOLElBQUksRUFBRSxrQ0FBb0I7S0FDN0IsQ0FBQztBQUNOLENBQUMsQ0FBQztBQUNGOzs7R0FHRztBQUNVLFFBQUEsc0JBQXNCLEdBQUcsVUFBQyxNQUFjO0lBQ2pELE9BQU87UUFDSCxNQUFNLFFBQUE7UUFDTixJQUFJLEVBQUUseUJBQVc7S0FDcEIsQ0FBQztBQUNOLENBQUMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBNb21lbnQgZnJvbSAnbW9tZW50JztcclxuaW1wb3J0IHsgSVRhc2sgfSBmcm9tICcuLi9zdGF0ZXMvSVRhc2snO1xyXG5pbXBvcnQge1xyXG4gICAgQUREX1RBU0ssXHJcbiAgICBERUxFVEVfVEFTSyxcclxuICAgIElBZGRUYXNrQWN0aW9uLFxyXG4gICAgSURlbGV0ZUFjdGlvbixcclxuICAgIElTaG93VGFza0FjdGlvbixcclxuICAgIElUb2dnbGVDb21wbGV0ZUFjdGlvbixcclxuICAgIFNIT1dfVEFTS1MsXHJcbiAgICBUT0dHTEVfQ09NUExFVEVfVEFTSyxcclxufSBmcm9tICcuL1Rhc2tBY3Rpb25zJztcclxuXHJcbi8qKlxyXG4gKiDjgr/jgrnjgq/jga7ooajnpLrjgqLjgq/jgrfjg6fjg7PjgpLkvZzmiJDjgZnjgotcclxuICogQHBhcmFtIHRhc2tzIOihqOekuuOBmeOCi+OCv+OCueOCr+OBruODquOCueODiFxyXG4gKi9cclxuZXhwb3J0IGNvbnN0IGNyZWF0ZVNob3dUYXNrc0FjdGlvbiA9ICh0YXNrczogSVRhc2tbXSk6IElTaG93VGFza0FjdGlvbiA9PiB7XHJcbiAgICAvLyDnorroqo3jga7jgZ/jgoHjgIHjg4Djg5/jg7zjg4fjg7zjgr/jgpLjg4/jg7zjg4njgrPjg7zjg4fjgqPjg7PjgrDjgZnjgotcclxuICAgIGNvbnN0IGR1bW15VGFza3M6IElUYXNrW10gPSBbXHJcbiAgICAgICAge1xyXG4gICAgICAgICAgICBjb21wbGV0ZTogZmFsc2UsXHJcbiAgICAgICAgICAgIGRlYWRsaW5lOiBNb21lbnQoKS5hZGQoMSwgJ2RheScpLnRvRGF0ZSgpLFxyXG4gICAgICAgICAgICBpZDogJzAnLFxyXG4gICAgICAgICAgICB0YXNrTmFtZTogJ3Rhc2swMScsXHJcbiAgICAgICAgfSxcclxuICAgICAgICB7XHJcbiAgICAgICAgICAgIGNvbXBsZXRlOiB0cnVlLFxyXG4gICAgICAgICAgICBkZWFkbGluZTogTW9tZW50KCkuYWRkKDEsICdkYXknKS50b0RhdGUoKSxcclxuICAgICAgICAgICAgaWQ6ICcxJyxcclxuICAgICAgICAgICAgdGFza05hbWU6ICd0YXNrMDInLFxyXG4gICAgICAgIH0sXHJcbiAgICAgICAge1xyXG4gICAgICAgICAgICBjb21wbGV0ZTogZmFsc2UsXHJcbiAgICAgICAgICAgIGRlYWRsaW5lOiBNb21lbnQoKS5hZGQoLTEsICdkYXknKS50b0RhdGUoKSxcclxuICAgICAgICAgICAgaWQ6ICcyJyxcclxuICAgICAgICAgICAgdGFza05hbWU6ICd0YXNrMDMnLFxyXG4gICAgICAgIH0sXHJcbiAgICAgICAge1xyXG4gICAgICAgICAgICBjb21wbGV0ZTogdHJ1ZSxcclxuICAgICAgICAgICAgZGVhZGxpbmU6IE1vbWVudCgpLmFkZCgtMSwgJ2RheScpLnRvRGF0ZSgpLFxyXG4gICAgICAgICAgICBpZDogJzMnLFxyXG4gICAgICAgICAgICB0YXNrTmFtZTogJ3Rhc2swNCcsXHJcbiAgICAgICAgfSxcclxuICAgIF07XHJcbiAgICByZXR1cm4ge1xyXG4gICAgICAgIC8vIHRhc2tzLCAvLyDmnKzmnaXjga/jgZPjgaPjgaFcclxuICAgICAgICB0YXNrczogZHVtbXlUYXNrcyxcclxuICAgICAgICB0eXBlOiBTSE9XX1RBU0tTLFxyXG4gICAgfTtcclxufTtcclxuLyoqXHJcbiAqIOaWsOOBl+OBhOOCv+OCueOCr+OCkuS9nOaIkOOBmeOCi+OCouOCr+OCt+ODp+ODs+OCkuS9nOaIkOOBmeOCi1xyXG4gKiBAcGFyYW0gdGFza05hbWUg5paw44GX44GE44K/44K544Kv44Gu5ZCN5YmNXHJcbiAqIEBwYXJhbSBkZWFkbGluZSDmlrDjgZfjgYTjgr/jgq/jgrnjga7mnJ/pmZBcclxuICovXHJcbmV4cG9ydCBjb25zdCBjcmVhdGVBZGRUYXNrQWN0aW9uID0gKHRhc2tOYW1lOiBzdHJpbmcsIGRlYWRsaW5lOiBEYXRlKTogSUFkZFRhc2tBY3Rpb24gPT4ge1xyXG4gICAgcmV0dXJuIHtcclxuICAgICAgICBkZWFkbGluZSxcclxuICAgICAgICB0YXNrTmFtZSxcclxuICAgICAgICB0eXBlOiBBRERfVEFTSyxcclxuICAgIH07XHJcbn07XHJcbi8qKlxyXG4gKiDjgr/jgrnjgq/jga7lrozkuobnirbmhYvjgpLliIfjgormm7/jgYjjgotcclxuICogQHBhcmFtIHRhc2tJZCDlrozkuobnirbmhYvjgpLliIfjgormm7/jgYjjgovlr77osaHjga7jgr/jgrnjgq/jga5JRFxyXG4gKi9cclxuZXhwb3J0IGNvbnN0IGNyZWF0ZVRvZ2dsZUNvbXBsZXRlQWN0aW9uID0gKHRhc2tJZDogc3RyaW5nKTogSVRvZ2dsZUNvbXBsZXRlQWN0aW9uID0+IHtcclxuICAgIHJldHVybiB7XHJcbiAgICAgICAgdGFza0lkLFxyXG4gICAgICAgIHR5cGU6IFRPR0dMRV9DT01QTEVURV9UQVNLLFxyXG4gICAgfTtcclxufTtcclxuLyoqXHJcbiAqIOOCv+OCueOCr+OCkuWJiumZpOOBmeOCi+OCouOCr+OCt+ODp+ODs+OCkuS9nOaIkOOBmeOCi1xyXG4gKiBAcGFyYW0gdGFza0lkIOWJiumZpOOBmeOCi+OCv+OCueOCr+OBrklEXHJcbiAqL1xyXG5leHBvcnQgY29uc3QgY3JlYXRlRGVsZXRlVGFza0FjdGlvbiA9ICh0YXNrSWQ6IHN0cmluZyk6IElEZWxldGVBY3Rpb24gPT4ge1xyXG4gICAgcmV0dXJuIHtcclxuICAgICAgICB0YXNrSWQsXHJcbiAgICAgICAgdHlwZTogREVMRVRFX1RBU0ssXHJcbiAgICB9O1xyXG59OyJdfQ==
 
 /***/ }),
 
@@ -57281,8 +64634,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css"); // (1)
+var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_datepicker_1 = __importDefault(__webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/es/index.js"));
 var styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+var uuid_1 = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+var TaskActionCreators_1 = __webpack_require__(/*! ../actions/TaskActionCreators */ "./ts/actions/TaskActionCreators.ts");
+var Store_1 = __importDefault(__webpack_require__(/*! ../Store */ "./ts/Store.ts"));
 var FoundationStyles_1 = __webpack_require__(/*! ./FoundationStyles */ "./ts/components/FoundationStyles.ts");
 //#region styled
 var Container = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    align-items: center;\n    display: flex;\n    flex-direction: row;\n    margin: 1em 0;\n    width: 100%;\n"], ["\n    align-items: center;\n    display: flex;\n    flex-direction: row;\n    margin: 1em 0;\n    width: 100%;\n"])));
@@ -57298,28 +64656,24 @@ var AddTask = /** @class */ (function (_super) {
         /**
          * 追加ボタンを押すと、タスク一覧にタスクを追加する
          */
-        /*
-        private onClickAdd = (e: React.MouseEvent) => {
-            store.dispatch(createAddTaskAction(this.state.taskName, this.state.deadline, store));
-            const m = Moment(new Date()).add(1, 'days');
-            this.setState({
+        _this.onClickAdd = function (e) {
+            Store_1.default.dispatch(TaskActionCreators_1.createAddTaskAction(_this.state.taskName, _this.state.deadline));
+            var m = moment_1.default(new Date()).add(1, 'days');
+            _this.setState({
                 deadline: m.toDate(),
                 taskName: '',
             });
-        }
-        */
+        };
         /**
-         * タスク名変更イベントハンドラ
-         *
-         * テキストボックスの内容をローカルステートに反映する
-         */
-        /*
-        private onChangeTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
-            this.setState({
+     * タスク名変更イベントハンドラ
+     *
+     * テキストボックスの内容をローカルステートに反映する
+     */
+        _this.onChangeTaskName = function (e) {
+            _this.setState({
                 taskName: e.target.value,
             });
-        }
-        */
+        };
         /**
          * 期日を変更したときのイベントハンドラ
          *
@@ -57338,33 +64692,23 @@ var AddTask = /** @class */ (function (_super) {
         return _this;
     }
     AddTask.prototype.render = function () {
-        return null;
-        /*
-        const date = Moment(this.state.deadline);
-        const taskNameId = UUID();
-        const deadlineId = UUID();
-        return (
-            <Container>
-                <TaskNameBox>
-                    <label htmlFor={taskNameId}>task name</label>
-                    <TextBox id={taskNameId} type="text" value={this.state.taskName}
-                        onChange={this.onChangeTaskName} />
-                </TaskNameBox>
-                <DeadlineBox>
-                    <label htmlFor={deadlineId}>dead line</label>
-                    <DatePicker selected={date} showTimeSelect={true}
-                        dateFormat="YYYY-MM-DD HH:mm" onChange={this.onChangeDeadLine} />
-                </DeadlineBox>
-                <AddButton onClick={this.onClickAdd}>+</AddButton>
-            </Container>
-        );
-        */
+        var date = moment_1.default(this.state.deadline);
+        var taskNameId = uuid_1.v4();
+        var deadlineId = uuid_1.v4();
+        return (react_1.default.createElement(Container, null,
+            react_1.default.createElement(TaskNameBox, null,
+                react_1.default.createElement("label", { htmlFor: taskNameId }, "task name"),
+                react_1.default.createElement(TextBox, { id: taskNameId, type: "text", value: this.state.taskName, onChange: this.onChangeTaskName /*← 変更*/ })),
+            react_1.default.createElement(DeadlineBox, null,
+                react_1.default.createElement("label", { htmlFor: deadlineId }, "dead line"),
+                react_1.default.createElement(react_datepicker_1.default, { selected: date, showTimeSelect: true, dateFormat: "YYYY-MM-DD HH:mm", onChange: this.onChangeDeadLine /*← 変更*/ })),
+            react_1.default.createElement(AddButton, { onClick: this.onClickAdd }, "+")));
     };
     return AddTask;
 }(react_1.default.Component));
 exports.AddTask = AddTask;
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQWRkVGFzay5qcyIsInNvdXJjZVJvb3QiOiIuL3RzeC8iLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvQWRkVGFzay50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHNEQUFvRCxDQUFDLE1BQU07QUFHM0QsZ0RBQTBCO0FBRTFCLHdFQUF1QztBQUt2Qyx1REFBMEQ7QUFxQjFELGdCQUFnQjtBQUNoQixJQUFNLFNBQVMsR0FBRywyQkFBTSxDQUFDLEdBQUcscUxBQUEsa0hBTTNCLElBQUEsQ0FBQztBQUVGLElBQU0sT0FBTyxHQUFHLDJCQUFNLENBQUMsS0FBSyxzSEFBQSxtREFHM0IsSUFBQSxDQUFDO0FBRUYsSUFBTSxXQUFXLEdBQUcsMkJBQU0sQ0FBQyxDQUFDLDBGQUFBLHVCQUUzQixJQUFBLENBQUM7QUFFRixJQUFNLFdBQVcsR0FBRywyQkFBTSxDQUFDLEdBQUcsdUVBQUEsSUFDN0IsSUFBQSxDQUFDO0FBRUYsSUFBTSxTQUFTLEdBQUcsMkJBQU0sQ0FBQyxNQUFNLGlQQUFBLDBCQUNQLEVBQW9CLGtKQVEzQyxLQVJ1Qix1Q0FBb0IsQ0FRM0MsQ0FBQztBQUVGLFlBQVk7QUFFWjtJQUE2QiwyQkFBb0M7SUFDN0QsaUJBQW1CLEtBQWE7UUFBaEMsWUFDSSxrQkFBTSxLQUFLLENBQUMsU0FLZjtRQTBCRDs7V0FFRztRQUNIOzs7Ozs7Ozs7VUFTRTtRQUVGOzs7O1dBSUc7UUFDSDs7Ozs7O1VBTUU7UUFDRjs7Ozs7V0FLRztRQUNLLHNCQUFnQixHQUFHLFVBQUMsSUFBeUI7WUFDakQsS0FBSSxDQUFDLFFBQVEsQ0FBQztnQkFDVixRQUFRLEVBQUUsQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLE1BQU0sRUFBRSxDQUFDLENBQUMsQ0FBQyxJQUFJLElBQUksRUFBRTthQUNoRCxDQUFDLENBQUM7UUFDUCxDQUFDLENBQUE7UUFsRUcsS0FBSSxDQUFDLEtBQUssR0FBRztZQUNULFFBQVEsRUFBRSxLQUFLLENBQUMsUUFBUTtZQUN4QixRQUFRLEVBQUUsS0FBSyxDQUFDLFFBQVE7U0FDM0IsQ0FBQzs7SUFDTixDQUFDO0lBRU0sd0JBQU0sR0FBYjtRQUNJLE9BQU8sSUFBSSxDQUFDO1FBQ1o7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7VUFtQkU7SUFDTixDQUFDO0lBd0NMLGNBQUM7QUFBRCxDQUFDLEFBdkVELENBQTZCLGVBQUssQ0FBQyxTQUFTLEdBdUUzQztBQXZFWSwwQkFBTyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAncmVhY3QtZGF0ZXBpY2tlci9kaXN0L3JlYWN0LWRhdGVwaWNrZXIuY3NzJzsgLy8gKDEpXHJcblxyXG5pbXBvcnQgTW9tZW50IGZyb20gJ21vbWVudCc7XHJcbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBEYXRlUGlja2VyIGZyb20gJ3JlYWN0LWRhdGVwaWNrZXInO1xyXG5pbXBvcnQgU3R5bGVkIGZyb20gJ3N0eWxlZC1jb21wb25lbnRzJztcclxuaW1wb3J0IHsgdjQgYXMgVVVJRCB9IGZyb20gJ3V1aWQnO1xyXG5cclxuaW1wb3J0IHsgY3JlYXRlQWRkVGFza0FjdGlvbiB9IGZyb20gJy4uL2FjdGlvbnMvVGFza0FjdGlvbkNyZWF0b3JzJztcclxuaW1wb3J0IHN0b3JlIGZyb20gJy4uL1Rhc2tTdG9yZSc7XHJcbmltcG9ydCB7ICRDT0xPUl9TRUNPTkRBUllfMV8zIH0gZnJvbSAnLi9Gb3VuZGF0aW9uU3R5bGVzJztcclxuXHJcbi8qKlxyXG4gKiDjgrPjg7Pjg53jg7zjg43jg7Pjg4gg44OX44Ot44OR44OG44KjXHJcbiAqXHJcbiAqIOOBk+OBk+OBp+OBr+OAgeWIneacn+WApOOBqOOBl+OBpuaJseOBhlxyXG4gKi9cclxuaW50ZXJmYWNlIElQcm9wcyB7XHJcbiAgICAvKiog44K/44K544Kv5ZCNICovXHJcbiAgICB0YXNrTmFtZTogc3RyaW5nO1xyXG4gICAgLyoqIOacn+mZkCAqL1xyXG4gICAgZGVhZGxpbmU6IERhdGU7XHJcbn1cclxuaW50ZXJmYWNlIElMb2NhbFN0YXRlIHtcclxuICAgIC8qKiDjgr/jgrnjgq/lkI0gKi9cclxuICAgIHRhc2tOYW1lOiBzdHJpbmc7XHJcbiAgICAvKiog5pyf6ZmQICovXHJcbiAgICBkZWFkbGluZTogRGF0ZTtcclxufVxyXG5cclxuXHJcbi8vI3JlZ2lvbiBzdHlsZWRcclxuY29uc3QgQ29udGFpbmVyID0gU3R5bGVkLmRpdmBcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgIG1hcmdpbjogMWVtIDA7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuYDtcclxuXHJcbmNvbnN0IFRleHRCb3ggPSBTdHlsZWQuaW5wdXRgXHJcbiAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbmA7XHJcblxyXG5jb25zdCBUYXNrTmFtZUJveCA9IFN0eWxlZC5wYFxyXG4gICAgZmxleC1ncm93OiAxO1xyXG5gO1xyXG5cclxuY29uc3QgRGVhZGxpbmVCb3ggPSBTdHlsZWQuZGl2YFxyXG5gO1xyXG5cclxuY29uc3QgQWRkQnV0dG9uID0gU3R5bGVkLmJ1dHRvbmBcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICR7JENPTE9SX1NFQ09OREFSWV8xXzN9O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBmb250LXNpemU6IDE1MCU7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBwYWRkaW5nOiAwO1xyXG4gICAgd2lkdGg6IDQwcHg7XHJcbmA7XHJcblxyXG4vLyNlbmRyZWdpb25cclxuXHJcbmV4cG9ydCBjbGFzcyBBZGRUYXNrIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50PElQcm9wcywgSUxvY2FsU3RhdGU+IHtcclxuICAgIHB1YmxpYyBjb25zdHJ1Y3Rvcihwcm9wczogSVByb3BzKXtcclxuICAgICAgICBzdXBlcihwcm9wcyk7XHJcbiAgICAgICAgdGhpcy5zdGF0ZSA9IHtcclxuICAgICAgICAgICAgZGVhZGxpbmU6IHByb3BzLmRlYWRsaW5lLFxyXG4gICAgICAgICAgICB0YXNrTmFtZTogcHJvcHMudGFza05hbWUsXHJcbiAgICAgICAgfTtcclxuICAgIH1cclxuICAgICAgICBcclxuICAgIHB1YmxpYyByZW5kZXIoKSB7XHJcbiAgICAgICAgcmV0dXJuIG51bGw7XHJcbiAgICAgICAgLypcclxuICAgICAgICBjb25zdCBkYXRlID0gTW9tZW50KHRoaXMuc3RhdGUuZGVhZGxpbmUpO1xyXG4gICAgICAgIGNvbnN0IHRhc2tOYW1lSWQgPSBVVUlEKCk7XHJcbiAgICAgICAgY29uc3QgZGVhZGxpbmVJZCA9IFVVSUQoKTtcclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICA8Q29udGFpbmVyPlxyXG4gICAgICAgICAgICAgICAgPFRhc2tOYW1lQm94PlxyXG4gICAgICAgICAgICAgICAgICAgIDxsYWJlbCBodG1sRm9yPXt0YXNrTmFtZUlkfT50YXNrIG5hbWU8L2xhYmVsPlxyXG4gICAgICAgICAgICAgICAgICAgIDxUZXh0Qm94IGlkPXt0YXNrTmFtZUlkfSB0eXBlPVwidGV4dFwiIHZhbHVlPXt0aGlzLnN0YXRlLnRhc2tOYW1lfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICBvbkNoYW5nZT17dGhpcy5vbkNoYW5nZVRhc2tOYW1lfSAvPlxyXG4gICAgICAgICAgICAgICAgPC9UYXNrTmFtZUJveD5cclxuICAgICAgICAgICAgICAgIDxEZWFkbGluZUJveD5cclxuICAgICAgICAgICAgICAgICAgICA8bGFiZWwgaHRtbEZvcj17ZGVhZGxpbmVJZH0+ZGVhZCBsaW5lPC9sYWJlbD5cclxuICAgICAgICAgICAgICAgICAgICA8RGF0ZVBpY2tlciBzZWxlY3RlZD17ZGF0ZX0gc2hvd1RpbWVTZWxlY3Q9e3RydWV9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGRhdGVGb3JtYXQ9XCJZWVlZLU1NLUREIEhIOm1tXCIgb25DaGFuZ2U9e3RoaXMub25DaGFuZ2VEZWFkTGluZX0gLz5cclxuICAgICAgICAgICAgICAgIDwvRGVhZGxpbmVCb3g+XHJcbiAgICAgICAgICAgICAgICA8QWRkQnV0dG9uIG9uQ2xpY2s9e3RoaXMub25DbGlja0FkZH0+KzwvQWRkQnV0dG9uPlxyXG4gICAgICAgICAgICA8L0NvbnRhaW5lcj5cclxuICAgICAgICApO1xyXG4gICAgICAgICovXHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKiDov73liqDjg5zjgr/jg7PjgpLmirzjgZnjgajjgIHjgr/jgrnjgq/kuIDopqfjgavjgr/jgrnjgq/jgpLov73liqDjgZnjgotcclxuICAgICAqL1xyXG4gICAgLypcclxuICAgIHByaXZhdGUgb25DbGlja0FkZCA9IChlOiBSZWFjdC5Nb3VzZUV2ZW50KSA9PiB7XHJcbiAgICAgICAgc3RvcmUuZGlzcGF0Y2goY3JlYXRlQWRkVGFza0FjdGlvbih0aGlzLnN0YXRlLnRhc2tOYW1lLCB0aGlzLnN0YXRlLmRlYWRsaW5lLCBzdG9yZSkpO1xyXG4gICAgICAgIGNvbnN0IG0gPSBNb21lbnQobmV3IERhdGUoKSkuYWRkKDEsICdkYXlzJyk7XHJcbiAgICAgICAgdGhpcy5zZXRTdGF0ZSh7XHJcbiAgICAgICAgICAgIGRlYWRsaW5lOiBtLnRvRGF0ZSgpLFxyXG4gICAgICAgICAgICB0YXNrTmFtZTogJycsXHJcbiAgICAgICAgfSk7XHJcbiAgICB9XHJcbiAgICAqL1xyXG4gICAgXHJcbiAgICAvKipcclxuICAgICAqIOOCv+OCueOCr+WQjeWkieabtOOCpOODmeODs+ODiOODj+ODs+ODieODqVxyXG4gICAgICogXHJcbiAgICAgKiDjg4bjgq3jgrnjg4jjg5zjg4Pjgq/jgrnjga7lhoXlrrnjgpLjg63jg7zjgqvjg6vjgrnjg4bjg7zjg4jjgavlj43mmKDjgZnjgotcclxuICAgICAqL1xyXG4gICAgLypcclxuICAgIHByaXZhdGUgb25DaGFuZ2VUYXNrTmFtZSA9IChlOiBSZWFjdC5DaGFuZ2VFdmVudDxIVE1MSW5wdXRFbGVtZW50PikgPT4ge1xyXG4gICAgICAgIHRoaXMuc2V0U3RhdGUoe1xyXG4gICAgICAgICAgICB0YXNrTmFtZTogZS50YXJnZXQudmFsdWUsXHJcbiAgICAgICAgfSk7XHJcbiAgICB9XHJcbiAgICAqL1xyXG4gICAgLyoqXHJcbiAgICAgKiDmnJ/ml6XjgpLlpInmm7TjgZfjgZ/jgajjgY3jga7jgqTjg5njg7Pjg4jjg4/jg7Pjg4njg6lcclxuICAgICAqIFxyXG4gICAgICog5aSJ5pu044GX44Gf5pel5LuY44KS44Ot44O844Kr44Or44K544OG44O844OI44Gr5Y+N5pig44GZ44KLXHJcbiAgICAgKiBEYXRlUGlja2Vy44Gu54us6Ieq44OX44Ot44OR44OG44Kj44Gn44CB5byV5pWw44Go44GX44Gm5pel5LuY44GM5rih44GV44KM44KLXHJcbiAgICAgKi9cclxuICAgIHByaXZhdGUgb25DaGFuZ2VEZWFkTGluZSA9IChkYXRlOiBNb21lbnQuTW9tZW50fCBudWxsKSA9PiB7XHJcbiAgICAgICAgdGhpcy5zZXRTdGF0ZSh7XHJcbiAgICAgICAgICAgIGRlYWRsaW5lOiAhIWRhdGUgPyBkYXRlLnRvRGF0ZSgpIDogbmV3IERhdGUoKSxcclxuICAgICAgICB9KTtcclxuICAgIH1cclxuICAgIC8vIOKGkSDov73liqBcclxufSJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQWRkVGFzay5qcyIsInNvdXJjZVJvb3QiOiIuL3RzeC8iLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvQWRkVGFzay50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHNEQUFvRCxDQUFDLE1BQU07QUFFM0Qsa0RBQTRCO0FBQzVCLGdEQUEwQjtBQUMxQixzRUFBMEM7QUFDMUMsd0VBQXVDO0FBQ3ZDLDZCQUFrQztBQUVsQyxvRUFBb0U7QUFDcEUsbURBQTZCO0FBQzdCLHVEQUEwRDtBQXNCMUQsZ0JBQWdCO0FBQ2hCLElBQU0sU0FBUyxHQUFHLDJCQUFNLENBQUMsR0FBRyxxTEFBQSxrSEFNM0IsSUFBQSxDQUFDO0FBRUYsSUFBTSxPQUFPLEdBQUcsMkJBQU0sQ0FBQyxLQUFLLHNIQUFBLG1EQUczQixJQUFBLENBQUM7QUFFRixJQUFNLFdBQVcsR0FBRywyQkFBTSxDQUFDLENBQUMsMEZBQUEsdUJBRTNCLElBQUEsQ0FBQztBQUVGLElBQU0sV0FBVyxHQUFHLDJCQUFNLENBQUMsR0FBRyx1RUFBQSxJQUM3QixJQUFBLENBQUM7QUFFRixJQUFNLFNBQVMsR0FBRywyQkFBTSxDQUFDLE1BQU0saVBBQUEsMEJBQ1AsRUFBb0Isa0pBUTNDLEtBUnVCLHVDQUFvQixDQVEzQyxDQUFDO0FBRUYsWUFBWTtBQUVaO0lBQTZCLDJCQUFvQztJQUU3RCxpQkFBbUIsS0FBYTtRQUFoQyxZQUNJLGtCQUFNLEtBQUssQ0FBQyxTQUtmO1FBd0JEOztXQUVHO1FBQ0ssZ0JBQVUsR0FBRyxVQUFDLENBQW1CO1lBQ3JDLGVBQUssQ0FBQyxRQUFRLENBQUMsd0NBQW1CLENBQUMsS0FBSSxDQUFDLEtBQUssQ0FBQyxRQUFRLEVBQUUsS0FBSSxDQUFDLEtBQUssQ0FBQyxRQUFRLENBQUUsQ0FBQyxDQUFDO1lBQy9FLElBQU0sQ0FBQyxHQUFHLGdCQUFNLENBQUMsSUFBSSxJQUFJLEVBQUUsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEVBQUUsTUFBTSxDQUFDLENBQUM7WUFDNUMsS0FBSSxDQUFDLFFBQVEsQ0FBQztnQkFDVixRQUFRLEVBQUUsQ0FBQyxDQUFDLE1BQU0sRUFBRTtnQkFDcEIsUUFBUSxFQUFFLEVBQUU7YUFDZixDQUFDLENBQUM7UUFDUCxDQUFDLENBQUE7UUFDRzs7OztPQUlEO1FBQ0ssc0JBQWdCLEdBQUcsVUFBQyxDQUFzQztZQUM5RCxLQUFJLENBQUMsUUFBUSxDQUFDO2dCQUNWLFFBQVEsRUFBRSxDQUFDLENBQUMsTUFBTSxDQUFDLEtBQUs7YUFDM0IsQ0FBQyxDQUFDO1FBQ1AsQ0FBQyxDQUFBO1FBQ0Q7Ozs7O1dBS0c7UUFDSyxzQkFBZ0IsR0FBRyxVQUFDLElBQXlCO1lBQ2pELEtBQUksQ0FBQyxRQUFRLENBQUM7Z0JBQ1YsUUFBUSxFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxNQUFNLEVBQUUsQ0FBQyxDQUFDLENBQUMsSUFBSSxJQUFJLEVBQUU7YUFDaEQsQ0FBQyxDQUFDO1FBQ1AsQ0FBQyxDQUFBO1FBM0RHLEtBQUksQ0FBQyxLQUFLLEdBQUc7WUFDVCxRQUFRLEVBQUUsS0FBSyxDQUFDLFFBQVE7WUFDeEIsUUFBUSxFQUFFLEtBQUssQ0FBQyxRQUFRO1NBQzNCLENBQUM7O0lBQ04sQ0FBQztJQUVNLHdCQUFNLEdBQWI7UUFDSSxJQUFNLElBQUksR0FBRyxnQkFBTSxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUMsUUFBUSxDQUFDLENBQUM7UUFDekMsSUFBTSxVQUFVLEdBQUcsU0FBSSxFQUFFLENBQUM7UUFDMUIsSUFBTSxVQUFVLEdBQUcsU0FBSSxFQUFFLENBQUM7UUFDMUIsT0FBTyxDQUNILDhCQUFDLFNBQVM7WUFDTiw4QkFBQyxXQUFXO2dCQUNSLHlDQUFPLE9BQU8sRUFBRSxVQUFVLGdCQUFtQjtnQkFDN0MsOEJBQUMsT0FBTyxJQUFDLEVBQUUsRUFBRSxVQUFVLEVBQUUsSUFBSSxFQUFDLE1BQU0sRUFBQyxLQUFLLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxRQUFRLEVBQzNELFFBQVEsRUFBRSxJQUFJLENBQUMsZ0JBQWdCLENBQUMsUUFBUSxHQUFJLENBQ3RDO1lBQ2QsOEJBQUMsV0FBVztnQkFDUix5Q0FBTyxPQUFPLEVBQUUsVUFBVSxnQkFBbUI7Z0JBQzdDLDhCQUFDLDBCQUFVLElBQUMsUUFBUSxFQUFFLElBQUksRUFBRSxjQUFjLEVBQUUsSUFBSSxFQUM1QyxVQUFVLEVBQUMsa0JBQWtCLEVBQUMsUUFBUSxFQUFFLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxRQUFRLEdBQUksQ0FDcEU7WUFDZCw4QkFBQyxTQUFTLElBQUMsT0FBTyxFQUFFLElBQUksQ0FBQyxVQUFVLFFBQWUsQ0FDMUMsQ0FDZixDQUFDO0lBQ04sQ0FBQztJQW9DTCxjQUFDO0FBQUQsQ0FBQyxBQWpFRCxDQUE2QixlQUFLLENBQUMsU0FBUyxHQWlFM0M7QUFqRVksMEJBQU8iLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgJ3JlYWN0LWRhdGVwaWNrZXIvZGlzdC9yZWFjdC1kYXRlcGlja2VyLmNzcyc7IC8vICgxKVxyXG5cclxuaW1wb3J0IE1vbWVudCBmcm9tICdtb21lbnQnO1xyXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgRGF0ZVBpY2tlciBmcm9tICdyZWFjdC1kYXRlcGlja2VyJztcclxuaW1wb3J0IFN0eWxlZCBmcm9tICdzdHlsZWQtY29tcG9uZW50cyc7XHJcbmltcG9ydCB7IHY0IGFzIFVVSUQgfSBmcm9tICd1dWlkJztcclxuXHJcbmltcG9ydCB7IGNyZWF0ZUFkZFRhc2tBY3Rpb24gfSBmcm9tICcuLi9hY3Rpb25zL1Rhc2tBY3Rpb25DcmVhdG9ycyc7XHJcbmltcG9ydCBzdG9yZSBmcm9tICcuLi9TdG9yZSc7XHJcbmltcG9ydCB7ICRDT0xPUl9TRUNPTkRBUllfMV8zIH0gZnJvbSAnLi9Gb3VuZGF0aW9uU3R5bGVzJztcclxuXHJcbi8qKlxyXG4gKiDjgrPjg7Pjg53jg7zjg43jg7Pjg4gg44OX44Ot44OR44OG44KjXHJcbiAqXHJcbiAqIOOBk+OBk+OBp+OBr+OAgeWIneacn+WApOOBqOOBl+OBpuaJseOBhlxyXG4gKi9cclxuaW50ZXJmYWNlIElQcm9wcyB7XHJcbiAgICAvKiog44K/44K544Kv5ZCNICovXHJcbiAgICB0YXNrTmFtZTogc3RyaW5nO1xyXG4gICAgLyoqIOacn+mZkCAqL1xyXG4gICAgZGVhZGxpbmU6IERhdGU7XHJcbn1cclxuaW50ZXJmYWNlIElMb2NhbFN0YXRlIHtcclxuICAgIC8qKiDjgr/jgrnjgq/lkI0gKi9cclxuICAgIHRhc2tOYW1lOiBzdHJpbmc7XHJcbiAgICAvKiog5pyf6ZmQICovXHJcbiAgICBkZWFkbGluZTogRGF0ZTtcclxufVxyXG5cclxuXHJcblxyXG4vLyNyZWdpb24gc3R5bGVkXHJcbmNvbnN0IENvbnRhaW5lciA9IFN0eWxlZC5kaXZgXHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgICBtYXJnaW46IDFlbSAwO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbmA7XHJcblxyXG5jb25zdCBUZXh0Qm94ID0gU3R5bGVkLmlucHV0YFxyXG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG5gO1xyXG5cclxuY29uc3QgVGFza05hbWVCb3ggPSBTdHlsZWQucGBcclxuICAgIGZsZXgtZ3JvdzogMTtcclxuYDtcclxuXHJcbmNvbnN0IERlYWRsaW5lQm94ID0gU3R5bGVkLmRpdmBcclxuYDtcclxuXHJcbmNvbnN0IEFkZEJ1dHRvbiA9IFN0eWxlZC5idXR0b25gXHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkeyRDT0xPUl9TRUNPTkRBUllfMV8zfTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgZm9udC1zaXplOiAxNTAlO1xyXG4gICAgaGVpZ2h0OiA0MHB4O1xyXG4gICAgcGFkZGluZzogMDtcclxuICAgIHdpZHRoOiA0MHB4O1xyXG5gO1xyXG5cclxuLy8jZW5kcmVnaW9uXHJcblxyXG5leHBvcnQgY2xhc3MgQWRkVGFzayBleHRlbmRzIFJlYWN0LkNvbXBvbmVudDxJUHJvcHMsIElMb2NhbFN0YXRlPiB7XHJcbiAgICBcclxuICAgIHB1YmxpYyBjb25zdHJ1Y3Rvcihwcm9wczogSVByb3BzKSB7XHJcbiAgICAgICAgc3VwZXIocHJvcHMpO1xyXG4gICAgICAgIHRoaXMuc3RhdGUgPSB7XHJcbiAgICAgICAgICAgIGRlYWRsaW5lOiBwcm9wcy5kZWFkbGluZSxcclxuICAgICAgICAgICAgdGFza05hbWU6IHByb3BzLnRhc2tOYW1lLFxyXG4gICAgICAgIH07XHJcbiAgICB9XHJcblxyXG4gICAgcHVibGljIHJlbmRlcigpIHtcclxuICAgICAgICBjb25zdCBkYXRlID0gTW9tZW50KHRoaXMuc3RhdGUuZGVhZGxpbmUpO1xyXG4gICAgICAgIGNvbnN0IHRhc2tOYW1lSWQgPSBVVUlEKCk7XHJcbiAgICAgICAgY29uc3QgZGVhZGxpbmVJZCA9IFVVSUQoKTtcclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICA8Q29udGFpbmVyPlxyXG4gICAgICAgICAgICAgICAgPFRhc2tOYW1lQm94PlxyXG4gICAgICAgICAgICAgICAgICAgIDxsYWJlbCBodG1sRm9yPXt0YXNrTmFtZUlkfT50YXNrIG5hbWU8L2xhYmVsPlxyXG4gICAgICAgICAgICAgICAgICAgIDxUZXh0Qm94IGlkPXt0YXNrTmFtZUlkfSB0eXBlPVwidGV4dFwiIHZhbHVlPXt0aGlzLnN0YXRlLnRhc2tOYW1lfVxyXG4gICAgICAgICAgICAgICAgICAgICAgICBvbkNoYW5nZT17dGhpcy5vbkNoYW5nZVRhc2tOYW1lIC8q4oaQIOWkieabtCovfSAvPlxyXG4gICAgICAgICAgICAgICAgPC9UYXNrTmFtZUJveD5cclxuICAgICAgICAgICAgICAgIDxEZWFkbGluZUJveD5cclxuICAgICAgICAgICAgICAgICAgICA8bGFiZWwgaHRtbEZvcj17ZGVhZGxpbmVJZH0+ZGVhZCBsaW5lPC9sYWJlbD5cclxuICAgICAgICAgICAgICAgICAgICA8RGF0ZVBpY2tlciBzZWxlY3RlZD17ZGF0ZX0gc2hvd1RpbWVTZWxlY3Q9e3RydWV9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGRhdGVGb3JtYXQ9XCJZWVlZLU1NLUREIEhIOm1tXCIgb25DaGFuZ2U9e3RoaXMub25DaGFuZ2VEZWFkTGluZSAvKuKGkCDlpInmm7QqL30gLz5cclxuICAgICAgICAgICAgICAgIDwvRGVhZGxpbmVCb3g+XHJcbiAgICAgICAgICAgICAgICA8QWRkQnV0dG9uIG9uQ2xpY2s9e3RoaXMub25DbGlja0FkZH0+KzwvQWRkQnV0dG9uPlxyXG4gICAgICAgICAgICA8L0NvbnRhaW5lcj5cclxuICAgICAgICApO1xyXG4gICAgfVxyXG5cclxuXHJcbiAgICAvKipcclxuICAgICAqIOi/veWKoOODnOOCv+ODs+OCkuaKvOOBmeOBqOOAgeOCv+OCueOCr+S4gOimp+OBq+OCv+OCueOCr+OCkui/veWKoOOBmeOCi1xyXG4gICAgICovXHJcbiAgICBwcml2YXRlIG9uQ2xpY2tBZGQgPSAoZTogUmVhY3QuTW91c2VFdmVudCkgPT4ge1xyXG4gICAgICAgIHN0b3JlLmRpc3BhdGNoKGNyZWF0ZUFkZFRhc2tBY3Rpb24odGhpcy5zdGF0ZS50YXNrTmFtZSwgdGhpcy5zdGF0ZS5kZWFkbGluZSApKTtcclxuICAgICAgICBjb25zdCBtID0gTW9tZW50KG5ldyBEYXRlKCkpLmFkZCgxLCAnZGF5cycpO1xyXG4gICAgICAgIHRoaXMuc2V0U3RhdGUoe1xyXG4gICAgICAgICAgICBkZWFkbGluZTogbS50b0RhdGUoKSxcclxuICAgICAgICAgICAgdGFza05hbWU6ICcnLFxyXG4gICAgICAgIH0pO1xyXG4gICAgfVxyXG4gICAgICAgIC8qKlxyXG4gICAgICog44K/44K544Kv5ZCN5aSJ5pu044Kk44OZ44Oz44OI44OP44Oz44OJ44OpXHJcbiAgICAgKiBcclxuICAgICAqIOODhuOCreOCueODiOODnOODg+OCr+OCueOBruWGheWuueOCkuODreODvOOCq+ODq+OCueODhuODvOODiOOBq+WPjeaYoOOBmeOCi1xyXG4gICAgICovXHJcbiAgICBwcml2YXRlIG9uQ2hhbmdlVGFza05hbWUgPSAoZTogUmVhY3QuQ2hhbmdlRXZlbnQ8SFRNTElucHV0RWxlbWVudD4pID0+IHtcclxuICAgICAgICB0aGlzLnNldFN0YXRlKHtcclxuICAgICAgICAgICAgdGFza05hbWU6IGUudGFyZ2V0LnZhbHVlLFxyXG4gICAgICAgIH0pO1xyXG4gICAgfVxyXG4gICAgLyoqXHJcbiAgICAgKiDmnJ/ml6XjgpLlpInmm7TjgZfjgZ/jgajjgY3jga7jgqTjg5njg7Pjg4jjg4/jg7Pjg4njg6lcclxuICAgICAqIFxyXG4gICAgICog5aSJ5pu044GX44Gf5pel5LuY44KS44Ot44O844Kr44Or44K544OG44O844OI44Gr5Y+N5pig44GZ44KLXHJcbiAgICAgKiBEYXRlUGlja2Vy44Gu54us6Ieq44OX44Ot44OR44OG44Kj44Gn44CB5byV5pWw44Go44GX44Gm5pel5LuY44GM5rih44GV44KM44KLXHJcbiAgICAgKi9cclxuICAgIHByaXZhdGUgb25DaGFuZ2VEZWFkTGluZSA9IChkYXRlOiBNb21lbnQuTW9tZW50fCBudWxsKSA9PiB7XHJcbiAgICAgICAgdGhpcy5zZXRTdGF0ZSh7XHJcbiAgICAgICAgICAgIGRlYWRsaW5lOiAhIWRhdGUgPyBkYXRlLnRvRGF0ZSgpIDogbmV3IERhdGUoKSxcclxuICAgICAgICB9KTtcclxuICAgIH1cclxuXHJcbn0iXX0=
 
 /***/ }),
 
@@ -57417,9 +64761,99 @@ var templateObject_1;
 
 /***/ }),
 
-/***/ "./ts/components/Loading.tsx":
+/***/ "./ts/components/TaskList.tsx":
+/*!************************************!*\
+  !*** ./ts/components/TaskList.tsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
+var TaskActionCreators_1 = __webpack_require__(/*! ../actions/TaskActionCreators */ "./ts/actions/TaskActionCreators.ts");
+var Store_1 = __importDefault(__webpack_require__(/*! ../Store */ "./ts/Store.ts"));
+var AddTask_1 = __webpack_require__(/*! ./AddTask */ "./ts/components/AddTask.tsx");
+var FoundationStyles_1 = __webpack_require__(/*! ./FoundationStyles */ "./ts/components/FoundationStyles.ts");
+var TaskRow_1 = __importDefault(__webpack_require__(/*! ./TaskRow */ "./ts/components/TaskRow.tsx"));
+//#region styled
+var MainContainer = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    margin: 10px auto 0 auto;\n    max-width: 600px;\n    min-width: 300px;\n    width: 80%;\n"], ["\n    margin: 10px auto 0 auto;\n    max-width: 600px;\n    min-width: 300px;\n    width: 80%;\n"])));
+var Header = styled_components_1.default.h1(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    background-color: ", ";\n    color: ", ";\n    font-size: 160%;\n    padding: 1em;\n    text-align: center;\n"], ["\n    background-color: ", ";\n    color: ", ";\n    font-size: 160%;\n    padding: 1em;\n    text-align: center;\n"])), FoundationStyles_1.$COLOR_PRIMARY_3, FoundationStyles_1.$COLOR_FOREGROUND_REVERSE);
+var AddButton = styled_components_1.default.button(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    border-radius: 5px;\n    background-color: ", ";\n    color: ", ";\n    width: 100%;\n    padding: 1em;\n"], ["\n    border-radius: 5px;\n    background-color: ", ";\n    color: ", ";\n    width: 100%;\n    padding: 1em;\n"])), FoundationStyles_1.$COLOR_PRIMARY_0, FoundationStyles_1.$COLOR_FOREGROUND_REVERSE);
+var TaskList = styled_components_1.default.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    display: flex;\n    flex-direction: column;\n    margin-top: 1em;\n"], ["\n    display: flex;\n    flex-direction: column;\n    margin-top: 1em;\n"])));
+//#endregion
+var TodoList = /** @class */ (function (_super) {
+    __extends(TodoList, _super);
+    function TodoList() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TodoList.prototype.componentDidMount = function () {
+        Store_1.default.dispatch(TaskActionCreators_1.createShowTasksAction([])); //...(a)
+    };
+    TodoList.prototype.render = function () {
+        var tasks = this.props.tasks;
+        var taskListElems = tasks.sort(function (a, b) {
+            return (a.deadline < b.deadline) ? -1
+                : (a.deadline.getTime() === b.deadline.getTime()) ? 0 : 1;
+        }).map(function (it) {
+            return (react_1.default.createElement(TaskRow_1.default, __assign({ key: it.id }, it)) // ...(c)
+            );
+        });
+        return (react_1.default.createElement("div", null,
+            react_1.default.createElement(Header, null, "TODO"),
+            react_1.default.createElement(MainContainer, null,
+                react_1.default.createElement(AddTask_1.AddTask, { taskName: "", deadline: moment_1.default().add(1, 'days').toDate() }),
+                react_1.default.createElement(TaskList, null, taskListElems /* ...(b')*/))));
+    };
+    return TodoList;
+}(react_1.default.Component));
+var mapStateToProps = function (state) {
+    return state.taskList;
+};
+exports.default = react_redux_1.connect(mapStateToProps)(TodoList);
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGFza0xpc3QuanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJjb21wb25lbnRzL1Rhc2tMaXN0LnRzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxrREFBNEI7QUFDNUIsZ0RBQTBCO0FBQzFCLDJDQUFzQztBQUN0Qyx3RUFBdUM7QUFFdkMsb0VBQXNFO0FBRXRFLG1EQUE2QjtBQUU3QixxQ0FBb0M7QUFDcEMsdURBQW1HO0FBQ25HLHNEQUFnQztBQUVoQyxnQkFBZ0I7QUFDaEIsSUFBTSxhQUFhLEdBQUcsMkJBQU0sQ0FBQyxHQUFHLHFLQUFBLGtHQUsvQixJQUFBLENBQUM7QUFFRixJQUFNLE1BQU0sR0FBRywyQkFBTSxDQUFDLEVBQUUsd0xBQUEsMEJBQ0EsRUFBZ0IsZ0JBQzNCLEVBQXlCLHVFQUlyQyxLQUx1QixtQ0FBZ0IsRUFDM0IsNENBQXlCLENBSXJDLENBQUM7QUFFRixJQUFNLFNBQVMsR0FBRywyQkFBTSxDQUFDLE1BQU0sb0xBQUEsbURBRVAsRUFBZ0IsZ0JBQzNCLEVBQXlCLDBDQUdyQyxLQUp1QixtQ0FBZ0IsRUFDM0IsNENBQXlCLENBR3JDLENBQUM7QUFFRixJQUFNLFFBQVEsR0FBRywyQkFBTSxDQUFDLEdBQUcsOElBQUEsMkVBSTFCLElBQUEsQ0FBQztBQUVGLFlBQVk7QUFFWjtJQUF1Qiw0QkFBOEI7SUFBckQ7O0lBMEJBLENBQUM7SUF6QlUsb0NBQWlCLEdBQXhCO1FBQ0ksZUFBSyxDQUFDLFFBQVEsQ0FBQywwQ0FBcUIsQ0FBQyxFQUFFLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUTtJQUN2RCxDQUFDO0lBQ00seUJBQU0sR0FBYjtRQUNZLElBQUEsd0JBQUssQ0FBZ0I7UUFDN0IsSUFBTSxhQUFhLEdBQUcsS0FBSyxDQUFDLElBQUksQ0FBQyxVQUFDLENBQUMsRUFBRSxDQUFDO1lBQ2xDLE9BQU8sQ0FBQyxDQUFDLENBQUMsUUFBUSxHQUFHLENBQUMsQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO2dCQUNqQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsUUFBUSxDQUFDLE9BQU8sRUFBRSxLQUFLLENBQUMsQ0FBQyxRQUFRLENBQUMsT0FBTyxFQUFFLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUM7UUFDbEUsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLFVBQUMsRUFBRTtZQUNOLE9BQU8sQ0FDSCw4QkFBQyxpQkFBTyxhQUFDLEdBQUcsRUFBRSxFQUFFLENBQUMsRUFBRSxJQUFNLEVBQUUsRUFBSSxDQUFDLFNBQVM7YUFDNUMsQ0FBQztRQUNOLENBQUMsQ0FBQyxDQUFDO1FBQ0gsT0FBTyxDQUNIO1lBQ0ksOEJBQUMsTUFBTSxlQUFjO1lBQ3JCLDhCQUFDLGFBQWE7Z0JBQ1YsOEJBQUMsaUJBQU8sSUFBQyxRQUFRLEVBQUMsRUFBRSxFQUFDLFFBQVEsRUFBRSxnQkFBTSxFQUFFLENBQUMsR0FBRyxDQUFDLENBQUMsRUFBRSxNQUFNLENBQUMsQ0FBQyxNQUFNLEVBQUUsR0FBSTtnQkFDbkUsOEJBQUMsUUFBUSxRQUNKLGFBQWEsQ0FBQyxZQUFZLENBQ3BCLENBQ0MsQ0FDZCxDQUNULENBQUM7SUFDTixDQUFDO0lBQ0wsZUFBQztBQUFELENBQUMsQUExQkQsQ0FBdUIsZUFBSyxDQUFDLFNBQVMsR0EwQnJDO0FBRUQsSUFBTSxlQUFlLEdBQUcsVUFBQyxLQUFhO0lBQ2xDLE9BQU8sS0FBSyxDQUFDLFFBQVEsQ0FBQztBQUMxQixDQUFDLENBQUM7QUFFRixrQkFBZSxxQkFBTyxDQUFDLGVBQWUsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IE1vbWVudCBmcm9tICdtb21lbnQnO1xyXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgeyBjb25uZWN0IH0gZnJvbSAncmVhY3QtcmVkdXgnO1xyXG5pbXBvcnQgU3R5bGVkIGZyb20gJ3N0eWxlZC1jb21wb25lbnRzJztcclxuXHJcbmltcG9ydCB7IGNyZWF0ZVNob3dUYXNrc0FjdGlvbiB9IGZyb20gJy4uL2FjdGlvbnMvVGFza0FjdGlvbkNyZWF0b3JzJztcclxuaW1wb3J0IHsgSVRhc2tMaXN0IH0gZnJvbSAnLi4vc3RhdGVzL0lUYXNrJztcclxuaW1wb3J0IHN0b3JlIGZyb20gJy4uL1N0b3JlJztcclxuaW1wb3J0IHsgSVN0YXRlIH0gZnJvbSAnLi4vSVN0b3JlJztcclxuaW1wb3J0IHsgQWRkVGFzayB9IGZyb20gJy4vQWRkVGFzayc7XHJcbmltcG9ydCB7ICRDT0xPUl9GT1JFR1JPVU5EX1JFVkVSU0UsICRDT0xPUl9QUklNQVJZXzAsICRDT0xPUl9QUklNQVJZXzMgfSBmcm9tICcuL0ZvdW5kYXRpb25TdHlsZXMnO1xyXG5pbXBvcnQgVGFza1JvdyBmcm9tICcuL1Rhc2tSb3cnO1xyXG5cclxuLy8jcmVnaW9uIHN0eWxlZFxyXG5jb25zdCBNYWluQ29udGFpbmVyID0gU3R5bGVkLmRpdmBcclxuICAgIG1hcmdpbjogMTBweCBhdXRvIDAgYXV0bztcclxuICAgIG1heC13aWR0aDogNjAwcHg7XHJcbiAgICBtaW4td2lkdGg6IDMwMHB4O1xyXG4gICAgd2lkdGg6IDgwJTtcclxuYDtcclxuXHJcbmNvbnN0IEhlYWRlciA9IFN0eWxlZC5oMWBcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICR7JENPTE9SX1BSSU1BUllfM307XHJcbiAgICBjb2xvcjogJHskQ09MT1JfRk9SRUdST1VORF9SRVZFUlNFfTtcclxuICAgIGZvbnQtc2l6ZTogMTYwJTtcclxuICAgIHBhZGRpbmc6IDFlbTtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuYDtcclxuXHJcbmNvbnN0IEFkZEJ1dHRvbiA9IFN0eWxlZC5idXR0b25gXHJcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkeyRDT0xPUl9QUklNQVJZXzB9O1xyXG4gICAgY29sb3I6ICR7JENPTE9SX0ZPUkVHUk9VTkRfUkVWRVJTRX07XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHBhZGRpbmc6IDFlbTtcclxuYDtcclxuXHJcbmNvbnN0IFRhc2tMaXN0ID0gU3R5bGVkLmRpdmBcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgbWFyZ2luLXRvcDogMWVtO1xyXG5gO1xyXG5cclxuLy8jZW5kcmVnaW9uXHJcblxyXG5jbGFzcyBUb2RvTGlzdCBleHRlbmRzIFJlYWN0LkNvbXBvbmVudDxJVGFza0xpc3QsIHt9PiB7XHJcbiAgICBwdWJsaWMgY29tcG9uZW50RGlkTW91bnQoKSB7XHJcbiAgICAgICAgc3RvcmUuZGlzcGF0Y2goY3JlYXRlU2hvd1Rhc2tzQWN0aW9uKFtdKSk7IC8vLi4uKGEpXHJcbiAgICB9XHJcbiAgICBwdWJsaWMgcmVuZGVyKCkge1xyXG4gICAgICAgIGNvbnN0IHsgdGFza3MgfSA9IHRoaXMucHJvcHM7XHJcbiAgICAgICAgY29uc3QgdGFza0xpc3RFbGVtcyA9IHRhc2tzLnNvcnQoKGEsIGIpID0+IHsgLy8gLi4uKGIpXHJcbiAgICAgICAgICAgIHJldHVybiAoYS5kZWFkbGluZSA8IGIuZGVhZGxpbmUpID8gLTFcclxuICAgICAgICAgICAgICAgIDogKGEuZGVhZGxpbmUuZ2V0VGltZSgpID09PSBiLmRlYWRsaW5lLmdldFRpbWUoKSkgPyAwIDogMTtcclxuICAgICAgICB9KS5tYXAoKGl0KSA9PiB7XHJcbiAgICAgICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgICAgICA8VGFza1JvdyBrZXk9e2l0LmlkfSB7Li4uaXR9IC8+IC8vIC4uLihjKVxyXG4gICAgICAgICAgICApO1xyXG4gICAgICAgIH0pO1xyXG4gICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgICAgICA8SGVhZGVyPlRPRE88L0hlYWRlcj5cclxuICAgICAgICAgICAgICAgIDxNYWluQ29udGFpbmVyPlxyXG4gICAgICAgICAgICAgICAgICAgIDxBZGRUYXNrIHRhc2tOYW1lPVwiXCIgZGVhZGxpbmU9e01vbWVudCgpLmFkZCgxLCAnZGF5cycpLnRvRGF0ZSgpfSAvPlxyXG4gICAgICAgICAgICAgICAgICAgIDxUYXNrTGlzdD5cclxuICAgICAgICAgICAgICAgICAgICAgICAge3Rhc2tMaXN0RWxlbXMgLyogLi4uKGInKSovfVxyXG4gICAgICAgICAgICAgICAgICAgIDwvVGFza0xpc3Q+XHJcbiAgICAgICAgICAgICAgICA8L01haW5Db250YWluZXI+XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICk7XHJcbiAgICB9XHJcbn1cclxuXHJcbmNvbnN0IG1hcFN0YXRlVG9Qcm9wcyA9IChzdGF0ZTogSVN0YXRlKTogSVRhc2tMaXN0ID0+IHtcclxuICAgIHJldHVybiBzdGF0ZS50YXNrTGlzdDtcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGNvbm5lY3QobWFwU3RhdGVUb1Byb3BzKShUb2RvTGlzdCk7Il19
+
+/***/ }),
+
+/***/ "./ts/components/TaskRow.tsx":
 /*!***********************************!*\
-  !*** ./ts/components/Loading.tsx ***!
+  !*** ./ts/components/TaskRow.tsx ***!
   \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -57443,206 +64877,84 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var styled_components_1 = __importStar(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-var FoundationStyles_1 = __webpack_require__(/*! ./FoundationStyles */ "./ts/components/FoundationStyles.ts");
-var BG = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    background: #666;\n    height: 100%;\n    left: 0;\n    opacity: 0.5;\n    position: absolute;\n    top: 0;\n    width: 100%;\n"], ["\n    background: #666;\n    height: 100%;\n    left: 0;\n    opacity: 0.5;\n    position: absolute;\n    top: 0;\n    width: 100%;\n"])));
-var RoundAnimate = styled_components_1.keyframes(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    0% {\n        transform: rotate(0deg);\n    }\n    100% {\n        transform: rotate(360deg);\n    }\n"], ["\n    0% {\n        transform: rotate(0deg);\n    }\n    100% {\n        transform: rotate(360deg);\n    }\n"])));
-var SpinnerBox = styled_components_1.default.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    align-items: center;\n    display: flex;\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    width: 100%;\n"], ["\n    align-items: center;\n    display: flex;\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    width: 100%;\n"])));
-var Spinner = styled_components_1.default.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    animation: ", " 1.1s infinite linear;\n    border-bottom: 1.1em solid ", ";\n    border-left: 1.1em solid ", ";\n    border-radius: 50%;\n    border-right: 1.1em solid ", ";\n    border-top: 1.1em solid ", ";\n    font-size: 10px;\n    height: 10em;\n    margin: 60px auto;\n    position: relative;\n    transform: translateZ(0);\n    width: 10em;\n    &:after {\n        border-radius: 50%;\n        width: 10em;\n        height: 10em;\n    }\n"], ["\n    animation: ", " 1.1s infinite linear;\n    border-bottom: 1.1em solid ", ";\n    border-left: 1.1em solid ", ";\n    border-radius: 50%;\n    border-right: 1.1em solid ", ";\n    border-top: 1.1em solid ", ";\n    font-size: 10px;\n    height: 10em;\n    margin: 60px auto;\n    position: relative;\n    transform: translateZ(0);\n    width: 10em;\n    &:after {\n        border-radius: 50%;\n        width: 10em;\n        height: 10em;\n    }\n"])), RoundAnimate, FoundationStyles_1.$COLOR_PRIMARY_1, FoundationStyles_1.$COLOR_PRIMARY_0, FoundationStyles_1.$COLOR_PRIMARY_1, FoundationStyles_1.$COLOR_PRIMARY_1);
-var Loading = /** @class */ (function (_super) {
-    __extends(Loading, _super);
-    function Loading() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Loading.prototype.render = function () {
-        if (!this.props.shown) {
-            return null;
-        }
-        return (react_1.default.createElement("div", null,
-            react_1.default.createElement(BG, null),
-            react_1.default.createElement(SpinnerBox, null,
-                react_1.default.createElement(Spinner, null))));
-    };
-    return Loading;
-}(react_1.Component));
-exports.Loading = Loading;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTG9hZGluZy5qcyIsInNvdXJjZVJvb3QiOiIuL3RzeC8iLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvTG9hZGluZy50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSw2Q0FBeUM7QUFDekMscUVBQXNEO0FBQ3RELHVEQUF3RTtBQU14RSxJQUFNLEVBQUUsR0FBRywyQkFBTSxDQUFDLEdBQUcsME1BQUEsdUlBUXBCLElBQUEsQ0FBQztBQUVGLElBQU0sWUFBWSxHQUFHLDZCQUFTLGlMQUFBLDhHQU83QixJQUFBLENBQUM7QUFDRixJQUFNLFVBQVUsR0FBRywyQkFBTSxDQUFDLEdBQUcsOE1BQUEsMklBUTVCLElBQUEsQ0FBQztBQUNGLElBQU0sT0FBTyxHQUFHLDJCQUFNLENBQUMsR0FBRyx3Z0JBQUEsbUJBQ1QsRUFBWSx5REFDSSxFQUFnQixrQ0FDbEIsRUFBZ0IsNERBRWYsRUFBZ0IsaUNBQ2xCLEVBQWdCLGdQQVk3QyxLQWpCZ0IsWUFBWSxFQUNJLG1DQUFnQixFQUNsQixtQ0FBZ0IsRUFFZixtQ0FBZ0IsRUFDbEIsbUNBQWdCLENBWTdDLENBQUM7QUFFRjtJQUE2QiwyQkFBaUI7SUFBOUM7O0lBY0EsQ0FBQztJQWJVLHdCQUFNLEdBQWI7UUFDSSxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxLQUFLLEVBQUU7WUFDbkIsT0FBTyxJQUFJLENBQUM7U0FDZjtRQUNELE9BQU8sQ0FDSDtZQUNJLDhCQUFDLEVBQUUsT0FBRztZQUNOLDhCQUFDLFVBQVU7Z0JBQ1AsOEJBQUMsT0FBTyxPQUFHLENBQ0YsQ0FDWCxDQUNULENBQUM7SUFDTixDQUFDO0lBQ0wsY0FBQztBQUFELENBQUMsQUFkRCxDQUE2QixpQkFBUyxHQWNyQztBQWRZLDBCQUFPIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IENvbXBvbmVudCB9IGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IFN0eWxlZCwgeyBrZXlmcmFtZXMgfSBmcm9tICdzdHlsZWQtY29tcG9uZW50cyc7XHJcbmltcG9ydCB7ICRDT0xPUl9QUklNQVJZXzAsICRDT0xPUl9QUklNQVJZXzEgfSBmcm9tICcuL0ZvdW5kYXRpb25TdHlsZXMnO1xyXG5cclxuaW50ZXJmYWNlIElQcm9wcyB7XHJcbiAgICBzaG93bjogYm9vbGVhbjtcclxufVxyXG5cclxuY29uc3QgQkcgPSBTdHlsZWQuZGl2YFxyXG4gICAgYmFja2dyb3VuZDogIzY2NjtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIGxlZnQ6IDA7XHJcbiAgICBvcGFjaXR5OiAwLjU7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDA7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuYDtcclxuXHJcbmNvbnN0IFJvdW5kQW5pbWF0ZSA9IGtleWZyYW1lc2BcclxuICAgIDAlIHtcclxuICAgICAgICB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTtcclxuICAgIH1cclxuICAgIDEwMCUge1xyXG4gICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7XHJcbiAgICB9XHJcbmA7XHJcbmNvbnN0IFNwaW5uZXJCb3ggPSBTdHlsZWQuZGl2YFxyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgdG9wOiAwO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbmA7XHJcbmNvbnN0IFNwaW5uZXIgPSBTdHlsZWQuZGl2YFxyXG4gICAgYW5pbWF0aW9uOiAke1JvdW5kQW5pbWF0ZX0gMS4xcyBpbmZpbml0ZSBsaW5lYXI7XHJcbiAgICBib3JkZXItYm90dG9tOiAxLjFlbSBzb2xpZCAkeyRDT0xPUl9QUklNQVJZXzF9O1xyXG4gICAgYm9yZGVyLWxlZnQ6IDEuMWVtIHNvbGlkICR7JENPTE9SX1BSSU1BUllfMH07XHJcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgICBib3JkZXItcmlnaHQ6IDEuMWVtIHNvbGlkICR7JENPTE9SX1BSSU1BUllfMX07XHJcbiAgICBib3JkZXItdG9wOiAxLjFlbSBzb2xpZCAkeyRDT0xPUl9QUklNQVJZXzF9O1xyXG4gICAgZm9udC1zaXplOiAxMHB4O1xyXG4gICAgaGVpZ2h0OiAxMGVtO1xyXG4gICAgbWFyZ2luOiA2MHB4IGF1dG87XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVooMCk7XHJcbiAgICB3aWR0aDogMTBlbTtcclxuICAgICY6YWZ0ZXIge1xyXG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICAgICAgICB3aWR0aDogMTBlbTtcclxuICAgICAgICBoZWlnaHQ6IDEwZW07XHJcbiAgICB9XHJcbmA7XHJcblxyXG5leHBvcnQgY2xhc3MgTG9hZGluZyBleHRlbmRzIENvbXBvbmVudDxJUHJvcHM+IHtcclxuICAgIHB1YmxpYyByZW5kZXIoKSB7XHJcbiAgICAgICAgaWYgKCF0aGlzLnByb3BzLnNob3duKSB7XHJcbiAgICAgICAgICAgIHJldHVybiBudWxsO1xyXG4gICAgICAgIH1cclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgPEJHIC8+XHJcbiAgICAgICAgICAgICAgICA8U3Bpbm5lckJveD5cclxuICAgICAgICAgICAgICAgICAgICA8U3Bpbm5lciAvPlxyXG4gICAgICAgICAgICAgICAgPC9TcGlubmVyQm94PlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICApO1xyXG4gICAgfVxyXG59XHJcbiJdfQ==
-
-/***/ }),
-
-/***/ "./ts/components/TaskList.tsx":
-/*!************************************!*\
-  !*** ./ts/components/TaskList.tsx ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/*
-import Moment from 'moment';
-import React from 'react';
-import { connect } from 'react-redux';
-import Styled from 'styled-components';
-
-import { createLoadTasksAction  } from '../actions/TaskActionCreators';
-import { ITaskList } from '../states/ITask';
-import store from '../TaskStore';
-import { ITaskState } from '../ITaskStore';
-import { AddTask } from './AddTask';
-import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
-import TaskRow from './TaskRow';
-import { Loading } from '../components/Loading';
-
-
-//#region styled
-const MainContainer = Styled.div`
-    margin: 10px auto 0 auto;
-    max-width: 600px;
-    min-width: 300px;
-    width: 80%;
-`;
-
-const Header = Styled.h1`
-    background-color: ${$COLOR_PRIMARY_3};
-    color: ${$COLOR_FOREGROUND_REVERSE};
-    font-size: 160%;
-    padding: 1em;
-    text-align: center;
-`;
-
-const AddButton = Styled.button`
-    border-radius: 5px;
-    background-color: ${$COLOR_PRIMARY_0};
-    color: ${$COLOR_FOREGROUND_REVERSE};
-    width: 100%;
-    padding: 1em;
-`;
-
-const TaskList = Styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: 1em;
-`;
-
-//#endregion
-
-class TodoList extends Reant.Component<ITaskList, {}> {
-    public componentDidMount() {
-        store.dispatch(createLoadTasksAction(store.dispatch)); //...(a)
-    }
-    publreturn (<div>aaa</div>);
-        const { tasks } = this.props;
-        const taskListElems = tasks.sort((a, b) => { // ...(b)
-            return (a.deadline < b.deadline) ? -1
-                : (a.deadline.getTime() === b.deadline.getTime()) ? 0 : 1;
-        }).map((it) => {
-            return (
-                <TaskRow key={it.id} {...it} /> // ...(c)
-            );
-        });
-        console.trace("mes");
-        return (
-            <div>
-                <Header>TODO</Header>
-                <MainContainer>
-                    <AddTask taskName="" deadline={Moment().add(1, 'days').toDate()} />
-                    <TaskList>
-                        {taskListElems }
-                    </TaskList>
-                </MainContainer>
-                <Loading shown={this.props.shownLoading} />
-            </div>
-        );
-    }
-}
-const mapStateToProps = (state: ITaskState): ITaskList => {
-    return state.taskList;
-};
-
-export default connect(mapStateToProps)(TodoList);
-*/
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 var styled_components_1 = __importDefault(__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"));
-var AddTask_1 = __webpack_require__(/*! ./AddTask */ "./ts/components/AddTask.tsx");
+var TaskActionCreators_1 = __webpack_require__(/*! ../actions/TaskActionCreators */ "./ts/actions/TaskActionCreators.ts");
+var Store_1 = __importDefault(__webpack_require__(/*! ../Store */ "./ts/Store.ts"));
 var FoundationStyles_1 = __webpack_require__(/*! ./FoundationStyles */ "./ts/components/FoundationStyles.ts");
-var Loading_1 = __webpack_require__(/*! ./Loading */ "./ts/components/Loading.tsx");
 //#region styled
-var MainContainer = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    margin: 10px auto 0 auto;\n    max-width: 600px;\n    min-width: 300px;\n    width: 80%;\n"], ["\n    margin: 10px auto 0 auto;\n    max-width: 600px;\n    min-width: 300px;\n    width: 80%;\n"])));
-var Header = styled_components_1.default.h1(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    background-color: ", ";\n    color: ", ";\n    font-size: 160%;\n    padding: 1em;\n    text-align: center;\n"], ["\n    background-color: ", ";\n    color: ", ";\n    font-size: 160%;\n    padding: 1em;\n    text-align: center;\n"])), FoundationStyles_1.$COLOR_PRIMARY_3, FoundationStyles_1.$COLOR_FOREGROUND_REVERSE);
-var AddButton = styled_components_1.default.button(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    border-radius: 5px;\n    background-color: ", ";\n    color: ", ";\n    width: 100%;\n    padding: 1em;\n"], ["\n    border-radius: 5px;\n    background-color: ", ";\n    color: ", ";\n    width: 100%;\n    padding: 1em;\n"])), FoundationStyles_1.$COLOR_PRIMARY_0, FoundationStyles_1.$COLOR_FOREGROUND_REVERSE);
-var TaskList = styled_components_1.default.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    display: flex;\n    flex-direction: column;\n    margin-top: 1em;\n"], ["\n    display: flex;\n    flex-direction: column;\n    margin-top: 1em;\n"])));
+/**
+ * 行の大外枠...(1)
+ */
+var Task = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    align-items: center;\n    background-color: ", ";\n    border-radius: 5px;\n    cursor: pointer;\n    border: 1px solid rgb(200,200,200);\n    display: flex;\n    flex-direction: row;\n    margin-bottom: 1em;\n    padding: 10px;\n    transition-duration: .2s;\n    transition-property: all;\n    /* (2) */\n    &:hover {\n        transform: translate(-5px, -5px);\n        box-shadow: 5px 5px 5px rgba(200,200,200,4);\n    }\n"], ["\n    align-items: center;\n    background-color: ", ";\n    border-radius: 5px;\n    cursor: pointer;\n    border: 1px solid rgb(200,200,200);\n    display: flex;\n    flex-direction: row;\n    margin-bottom: 1em;\n    padding: 10px;\n    transition-duration: .2s;\n    transition-property: all;\n    /* (2) */\n    &:hover {\n        transform: translate(-5px, -5px);\n        box-shadow: 5px 5px 5px rgba(200,200,200,4);\n    }\n"])), function (p) { return p.expiration ? 'inherit' : FoundationStyles_1.$COLOR_SECONDARY_2_0; });
+/**
+ * タスク完了のチェックアイコン表示 枠
+ */
+var TaskCheckBox = styled_components_1.default.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    align-items: center;\n    background-color: #fff;\n    border: 2px solid #ccc;\n    border-radius: 50%;\n    display: flex;\n    justify-content: center;\n    flex-grow: 0;\n    flex-shrink: 0;\n    height: 2em;\n    width: 2em;\n"], ["\n    align-items: center;\n    background-color: #fff;\n    border: 2px solid #ccc;\n    border-radius: 50%;\n    display: flex;\n    justify-content: center;\n    flex-grow: 0;\n    flex-shrink: 0;\n    height: 2em;\n    width: 2em;\n"])));
+/**
+ * タスク完了チェックアイコン
+ */
+var TaskCheck = styled_components_1.default.p(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    color: ", ";\n    font-size: 150%;\n"], ["\n    color: ", ";\n    font-size: 150%;\n"])), FoundationStyles_1.$COLOR_SECONDARY_1_3);
+/**
+ * タスク名と期日の表示 枠
+ */
+var TaskBody = styled_components_1.default.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    display: flex;\n    flex-direction: column;\n    flex-grow: 1;\n    flex-shrink: 0;\n    height: 3em;\n    justify-content: space-around;\n"], ["\n    display: flex;\n    flex-direction: column;\n    flex-grow: 1;\n    flex-shrink: 0;\n    height: 3em;\n    justify-content: space-around;\n"])));
+/**
+ * タスク削除アイコン
+ */
+var TaskRemove = styled_components_1.default.div(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    flex-grow: 0;\n    flex-shrink: 0;\n"], ["\n    flex-grow: 0;\n    flex-shrink: 0;\n"])));
+/**
+ * タスク名
+ */
+var TaskName = styled_components_1.default.div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n    font-size: 120%;\n"], ["\n    font-size: 120%;\n"])));
+/**
+ * 期日
+ */
+var Deadline = styled_components_1.default.div(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n"], ["\n"])));
 //#endregion
-var TodoList = /** @class */ (function (_super) {
-    __extends(TodoList, _super);
-    function TodoList() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var TaskRow = /** @class */ (function (_super) {
+    __extends(TaskRow, _super);
+    function TaskRow() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        /**
+         * ボックスをクリックすると、タスク完了 <-> 未完了 がトグルする
+         */
+        _this.onClickBox = function (id, e) {
+            Store_1.default.dispatch(TaskActionCreators_1.createToggleCompleteAction(id, Store_1.default));
+        };
+        /**
+         * 削除ボタンを押すと、タスクを削除する
+         */
+        _this.onClickDelete = function (id, e) {
+            Store_1.default.dispatch(TaskActionCreators_1.createDeleteTaskAction(id, Store_1.default));
+            // クリックイベントを親要素の伝播させない
+            e.stopPropagation();
+        };
+        return _this;
     }
-    TodoList.prototype.componentDidMount = function () {
-        // これがあると画面が真っ白になる
-        //store.dispatch(createShowTasksAction([])); 
+    TaskRow.prototype.render = function () {
+        var it = this.props;
+        var deadlineString = moment_1.default(it.deadline).format('YYYY-MM-DD hh:mm');
+        return (react_1.default.createElement(Task, { expiration: new Date() < it.deadline || it.complete, onClick: this.onClickBox.bind(this, it.id) },
+            react_1.default.createElement(TaskCheckBox, null,
+                react_1.default.createElement(TaskCheck, null, it.complete ? '✔' : null)),
+            react_1.default.createElement(TaskBody, null,
+                react_1.default.createElement(TaskName, null, it.taskName),
+                react_1.default.createElement(Deadline, null,
+                    "\u23F0",
+                    deadlineString)),
+            react_1.default.createElement(TaskRemove, { onClick: this.onClickDelete.bind(this, it.id) }, "\u274C")));
     };
-    TodoList.prototype.render = function () {
-        var tasks = this.props.tasks;
-        var taskListElems = tasks.sort(function (a, b) {
-            return (a.deadline < b.deadline) ? -1
-                : (a.deadline.getTime() === b.deadline.getTime()) ? 0 : 1;
-        }).map(function (it) {
-            return react_1.default.createElement("div", null);
-            /*
-            return (
-                <TaskRow key={it.id} {...it} />
-            );
-            */
-        });
-        return (react_1.default.createElement("div", null,
-            react_1.default.createElement(Header, null, "TODO"),
-            react_1.default.createElement(MainContainer, null,
-                react_1.default.createElement(AddTask_1.AddTask, { taskName: "", deadline: moment_1.default().add(1, 'days').toDate() }),
-                react_1.default.createElement(TaskList, null, taskListElems)),
-            react_1.default.createElement(Loading_1.Loading, { shown: this.props.shownLoading })));
-    };
-    return TodoList;
+    return TaskRow;
 }(react_1.default.Component));
-var mapStateToProps = function (state) {
-    return state.taskList;
-};
-exports.default = react_redux_1.connect(mapStateToProps)(TodoList);
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGFza0xpc3QuanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJjb21wb25lbnRzL1Rhc2tMaXN0LnRzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7RUFrRkU7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFFRixrREFBNEI7QUFDNUIsZ0RBQTBCO0FBQzFCLDJDQUFzQztBQUN0Qyx3RUFBdUM7QUFNdkMscUNBQW9DO0FBQ3BDLHVEQUFtRztBQUVuRyxxQ0FBa0M7QUFFbEMsZ0JBQWdCO0FBQ2hCLElBQU0sYUFBYSxHQUFHLDJCQUFNLENBQUMsR0FBRyxxS0FBQSxrR0FLL0IsSUFBQSxDQUFDO0FBRUYsSUFBTSxNQUFNLEdBQUcsMkJBQU0sQ0FBQyxFQUFFLHdMQUFBLDBCQUNBLEVBQWdCLGdCQUMzQixFQUF5Qix1RUFJckMsS0FMdUIsbUNBQWdCLEVBQzNCLDRDQUF5QixDQUlyQyxDQUFDO0FBRUYsSUFBTSxTQUFTLEdBQUcsMkJBQU0sQ0FBQyxNQUFNLG9MQUFBLG1EQUVQLEVBQWdCLGdCQUMzQixFQUF5QiwwQ0FHckMsS0FKdUIsbUNBQWdCLEVBQzNCLDRDQUF5QixDQUdyQyxDQUFDO0FBRUYsSUFBTSxRQUFRLEdBQUcsMkJBQU0sQ0FBQyxHQUFHLDhJQUFBLDJFQUkxQixJQUFBLENBQUM7QUFFRixZQUFZO0FBRVo7SUFBdUIsNEJBQThCO0lBQXJEOztJQWlDQSxDQUFDO0lBaENVLG9DQUFpQixHQUF4QjtRQUNJLGtCQUFrQjtRQUVsQiw2Q0FBNkM7SUFDakQsQ0FBQztJQUNNLHlCQUFNLEdBQWI7UUFDWSxJQUFBLHdCQUFLLENBQWdCO1FBQzdCLElBQU0sYUFBYSxHQUFHLEtBQUssQ0FBQyxJQUFJLENBQUMsVUFBQyxDQUFDLEVBQUUsQ0FBQztZQUNsQyxPQUFPLENBQUMsQ0FBQyxDQUFDLFFBQVEsR0FBRyxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQztnQkFDakMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxPQUFPLEVBQUUsS0FBSyxDQUFDLENBQUMsUUFBUSxDQUFDLE9BQU8sRUFBRSxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ2xFLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxVQUFDLEVBQUU7WUFDTixPQUFPLDBDQUFXLENBQUM7WUFDbkI7Ozs7Y0FJRTtRQUNOLENBQUMsQ0FBQyxDQUFDO1FBRUgsT0FBTyxDQUNIO1lBQ0ksOEJBQUMsTUFBTSxlQUFjO1lBQ3JCLDhCQUFDLGFBQWE7Z0JBQ1YsOEJBQUMsaUJBQU8sSUFBQyxRQUFRLEVBQUMsRUFBRSxFQUFDLFFBQVEsRUFBRSxnQkFBTSxFQUFFLENBQUMsR0FBRyxDQUFDLENBQUMsRUFBRyxNQUFNLENBQUMsQ0FBQyxNQUFNLEVBQUUsR0FBSTtnQkFDcEUsOEJBQUMsUUFBUSxRQUNKLGFBQWEsQ0FDUCxDQUNDO1lBQ2hCLDhCQUFDLGlCQUFPLElBQUMsS0FBSyxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsWUFBWSxHQUFJLENBQ3pDLENBQ1QsQ0FBQztJQUNOLENBQUM7SUFDTCxlQUFDO0FBQUQsQ0FBQyxBQWpDRCxDQUF1QixlQUFLLENBQUMsU0FBUyxHQWlDckM7QUFFRCxJQUFNLGVBQWUsR0FBRyxVQUFDLEtBQWlCO0lBQ3RDLE9BQU8sS0FBSyxDQUFDLFFBQVEsQ0FBQztBQUMxQixDQUFDLENBQUM7QUFFRixrQkFBZSxxQkFBTyxDQUFDLGVBQWUsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcclxuaW1wb3J0IE1vbWVudCBmcm9tICdtb21lbnQnO1xyXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgeyBjb25uZWN0IH0gZnJvbSAncmVhY3QtcmVkdXgnO1xyXG5pbXBvcnQgU3R5bGVkIGZyb20gJ3N0eWxlZC1jb21wb25lbnRzJztcclxuXHJcbmltcG9ydCB7IGNyZWF0ZUxvYWRUYXNrc0FjdGlvbiAgfSBmcm9tICcuLi9hY3Rpb25zL1Rhc2tBY3Rpb25DcmVhdG9ycyc7XHJcbmltcG9ydCB7IElUYXNrTGlzdCB9IGZyb20gJy4uL3N0YXRlcy9JVGFzayc7XHJcbmltcG9ydCBzdG9yZSBmcm9tICcuLi9UYXNrU3RvcmUnO1xyXG5pbXBvcnQgeyBJVGFza1N0YXRlIH0gZnJvbSAnLi4vSVRhc2tTdG9yZSc7XHJcbmltcG9ydCB7IEFkZFRhc2sgfSBmcm9tICcuL0FkZFRhc2snO1xyXG5pbXBvcnQgeyAkQ09MT1JfRk9SRUdST1VORF9SRVZFUlNFLCAkQ09MT1JfUFJJTUFSWV8wLCAkQ09MT1JfUFJJTUFSWV8zIH0gZnJvbSAnLi9Gb3VuZGF0aW9uU3R5bGVzJztcclxuaW1wb3J0IFRhc2tSb3cgZnJvbSAnLi9UYXNrUm93JztcclxuaW1wb3J0IHsgTG9hZGluZyB9IGZyb20gJy4uL2NvbXBvbmVudHMvTG9hZGluZyc7XHJcblxyXG5cclxuLy8jcmVnaW9uIHN0eWxlZFxyXG5jb25zdCBNYWluQ29udGFpbmVyID0gU3R5bGVkLmRpdmBcclxuICAgIG1hcmdpbjogMTBweCBhdXRvIDAgYXV0bztcclxuICAgIG1heC13aWR0aDogNjAwcHg7XHJcbiAgICBtaW4td2lkdGg6IDMwMHB4O1xyXG4gICAgd2lkdGg6IDgwJTtcclxuYDtcclxuXHJcbmNvbnN0IEhlYWRlciA9IFN0eWxlZC5oMWBcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICR7JENPTE9SX1BSSU1BUllfM307XHJcbiAgICBjb2xvcjogJHskQ09MT1JfRk9SRUdST1VORF9SRVZFUlNFfTtcclxuICAgIGZvbnQtc2l6ZTogMTYwJTtcclxuICAgIHBhZGRpbmc6IDFlbTtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuYDtcclxuXHJcbmNvbnN0IEFkZEJ1dHRvbiA9IFN0eWxlZC5idXR0b25gXHJcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkeyRDT0xPUl9QUklNQVJZXzB9O1xyXG4gICAgY29sb3I6ICR7JENPTE9SX0ZPUkVHUk9VTkRfUkVWRVJTRX07XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHBhZGRpbmc6IDFlbTtcclxuYDtcclxuXHJcbmNvbnN0IFRhc2tMaXN0ID0gU3R5bGVkLmRpdmBcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgbWFyZ2luLXRvcDogMWVtO1xyXG5gO1xyXG5cclxuLy8jZW5kcmVnaW9uXHJcblxyXG5jbGFzcyBUb2RvTGlzdCBleHRlbmRzIFJlYW50LkNvbXBvbmVudDxJVGFza0xpc3QsIHt9PiB7XHJcbiAgICBwdWJsaWMgY29tcG9uZW50RGlkTW91bnQoKSB7XHJcbiAgICAgICAgc3RvcmUuZGlzcGF0Y2goY3JlYXRlTG9hZFRhc2tzQWN0aW9uKHN0b3JlLmRpc3BhdGNoKSk7IC8vLi4uKGEpXHJcbiAgICB9XHJcbiAgICBwdWJscmV0dXJuICg8ZGl2PmFhYTwvZGl2Pik7XHJcbiAgICAgICAgY29uc3QgeyB0YXNrcyB9ID0gdGhpcy5wcm9wcztcclxuICAgICAgICBjb25zdCB0YXNrTGlzdEVsZW1zID0gdGFza3Muc29ydCgoYSwgYikgPT4geyAvLyAuLi4oYilcclxuICAgICAgICAgICAgcmV0dXJuIChhLmRlYWRsaW5lIDwgYi5kZWFkbGluZSkgPyAtMVxyXG4gICAgICAgICAgICAgICAgOiAoYS5kZWFkbGluZS5nZXRUaW1lKCkgPT09IGIuZGVhZGxpbmUuZ2V0VGltZSgpKSA/IDAgOiAxO1xyXG4gICAgICAgIH0pLm1hcCgoaXQpID0+IHtcclxuICAgICAgICAgICAgcmV0dXJuIChcclxuICAgICAgICAgICAgICAgIDxUYXNrUm93IGtleT17aXQuaWR9IHsuLi5pdH0gLz4gLy8gLi4uKGMpXHJcbiAgICAgICAgICAgICk7XHJcbiAgICAgICAgfSk7XHJcbiAgICAgICAgY29uc29sZS50cmFjZShcIm1lc1wiKTtcclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgPEhlYWRlcj5UT0RPPC9IZWFkZXI+XHJcbiAgICAgICAgICAgICAgICA8TWFpbkNvbnRhaW5lcj5cclxuICAgICAgICAgICAgICAgICAgICA8QWRkVGFzayB0YXNrTmFtZT1cIlwiIGRlYWRsaW5lPXtNb21lbnQoKS5hZGQoMSwgJ2RheXMnKS50b0RhdGUoKX0gLz5cclxuICAgICAgICAgICAgICAgICAgICA8VGFza0xpc3Q+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHt0YXNrTGlzdEVsZW1zIH1cclxuICAgICAgICAgICAgICAgICAgICA8L1Rhc2tMaXN0PlxyXG4gICAgICAgICAgICAgICAgPC9NYWluQ29udGFpbmVyPlxyXG4gICAgICAgICAgICAgICAgPExvYWRpbmcgc2hvd249e3RoaXMucHJvcHMuc2hvd25Mb2FkaW5nfSAvPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICApO1xyXG4gICAgfVxyXG59XHJcbmNvbnN0IG1hcFN0YXRlVG9Qcm9wcyA9IChzdGF0ZTogSVRhc2tTdGF0ZSk6IElUYXNrTGlzdCA9PiB7XHJcbiAgICByZXR1cm4gc3RhdGUudGFza0xpc3Q7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBjb25uZWN0KG1hcFN0YXRlVG9Qcm9wcykoVG9kb0xpc3QpO1xyXG4qL1xyXG5cclxuaW1wb3J0IE1vbWVudCBmcm9tICdtb21lbnQnO1xyXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgeyBjb25uZWN0IH0gZnJvbSAncmVhY3QtcmVkdXgnO1xyXG5pbXBvcnQgU3R5bGVkIGZyb20gJ3N0eWxlZC1jb21wb25lbnRzJztcclxuXHJcbmltcG9ydCB7IGNyZWF0ZVNob3dUYXNrc0FjdGlvbiB9IGZyb20gJy4uL2FjdGlvbnMvVGFza0FjdGlvbkNyZWF0b3JzJztcclxuaW1wb3J0IHsgSVRhc2tMaXN0IH0gZnJvbSAnLi4vc3RhdGVzL0lUYXNrJztcclxuaW1wb3J0IHN0b3JlIGZyb20gJy4uL1Rhc2tTdG9yZSc7XHJcbmltcG9ydCAgeyBJVGFza1N0YXRlIH0gZnJvbSAnLi4vSVRhc2tTdG9yZSc7XHJcbmltcG9ydCB7IEFkZFRhc2sgfSBmcm9tICcuL0FkZFRhc2snO1xyXG5pbXBvcnQgeyAkQ09MT1JfRk9SRUdST1VORF9SRVZFUlNFLCAkQ09MT1JfUFJJTUFSWV8wLCAkQ09MT1JfUFJJTUFSWV8zIH0gZnJvbSAnLi9Gb3VuZGF0aW9uU3R5bGVzJztcclxuaW1wb3J0IFRhc2tSb3cgZnJvbSAnLi9UYXNrUm93JztcclxuaW1wb3J0IHtMb2FkaW5nfSBmcm9tICcuL0xvYWRpbmcnO1xyXG5cclxuLy8jcmVnaW9uIHN0eWxlZFxyXG5jb25zdCBNYWluQ29udGFpbmVyID0gU3R5bGVkLmRpdmBcclxuICAgIG1hcmdpbjogMTBweCBhdXRvIDAgYXV0bztcclxuICAgIG1heC13aWR0aDogNjAwcHg7XHJcbiAgICBtaW4td2lkdGg6IDMwMHB4O1xyXG4gICAgd2lkdGg6IDgwJTtcclxuYDtcclxuXHJcbmNvbnN0IEhlYWRlciA9IFN0eWxlZC5oMWBcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICR7JENPTE9SX1BSSU1BUllfM307XHJcbiAgICBjb2xvcjogJHskQ09MT1JfRk9SRUdST1VORF9SRVZFUlNFfTtcclxuICAgIGZvbnQtc2l6ZTogMTYwJTtcclxuICAgIHBhZGRpbmc6IDFlbTtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuYDtcclxuXHJcbmNvbnN0IEFkZEJ1dHRvbiA9IFN0eWxlZC5idXR0b25gXHJcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkeyRDT0xPUl9QUklNQVJZXzB9O1xyXG4gICAgY29sb3I6ICR7JENPTE9SX0ZPUkVHUk9VTkRfUkVWRVJTRX07XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIHBhZGRpbmc6IDFlbTtcclxuYDtcclxuXHJcbmNvbnN0IFRhc2tMaXN0ID0gU3R5bGVkLmRpdmBcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgbWFyZ2luLXRvcDogMWVtO1xyXG5gO1xyXG5cclxuLy8jZW5kcmVnaW9uXHJcblxyXG5jbGFzcyBUb2RvTGlzdCBleHRlbmRzIFJlYWN0LkNvbXBvbmVudDxJVGFza0xpc3QsIHt9PiB7XHJcbiAgICBwdWJsaWMgY29tcG9uZW50RGlkTW91bnQoKSB7XHJcbiAgICAgICAgLy8g44GT44KM44GM44GC44KL44Go55S76Z2i44GM55yf44Gj55m944Gr44Gq44KLXHJcblxyXG4gICAgICAgIC8vc3RvcmUuZGlzcGF0Y2goY3JlYXRlU2hvd1Rhc2tzQWN0aW9uKFtdKSk7IFxyXG4gICAgfVxyXG4gICAgcHVibGljIHJlbmRlcigpIHtcclxuICAgICAgICBjb25zdCB7IHRhc2tzIH0gPSB0aGlzLnByb3BzO1xyXG4gICAgICAgIGNvbnN0IHRhc2tMaXN0RWxlbXMgPSB0YXNrcy5zb3J0KChhLCBiKSA9PiB7IFxyXG4gICAgICAgICAgICByZXR1cm4gKGEuZGVhZGxpbmUgPCBiLmRlYWRsaW5lKSA/IC0xXHJcbiAgICAgICAgICAgICAgICA6IChhLmRlYWRsaW5lLmdldFRpbWUoKSA9PT0gYi5kZWFkbGluZS5nZXRUaW1lKCkpID8gMCA6IDE7XHJcbiAgICAgICAgfSkubWFwKChpdCkgPT4ge1xyXG4gICAgICAgICAgICByZXR1cm4gPGRpdj48L2Rpdj47XHJcbiAgICAgICAgICAgIC8qXHJcbiAgICAgICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgICAgICA8VGFza1JvdyBrZXk9e2l0LmlkfSB7Li4uaXR9IC8+IFxyXG4gICAgICAgICAgICApO1xyXG4gICAgICAgICAgICAqL1xyXG4gICAgICAgIH0pO1xyXG4gICAgICAgIFxyXG4gICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgICAgICA8SGVhZGVyPlRPRE88L0hlYWRlcj5cclxuICAgICAgICAgICAgICAgIDxNYWluQ29udGFpbmVyPlxyXG4gICAgICAgICAgICAgICAgICAgIDxBZGRUYXNrIHRhc2tOYW1lPVwiXCIgZGVhZGxpbmU9e01vbWVudCgpLmFkZCgxICwgJ2RheXMnKS50b0RhdGUoKX0gLz5cclxuICAgICAgICAgICAgICAgICAgICA8VGFza0xpc3Q+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHt0YXNrTGlzdEVsZW1zfVxyXG4gICAgICAgICAgICAgICAgICAgIDwvVGFza0xpc3Q+XHJcbiAgICAgICAgICAgICAgICA8L01haW5Db250YWluZXI+XHJcbiAgICAgICAgICAgICAgICA8TG9hZGluZyBzaG93bj17dGhpcy5wcm9wcy5zaG93bkxvYWRpbmd9IC8+ey8qIDwt6L+95YqgICovfVxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICApO1xyXG4gICAgfVxyXG59XHJcblxyXG5jb25zdCBtYXBTdGF0ZVRvUHJvcHMgPSAoc3RhdGU6IElUYXNrU3RhdGUpOiBJVGFza0xpc3QgPT4ge1xyXG4gICAgcmV0dXJuIHN0YXRlLnRhc2tMaXN0O1xyXG59O1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgY29ubmVjdChtYXBTdGF0ZVRvUHJvcHMpKFRvZG9MaXN0KTsiXX0=
+exports.default = TaskRow;
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGFza1Jvdy5qcyIsInNvdXJjZVJvb3QiOiIuL3RzeC8iLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvVGFza1Jvdy50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLGtEQUE0QjtBQUM1QixnREFBMEI7QUFDMUIsd0VBQXVDO0FBRXZDLG9FQUFtRztBQUVuRyxtREFBNkI7QUFDN0IsdURBQWdGO0FBRWhGLGdCQUFnQjtBQUNoQjs7R0FFRztBQUNILElBQU0sSUFBSSxHQUFHLDJCQUFNLENBQUMsR0FBRyxxZkFBeUIsb0RBRXhCLEVBQXNELDRYQWU3RSxLQWZ1QixVQUFDLENBQUMsSUFBSyxPQUFBLENBQUMsQ0FBQyxVQUFVLENBQUMsQ0FBQyxDQUFDLFNBQVMsQ0FBQyxDQUFDLENBQUMsdUNBQW9CLEVBQS9DLENBQStDLENBZTdFLENBQUM7QUFDRjs7R0FFRztBQUNILElBQU0sWUFBWSxHQUFHLDJCQUFNLENBQUMsR0FBRyxpVEFBQSw4T0FXOUIsSUFBQSxDQUFDO0FBQ0Y7O0dBRUc7QUFDSCxJQUFNLFNBQVMsR0FBRywyQkFBTSxDQUFDLENBQUMsK0dBQUEsZUFDYixFQUFvQiwyQkFFaEMsS0FGWSx1Q0FBb0IsQ0FFaEMsQ0FBQztBQUNGOztHQUVHO0FBQ0gsSUFBTSxRQUFRLEdBQUcsMkJBQU0sQ0FBQyxHQUFHLHNOQUFBLG1KQU8xQixJQUFBLENBQUM7QUFDRjs7R0FFRztBQUNILElBQU0sVUFBVSxHQUFHLDJCQUFNLENBQUMsR0FBRywrR0FBQSw0Q0FHNUIsSUFBQSxDQUFDO0FBQ0Y7O0dBRUc7QUFDSCxJQUFNLFFBQVEsR0FBRywyQkFBTSxDQUFDLEdBQUcsNkZBQUEsMEJBRTFCLElBQUEsQ0FBQztBQUVGOztHQUVHO0FBQ0gsSUFBTSxRQUFRLEdBQUcsMkJBQU0sQ0FBQyxHQUFHLHVFQUFBLElBQzFCLElBQUEsQ0FBQztBQUVGLFlBQVk7QUFFWjtJQUFzQiwyQkFBMEI7SUFBaEQ7UUFBQSxxRUFrQ0M7UUFkRzs7V0FFRztRQUNLLGdCQUFVLEdBQUcsVUFBQyxFQUFVLEVBQUUsQ0FBZ0M7WUFDOUQsZUFBSyxDQUFDLFFBQVEsQ0FBQywrQ0FBMEIsQ0FBQyxFQUFFLEVBQUUsZUFBSyxDQUFDLENBQUMsQ0FBQztRQUMxRCxDQUFDLENBQUE7UUFDRDs7V0FFRztRQUNLLG1CQUFhLEdBQUcsVUFBQyxFQUFVLEVBQUcsQ0FBbUI7WUFDckQsZUFBSyxDQUFDLFFBQVEsQ0FBQywyQ0FBc0IsQ0FBQyxFQUFFLEVBQUUsZUFBSyxDQUFDLENBQUMsQ0FBQztZQUNsRCxzQkFBc0I7WUFDdEIsQ0FBQyxDQUFDLGVBQWUsRUFBRSxDQUFDO1FBQ3hCLENBQUMsQ0FBQTs7SUFDTCxDQUFDO0lBakNVLHdCQUFNLEdBQWI7UUFDSSxJQUFNLEVBQUUsR0FBRyxJQUFJLENBQUMsS0FBSyxDQUFDO1FBQ3RCLElBQU0sY0FBYyxHQUFHLGdCQUFNLENBQUMsRUFBRSxDQUFDLFFBQVEsQ0FBQyxDQUFDLE1BQU0sQ0FBQyxrQkFBa0IsQ0FBQyxDQUFDO1FBQ3RFLE9BQU8sQ0FDSCw4QkFBQyxJQUFJLElBQUMsVUFBVSxFQUFFLElBQUksSUFBSSxFQUFFLEdBQUcsRUFBRSxDQUFDLFFBQVEsSUFBSSxFQUFFLENBQUMsUUFBUSxFQUNyRCxPQUFPLEVBQUUsSUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsSUFBSSxFQUFFLEVBQUUsQ0FBQyxFQUFFLENBQUM7WUFDMUMsOEJBQUMsWUFBWTtnQkFDVCw4QkFBQyxTQUFTLFFBQ0wsRUFBRSxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQ2pCLENBQ0Q7WUFDZiw4QkFBQyxRQUFRO2dCQUNMLDhCQUFDLFFBQVEsUUFBRSxFQUFFLENBQUMsUUFBUSxDQUFZO2dCQUNsQyw4QkFBQyxRQUFROztvQkFBRyxjQUFjLENBQVksQ0FDL0I7WUFDWCw4QkFBQyxVQUFVLElBQUMsT0FBTyxFQUFFLElBQUksQ0FBQyxhQUFhLENBQUMsSUFBSSxDQUFDLElBQUksRUFBRSxFQUFFLENBQUMsRUFBRSxDQUFDLGFBQWdCLENBQ3RFLENBQ1YsQ0FBQztJQUNOLENBQUM7SUFlTCxjQUFDO0FBQUQsQ0FBQyxBQWxDRCxDQUFzQixlQUFLLENBQUMsU0FBUyxHQWtDcEM7QUFFRCxrQkFBZSxPQUFPLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgTW9tZW50IGZyb20gJ21vbWVudCc7XHJcbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBTdHlsZWQgZnJvbSAnc3R5bGVkLWNvbXBvbmVudHMnO1xyXG5cclxuaW1wb3J0IHsgY3JlYXRlRGVsZXRlVGFza0FjdGlvbiwgY3JlYXRlVG9nZ2xlQ29tcGxldGVBY3Rpb24gfSBmcm9tICcuLi9hY3Rpb25zL1Rhc2tBY3Rpb25DcmVhdG9ycyc7XHJcbmltcG9ydCB7IElUYXNrIH0gZnJvbSAnLi4vc3RhdGVzL0lUYXNrJztcclxuaW1wb3J0IHN0b3JlIGZyb20gJy4uL1N0b3JlJztcclxuaW1wb3J0IHsgJENPTE9SX1NFQ09OREFSWV8xXzMsICRDT0xPUl9TRUNPTkRBUllfMl8wIH0gZnJvbSAnLi9Gb3VuZGF0aW9uU3R5bGVzJztcclxuXHJcbi8vI3JlZ2lvbiBzdHlsZWRcclxuLyoqXHJcbiAqIOihjOOBruWkp+WkluaeoC4uLigxKVxyXG4gKi9cclxuY29uc3QgVGFzayA9IFN0eWxlZC5kaXY8e2V4cGlyYXRpb246IGJvb2xlYW47IH0+YFxyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICR7KHApID0+IHAuZXhwaXJhdGlvbiA/ICdpbmhlcml0JyA6ICRDT0xPUl9TRUNPTkRBUllfMl8wfTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIGJvcmRlcjogMXB4IHNvbGlkIHJnYigyMDAsMjAwLDIwMCk7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgIG1hcmdpbi1ib3R0b206IDFlbTtcclxuICAgIHBhZGRpbmc6IDEwcHg7XHJcbiAgICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAuMnM7XHJcbiAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBhbGw7XHJcbiAgICAvKiAoMikgKi9cclxuICAgICY6aG92ZXIge1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01cHgsIC01cHgpO1xyXG4gICAgICAgIGJveC1zaGFkb3c6IDVweCA1cHggNXB4IHJnYmEoMjAwLDIwMCwyMDAsNCk7XHJcbiAgICB9XHJcbmA7XHJcbi8qKlxyXG4gKiDjgr/jgrnjgq/lrozkuobjga7jg4Hjgqfjg4Pjgq/jgqLjgqTjgrPjg7PooajnpLog5p6gXHJcbiAqL1xyXG5jb25zdCBUYXNrQ2hlY2tCb3ggPSBTdHlsZWQuZGl2YFxyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgICBib3JkZXI6IDJweCBzb2xpZCAjY2NjO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgZmxleC1ncm93OiAwO1xyXG4gICAgZmxleC1zaHJpbms6IDA7XHJcbiAgICBoZWlnaHQ6IDJlbTtcclxuICAgIHdpZHRoOiAyZW07XHJcbmA7XHJcbi8qKlxyXG4gKiDjgr/jgrnjgq/lrozkuobjg4Hjgqfjg4Pjgq/jgqLjgqTjgrPjg7NcclxuICovXHJcbmNvbnN0IFRhc2tDaGVjayA9IFN0eWxlZC5wYFxyXG4gICAgY29sb3I6ICR7JENPTE9SX1NFQ09OREFSWV8xXzN9O1xyXG4gICAgZm9udC1zaXplOiAxNTAlO1xyXG5gO1xyXG4vKipcclxuICog44K/44K544Kv5ZCN44Go5pyf5pel44Gu6KGo56S6IOaeoFxyXG4gKi9cclxuY29uc3QgVGFza0JvZHkgPSBTdHlsZWQuZGl2YFxyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBmbGV4LWdyb3c6IDE7XHJcbiAgICBmbGV4LXNocmluazogMDtcclxuICAgIGhlaWdodDogM2VtO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1hcm91bmQ7XHJcbmA7XHJcbi8qKlxyXG4gKiDjgr/jgrnjgq/liYrpmaTjgqLjgqTjgrPjg7NcclxuICovXHJcbmNvbnN0IFRhc2tSZW1vdmUgPSBTdHlsZWQuZGl2YFxyXG4gICAgZmxleC1ncm93OiAwO1xyXG4gICAgZmxleC1zaHJpbms6IDA7XHJcbmA7XHJcbi8qKlxyXG4gKiDjgr/jgrnjgq/lkI1cclxuICovXHJcbmNvbnN0IFRhc2tOYW1lID0gU3R5bGVkLmRpdmBcclxuICAgIGZvbnQtc2l6ZTogMTIwJTtcclxuYDtcclxuXHJcbi8qKlxyXG4gKiDmnJ/ml6VcclxuICovXHJcbmNvbnN0IERlYWRsaW5lID0gU3R5bGVkLmRpdmBcclxuYDtcclxuXHJcbi8vI2VuZHJlZ2lvblxyXG5cclxuY2xhc3MgVGFza1JvdyBleHRlbmRzIFJlYWN0LkNvbXBvbmVudDxJVGFzaywge30+IHtcclxuICAgIHB1YmxpYyByZW5kZXIoKSB7XHJcbiAgICAgICAgY29uc3QgaXQgPSB0aGlzLnByb3BzO1xyXG4gICAgICAgIGNvbnN0IGRlYWRsaW5lU3RyaW5nID0gTW9tZW50KGl0LmRlYWRsaW5lKS5mb3JtYXQoJ1lZWVktTU0tREQgaGg6bW0nKTtcclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICA8VGFzayBleHBpcmF0aW9uPXtuZXcgRGF0ZSgpIDwgaXQuZGVhZGxpbmUgfHwgaXQuY29tcGxldGV9XHJcbiAgICAgICAgICAgICAgICBvbkNsaWNrPXt0aGlzLm9uQ2xpY2tCb3guYmluZCh0aGlzLCBpdC5pZCl9PlxyXG4gICAgICAgICAgICAgICAgPFRhc2tDaGVja0JveD5cclxuICAgICAgICAgICAgICAgICAgICA8VGFza0NoZWNrPlxyXG4gICAgICAgICAgICAgICAgICAgICAgICB7aXQuY29tcGxldGUgPyAn4pyUJyA6IG51bGx9XHJcbiAgICAgICAgICAgICAgICAgICAgPC9UYXNrQ2hlY2s+XHJcbiAgICAgICAgICAgICAgICA8L1Rhc2tDaGVja0JveD5cclxuICAgICAgICAgICAgICAgIDxUYXNrQm9keT5cclxuICAgICAgICAgICAgICAgICAgICA8VGFza05hbWU+e2l0LnRhc2tOYW1lfTwvVGFza05hbWU+XHJcbiAgICAgICAgICAgICAgICAgICAgPERlYWRsaW5lPuKPsHtkZWFkbGluZVN0cmluZ308L0RlYWRsaW5lPlxyXG4gICAgICAgICAgICAgICAgPC9UYXNrQm9keT5cclxuICAgICAgICAgICAgICAgIDxUYXNrUmVtb3ZlIG9uQ2xpY2s9e3RoaXMub25DbGlja0RlbGV0ZS5iaW5kKHRoaXMsIGl0LmlkKX0+4p2MPC9UYXNrUmVtb3ZlPlxyXG4gICAgICAgICAgICA8L1Rhc2s+XHJcbiAgICAgICAgKTtcclxuICAgIH1cclxuICAgIC8qKlxyXG4gICAgICog44Oc44OD44Kv44K544KS44Kv44Oq44OD44Kv44GZ44KL44Go44CB44K/44K544Kv5a6M5LqGIDwtPiDmnKrlrozkuoYg44GM44OI44Kw44Or44GZ44KLXHJcbiAgICAgKi9cclxuICAgIHByaXZhdGUgb25DbGlja0JveCA9IChpZDogc3RyaW5nLCBlOiBSZWFjdC5Nb3VzZUV2ZW50PEhUTUxFbGVtZW50PikgPT4ge1xyXG4gICAgICAgIHN0b3JlLmRpc3BhdGNoKGNyZWF0ZVRvZ2dsZUNvbXBsZXRlQWN0aW9uKGlkLCBzdG9yZSkpO1xyXG4gICAgfVxyXG4gICAgLyoqXHJcbiAgICAgKiDliYrpmaTjg5zjgr/jg7PjgpLmirzjgZnjgajjgIHjgr/jgrnjgq/jgpLliYrpmaTjgZnjgotcclxuICAgICAqL1xyXG4gICAgcHJpdmF0ZSBvbkNsaWNrRGVsZXRlID0gKGlkOiBzdHJpbmcsICBlOiBSZWFjdC5Nb3VzZUV2ZW50KSA9PiB7XHJcbiAgICAgICAgc3RvcmUuZGlzcGF0Y2goY3JlYXRlRGVsZXRlVGFza0FjdGlvbihpZCwgc3RvcmUpKTtcclxuICAgICAgICAvLyDjgq/jg6rjg4Pjgq/jgqTjg5njg7Pjg4jjgpLopqropoHntKDjga7kvJ3mkq3jgZXjgZvjgarjgYRcclxuICAgICAgICBlLnN0b3BQcm9wYWdhdGlvbigpO1xyXG4gICAgfVxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBUYXNrUm93OyJdfQ==
 
 /***/ }),
 
@@ -57663,25 +64975,16 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var react_dom_1 = __importDefault(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));
 var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js"); // 追加
 var TaskList_1 = __importDefault(__webpack_require__(/*! ./components/TaskList */ "./ts/components/TaskList.tsx"));
-var TaskStore_1 = __importDefault(__webpack_require__(/*! ./TaskStore */ "./ts/TaskStore.ts")); // 追加
+var Store_1 = __importDefault(__webpack_require__(/*! ./Store */ "./ts/Store.ts")); // 追加
 var styled_components_1 = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 var FoundationStyles_1 = __webpack_require__(/*! ./components/FoundationStyles */ "./ts/components/FoundationStyles.ts");
 var container = document.getElementById('contents');
-/*
-ReactDom.render(
-    <Provider store={UserStore}>
-        <UserForm />
-    </Provider>,
-    container,
-);
-
-*/
 react_dom_1.default.render(react_1.default.createElement("div", null,
-    react_1.default.createElement(react_redux_1.Provider, { store: TaskStore_1.default },
+    react_1.default.createElement(react_redux_1.Provider, { store: Store_1.default },
         react_1.default.createElement(TaskList_1.default, null)),
     react_1.default.createElement(styled_components_1.ThemeProvider, { theme: {} },
         react_1.default.createElement(FoundationStyles_1.GlobalStyle, { theme: "" }))), container);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJpbmRleC50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxnREFBMEI7QUFDMUIsd0RBQWlDO0FBQ2pDLDJDQUF1QyxDQUFDLEtBQUs7QUFFN0MsbUVBQTZDO0FBRTdDLDBEQUFvQyxDQUFDLEtBQUs7QUFDMUMsdURBQWtEO0FBQ2xELGtFQUE0RDtBQUc1RCxJQUFNLFNBQVMsR0FBRyxRQUFRLENBQUMsY0FBYyxDQUFDLFVBQVUsQ0FBQyxDQUFDO0FBQ3REOzs7Ozs7OztFQVFFO0FBQ0YsbUJBQVEsQ0FBQyxNQUFNLENBQ1g7SUFDSSw4QkFBQyxzQkFBUSxJQUFDLEtBQUssRUFBRSxtQkFBUztRQUN0Qiw4QkFBQyxrQkFBUSxPQUFHLENBQ0w7SUFDWCw4QkFBQyxpQ0FBYSxJQUFDLEtBQUssRUFBRSxFQUFFO1FBQ3BCLDhCQUFDLDhCQUFXLElBQUMsS0FBSyxFQUFDLEVBQUUsR0FBRyxDQUNaLENBQ2QsRUFDTixTQUFTLENBQ1osQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBSZWFjdERvbSBmcm9tICdyZWFjdC1kb20nO1xyXG5pbXBvcnQgeyBQcm92aWRlciB9IGZyb20gJ3JlYWN0LXJlZHV4JzsgLy8g6L+95YqgXHJcbmltcG9ydCBVc2VyRm9ybSBmcm9tICcuL2NvbXBvbmVudHMvVXNlckZvcm0nOyAvLyDov73liqBcclxuaW1wb3J0IFRhc2tMaXN0IGZyb20gJy4vY29tcG9uZW50cy9UYXNrTGlzdCc7XHJcbmltcG9ydCBVc2VyU3RvcmUgZnJvbSAnLi9Vc2VyU3RvcmUnOyAvLyDov73liqBcclxuaW1wb3J0IFRhc2tTdG9yZSBmcm9tICcuL1Rhc2tTdG9yZSc7IC8vIOi/veWKoFxyXG5pbXBvcnQgeyBUaGVtZVByb3ZpZGVyIH0gZnJvbSAnc3R5bGVkLWNvbXBvbmVudHMnO1xyXG5pbXBvcnQgeyBHbG9iYWxTdHlsZSB9IGZyb20gJy4vY29tcG9uZW50cy9Gb3VuZGF0aW9uU3R5bGVzJztcclxuXHJcblxyXG5jb25zdCBjb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY29udGVudHMnKTtcclxuLypcclxuUmVhY3REb20ucmVuZGVyKFxyXG4gICAgPFByb3ZpZGVyIHN0b3JlPXtVc2VyU3RvcmV9PlxyXG4gICAgICAgIDxVc2VyRm9ybSAvPlxyXG4gICAgPC9Qcm92aWRlcj4sXHJcbiAgICBjb250YWluZXIsXHJcbik7XHJcblxyXG4qL1xyXG5SZWFjdERvbS5yZW5kZXIoXHJcbiAgICA8ZGl2PlxyXG4gICAgICAgIDxQcm92aWRlciBzdG9yZT17VGFza1N0b3JlfT5cclxuICAgICAgICAgICAgPFRhc2tMaXN0IC8+XHJcbiAgICAgICAgPC9Qcm92aWRlcj5cclxuICAgICAgICA8VGhlbWVQcm92aWRlciB0aGVtZT17e319PlxyXG4gICAgICAgICAgICA8R2xvYmFsU3R5bGUgdGhlbWU9XCJcIiAvPlxyXG4gICAgICAgIDwvVGhlbWVQcm92aWRlcj5cclxuICAgIDwvZGl2PixcclxuICAgIGNvbnRhaW5lcixcclxuKTsiXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJpbmRleC50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxnREFBMEI7QUFDMUIsd0RBQWlDO0FBQ2pDLDJDQUF1QyxDQUFDLEtBQUs7QUFDN0MsbUVBQTZDO0FBQzdDLGtEQUFnQyxDQUFDLEtBQUs7QUFDdEMsdURBQWtEO0FBQ2xELGtFQUE0RDtBQUc1RCxJQUFNLFNBQVMsR0FBRyxRQUFRLENBQUMsY0FBYyxDQUFDLFVBQVUsQ0FBQyxDQUFDO0FBQ3RELG1CQUFRLENBQUMsTUFBTSxDQUNYO0lBQ0ksOEJBQUMsc0JBQVEsSUFBQyxLQUFLLEVBQUUsZUFBUztRQUN0Qiw4QkFBQyxrQkFBUSxPQUFHLENBQ0w7SUFDWCw4QkFBQyxpQ0FBYSxJQUFDLEtBQUssRUFBRSxFQUFFO1FBQ3BCLDhCQUFDLDhCQUFXLElBQUMsS0FBSyxFQUFDLEVBQUUsR0FBRyxDQUNaLENBQ2QsRUFDTixTQUFTLENBQ1osQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBSZWFjdERvbSBmcm9tICdyZWFjdC1kb20nO1xyXG5pbXBvcnQgeyBQcm92aWRlciB9IGZyb20gJ3JlYWN0LXJlZHV4JzsgLy8g6L+95YqgXHJcbmltcG9ydCBUYXNrTGlzdCBmcm9tICcuL2NvbXBvbmVudHMvVGFza0xpc3QnO1xyXG5pbXBvcnQgVGFza1N0b3JlIGZyb20gJy4vU3RvcmUnOyAvLyDov73liqBcclxuaW1wb3J0IHsgVGhlbWVQcm92aWRlciB9IGZyb20gJ3N0eWxlZC1jb21wb25lbnRzJztcclxuaW1wb3J0IHsgR2xvYmFsU3R5bGUgfSBmcm9tICcuL2NvbXBvbmVudHMvRm91bmRhdGlvblN0eWxlcyc7XHJcblxyXG5cclxuY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvbnRlbnRzJyk7XHJcblJlYWN0RG9tLnJlbmRlcihcclxuICAgIDxkaXY+XHJcbiAgICAgICAgPFByb3ZpZGVyIHN0b3JlPXtUYXNrU3RvcmV9PlxyXG4gICAgICAgICAgICA8VGFza0xpc3QgLz5cclxuICAgICAgICA8L1Byb3ZpZGVyPlxyXG4gICAgICAgIDxUaGVtZVByb3ZpZGVyIHRoZW1lPXt7fX0+XHJcbiAgICAgICAgICAgIDxHbG9iYWxTdHlsZSB0aGVtZT1cIlwiIC8+XHJcbiAgICAgICAgPC9UaGVtZVByb3ZpZGVyPlxyXG4gICAgPC9kaXY+LFxyXG4gICAgY29udGFpbmVyLFxyXG4pOyJdfQ==
 
 /***/ }),
 
@@ -57739,15 +65042,12 @@ a2RMapper.addWork(Action.DELETE_TASK, function (state, action) {
     // 指定したID以外のオブジェクトを抽出し、それを新しいリストとする
     state.tasks = tasks.filter(function (it) { return it.id !== action.taskId; });
 });
-a2RMapper.addWork(Action.TOGGLE_SHOW_SPINNER, function (state, action) {
-    state.shownLoading = !state.shownLoading;
-});
 /** Reducer 本体 */
 exports.TaskReducer = function (state, action) {
     if (state === void 0) { state = ITask_1.initTaskList; }
     return a2RMapper.execute(state, action);
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGFza1JlZHVjZXIuanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJyZWR1Y2Vycy9UYXNrUmVkdWNlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSxnREFBMEI7QUFHMUIsNkRBQWlEO0FBQ2pELHlDQUFzRTtBQUN0RSx5RkFBNkQ7QUFFN0QsSUFBTSxTQUFTLEdBQUcsK0JBQWUsRUFBYSxDQUFDO0FBRS9DLGlCQUFpQjtBQUNqQixTQUFTLENBQUMsT0FBTyxDQUNiLE1BQU0sQ0FBQyxVQUFVLEVBQ2pCLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDVixLQUFLLENBQUMsS0FBSyxHQUFHLGVBQUssQ0FBQyxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUM7QUFDdEMsQ0FBQyxDQUNKLENBQUM7QUFFRixlQUFlO0FBQ2YsU0FBUyxDQUFDLE9BQU8sQ0FDYixNQUFNLENBQUMsUUFBUSxFQUNmLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDVixLQUFLLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxrQkFBVSxDQUFDLE1BQU0sQ0FBQyxRQUFRLEVBQUUsTUFBTSxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUM7QUFDbkUsQ0FBQyxDQUNKLENBQUM7QUFFRix1QkFBdUI7QUFDdkIsU0FBUyxDQUFDLE9BQU8sQ0FDYixNQUFNLENBQUMsb0JBQW9CLEVBQzNCLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDSCxJQUFBLG1CQUFLLENBQVU7SUFDdEIsYUFBYTtJQUNiLDRCQUE0QjtJQUM1QixJQUFNLE1BQU0sR0FBRyxLQUFLLENBQUMsSUFBSSxDQUFDLFVBQUMsRUFBRSxJQUFLLE9BQUEsRUFBRSxDQUFDLEVBQUUsS0FBSyxNQUFNLENBQUMsTUFBTSxFQUF2QixDQUF1QixDQUFDLENBQUM7SUFDM0QsSUFBSSxDQUFDLE1BQU0sRUFBRTtRQUFFLE9BQU87S0FBRTtJQUN4QixNQUFNLENBQUMsUUFBUSxHQUFHLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQztBQUN2QyxDQUFDLENBQ0osQ0FBQztBQUVGLGVBQWU7QUFDZixTQUFTLENBQUMsT0FBTyxDQUNiLE1BQU0sQ0FBQyxXQUFXLEVBQ2xCLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDSCxJQUFBLG1CQUFLLENBQVU7SUFDdEIsSUFBTSxNQUFNLEdBQUcsS0FBSyxDQUFDLElBQUksQ0FBQyxVQUFDLEVBQUUsSUFBSyxPQUFBLEVBQUUsQ0FBQyxFQUFFLEtBQUssTUFBTSxDQUFDLE1BQU0sRUFBdkIsQ0FBdUIsQ0FBQyxDQUFDO0lBQzNELElBQUksQ0FBQyxNQUFNLEVBQUU7UUFBRSxPQUFPO0tBQUU7SUFDeEIsbUNBQW1DO0lBQ25DLEtBQUssQ0FBQyxLQUFLLEdBQUcsS0FBSyxDQUFDLE1BQU0sQ0FBQyxVQUFDLEVBQUUsSUFBSyxPQUFBLEVBQUUsQ0FBQyxFQUFFLEtBQUssTUFBTSxDQUFDLE1BQU0sRUFBdkIsQ0FBdUIsQ0FBQyxDQUFDO0FBQ2hFLENBQUMsQ0FDSixDQUFDO0FBQ0YsU0FBUyxDQUFDLE9BQU8sQ0FDYixNQUFNLENBQUMsbUJBQW1CLEVBQzFCLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDVixLQUFLLENBQUMsWUFBWSxHQUFHLENBQUMsS0FBSyxDQUFDLFlBQVksQ0FBQztBQUM3QyxDQUFDLENBQ0osQ0FBQztBQUNGLGlCQUFpQjtBQUNKLFFBQUEsV0FBVyxHQUE2QixVQUFDLEtBQW9CLEVBQUUsTUFBTTtJQUE1QixzQkFBQSxFQUFBLFFBQVEsb0JBQVk7SUFDdEUsT0FBTyxTQUFTLENBQUMsT0FBTyxDQUFDLEtBQUssRUFBRSxNQUFNLENBQUMsQ0FBQztBQUM1QyxDQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgQ2xvbmUgZnJvbSAnY2xvbmUnO1xyXG5pbXBvcnQgUmVkdXggZnJvbSAncmVkdXgnO1xyXG5cclxuaW1wb3J0ICogYXMgQWN0aW9uIGZyb20gJy4uL2FjdGlvbnMvVGFza0FjdGlvbnMnO1xyXG5pbXBvcnQgeyBjcmVhdGVUYXNrLCBpbml0VGFza0xpc3QsIElUYXNrTGlzdCB9IGZyb20gJy4uL3N0YXRlcy9JVGFzayc7XHJcbmltcG9ydCBjcmVhdGVBMlJNYXBwZXIgZnJvbSAnLi4vdXRpbHMvQWN0aW9uVG9SZWR1Y2VyTWFwcGVyJztcclxuXHJcbmNvbnN0IGEyUk1hcHBlciA9IGNyZWF0ZUEyUk1hcHBlcjxJVGFza0xpc3Q+KCk7XHJcblxyXG4vKiog44K/44K544Kv5LiA6Kan44KS6KGo56S644GZ44KLICovXHJcbmEyUk1hcHBlci5hZGRXb3JrPEFjdGlvbi5JU2hvd1Rhc2tBY3Rpb24+KFxyXG4gICAgQWN0aW9uLlNIT1dfVEFTS1MsXHJcbiAgICAoc3RhdGUsIGFjdGlvbikgPT4ge1xyXG4gICAgICAgIHN0YXRlLnRhc2tzID0gQ2xvbmUoYWN0aW9uLnRhc2tzKTtcclxuICAgIH0sXHJcbik7XHJcblxyXG4vKiog44K/44K544Kv44KS6L+95Yqg44GZ44KLICovXHJcbmEyUk1hcHBlci5hZGRXb3JrPEFjdGlvbi5JQWRkVGFza0FjdGlvbj4oXHJcbiAgICBBY3Rpb24uQUREX1RBU0ssXHJcbiAgICAoc3RhdGUsIGFjdGlvbikgPT4ge1xyXG4gICAgICAgIHN0YXRlLnRhc2tzLnB1c2goY3JlYXRlVGFzayhhY3Rpb24udGFza05hbWUsIGFjdGlvbi5kZWFkbGluZSkpO1xyXG4gICAgfSxcclxuKTtcclxuXHJcbi8qKiDjgr/jgrnjgq/jgpLlrozkuoYv5pyq5a6M5LqG44KS5YiH44KK5pu/44GI44KLICovXHJcbmEyUk1hcHBlci5hZGRXb3JrPEFjdGlvbi5JVG9nZ2xlQ29tcGxldGVBY3Rpb24+KFxyXG4gICAgQWN0aW9uLlRPR0dMRV9DT01QTEVURV9UQVNLLFxyXG4gICAgKHN0YXRlLCBhY3Rpb24pID0+IHtcclxuICAgICAgICBjb25zdCB7dGFza3N9ID0gc3RhdGU7XHJcbiAgICAgICAgLy8g5LiK6KiY44Gv5LiL6KiY44Go5ZCM44GY5oSP5ZGzXHJcbiAgICAgICAgLy8gY29uc3QgdGFza3MgPSBzdGF0ZS50YXNrc1xyXG4gICAgICAgIGNvbnN0IHRhcmdldCA9IHRhc2tzLmZpbmQoKGl0KSA9PiBpdC5pZCA9PT0gYWN0aW9uLnRhc2tJZCk7XHJcbiAgICAgICAgaWYgKCF0YXJnZXQpIHsgcmV0dXJuOyB9XHJcbiAgICAgICAgdGFyZ2V0LmNvbXBsZXRlID0gIXRhcmdldC5jb21wbGV0ZTtcclxuICAgIH0sXHJcbik7XHJcblxyXG4vKiog44K/44K544Kv44KS5YmK6Zmk44GZ44KLICovXHJcbmEyUk1hcHBlci5hZGRXb3JrPEFjdGlvbi5JRGVsZXRlQWN0aW9uPihcclxuICAgIEFjdGlvbi5ERUxFVEVfVEFTSyxcclxuICAgIChzdGF0ZSwgYWN0aW9uKSA9PiB7XHJcbiAgICAgICAgY29uc3Qge3Rhc2tzfSA9IHN0YXRlO1xyXG4gICAgICAgIGNvbnN0IHRhcmdldCA9IHRhc2tzLmZpbmQoKGl0KSA9PiBpdC5pZCA9PT0gYWN0aW9uLnRhc2tJZCk7XHJcbiAgICAgICAgaWYgKCF0YXJnZXQpIHsgcmV0dXJuOyB9XHJcbiAgICAgICAgLy8g5oyH5a6a44GX44GfSUTku6XlpJbjga7jgqrjg5bjgrjjgqfjgq/jg4jjgpLmir3lh7rjgZfjgIHjgZ3jgozjgpLmlrDjgZfjgYTjg6rjgrnjg4jjgajjgZnjgotcclxuICAgICAgICBzdGF0ZS50YXNrcyA9IHRhc2tzLmZpbHRlcigoaXQpID0+IGl0LmlkICE9PSBhY3Rpb24udGFza0lkKTtcclxuICAgIH0sXHJcbik7XHJcbmEyUk1hcHBlci5hZGRXb3JrPEFjdGlvbi5JVG9nZ2xlU2hvd1NwaW5uZXJBY3Rpb24+KFxyXG4gICAgQWN0aW9uLlRPR0dMRV9TSE9XX1NQSU5ORVIsXHJcbiAgICAoc3RhdGUsIGFjdGlvbikgPT4ge1xyXG4gICAgICAgIHN0YXRlLnNob3duTG9hZGluZyA9ICFzdGF0ZS5zaG93bkxvYWRpbmc7XHJcbiAgICB9LFxyXG4pO1xyXG4vKiogUmVkdWNlciDmnKzkvZMgKi9cclxuZXhwb3J0IGNvbnN0IFRhc2tSZWR1Y2VyOiBSZWR1eC5SZWR1Y2VyPElUYXNrTGlzdD4gPSAoc3RhdGUgPSBpbml0VGFza0xpc3QsIGFjdGlvbikgPT4ge1xyXG4gICAgcmV0dXJuIGEyUk1hcHBlci5leGVjdXRlKHN0YXRlLCBhY3Rpb24pO1xyXG59OyJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGFza1JlZHVjZXIuanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJyZWR1Y2Vycy9UYXNrUmVkdWNlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSxnREFBMEI7QUFHMUIsNkRBQWlEO0FBQ2pELHlDQUFzRTtBQUN0RSx5RkFBNkQ7QUFFN0QsSUFBTSxTQUFTLEdBQUcsK0JBQWUsRUFBYSxDQUFDO0FBRS9DLGlCQUFpQjtBQUNqQixTQUFTLENBQUMsT0FBTyxDQUNiLE1BQU0sQ0FBQyxVQUFVLEVBQ2pCLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDVixLQUFLLENBQUMsS0FBSyxHQUFHLGVBQUssQ0FBQyxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUM7QUFDdEMsQ0FBQyxDQUNKLENBQUM7QUFFRixlQUFlO0FBQ2YsU0FBUyxDQUFDLE9BQU8sQ0FDYixNQUFNLENBQUMsUUFBUSxFQUNmLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDVixLQUFLLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxrQkFBVSxDQUFDLE1BQU0sQ0FBQyxRQUFRLEVBQUUsTUFBTSxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUM7QUFDbkUsQ0FBQyxDQUNKLENBQUM7QUFFRix1QkFBdUI7QUFDdkIsU0FBUyxDQUFDLE9BQU8sQ0FDYixNQUFNLENBQUMsb0JBQW9CLEVBQzNCLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDSCxJQUFBLG1CQUFLLENBQVU7SUFDdEIsYUFBYTtJQUNiLDRCQUE0QjtJQUM1QixJQUFNLE1BQU0sR0FBRyxLQUFLLENBQUMsSUFBSSxDQUFDLFVBQUMsRUFBRSxJQUFLLE9BQUEsRUFBRSxDQUFDLEVBQUUsS0FBSyxNQUFNLENBQUMsTUFBTSxFQUF2QixDQUF1QixDQUFDLENBQUM7SUFDM0QsSUFBSSxDQUFDLE1BQU0sRUFBRTtRQUFFLE9BQU87S0FBRTtJQUN4QixNQUFNLENBQUMsUUFBUSxHQUFHLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQztBQUN2QyxDQUFDLENBQ0osQ0FBQztBQUVGLGVBQWU7QUFDZixTQUFTLENBQUMsT0FBTyxDQUNiLE1BQU0sQ0FBQyxXQUFXLEVBQ2xCLFVBQUMsS0FBSyxFQUFFLE1BQU07SUFDSCxJQUFBLG1CQUFLLENBQVU7SUFDdEIsSUFBTSxNQUFNLEdBQUcsS0FBSyxDQUFDLElBQUksQ0FBQyxVQUFDLEVBQUUsSUFBSyxPQUFBLEVBQUUsQ0FBQyxFQUFFLEtBQUssTUFBTSxDQUFDLE1BQU0sRUFBdkIsQ0FBdUIsQ0FBQyxDQUFDO0lBQzNELElBQUksQ0FBQyxNQUFNLEVBQUU7UUFBRSxPQUFPO0tBQUU7SUFDeEIsbUNBQW1DO0lBQ25DLEtBQUssQ0FBQyxLQUFLLEdBQUcsS0FBSyxDQUFDLE1BQU0sQ0FBQyxVQUFDLEVBQUUsSUFBSyxPQUFBLEVBQUUsQ0FBQyxFQUFFLEtBQUssTUFBTSxDQUFDLE1BQU0sRUFBdkIsQ0FBdUIsQ0FBQyxDQUFDO0FBQ2hFLENBQUMsQ0FDSixDQUFDO0FBQ0YsaUJBQWlCO0FBQ0osUUFBQSxXQUFXLEdBQTZCLFVBQUMsS0FBb0IsRUFBRSxNQUFNO0lBQTVCLHNCQUFBLEVBQUEsUUFBUSxvQkFBWTtJQUN0RSxPQUFPLFNBQVMsQ0FBQyxPQUFPLENBQUMsS0FBSyxFQUFFLE1BQU0sQ0FBQyxDQUFDO0FBQzVDLENBQUMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBDbG9uZSBmcm9tICdjbG9uZSc7XHJcbmltcG9ydCBSZWR1eCBmcm9tICdyZWR1eCc7XHJcblxyXG5pbXBvcnQgKiBhcyBBY3Rpb24gZnJvbSAnLi4vYWN0aW9ucy9UYXNrQWN0aW9ucyc7XHJcbmltcG9ydCB7IGNyZWF0ZVRhc2ssIGluaXRUYXNrTGlzdCwgSVRhc2tMaXN0IH0gZnJvbSAnLi4vc3RhdGVzL0lUYXNrJztcclxuaW1wb3J0IGNyZWF0ZUEyUk1hcHBlciBmcm9tICcuLi91dGlscy9BY3Rpb25Ub1JlZHVjZXJNYXBwZXInO1xyXG5cclxuY29uc3QgYTJSTWFwcGVyID0gY3JlYXRlQTJSTWFwcGVyPElUYXNrTGlzdD4oKTtcclxuXHJcbi8qKiDjgr/jgrnjgq/kuIDopqfjgpLooajnpLrjgZnjgosgKi9cclxuYTJSTWFwcGVyLmFkZFdvcms8QWN0aW9uLklTaG93VGFza0FjdGlvbj4oXHJcbiAgICBBY3Rpb24uU0hPV19UQVNLUyxcclxuICAgIChzdGF0ZSwgYWN0aW9uKSA9PiB7XHJcbiAgICAgICAgc3RhdGUudGFza3MgPSBDbG9uZShhY3Rpb24udGFza3MpO1xyXG4gICAgfSxcclxuKTtcclxuXHJcbi8qKiDjgr/jgrnjgq/jgpLov73liqDjgZnjgosgKi9cclxuYTJSTWFwcGVyLmFkZFdvcms8QWN0aW9uLklBZGRUYXNrQWN0aW9uPihcclxuICAgIEFjdGlvbi5BRERfVEFTSyxcclxuICAgIChzdGF0ZSwgYWN0aW9uKSA9PiB7XHJcbiAgICAgICAgc3RhdGUudGFza3MucHVzaChjcmVhdGVUYXNrKGFjdGlvbi50YXNrTmFtZSwgYWN0aW9uLmRlYWRsaW5lKSk7XHJcbiAgICB9LFxyXG4pO1xyXG5cclxuLyoqIOOCv+OCueOCr+OCkuWujOS6hi/mnKrlrozkuobjgpLliIfjgormm7/jgYjjgosgKi9cclxuYTJSTWFwcGVyLmFkZFdvcms8QWN0aW9uLklUb2dnbGVDb21wbGV0ZUFjdGlvbj4oXHJcbiAgICBBY3Rpb24uVE9HR0xFX0NPTVBMRVRFX1RBU0ssXHJcbiAgICAoc3RhdGUsIGFjdGlvbikgPT4ge1xyXG4gICAgICAgIGNvbnN0IHt0YXNrc30gPSBzdGF0ZTtcclxuICAgICAgICAvLyDkuIroqJjjga/kuIvoqJjjgajlkIzjgZjmhI/lkbNcclxuICAgICAgICAvLyBjb25zdCB0YXNrcyA9IHN0YXRlLnRhc2tzXHJcbiAgICAgICAgY29uc3QgdGFyZ2V0ID0gdGFza3MuZmluZCgoaXQpID0+IGl0LmlkID09PSBhY3Rpb24udGFza0lkKTtcclxuICAgICAgICBpZiAoIXRhcmdldCkgeyByZXR1cm47IH1cclxuICAgICAgICB0YXJnZXQuY29tcGxldGUgPSAhdGFyZ2V0LmNvbXBsZXRlO1xyXG4gICAgfSxcclxuKTtcclxuXHJcbi8qKiDjgr/jgrnjgq/jgpLliYrpmaTjgZnjgosgKi9cclxuYTJSTWFwcGVyLmFkZFdvcms8QWN0aW9uLklEZWxldGVBY3Rpb24+KFxyXG4gICAgQWN0aW9uLkRFTEVURV9UQVNLLFxyXG4gICAgKHN0YXRlLCBhY3Rpb24pID0+IHtcclxuICAgICAgICBjb25zdCB7dGFza3N9ID0gc3RhdGU7XHJcbiAgICAgICAgY29uc3QgdGFyZ2V0ID0gdGFza3MuZmluZCgoaXQpID0+IGl0LmlkID09PSBhY3Rpb24udGFza0lkKTtcclxuICAgICAgICBpZiAoIXRhcmdldCkgeyByZXR1cm47IH1cclxuICAgICAgICAvLyDmjIflrprjgZfjgZ9JROS7peWkluOBruOCquODluOCuOOCp+OCr+ODiOOCkuaKveWHuuOBl+OAgeOBneOCjOOCkuaWsOOBl+OBhOODquOCueODiOOBqOOBmeOCi1xyXG4gICAgICAgIHN0YXRlLnRhc2tzID0gdGFza3MuZmlsdGVyKChpdCkgPT4gaXQuaWQgIT09IGFjdGlvbi50YXNrSWQpO1xyXG4gICAgfSxcclxuKTtcclxuLyoqIFJlZHVjZXIg5pys5L2TICovXHJcbmV4cG9ydCBjb25zdCBUYXNrUmVkdWNlcjogUmVkdXguUmVkdWNlcjxJVGFza0xpc3Q+ID0gKHN0YXRlID0gaW5pdFRhc2tMaXN0LCBhY3Rpb24pID0+IHtcclxuICAgIHJldHVybiBhMlJNYXBwZXIuZXhlY3V0ZShzdGF0ZSwgYWN0aW9uKTtcclxufTsiXX0=
 
 /***/ }),
 
@@ -57766,7 +65066,6 @@ var uuid_1 = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
  * タスクのリストの初期値
  */
 exports.initTaskList = {
-    shownLoading: false,
     tasks: [],
 };
 /**
@@ -57782,7 +65081,7 @@ exports.createTask = function (taskName, deadline) {
         taskName: taskName,
     };
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSVRhc2suanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJzdGF0ZXMvSVRhc2sudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2QkFBa0M7QUF1QmxDOztHQUVHO0FBQ1UsUUFBQSxZQUFZLEdBQWM7SUFDbkMsWUFBWSxFQUFFLEtBQUs7SUFDbkIsS0FBSyxFQUFFLEVBQUU7Q0FDWixDQUFDO0FBQ0Y7Ozs7R0FJRztBQUNVLFFBQUEsVUFBVSxHQUFHLFVBQUMsUUFBZ0IsRUFBRSxRQUFjO0lBQ3ZELE9BQU87UUFDSCxRQUFRLEVBQUUsS0FBSztRQUNmLFFBQVEsVUFBQTtRQUNSLEVBQUUsRUFBRSxTQUFJLEVBQUU7UUFDVixRQUFRLFVBQUE7S0FDWCxDQUFDO0FBQ04sQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdjQgYXMgVVVJRCB9IGZyb20gJ3V1aWQnO1xyXG4vKipcclxuICog44K/44K544KvXHJcbiAqL1xyXG5leHBvcnQgaW50ZXJmYWNlIElUYXNrIHtcclxuICAgIC8qKiDlrozkuobjg5Xjg6njgrAgKi9cclxuICAgIGNvbXBsZXRlOiBib29sZWFuO1xyXG4gICAgLyoqIOacn+mZkCAqL1xyXG4gICAgZGVhZGxpbmU6IERhdGU7XHJcbiAgICAvKiog44K/44K544Kv44KS5LiA5oSP44Gr5Yik5pat44GZ44KLSUQgKFVVSUQpICovXHJcbiAgICBpZDogc3RyaW5nO1xyXG4gICAgLyoqIOOCv+OCueOCr+OBruWQjeWJjSAqL1xyXG4gICAgdGFza05hbWU6IHN0cmluZztcclxufVxyXG4vKipcclxuICog44K/44K544Kv44Gu44Oq44K544OIXHJcbiAqL1xyXG5leHBvcnQgaW50ZXJmYWNlIElUYXNrTGlzdCB7XHJcbiAgICAvKiog44Ot44O844OH44Kj44Oz44Kw6KGo56S6ICoqL1xyXG4gICAgc2hvd25Mb2FkaW5nOiBib29sZWFuO1xyXG4gICAgLyoqIOOCv+OCueOCr+OBruS4gOimpyAqL1xyXG4gICAgdGFza3M6IElUYXNrW107XHJcbn1cclxuLyoqXHJcbiAqIOOCv+OCueOCr+OBruODquOCueODiOOBruWIneacn+WApFxyXG4gKi9cclxuZXhwb3J0IGNvbnN0IGluaXRUYXNrTGlzdDogSVRhc2tMaXN0ID0ge1xyXG4gICAgc2hvd25Mb2FkaW5nOiBmYWxzZSxcclxuICAgIHRhc2tzOiBbXSxcclxufTtcclxuLyoqXHJcbiAqIOOCv+OCueOCr+OCkuS9nOaIkOOBmeOCi1xyXG4gKiBAcGFyYW0gdGFza05hbWUg44K/44K544Kv5ZCNXHJcbiAqIEBwYXJhbSBkZWFkbGluZSDmnJ/pmZBcclxuICovXHJcbmV4cG9ydCBjb25zdCBjcmVhdGVUYXNrID0gKHRhc2tOYW1lOiBzdHJpbmcsIGRlYWRsaW5lOiBEYXRlKTogSVRhc2sgPT4ge1xyXG4gICAgcmV0dXJuIHtcclxuICAgICAgICBjb21wbGV0ZTogZmFsc2UsXHJcbiAgICAgICAgZGVhZGxpbmUsXHJcbiAgICAgICAgaWQ6IFVVSUQoKSxcclxuICAgICAgICB0YXNrTmFtZSxcclxuICAgIH07XHJcbn07XHJcbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSVRhc2suanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJzdGF0ZXMvSVRhc2sudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2QkFBa0M7QUFxQmxDOztHQUVHO0FBQ1UsUUFBQSxZQUFZLEdBQWM7SUFDbkMsS0FBSyxFQUFFLEVBQUU7Q0FDWixDQUFDO0FBQ0Y7Ozs7R0FJRztBQUNVLFFBQUEsVUFBVSxHQUFHLFVBQUMsUUFBZ0IsRUFBRSxRQUFjO0lBQ3ZELE9BQU87UUFDSCxRQUFRLEVBQUUsS0FBSztRQUNmLFFBQVEsVUFBQTtRQUNSLEVBQUUsRUFBRSxTQUFJLEVBQUU7UUFDVixRQUFRLFVBQUE7S0FDWCxDQUFDO0FBQ04sQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdjQgYXMgVVVJRCB9IGZyb20gJ3V1aWQnO1xyXG4vKipcclxuICog44K/44K544KvXHJcbiAqL1xyXG5leHBvcnQgaW50ZXJmYWNlIElUYXNrIHtcclxuICAgIC8qKiDlrozkuobjg5Xjg6njgrAgKi9cclxuICAgIGNvbXBsZXRlOiBib29sZWFuO1xyXG4gICAgLyoqIOacn+mZkCAqL1xyXG4gICAgZGVhZGxpbmU6IERhdGU7XHJcbiAgICAvKiog44K/44K544Kv44KS5LiA5oSP44Gr5Yik5pat44GZ44KLSUQgKFVVSUQpICovXHJcbiAgICBpZDogc3RyaW5nO1xyXG4gICAgLyoqIOOCv+OCueOCr+OBruWQjeWJjSAqL1xyXG4gICAgdGFza05hbWU6IHN0cmluZztcclxufVxyXG4vKipcclxuICog44K/44K544Kv44Gu44Oq44K544OIXHJcbiAqL1xyXG5leHBvcnQgaW50ZXJmYWNlIElUYXNrTGlzdCB7XHJcbiAgICAvKiog44K/44K544Kv44Gu5LiA6KanICovXHJcbiAgICB0YXNrczogSVRhc2tbXTtcclxufVxyXG4vKipcclxuICog44K/44K544Kv44Gu44Oq44K544OI44Gu5Yid5pyf5YCkXHJcbiAqL1xyXG5leHBvcnQgY29uc3QgaW5pdFRhc2tMaXN0OiBJVGFza0xpc3QgPSB7XHJcbiAgICB0YXNrczogW10sXHJcbn07XHJcbi8qKlxyXG4gKiDjgr/jgrnjgq/jgpLkvZzmiJDjgZnjgotcclxuICogQHBhcmFtIHRhc2tOYW1lIOOCv+OCueOCr+WQjVxyXG4gKiBAcGFyYW0gZGVhZGxpbmUg5pyf6ZmQXHJcbiAqL1xyXG5leHBvcnQgY29uc3QgY3JlYXRlVGFzayA9ICh0YXNrTmFtZTogc3RyaW5nLCBkZWFkbGluZTogRGF0ZSk6IElUYXNrID0+IHtcclxuICAgIHJldHVybiB7XHJcbiAgICAgICAgY29tcGxldGU6IGZhbHNlLFxyXG4gICAgICAgIGRlYWRsaW5lLFxyXG4gICAgICAgIGlkOiBVVUlEKCksXHJcbiAgICAgICAgdGFza05hbWUsXHJcbiAgICB9O1xyXG59OyJdfQ==
 
 /***/ }),
 
