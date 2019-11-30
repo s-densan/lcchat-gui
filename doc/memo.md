@@ -12,7 +12,12 @@ npx create-react-app ts-react-app --typescript
 npm install --save redux react-redux
 npm install -D @types/react-redux
 npm install --save typescript-fsa typescript-fsa-reducers
-
+```
+いいかんじ。
+次はelectron対応。
+なんかようわからんけど、いずれにしてもElectronを入れるにはbabelとかいう謎のものを入れる必要がありそう。
+```
+npm i babel-core babel-loader babel-preset-env -D
 ```
 ### 20191129 
 さっぱりわからん。真っ白画面になる。どうもasyncとかawaitとかのあたりがだめっぽい。それかファイル保存しているところか。
