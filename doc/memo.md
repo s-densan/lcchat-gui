@@ -3,7 +3,17 @@
 ## 記録
 
 ### 20191130 
+いろんなやり方で環境構築。
 https://qiita.com/maecho/items/c34de805101ae489532e
+#### 関東最速
+https://qiita.com/IzumiSy/items/b7d8a96eacd2cd8ad510
+```
+npx create-react-app ts-react-app --typescript
+npm install --save redux react-redux
+npm install -D @types/react-redux
+npm install --save typescript-fsa typescript-fsa-reducers
+
+```
 ### 20191129 
 さっぱりわからん。真っ白画面になる。どうもasyncとかawaitとかのあたりがだめっぽい。それかファイル保存しているところか。
 やってみたこと
