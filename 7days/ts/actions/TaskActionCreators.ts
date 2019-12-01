@@ -72,7 +72,7 @@ export const createAddTaskAction =
             const taskList = store.getState().taskList;
             // オンにすると真っ白画面。
 
-            saveState(taskList.tasks);
+            await saveState(taskList.tasks);
             const action = {
                 type: TOGGLE_SHOW_SPINNER,
             };
@@ -110,7 +110,7 @@ export const createToggleCompleteAction =
                 type: TOGGLE_COMPLETE_TASK,
             });
             const taskList = store.getState().taskList;
-            //await saveState(taskList.tasks);
+            await saveState(taskList.tasks);
             store.dispatch<IToggleShowSpinnerAction>({
                 type: TOGGLE_SHOW_SPINNER,
             });
@@ -127,7 +127,7 @@ export const createDeleteTaskAction = (taskId: string, store: Store<IState>): IT
     (async () => {
         store.dispatch<IDeleteAction>({ taskId, type: DELETE_TASK });
         const taskList = store.getState().taskList;
-        // await saveState(taskList.tasks);
+        await saveState(taskList.tasks);
         store.dispatch<IToggleShowSpinnerAction>({
             type: TOGGLE_SHOW_SPINNER,
         });
@@ -144,15 +144,15 @@ export const createLoadTasksAction = (dispatch: Dispatch): IToggleShowSpinnerAct
     // ファイルを非同期で読み込む
     let tasks: ITask[] = [];
     // データファイルの存在チェック
-    //loadTask().then((jsonData) => {
+    loadTask().then((jsonData) => {
         // 読み込んだデータで値を表示する
         // 実際にはデータの内容をチェックする必要がある
-        // tasks = jsonData.data as ITask[];
-        // dispatch(createShowTasksAction(tasks));
-        // dispatch<IToggleShowSpinnerAction>({
-            // type: TOGGLE_SHOW_SPINNER,
-        // });
-    //});
+        tasks = jsonData.data as ITask[];
+        dispatch(createShowTasksAction(tasks));
+        dispatch<IToggleShowSpinnerAction>({
+            type: TOGGLE_SHOW_SPINNER,
+        });
+    });
     return {
         type: TOGGLE_SHOW_SPINNER,
     };

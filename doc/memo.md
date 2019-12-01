@@ -7,6 +7,59 @@
 と思ったけど、やっぱfs-extraも悪さしているみたい。みんな悪い子。
 なにか設定が足りんのかしら。
 ![](./img/2019-12-01-23-39-27.png)
+
+
+→きたー！！これか、requireが働いていなかったのか。クソかよ。
+Electron + Node.js 使用時の “Uncaught ReferenceError: require is not defined” への対処
+https://qiita.com/okadato623/items/f8b7573ad911ca97ba49
+
+``main.js``の``createWindow``を以下のように変える。
+Before
+```js
+function createWindow() {
+    // ブラウザウィンドウの作成
+    win = new BrowserWindow({
+        width: 800,
+        height: 600
+    })
+    // index.html をロードする
+    win.loadFile('index.html')
+    // 起動オプションに、 "--debug"があれば開発者ツールを起動する
+    if (process.argv.find((arg) => arg === '--debug')) {
+        win.webContents.openDevTools()
+    }
+    // ブラウザウィンドウを閉じたときのイベントハンドラ
+    win.on('closed', () => {
+        // 閉じたウィンドウオブジェクトにはアクセスできない
+        win = null
+    })
+}
+```
+After
+```js
+function createWindow() {
+    // ブラウザウィンドウの作成
+    win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        }
+ 
+    })
+    // index.html をロードする
+    win.loadFile('index.html')
+    // 起動オプションに、 "--debug"があれば開発者ツールを起動する
+    if (process.argv.find((arg) => arg === '--debug')) {
+        win.webContents.openDevTools()
+    }
+    // ブラウザウィンドウを閉じたときのイベントハンドラ
+    win.on('closed', () => {
+        // 閉じたウィンドウオブジェクトにはアクセスできない
+        win = null
+    })
+}
+```
 ### 20191201
 TypeScript の async/await を Electron で使ってみる
 https://aquasoftware.net/blog/?p=694

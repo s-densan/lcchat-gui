@@ -11,7 +11,11 @@ function createWindow() {
     // ブラウザウィンドウの作成
     win = new BrowserWindow({
         width: 800,
-        height: 600
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true
+        }
+ 
     })
     // index.html をロードする
     win.loadFile('index.html')
