@@ -20,7 +20,7 @@
     "@types/uuid": "^3.4.6",
     "clone": "^2.1.2",
     "css-loader": "^3.2.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "8.0.1",
     "graceful-fs": "^4.2.3",
     "moment": "^2.24.0",
     "react": "^16.12.0",

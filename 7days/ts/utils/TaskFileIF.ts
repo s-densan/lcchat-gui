@@ -1,4 +1,4 @@
-import FsEx from 'fs-extra'; // ...(a)
+//import FsEx from 'fs-extra'; // ...(a)
 import OS from 'os';
 import Path from 'path';
 
@@ -11,6 +11,7 @@ const dataFilePath = Path.join(OS.homedir(), 'todo.json');
 * ファイルからタスクのデータをロードする
 */
 export const loadTask = async () => {
+    /*
     const exist = await FsEx.pathExists(dataFilePath); // ...(b)
     if (!exist) { // ...(c)
         // データファイルがなけれが、ファイルを作成して、初期データを保存する
@@ -31,6 +32,7 @@ export const loadTask = async () => {
     // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
     await setTimeoutPromise(1000);
     return jsonData;
+    */
 };
 
 /**
@@ -54,7 +56,7 @@ export const saveState = async (taskList: ITask[]) => {
 */
 export const saveState = async (taskList: ITask[]) => {
     // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
-    await setTimeoutPromise(1000);
+    //setTimeout(1000);
     /*await FsEx.writeJSON(dataFilePath, { data: taskList }, {
         replacer: (key: string, value: any) => {
             if (key !== 'deadline') { return value; }
