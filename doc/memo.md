@@ -2,6 +2,41 @@
 
 ## 記録
 
+### 20191201
+TypeScript の async/await を Electron で使ってみる
+https://aquasoftware.net/blog/?p=694
+
+Electron+typescriptでasyncが使えない件だが、ここのサンプルはちゃんと動くのです。不思議。
+Reactだとだめなんかな。
+
+で、モジュールインポートの方式が今まで見てきたTypescriptのソースと異なるのだが、なんでだろう？
+モジュール側1
+```ts
+export const waitAsync = async function waitAsync(n: number): Promise<number> {
+    var startTime = Date.now();
+    var timeInterval = await new Promise<number>((resolve) => setTimeout(() => resolve(Date.now() - startTime), n));
+    tryLog(`waited ${timeInterval}ms (@${process.type})`);
+    return timeInterval;
+}
+```
+モジュール側2
+```ts
+module.exports.waitAsync = async function waitAsync(n: number): Promise<number> {
+    var startTime = Date.now();
+    var timeInterval = await new Promise<number>((resolve) => setTimeout(() => resolve(Date.now() - startTime), n));
+    tryLog(`waited ${timeInterval}ms (@${process.type})`);
+    return timeInterval;
+}
+```
+インポート側1
+```ts
+import {waitAsync, process} from './asyncTest';
+```
+インポート側2
+```ts
+var asyncClient = require('./asyncTest');
+```
+
 ### 20191130 
 いろんなやり方で環境構築。
 https://qiita.com/maecho/items/c34de805101ae489532e
