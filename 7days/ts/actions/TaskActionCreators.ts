@@ -2,7 +2,7 @@ import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
 import { IState } from '../IStore';
 import { ITask } from '../states/ITask';
-import { loadTask, saveState, tes } from '../utils/TaskFileIF';
+import { loadTask, saveState } from '../utils/TaskFileIF';
 import {
     ADD_TASK,
     DELETE_TASK,
@@ -71,7 +71,6 @@ export const createAddTaskAction =
             store.dispatch(addAction);
             const taskList = store.getState().taskList;
             // オンにすると真っ白画面。
-            // await tes();
 
             saveState(taskList.tasks);
             const action = {

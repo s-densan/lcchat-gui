@@ -2,6 +2,11 @@
 
 ## 記録
 
+### 20191201-2
+どうも``import OS from 'os'``が悪さをしているように見える。なんでやねん。
+と思ったけど、やっぱfs-extraも悪さしているみたい。みんな悪い子。
+なにか設定が足りんのかしら。
+![](./img/2019-12-01-23-39-27.png)
 ### 20191201
 TypeScript の async/await を Electron で使ってみる
 https://aquasoftware.net/blog/?p=694

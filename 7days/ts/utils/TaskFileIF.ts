@@ -1,11 +1,12 @@
 //import FsEx from 'fs-extra'; // ...(a)
-import OS from 'os';
+import {homedir} from 'os';
 import Path from 'path';
 
 import { ITask } from '../states/ITask';
 
 // OSごとのユーザーのプロファイルフォルダに保存される
-const dataFilePath = Path.join(OS.homedir(), 'todo.json');
+const dataFilePath = Path.join(homedir(), 'todo.json');
+//const dataFilePath = "c:/test.json"
 
 /**
 * ファイルからタスクのデータをロードする
@@ -33,14 +34,13 @@ export const loadTask = async () => {
     await setTimeoutPromise(1000);
     return jsonData;
     */
-   return "";
 };
 
 /**
 * ファイルにタスクのデータを保存する
 */
-/*
 export const saveState = async (taskList: ITask[]) => {
+    /*
     // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
     await setTimeoutPromise(1000);
     await FsEx.writeJSON(dataFilePath, { data: taskList }, {
@@ -50,24 +50,11 @@ export const saveState = async (taskList: ITask[]) => {
         },
         spaces: 2,
     });
+    */
 };
-*/
 /**
 * ファイルにタスクのデータを保存する
 */
-export const saveState = async (taskList: ITask[]) => {
-    // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
-    //setTimeout(1000);
-    /*await FsEx.writeJSON(dataFilePath, { data: taskList }, {
-        replacer: (key: string, value: any) => {
-            if (key !== 'deadline') { return value; }
-            return new Date((value as string)).getTime();
-        },
-        spaces: 2,
-    });*/
-};
-export const tes = async () => {
-};
 /** 指定ミリ秒 待つ関数 */
 const setTimeoutPromise = (count: number) => {
     return new Promise((resolve) => {
