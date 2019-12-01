@@ -36,6 +36,7 @@ export const loadTask = async () => {
 /**
 * ファイルにタスクのデータを保存する
 */
+/*
 export const saveState = async (taskList: ITask[]) => {
     // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
     await setTimeoutPromise(1000);
@@ -46,6 +47,21 @@ export const saveState = async (taskList: ITask[]) => {
         },
         spaces: 2,
     });
+};
+*/
+/**
+* ファイルにタスクのデータを保存する
+*/
+export const saveState = async (taskList: ITask[]) => {
+    // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
+    await setTimeoutPromise(1000);
+    /*await FsEx.writeJSON(dataFilePath, { data: taskList }, {
+        replacer: (key: string, value: any) => {
+            if (key !== 'deadline') { return value; }
+            return new Date((value as string)).getTime();
+        },
+        spaces: 2,
+    });*/
 };
 export const tes = async () => {
 };

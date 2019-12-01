@@ -73,7 +73,7 @@ export const createAddTaskAction =
             // オンにすると真っ白画面。
             // await tes();
 
-            //await saveState(taskList.tasks);
+            saveState(taskList.tasks);
             const action = {
                 type: TOGGLE_SHOW_SPINNER,
             };

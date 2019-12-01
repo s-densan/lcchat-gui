@@ -8,6 +8,7 @@ https://aquasoftware.net/blog/?p=694
 
 Electron+typescriptでasyncが使えない件だが、ここのサンプルはちゃんと動くのです。不思議。
 Reactだとだめなんかな。
+→なんか動かんくなった。もうわからんよ。複雑すぎる。
 
 で、モジュールインポートの方式が今まで見てきたTypescriptのソースと異なるのだが、なんでだろう？
 モジュール側1
