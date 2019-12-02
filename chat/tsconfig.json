@@ -69,6 +69,6 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "include": [
-    "ts/**/*", "../chat/ts/components/GridLayout.tsx"
+    "ts/**/*"
   ]
 }

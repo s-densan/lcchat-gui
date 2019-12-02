@@ -3,6 +3,10 @@
 ## 記録
 
 ### 20191202
+webpackのビルドを10倍高速化するプラグインの紹介
+https://qiita.com/kmdsbng/items/d23f9b5f5fbc8869baad
+
+### 20191202
 Electron+React.jsで作るチャットアプリ
 
 http://jesus9387.hatenablog.com/entry/2017/10/24/182438
