@@ -1,6 +1,0 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.initUser = {
-    name: '',
-};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSVVzZXIuanMiLCJzb3VyY2VSb290IjoiLi90c3gvIiwic291cmNlcyI6WyJzdGF0ZXMvSVVzZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFJYSxRQUFBLFFBQVEsR0FBVTtJQUMzQixJQUFJLEVBQUUsRUFBRTtDQUNYLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBpbnRlcmZhY2UgSVVzZXIge1xyXG4gICAgbmFtZTogc3RyaW5nO1xyXG59XHJcblxyXG5leHBvcnQgY29uc3QgaW5pdFVzZXI6IElVc2VyID0ge1xyXG4gICAgbmFtZTogJycsXHJcbn07Il19
