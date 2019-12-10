@@ -2,7 +2,7 @@ import Clone from 'clone';
 import Redux from 'redux';
 
 import * as Action from '../actions/TaskActions';
-import { createTask, initTaskList, ITaskList } from '../states/ITask';
+import { createTask, initTaskList, ITaskList } from '../states/IChatMessageBox';
 import createA2RMapper from '../utils/ActionToReducerMapper';
 
 const a2RMapper = createA2RMapper<ITaskList>();

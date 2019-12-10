@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { v4 as UUID } from 'uuid';
-import { ITask } from '../states/ITask';
+import { IChatMessage } from '../states/IChatMessageBox';
 
 /**
  * タスクの一覧を表示するアクションタイプ
@@ -10,7 +10,7 @@ export const SHOW_TASKS = UUID();
  * タスクの一覧を表示するアクション
  */
 export interface IShowTaskAction extends Action {
-    tasks: ITask[];
+    tasks: IChatMessage[];
 }
 /**
  * タスクを追加するアクションタイプ

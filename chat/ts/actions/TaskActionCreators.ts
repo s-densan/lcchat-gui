@@ -1,7 +1,7 @@
 import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
 import { IState } from '../IStore';
-import { ITask } from '../states/ITask';
+import { IChatMessage } from '../states/IChatMessageBox';
 import { loadTask, saveState } from '../utils/TaskFileIF';
 import {
     ADD_TASK,
@@ -20,9 +20,9 @@ import {
  * タスクの表示アクションを作成する
  * @param tasks 表示するタスクのリスト
  */
-export const createShowTasksAction = (tasks: ITask[]): IShowTaskAction => {
+export const createShowTasksAction = (tasks: IChatMessage[]): IShowTaskAction => {
     // 確認のため、ダミーデータをハードコーディングする
-    const dummyTasks: ITask[] = [
+    const dummyTasks: IChatMessage[] = [
         {
             complete: false,
             deadline: Moment().add(1, 'day').toDate(),
@@ -142,12 +142,12 @@ export const createDeleteTaskAction = (taskId: string, store: Store<IState>): IT
  */
 export const createLoadTasksAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
     // ファイルを非同期で読み込む
-    let tasks: ITask[] = [];
+    let tasks: IChatMessage[] = [];
     // データファイルの存在チェック
     loadTask().then((jsonData) => {
         // 読み込んだデータで値を表示する
         // 実際にはデータの内容をチェックする必要がある
-        tasks = jsonData.data as ITask[];
+        tasks = jsonData.data as IChatMessage[];
         dispatch(createShowTasksAction(tasks));
         dispatch<IToggleShowSpinnerAction>({
             type: TOGGLE_SHOW_SPINNER,

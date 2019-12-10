@@ -1,4 +1,4 @@
-import { ITaskList } from './states/ITask';
+import { ITaskList } from './states/IChatMessageBox';
 /**
  * store のデータ型を定義する。（親state）
  *

@@ -9,7 +9,7 @@ import TaskRow from './TaskRow';
 import { createLoadTasksAction } from '../actions/TaskActionCreators';
 import { createShowTasksAction } from '../actions/TaskActionCreators';
 import { IState } from '../IStore';
-import { ITaskList } from '../states/ITask';
+import { ITaskList } from '../states/IChatMessageBox';
 import store from '../Store';
 
 //#region styled

@@ -3,7 +3,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 import { createDeleteTaskAction, createToggleCompleteAction } from '../actions/TaskActionCreators';
-import { ITask } from '../states/ITask';
+import { IChatMessage } from '../states/IChatMessageBox';
 import store from '../Store';
 import { $COLOR_SECONDARY_1_3, $COLOR_SECONDARY_2_0 } from './FoundationStyles';
 
@@ -84,7 +84,7 @@ const Deadline = Styled.div`
 
 //#endregion
 
-class TaskRow extends React.Component<ITask, {}> {
+class TaskRow extends React.Component<IChatMessage, {}> {
     public render() {
         const it = this.props;
         const deadlineString = Moment(it.deadline).format('YYYY-MM-DD hh:mm');
