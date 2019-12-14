@@ -4,7 +4,7 @@ import { TaskReducer } from './reducers/TaskReducer';
 
 // 複数の reducer を束ねる
 const combinedReducer = combineReducers<IState>({
-        taskList: TaskReducer, // 追加
+        chatMessageList: TaskReducer, // 追加
 
 });
 

@@ -11,46 +11,62 @@ export interface IChatMessage {
     text: string;
     /** ユーザID */
     userId: string;
-    /** チャンネルID */
-    channelId: string;
+    /** トークID */
+    talkId: string;
     /** 投稿日時 */
-    postedAt: string;
+    postedAt: Date;
     /** メッセージデータ */
     messageData: string;
     /** 作成日時 */
-    createdAt: Date;
+    createdAt: Date | null;
     /** 更新日時 */
-    updatedAt: Date;
+    updatedAt: Date | null;
     /** 削除日時 */
-    deletedAt: Date;
+    deletedAt: Date | null;
 }
 /**
- * タスクのリスト
+ * メッセージのリスト
  */
-export interface ITaskList {
-    /** ローディング表示 */
-    shownLoading: boolean; // <- 追加
+export interface IChatMessageList {
     /** タスクの一覧 */
-    tasks: IChatMessage[];
+    chatMessages: IChatMessage[];
 }
 /**
- * タスクのリストの初期値
+ * メッセージのリストの初期値
  */
-export const initTaskList: ITaskList = {
-    shownLoading: false, // <- 追加
-    tasks: [],
+export const initChatMessageList: IChatMessageList = {
+    chatMessages: [],
 };
 
 /**
- * タスクを作成する
- * @param taskName タスク名
- * @param deadline 期限
+ * メッセージを作成する
+ * @param id メッセージを一意に判断するID
+ * @param messageId メッセージID
+ * @param text メッセージテキスト 
+ * @param userId ユーザID
  */
-export const createTask = (taskName: string, deadline: Date): IChatMessage => {
+export const createChatMessage = (
+    id: string,
+    messageId: string,
+    text: string,
+    userId: string,
+    talkId: string,
+    postedAt: Date,
+    messageData: string,
+    createdAt: Date | null,
+    updatedAt: Date | null,
+    deletedAt: Date | null,
+    ): IChatMessage => {
     return {
-        complete: false,
-        deadline,
-        id: UUID(),
-        taskName,
+        id: id,
+        messageId: messageId,
+        text: text,
+        userId: userId,
+        talkId: talkId,
+        postedAt: postedAt,
+        messageData: messageData,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+        deletedAt: deletedAt,
     };
 };

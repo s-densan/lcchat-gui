@@ -2,77 +2,105 @@ import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
 import { IState } from '../IStore';
 import { IChatMessage } from '../states/IChatMessageBox';
-import { loadTask, saveState } from '../utils/TaskFileIF';
+import { loadTask as loadChatMessage, saveState } from '../utils/TaskFileIF';
 import {
-    ADD_TASK,
-    DELETE_TASK,
-    IAddTaskAction,
+    ADD_TASK as ADD_CHAT_MESSAGE,
+    DELETE_TASK as DELETE_CHAT_MESSAGE,
+    IAddTaskAction as IAddChatMessageAction,
     IDeleteAction,
-    IShowTaskAction,
+    IShowTaskAction as IShowChatMessageAction,
     IToggleCompleteAction,
     IToggleShowSpinnerAction,
-    SHOW_TASKS,
+    SHOW_TASKS as SHOW_CHAT_MESSAGES,
     TOGGLE_COMPLETE_TASK,
     TOGGLE_SHOW_SPINNER,
 } from './TaskActions';
+import uuid from 'uuid';
+import { initTaskList } from '../states/ILcChatMessage';
 
 /**
  * タスクの表示アクションを作成する
- * @param tasks 表示するタスクのリスト
+ * @param chatMessages 表示するタスクのリスト
  */
-export const createShowTasksAction = (tasks: IChatMessage[]): IShowTaskAction => {
+export const createShowChatMessagesAction = (chatMessages: IChatMessage[]): IShowChatMessageAction => {
     // 確認のため、ダミーデータをハードコーディングする
-    const dummyTasks: IChatMessage[] = [
+    const dummyChatMessages: IChatMessage[] = [
         {
-            complete: false,
-            deadline: Moment().add(1, 'day').toDate(),
             id: '0',
-            taskName: 'task01',
+            messageId: 'm123456',
+            text: 'こんにちは',
+            userId: 'u123456',
+            talkId: 't123456',
+            postedAt: new Date(Date.now()),
+            messageData: 'task01',
+            createdAt: null,
+            updatedAt: null,
+            deletedAt: null,
         },
         {
-            complete: true,
-            deadline: Moment().add(1, 'day').toDate(),
             id: '1',
-            taskName: 'task02',
+            messageId: 'm123457',
+            text: 'こんにちは2',
+            userId: 'u123456',
+            talkId: 't123456',
+            postedAt: new Date(Date.now()),
+            messageData: 'task01',
+            createdAt: null,
+            updatedAt: null,
+            deletedAt: null,
         },
         {
-            complete: false,
-            deadline: Moment().add(-1, 'day').toDate(),
             id: '2',
-            taskName: 'task03',
-        },
-        {
-            complete: true,
-            deadline: Moment().add(-1, 'day').toDate(),
-            id: '3',
-            taskName: 'task04',
+            messageId: 'm123458',
+            text: 'こんにちは3',
+            userId: 'u123456',
+            talkId: 't123456',
+            postedAt: new Date(Date.now()),
+            messageData: 'task01',
+            createdAt: null,
+            updatedAt: null,
+            deletedAt: null,
         },
     ];
     return {
         // tasks, // 本来はこっち
-        tasks,
-        type: SHOW_TASKS,
+        chatMessages: chatMessages,
+        type: SHOW_CHAT_MESSAGES,
     };
 };
 
 /**
  * 新しいタスクを作成するアクションを作成する
- * @param taskName 新しいタスクの名前
- * @param deadline 新しいタクスの期限
+ * @param text 新しいタスクの名前
+ * @param postedAt 新しいタクスの期限
  */
-export const createAddTaskAction =
-    (taskName: string, deadline: Date, store: Store<IState>): IToggleShowSpinnerAction => {
+export const createAddChatMessageAction =
+    (
+        id: string,
+        messageId: string,
+        text: string,
+        userId: string,
+        talkId: string,
+        postedAt: Date,
+        messageData: string,
+        store: Store<IState>
+    ): IToggleShowSpinnerAction => {
         (async () => {
-            const addAction: IAddTaskAction = {
-                deadline,
-                taskName,
-                type: ADD_TASK,
+            const addAction: IAddChatMessageAction = {
+                id: id,
+                chatMessageId: messageId,
+                text: text,
+                userId: userId,
+                talkId: talkId,
+                postedAt: postedAt,
+                messageData: messageData,
+                type: ADD_CHAT_MESSAGE,
             };
             store.dispatch(addAction);
-            const taskList = store.getState().taskList;
+            const chatMessageList = store.getState().chatMessageList;
             // オンにすると真っ白画面。
 
-            await saveState(taskList.tasks);
+            await saveState(chatMessageList.chatMessages);
             const action = {
                 type: TOGGLE_SHOW_SPINNER,
             };
@@ -99,35 +127,14 @@ export const createAddTaskAction = (taskName: string, deadline: Date): IAddTaskA
 */
 
 /**
- * タスクの完了状態を切り替える
- * @param taskId 完了状態を切り替える対象のタスクのID
- */
-export const createToggleCompleteAction =
-    (taskId: string, store: Store<IState>): IToggleShowSpinnerAction => {
-        (async () => {
-            store.dispatch<IToggleCompleteAction>({
-                taskId,
-                type: TOGGLE_COMPLETE_TASK,
-            });
-            const taskList = store.getState().taskList;
-            await saveState(taskList.tasks);
-            store.dispatch<IToggleShowSpinnerAction>({
-                type: TOGGLE_SHOW_SPINNER,
-            });
-        })();
-        return {
-            type: TOGGLE_SHOW_SPINNER,
-        };
-    };
-/**
  * タスクを削除するアクションを作成する
- * @param taskId 削除するタスクのID
+ * @param chatMessageId 削除するタスクのID
  */
-export const createDeleteTaskAction = (taskId: string, store: Store<IState>): IToggleShowSpinnerAction => {
+export const createDeleteChatMessageAction = (chatMessageId: string, store: Store<IState>): IToggleShowSpinnerAction => {
     (async () => {
-        store.dispatch<IDeleteAction>({ taskId, type: DELETE_TASK });
-        const taskList = store.getState().taskList;
-        await saveState(taskList.tasks);
+        store.dispatch<IDeleteAction>({ chatMessageId: chatMessageId, type: DELETE_CHAT_MESSAGE });
+        const chatMessageList = store.getState().chatMessageList;
+        await saveState(chatMessageList.chatMessages);
         store.dispatch<IToggleShowSpinnerAction>({
             type: TOGGLE_SHOW_SPINNER,
         });
@@ -140,15 +147,15 @@ export const createDeleteTaskAction = (taskId: string, store: Store<IState>): IT
 /**
  * タスクロード開始のアクションを作成する
  */
-export const createLoadTasksAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
+export const createLoadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
     // ファイルを非同期で読み込む
-    let tasks: IChatMessage[] = [];
+    let chatMessages: IChatMessage[] = [];
     // データファイルの存在チェック
-    loadTask().then((jsonData) => {
+    loadChatMessage().then((jsonData) => {
         // 読み込んだデータで値を表示する
         // 実際にはデータの内容をチェックする必要がある
-        tasks = jsonData.data as IChatMessage[];
-        dispatch(createShowTasksAction(tasks));
+        chatMessages = jsonData.data as IChatMessage[];
+        dispatch(createShowChatMessagesAction(chatMessages));
         dispatch<IToggleShowSpinnerAction>({
             type: TOGGLE_SHOW_SPINNER,
         });

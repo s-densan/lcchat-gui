@@ -1,10 +1,10 @@
-import { ITaskList } from './states/IChatMessageBox';
+import { IChatMessageList } from './states/IChatMessageBox';
 /**
  * store のデータ型を定義する。（親state）
  *
  * プロパティには、管理する child_state を指定する
  */
 export interface IState {
-    taskList: ITaskList;
+    chatMessageList: IChatMessageList;
     // state が増えたら足していく
 }

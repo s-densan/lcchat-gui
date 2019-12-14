@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'; // 追加
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './components/FoundationStyles';
 import GridLayout from './components/GridLayout';
-import TaskList from './components/TaskList';
+import TaskList from './components/ChatMessageList';
 import TaskStore from './Store'; // 追加
 
 const container = document.getElementById('contents');

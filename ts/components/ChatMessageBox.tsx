@@ -2,7 +2,7 @@ import Moment from 'moment';
 import React from 'react';
 import Styled from 'styled-components';
 
-import { createDeleteTaskAction, createToggleCompleteAction } from '../actions/TaskActionCreators';
+import { createDeleteChatMessageAction} from '../actions/TaskActionCreators';
 import { IChatMessage } from '../states/IChatMessageBox';
 import store from '../Store';
 import { $COLOR_SECONDARY_1_3, $COLOR_SECONDARY_2_0 } from './FoundationStyles';
@@ -87,17 +87,17 @@ const Deadline = Styled.div`
 class ChatMessageBox extends React.Component<IChatMessage, {}> {
     public render() {
         const it = this.props;
-        const deadlineString = Moment(it.deadline).format('YYYY-MM-DD hh:mm');
+        const deadlineString = Moment(it.postedAt).format('YYYY-MM-DD hh:mm');
         return (
-            <Task expiration={new Date() < it.deadline || it.complete}
+            <Task expiration={it.deletedAt !== null}
                 onClick={this.onClickBox.bind(this, it.id)}>
                 <TaskCheckBox>
                     <TaskCheck>
-                        {it.complete ? '✔' : null}
+                        {it.deletedAt === null ? '✔' : null}
                     </TaskCheck>
                 </TaskCheckBox>
                 <TaskBody>
-                    <TaskName>{it.taskName}</TaskName>
+                    <TaskName>{it.text}</TaskName>
                     <Deadline>⏰{deadlineString}</Deadline>
                 </TaskBody>
                 <TaskRemove onClick={this.onClickDelete.bind(this, it.id)}>❌</TaskRemove>
@@ -108,13 +108,14 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
      * ボックスをクリックすると、タスク完了 <-> 未完了 がトグルする
      */
     private onClickBox = (id: string, e: React.MouseEvent<HTMLElement>) => {
-        store.dispatch(createToggleCompleteAction(id, store));
+        //store.dispatch(createToggleCompleteAction(id, store));
+        // do nothing
     }
     /**
      * 削除ボタンを押すと、タスクを削除する
      */
     private onClickDelete = (id: string,  e: React.MouseEvent) => {
-        store.dispatch(createDeleteTaskAction(id, store));
+        store.dispatch(createDeleteChatMessageAction(id, store));
         // クリックイベントを親要素の伝播させない
         e.stopPropagation();
     }

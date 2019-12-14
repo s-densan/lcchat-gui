@@ -5,11 +5,11 @@ import Styled from 'styled-components';
 import { AddTask } from './AddTask';
 import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
 import { Loading } from './Loading';
-import TaskRow from './TaskRow';
-import { createLoadTasksAction } from '../actions/TaskActionCreators';
-import { createShowTasksAction } from '../actions/TaskActionCreators';
+import ChatMessageRow from './ChatMessageBox';
+import { createLoadChatMessagesAction as createLoadChatMessageAction } from '../actions/TaskActionCreators';
+import { createShowChatMessagesAction as createShowChatMessageAction } from '../actions/TaskActionCreators';
 import { IState } from '../IStore';
-import { ITaskList } from '../states/IChatMessageBox';
+import { IChatMessageList } from '../states/IChatMessageBox';
 import store from '../Store';
 
 //#region styled
@@ -44,19 +44,23 @@ const TaskList = Styled.div`
 
 //#endregion
 
-class TodoList extends React.Component<ITaskList, {}> {
+
+class ChatMessageList extends React.Component<IChatMessageList, {}> {
     public componentDidMount() {
-        store.dispatch(createLoadTasksAction(store.dispatch));
-        store.dispatch(createShowTasksAction([]));
+        store.dispatch(createLoadChatMessageAction(store.dispatch));
+        store.dispatch(createShowChatMessageAction([]));
     }
     public render() {
-        const { tasks } = this.props;
-        const taskListElems = tasks.sort((a, b) => { // ...(b)
-            return (a.deadline < b.deadline) ? -1
-                : (a.deadline.getTime() === b.deadline.getTime()) ? 0 : 1;
+        const { chatMessages: tasks } = this.props;
+        const chatMessageListElems = tasks.sort((a, b) => { // ...(b)
+            var aval = a.createdAt === null ? new Date(1900, 1) : a.createdAt;
+            var bval = b.createdAt === null ? new Date(1900, 1) : b.createdAt;
+                
+            return (aval < bval) ? -1
+                : (aval.getTime() === bval.getTime()) ? 0 : 1;
         }).map((it) => {
             return (
-                <TaskRow key={it.id} {...it} /> // ...(c)
+                <ChatMessageRow key={it.id} {...it} /> // ...(c)
             );
         });
         return (
@@ -65,18 +69,18 @@ class TodoList extends React.Component<ITaskList, {}> {
                 <MainContainer>
                     <AddTask taskName="" deadline={Moment().add(1 , 'days').toDate()} />
                     <TaskList>
-                        {taskListElems}
+                        {chatMessageListElems}
                     </TaskList>
                 </MainContainer>
-                <Loading shown={this.props.shownLoading} />{/* <-追加 */}
             </div>
         );
+                // <Loading shown={this.props.shownLoading} />{/* <-追加 */}
 
     }
 }
 
-const mapStateToProps = (state: IState): ITaskList => {
-    return state.taskList;
+const mapStateToProps = (state: IState): IChatMessageList => {
+    return state.chatMessageList;
 };
 
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps)(ChatMessageList);
