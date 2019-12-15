@@ -9,13 +9,13 @@ export const SHOW_TASKS = UUID();
 /**
  * タスクの一覧を表示するアクション
  */
-export interface IShowTaskAction extends Action {
+export interface IShowChatMessageAction extends Action {
     chatMessages: IChatMessage[];
 }
 /**
  * タスクを追加するアクションタイプ
  */
-export const ADD_TASK = UUID();
+export const POST_CHAT_MESSAGE = UUID();
 /**
  * チャットメッセージを追加するアクション
  */
@@ -42,7 +42,7 @@ export interface IToggleCompleteAction extends Action {
 /**
  * タスク削除のアクションタイプ
  */
-export const DELETE_TASK = UUID();
+export const DELETE_CHAT_MESSAGE = UUID();
 
 /**
  * タスク削除のアクション

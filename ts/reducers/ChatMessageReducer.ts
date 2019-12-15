@@ -8,7 +8,7 @@ import createA2RMapper from '../utils/ActionToReducerMapper';
 const a2RMapper = createA2RMapper<IChatMessageList>();
 
 /** タスク一覧を表示する */
-a2RMapper.addWork<Action.IShowTaskAction>(
+a2RMapper.addWork<Action.IShowChatMessageAction>(
     Action.SHOW_TASKS,
     (state, action) => {
         state.chatMessages = Clone(action.chatMessages);
@@ -17,7 +17,7 @@ a2RMapper.addWork<Action.IShowTaskAction>(
 
 /** メッセージを追加する */
 a2RMapper.addWork<Action.IPostChatMessageAction>(
-    Action.ADD_TASK,
+    Action.POST_CHAT_MESSAGE,
     (state, action) => {
         state.chatMessages.push(createChatMessage(
             action.chatMessageId,
@@ -35,7 +35,7 @@ a2RMapper.addWork<Action.IPostChatMessageAction>(
 
 /** タスクを削除する */
 a2RMapper.addWork<Action.IDeleteAction>(
-    Action.DELETE_TASK,
+    Action.DELETE_CHAT_MESSAGE,
     (state, action) => {
         const {chatMessages: tasks} = state;
         const target = tasks.find((it) => it.id === action.chatMessageId);

@@ -2,13 +2,13 @@ import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
 import { IState } from '../IStore';
 import { IChatMessage } from '../states/IChatMessageBox';
-import { loadTask as loadChatMessage, saveState } from '../utils/TaskFileIF';
+import { loadChatMessage as loadChatMessage, saveState } from '../utils/ChatDatabaseIF';
 import {
-    ADD_TASK as ADD_CHAT_MESSAGE,
-    DELETE_TASK as DELETE_CHAT_MESSAGE,
+    POST_CHAT_MESSAGE as POST_CHAT_MESSAGE,
+    DELETE_CHAT_MESSAGE as DELETE_CHAT_MESSAGE,
     IPostChatMessageAction as IAddChatMessageAction,
     IDeleteAction,
-    IShowTaskAction as IShowChatMessageAction,
+    IShowChatMessageAction as IShowChatMessageAction,
     IToggleCompleteAction,
     IToggleShowSpinnerAction,
     SHOW_TASKS as SHOW_CHAT_MESSAGES,
@@ -16,7 +16,7 @@ import {
     TOGGLE_SHOW_SPINNER,
 } from './ChatMessageActions';
 import uuid from 'uuid';
-import { initTaskList } from '../states/ILcChatMessage';
+//import { initTaskList } from '../states/ILcChatMessage';
 
 /**
  * タスクの表示アクションを作成する
@@ -92,7 +92,7 @@ export const createPostChatMessageAction =
                 talkId: talkId,
                 postedAt: postedAt,
                 messageData: messageData,
-                type: ADD_CHAT_MESSAGE,
+                type: POST_CHAT_MESSAGE,
             };
             store.dispatch(addAction);
             const chatMessageList = store.getState().chatMessageList;
