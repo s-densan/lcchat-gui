@@ -2,7 +2,7 @@ import Moment from 'moment';
 import React from 'react';
 import Styled from 'styled-components';
 
-import { createDeleteChatMessageAction} from '../actions/TaskActionCreators';
+import { createDeleteChatMessageAction} from '../actions/ChatMessageActionCreators';
 import { IChatMessage } from '../states/IChatMessageBox';
 import store from '../Store';
 import { $COLOR_SECONDARY_1_3, $COLOR_SECONDARY_2_0 } from './FoundationStyles';

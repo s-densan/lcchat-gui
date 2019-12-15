@@ -6,7 +6,7 @@ import { loadTask as loadChatMessage, saveState } from '../utils/TaskFileIF';
 import {
     ADD_TASK as ADD_CHAT_MESSAGE,
     DELETE_TASK as DELETE_CHAT_MESSAGE,
-    IAddTaskAction as IAddChatMessageAction,
+    IPostChatMessageAction as IAddChatMessageAction,
     IDeleteAction,
     IShowTaskAction as IShowChatMessageAction,
     IToggleCompleteAction,
@@ -14,7 +14,7 @@ import {
     SHOW_TASKS as SHOW_CHAT_MESSAGES,
     TOGGLE_COMPLETE_TASK,
     TOGGLE_SHOW_SPINNER,
-} from './TaskActions';
+} from './ChatMessageActions';
 import uuid from 'uuid';
 import { initTaskList } from '../states/ILcChatMessage';
 
@@ -74,9 +74,8 @@ export const createShowChatMessagesAction = (chatMessages: IChatMessage[]): ISho
  * @param text 新しいタスクの名前
  * @param postedAt 新しいタクスの期限
  */
-export const createAddChatMessageAction =
+export const createPostChatMessageAction =
     (
-        id: string,
         messageId: string,
         text: string,
         userId: string,
@@ -87,7 +86,6 @@ export const createAddChatMessageAction =
     ): IToggleShowSpinnerAction => {
         (async () => {
             const addAction: IAddChatMessageAction = {
-                id: id,
                 chatMessageId: messageId,
                 text: text,
                 userId: userId,

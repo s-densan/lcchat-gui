@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import Styled from 'styled-components';
 import { v4 as UUID } from 'uuid';
 
-import { createAddChatMessageAction } from '../actions/TaskActionCreators';
+import { createPostChatMessageAction } from '../actions/ChatMessageActionCreators';
 import store from '../Store';
 import { $COLOR_SECONDARY_1_3 } from './FoundationStyles';
 
@@ -96,9 +96,13 @@ export class AddTask extends React.Component<IProps, ILocalState> {
      * 追加ボタンを押すと、タスク一覧にタスクを追加する
      */
     private onClickAdd = (e: React.MouseEvent) => {
-        store.dispatch(createAddChatMessageAction(
-            this.state.taskName, 
-            this.state.deadline, 
+        store.dispatch(createPostChatMessageAction(
+            'messageId',
+            'text',
+            'userId',
+            'taskId',
+            new Date(),
+            'messageData',
             store,
             ));
         const m = Moment(new Date()).add(1, 'days');

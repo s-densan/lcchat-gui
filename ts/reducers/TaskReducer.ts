@@ -1,8 +1,8 @@
 import Clone from 'clone';
 import Redux from 'redux';
 
-import * as Action from '../actions/TaskActions';
-import { createChatMessage, initChatMessageList, IChatMessageList } from '../states/IChatMessageBox';
+import * as Action from '../actions/ChatMessageActions';
+import { createChatMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessageBox';
 import createA2RMapper from '../utils/ActionToReducerMapper';
 
 const a2RMapper = createA2RMapper<IChatMessageList>();
@@ -15,12 +15,11 @@ a2RMapper.addWork<Action.IShowTaskAction>(
     },
 );
 
-/** タスクを追加する */
-a2RMapper.addWork<Action.IAddTaskAction>(
+/** メッセージを追加する */
+a2RMapper.addWork<Action.IPostChatMessageAction>(
     Action.ADD_TASK,
     (state, action) => {
         state.chatMessages.push(createChatMessage(
-            action.id,
             action.chatMessageId,
             action.text,
             action.userId,
@@ -33,7 +32,6 @@ a2RMapper.addWork<Action.IAddTaskAction>(
         ));
     },
 );
-
 
 /** タスクを削除する */
 a2RMapper.addWork<Action.IDeleteAction>(

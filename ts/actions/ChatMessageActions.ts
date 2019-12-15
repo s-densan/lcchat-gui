@@ -17,14 +17,13 @@ export interface IShowTaskAction extends Action {
  */
 export const ADD_TASK = UUID();
 /**
- * タスクを追加するアクション
+ * チャットメッセージを追加するアクション
  */
-export interface IAddTaskAction extends Action {
-    id: string,
-    chatMessageId: string,
+export interface IPostChatMessageAction extends Action {
+    chatMessageId: string;
     text: string;
-    userId: string,
-    talkId: string,
+    userId: string;
+    talkId: string;
     postedAt: Date;
     messageData: string;
 }
