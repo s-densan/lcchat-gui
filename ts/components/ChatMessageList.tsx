@@ -2,15 +2,14 @@ import Moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
 import Styled from 'styled-components';
-import { AddTask } from './AddChatMessage';
-import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
-import { Loading } from './Loading';
-import ChatMessageRow from './ChatMessageBox';
-import { createLoadChatMessagesAction as createLoadChatMessageAction } from '../actions/ChatMessageActionCreators';
-import { createShowChatMessagesAction as createShowChatMessageAction } from '../actions/ChatMessageActionCreators';
+import { createLoadChatMessagesAction , createShowChatMessagesAction } from '../actions/ChatMessageActionCreators';
 import { IState } from '../IStore';
 import { IChatMessageList } from '../states/IChatMessageBox';
 import store from '../Store';
+import { AddTask } from './AddChatMessage';
+import ChatMessageRow from './ChatMessageBox';
+import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
+import { Loading } from './Loading';
 
 //#region styled
 const MainContainer = Styled.div`
@@ -44,21 +43,17 @@ const TaskList = Styled.div`
 
 //#endregion
 
-
 class ChatMessageList extends React.Component<IChatMessageList, {}> {
     public componentDidMount() {
-        store.dispatch(createLoadChatMessageAction(store.dispatch));
-        store.dispatch(createShowChatMessageAction([]));
+        store.dispatch(createLoadChatMessagesAction(store.dispatch));
+        store.dispatch(createShowChatMessagesAction([]));
     }
     public render() {
         const { chatMessages: tasks } = this.props;
         const chatMessageListElems = tasks.sort((a, b) => { // ...(b)
-            var aval = a.createdAt === null ? new Date(1900, 1) : a.createdAt;
-            var bval = b.createdAt === null ? new Date(1900, 1) : b.createdAt;
-                
-            return (aval < bval) ? -1
-                : (aval.getTime() === bval.getTime()) ? 0 : 1;
-        }).map((it) => {
+            // postedAt??????
+            return (a.postedAt < b.postedAt) ? -1 : (a.postedAt === b.postedAt) ? 0 : 1;
+        }).reverse().map((it) => {
             return (
                 <ChatMessageRow key={it.id} {...it} /> // ...(c)
             );
@@ -74,7 +69,7 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
                 </MainContainer>
             </div>
         );
-                // <Loading shown={this.props.shownLoading} />{/* <-追加 */}
+        // <Loading shown={this.props.shownLoading} />{/* <-追加 */}
 
     }
 }

@@ -8,8 +8,8 @@ import { IChatMessage } from '../states/IChatMessageBox';
 const dataFilePath = Path.join(OS.homedir(), 'todo.json');
 
 /**
-* ファイルからタスクのデータをロードする
-*/
+ * ファイルからタスクのデータをロードする
+ */
 export const loadChatMessage = async () => {
     const exist = await FsEx.pathExists(dataFilePath); // ...(b)
     if (!exist) { // ...(c)
@@ -34,8 +34,8 @@ export const loadChatMessage = async () => {
 };
 
 /**
-* ファイルにタスクのデータを保存する
-*/
+ * ファイルにタスクのデータを保存する
+ */
 export const saveState = async (chatMessageList: IChatMessage[]) => {
     // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
     await setTimeoutPromise(1000);
@@ -47,9 +47,7 @@ export const saveState = async (chatMessageList: IChatMessage[]) => {
         spaces: 2,
     });
 };
-/**
-* ファイルにタスクのデータを保存する
-*/
+
 /** 指定ミリ秒 待つ関数 */
 const setTimeoutPromise = (count: number) => {
     return new Promise((resolve) => {

@@ -1,22 +1,22 @@
 import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
+import uuid from 'uuid';
 import { IState } from '../IStore';
 import { IChatMessage } from '../states/IChatMessageBox';
 import { loadChatMessage as loadChatMessage, saveState } from '../utils/ChatDatabaseIF';
 import {
-    POST_CHAT_MESSAGE as POST_CHAT_MESSAGE,
-    DELETE_CHAT_MESSAGE as DELETE_CHAT_MESSAGE,
-    IPostChatMessageAction as IAddChatMessageAction,
+    DELETE_CHAT_MESSAGE,
     IDeleteAction,
-    IShowChatMessageAction as IShowChatMessageAction,
+    IPostChatMessageAction,
+    IShowChatMessageAction,
     IToggleCompleteAction,
     IToggleShowSpinnerAction,
-    SHOW_TASKS as SHOW_CHAT_MESSAGES,
+    POST_CHAT_MESSAGE,
+    SHOW_CHAT_MESSAGES,
     TOGGLE_COMPLETE_TASK,
     TOGGLE_SHOW_SPINNER,
 } from './ChatMessageActions';
-import uuid from 'uuid';
-//import { initTaskList } from '../states/ILcChatMessage';
+// import { initTaskList } from '../states/ILcChatMessage';
 
 /**
  * タスクの表示アクションを作成する
@@ -26,45 +26,45 @@ export const createShowChatMessagesAction = (chatMessages: IChatMessage[]): ISho
     // 確認のため、ダミーデータをハードコーディングする
     const dummyChatMessages: IChatMessage[] = [
         {
+            createdAt: null,
+            deletedAt: null,
             id: '0',
+            messageData: 'task01',
             messageId: 'm123456',
+            postedAt: new Date(Date.now()),
+            talkId: 't123456',
             text: 'こんにちは',
-            userId: 'u123456',
-            talkId: 't123456',
-            postedAt: new Date(Date.now()),
-            messageData: 'task01',
-            createdAt: null,
             updatedAt: null,
-            deletedAt: null,
+            userId: 'u123456',
         },
         {
+            createdAt: null,
+            deletedAt: null,
             id: '1',
-            messageId: 'm123457',
-            text: 'こんにちは2',
-            userId: 'u123456',
-            talkId: 't123456',
-            postedAt: new Date(Date.now()),
             messageData: 'task01',
-            createdAt: null,
+            messageId: 'm123457',
+            postedAt: new Date(Date.now()),
+            talkId: 't123456',
+            text: 'こんにちは2',
             updatedAt: null,
-            deletedAt: null,
+            userId: 'u123456',
         },
         {
-            id: '2',
-            messageId: 'm123458',
-            text: 'こんにちは3',
-            userId: 'u123456',
-            talkId: 't123456',
-            postedAt: new Date(Date.now()),
-            messageData: 'task01',
             createdAt: null,
-            updatedAt: null,
             deletedAt: null,
+            id: '2',
+            messageData: 'task01',
+            messageId: 'm123458',
+            postedAt: new Date(Date.now()),
+            talkId: 't123456',
+            text: 'こんにちは3',
+            updatedAt: null,
+            userId: 'u123456',
         },
     ];
     return {
         // tasks, // 本来はこっち
-        chatMessages: chatMessages,
+        chatMessages,
         type: SHOW_CHAT_MESSAGES,
     };
 };
@@ -82,17 +82,17 @@ export const createPostChatMessageAction =
         talkId: string,
         postedAt: Date,
         messageData: string,
-        store: Store<IState>
+        store: Store<IState>,
     ): IToggleShowSpinnerAction => {
         (async () => {
-            const addAction: IAddChatMessageAction = {
+            const addAction: IPostChatMessageAction = {
                 chatMessageId: messageId,
-                text: text,
-                userId: userId,
-                talkId: talkId,
-                postedAt: postedAt,
-                messageData: messageData,
+                messageData,
+                postedAt,
+                talkId,
+                text,
                 type: POST_CHAT_MESSAGE,
+                userId,
             };
             store.dispatch(addAction);
             const chatMessageList = store.getState().chatMessageList;
@@ -128,9 +128,10 @@ export const createAddTaskAction = (taskName: string, deadline: Date): IAddTaskA
  * タスクを削除するアクションを作成する
  * @param chatMessageId 削除するタスクのID
  */
-export const createDeleteChatMessageAction = (chatMessageId: string, store: Store<IState>): IToggleShowSpinnerAction => {
+export const createDeleteChatMessageAction =
+        (chatMessageId: string, store: Store<IState>): IToggleShowSpinnerAction => {
     (async () => {
-        store.dispatch<IDeleteAction>({ chatMessageId: chatMessageId, type: DELETE_CHAT_MESSAGE });
+        store.dispatch<IDeleteAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
         const chatMessageList = store.getState().chatMessageList;
         await saveState(chatMessageList.chatMessages);
         store.dispatch<IToggleShowSpinnerAction>({

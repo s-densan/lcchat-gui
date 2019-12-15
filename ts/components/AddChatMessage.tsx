@@ -1,8 +1,7 @@
-import 'react-datepicker/dist/react-datepicker.css'; // (1)
-
 import Moment from 'moment';
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'; // (1)
 import Styled from 'styled-components';
 import { v4 as UUID } from 'uuid';
 
@@ -113,7 +112,7 @@ export class AddTask extends React.Component<IProps, ILocalState> {
     }
     /**
      * タスク名変更イベントハンドラ
-     * 
+     *
      * テキストボックスの内容をローカルステートに反映する
      */
     private onChangeTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,7 +122,7 @@ export class AddTask extends React.Component<IProps, ILocalState> {
     }
     /**
      * 期日を変更したときのイベントハンドラ
-     * 
+     *
      * 変更した日付をローカルステートに反映する
      * DatePickerの独自プロパティで、引数として日付が渡される
      */

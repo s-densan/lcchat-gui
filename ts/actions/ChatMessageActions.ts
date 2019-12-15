@@ -5,7 +5,7 @@ import { IChatMessage } from '../states/IChatMessageBox';
 /**
  * タスクの一覧を表示するアクションタイプ
  */
-export const SHOW_TASKS = UUID();
+export const SHOW_CHAT_MESSAGES = UUID();
 /**
  * タスクの一覧を表示するアクション
  */

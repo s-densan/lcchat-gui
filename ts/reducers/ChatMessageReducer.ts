@@ -9,7 +9,7 @@ const a2RMapper = createA2RMapper<IChatMessageList>();
 
 /** タスク一覧を表示する */
 a2RMapper.addWork<Action.IShowChatMessageAction>(
-    Action.SHOW_TASKS,
+    Action.SHOW_CHAT_MESSAGES,
     (state, action) => {
         state.chatMessages = Clone(action.chatMessages);
     },

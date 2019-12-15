@@ -14,6 +14,7 @@
   "dependencies": {
     "@types/clone": "^0.1.30",
     "@types/fs-extra": "^8.0.1",
+    "@types/material-ui": "^0.21.7",
     "@types/moment": "^2.13.0",
     "@types/react-datepicker": "1.1.7",
     "@types/styled-components": "^4.4.0",
