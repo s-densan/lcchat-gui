@@ -5,7 +5,7 @@ import { v4 as UUID } from 'uuid';
 export interface IChatMessage {
     /** タスクを一意に判断するID (UUID) */
     id: string;
-    /** メッセージID */
+    /** DBで管理するメッセージID */
     messageId: string;
     /** メッセージテキスト */
     text: string;

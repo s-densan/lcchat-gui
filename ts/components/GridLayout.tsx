@@ -7,7 +7,7 @@ const Header = () => <Fragment>Header</Fragment>;
 const Content = () => <Fragment>Content</Fragment>;
 const Footer = () => <Fragment>Footer</Fragment>;
 const Menu = () => <Fragment>Menu</Fragment>;
-class GridLayout extends Component<{}, {}>{
+class GridLayout extends Component<{}, {}> {
   public render() {
     return (
     <Fragment>
