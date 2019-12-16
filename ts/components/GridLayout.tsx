@@ -3,11 +3,23 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component, Fragment } from 'react';
 import ChatMessageList from './ChatMessageList';
 
+/**
+ * コンポーネント プロパティ
+ *
+ * ここでは、初期値として扱う
+ */
+interface IProps {
+    /** タスク名 */
+    taskName: string;
+    /** 期限 */
+    deadline: Date;
+}
+
 const Header = () => <Fragment>Header</Fragment>;
 const Content = () => <Fragment>Content</Fragment>;
 const Footer = () => <Fragment>Footer</Fragment>;
 const Menu = () => <Fragment>Menu</Fragment>;
-class GridLayout extends Component<{}, {}>{
+class GridLayout extends Component<IProps, {}> {
   public render() {
     return (
     <Fragment>
@@ -21,8 +33,8 @@ class GridLayout extends Component<{}, {}>{
           <Drawer
             docked={false}
             width={200}
-            // open={this.props.open}
-            // onRequestChange={() => this.props.onToggle()}
+            open={this.onClickMenu}
+            onRequestChange={this.onClickMenu.bind}
           >
             <MenuItem>React</MenuItem>
             <MenuItem>Redux</MenuItem>
@@ -46,6 +58,10 @@ class GridLayout extends Component<{}, {}>{
       </div>
       </Fragment>
     );
+  }
+  private onClickMenu = (id: string, e: React.MouseEvent<HTMLElement>) => {
+      // store.dispatch(createToggleCompleteAction(id, store));
+      // do nothing
   }
 }
 

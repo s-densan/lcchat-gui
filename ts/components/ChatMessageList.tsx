@@ -51,7 +51,7 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
     public render() {
         const { chatMessages: tasks } = this.props;
         const chatMessageListElems = tasks.sort((a, b) => { // ...(b)
-            // postedAt??????
+            // postedAt
             return (a.postedAt < b.postedAt) ? -1 : (a.postedAt === b.postedAt) ? 0 : 1;
         }).reverse().map((it) => {
             return (
