@@ -2,15 +2,15 @@ import Clone from 'clone';
 import Redux from 'redux';
 
 import { CHANGE_USER_NAME, IChangeUserNameAction } from '../actions/UserNameEvents';
-import IUser, { initUser } from '../states/IUser';
+import IChatUser, { initChatUser } from '../states/IChatUser';
 
-export const UserReducer: Redux.Reducer<IUser> = (childState = initUser, action) => { // --(a)
-    let newChildState: IUser = childState; // --(b)
+export const UserReducer: Redux.Reducer<IChatUser> = (childState = initChatUser, action) => { // --(a)
+    let newChildState: IChatUser = childState; // --(b)
     switch (action.type) {
         case CHANGE_USER_NAME: // --(c)
             {
                 newChildState = Clone(childState); // --(d)
-                newChildState.name = (action as IChangeUserNameAction).name; // --(e)
+                newChildState.userName = (action as IChangeUserNameAction).name; // --(e)
             }
             break;
     }

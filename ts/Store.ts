@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from 'redux';
 import { IState } from './IStore';
-import { TaskReducer as ChatMessageReducer } from './reducers/ChatMessageReducer';
+import { ChatMessageReducer as ChatMessageReducer } from './reducers/ChatMessageReducer';
 
 // 複数の reducer を束ねる
 const combinedReducer = combineReducers<IState>({

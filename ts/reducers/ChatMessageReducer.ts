@@ -33,18 +33,18 @@ a2RMapper.addWork<Action.IPostChatMessageAction>(
     },
 );
 
-/** タスクを削除する */
+/** メッセージを削除する */
 a2RMapper.addWork<Action.IDeleteAction>(
     Action.DELETE_CHAT_MESSAGE,
     (state, action) => {
-        const {chatMessages: tasks} = state;
-        const target = tasks.find((it) => it.id === action.chatMessageId);
+        const {chatMessages: chatMessages} = state;
+        const target = chatMessages.find((it) => it.id === action.chatMessageId);
         if (!target) { return; }
         // 指定したID以外のオブジェクトを抽出し、それを新しいリストとする
-        state.chatMessages = tasks.filter((it) => it.id !== action.chatMessageId);
+        state.chatMessages = chatMessages.filter((it) => it.id !== action.chatMessageId);
     },
 );
 /** Reducer 本体 */
-export const TaskReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {
+export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {
     return a2RMapper.execute(state, action);
 };
