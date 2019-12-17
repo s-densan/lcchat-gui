@@ -1,7 +1,11 @@
-import { AppBar, Drawer, MenuItem } from 'material-ui';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; 
 import React, { Component, Fragment } from 'react';
 import ChatMessageList from './ChatMessageList';
+import ChatBox from './ChatBox';
 
 /**
  * コンポーネント プロパティ
@@ -15,11 +19,14 @@ interface IProps {
     deadline: Date;
 }
 
+          const inputProps = {
+        step: 300,
+      };
 const Header = () => <Fragment>Header</Fragment>;
 const Content = () => <Fragment>Content</Fragment>;
 const Footer = () => <Fragment>Footer</Fragment>;
 const Menu = () => <Fragment>Menu</Fragment>;
-class GridLayout extends Component<IProps, {}> {
+class GridLayout extends Component<{}, {}> {
   public render() {
     return (
     <Fragment>
@@ -28,13 +35,10 @@ class GridLayout extends Component<IProps, {}> {
           <Header />
         </div>
         <div style={styles.content}>
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={createMuiTheme()}>
         <div>
           <Drawer
-            docked={false}
-            width={200}
-            open={this.onClickMenu}
-            onRequestChange={this.onClickMenu.bind}
+            //open={this.onClickMenu}
           >
             <MenuItem>React</MenuItem>
             <MenuItem>Redux</MenuItem>
@@ -46,6 +50,10 @@ class GridLayout extends Component<IProps, {}> {
             title="React Study"
             // onLeftIconButtonTouchTap={ () => this.props.onToggle()}
           />
+
+      <TextField id="time" type="time" inputProps={inputProps} />;
+
+<ChatBox></ChatBox>
         </div>
       </MuiThemeProvider>
         </div>
