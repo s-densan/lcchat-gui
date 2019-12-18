@@ -34,7 +34,7 @@ export interface IChatMessageList {
 /**
  * メッセージのリストの初期値
  */
-export const initChatMessageList: IChatMessageList  = {chatMessages: []}
+export const initChatMessageList: IChatMessageList = {chatMessages: []};
 
 /**
  * メッセージを作成する
