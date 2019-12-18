@@ -15,16 +15,14 @@ import { $COLOR_SECONDARY_1_3 } from './FoundationStyles';
  * ここでは、初期値として扱う
  */
 interface IProps {
-    /** タスク名 */
-    taskName: string;
-    /** 期限 */
-    deadline: Date;
+    /** テキスト */
+    text: string;
 }
 interface ILocalState {
-    /** タスク名 */
-    taskName: string;
-    /** 期限 */
-    deadline: Date;
+    /** テキスト */
+    text: string;
+    /** 投稿日時 */
+    postedAt: Date;
 }
 
 //#region styled
@@ -61,34 +59,36 @@ const AddButton = Styled.button`
 
 //#endregion
 
-export class AddTask extends React.Component<IProps, ILocalState> {
+export class AddChatMessage extends React.Component<IProps, ILocalState> {
     public constructor(props: IProps) {
         super(props);
         this.state = {
-            deadline: props.deadline,
-            taskName: props.taskName,
+            postedAt: new Date(),
+            text: props.text,
         };
     }
 
     public render() {
-        const date = Moment(this.state.deadline);
+        const date = Moment(this.state.postedAt);
         const taskNameId = UUID();
         const deadlineId = UUID();
         return (
             <Container>
                 <TaskNameBox>
                     <label htmlFor={taskNameId}>task name</label>
-                    <TextBox id={taskNameId} type="text" value={this.state.taskName}
+                    <TextBox id={taskNameId} type="text" value={this.state.text}
                         onChange={this.onChangeTaskName /*← 変更*/} />
                 </TaskNameBox>
-                <DeadlineBox>
-                    <label htmlFor={deadlineId}>dead line</label>
-                    <DatePicker selected={date} showTimeSelect={true}
-                        dateFormat="YYYY-MM-DD HH:mm" onChange={this.onChangeDeadLine /*← 変更*/} />
-                </DeadlineBox>
                 <AddButton onClick={this.onClickAdd}>+</AddButton>
             </Container>
         );
+    /*
+    <DeadlineBox>
+        <label htmlFor={deadlineId}>dead line</label>
+        <DatePicker selected={date} showTimeSelect={true}
+            dateFormat="YYYY-MM-DD HH:mm" onChange={this.onChangeDeadLine} />
+    </DeadlineBox>
+    */
     }
 
     /**
@@ -106,8 +106,8 @@ export class AddTask extends React.Component<IProps, ILocalState> {
             ));
         const m = Moment(new Date()).add(1, 'days');
         this.setState({
-            deadline: m.toDate(),
-            taskName: '',
+            postedAt: m.toDate(),
+            text: '',
         });
     }
     /**
@@ -117,18 +117,7 @@ export class AddTask extends React.Component<IProps, ILocalState> {
      */
     private onChangeTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
-            taskName: e.target.value,
-        });
-    }
-    /**
-     * 期日を変更したときのイベントハンドラ
-     *
-     * 変更した日付をローカルステートに反映する
-     * DatePickerの独自プロパティで、引数として日付が渡される
-     */
-    private onChangeDeadLine = (date: Moment.Moment| null) => {
-        this.setState({
-            deadline: !!date ? date.toDate() : new Date(),
+            text: e.target.value,
         });
     }
 

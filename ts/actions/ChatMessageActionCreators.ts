@@ -62,6 +62,7 @@ export const createShowChatMessagesAction = (chatMessages: IChatMessage[]): ISho
             userId: 'u123456',
         },
     ];
+    return { chatMessages: dummyChatMessages, type: SHOW_CHAT_MESSAGES, };
     return {
         // tasks, // 本来はこっち
         chatMessages,

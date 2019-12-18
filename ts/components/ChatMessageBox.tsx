@@ -1,94 +1,39 @@
 import Moment from 'moment';
 import React from 'react';
-import Styled from 'styled-components';
 
 import { createDeleteChatMessageAction} from '../actions/ChatMessageActionCreators';
 import { IChatMessage } from '../states/IChatMessageBox';
 import store from '../Store';
-import { $COLOR_SECONDARY_1_3, $COLOR_SECONDARY_2_0 } from './FoundationStyles';
 
-//#region styled
-/**
- * 行の大外枠...(1)
- */
-const Task = Styled.div<{expiration: boolean; }>`
-    align-items: center;
-    background-color: ${(p) => p.expiration ? 'inherit' : $COLOR_SECONDARY_2_0};
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid rgb(200,200,200);
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 1em;
-    padding: 10px;
-    transition-duration: .2s;
-    transition-property: all;
-    /* (2) */
-    &:hover {
-        transform: translate(-5px, -5px);
-        box-shadow: 5px 5px 5px rgba(200,200,200,4);
-    }
-`;
-/**
- * タスク完了のチェックアイコン表示 枠
- */
-const TaskCheckBox = Styled.div`
-    align-items: center;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    flex-grow: 0;
-    flex-shrink: 0;
-    height: 2em;
-    width: 2em;
-`;
-/**
- * タスク完了チェックアイコン
- */
-const TaskCheck = Styled.p`
-    color: ${$COLOR_SECONDARY_1_3};
-    font-size: 150%;
-`;
-/**
- * タスク名と期日の表示 枠
- */
-const TaskBody = Styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 0;
-    height: 3em;
-    justify-content: space-around;
-`;
-/**
- * タスク削除アイコン
- */
-const TaskRemove = Styled.div`
-    flex-grow: 0;
-    flex-shrink: 0;
-`;
-/**
- * タスク名
- */
-const TaskName = Styled.div`
-    font-size: 120%;
-`;
+const MEDIA_BODY_STYLE = {
+  color: "#888",
+  fontSize:".9em"
+};
 
-/**
- * 期日
- */
-const Deadline = Styled.div`
-`;
+const TIME_STYLE = {
+  marginLeft: 5
+};
 
-//#endregion
+const TEXT_STYLE = {
+  whiteSpace:"normal",
+  wordBreak:"break-word"
+};
+
+
 
 class ChatMessageBox extends React.Component<IChatMessage, {}> {
     public render() {
-        const it = this.props;
-        const deadlineString = Moment(it.postedAt).format('YYYY-MM-DD hh:mm');
+        const deadlineString = Moment(this.props.postedAt).format('YYYY-MM-DD hh:mm');
         return (
+            <div className="media-body">
+                <div style={MEDIA_BODY_STYLE}>
+                    <span>{this.props.text}</span>
+                    <span style={TIME_STYLE}>{this.props.id}</span>
+                </div>
+                <p onClick={this.onClickBox.bind}> {this.props.text} </p>
+            </div>
+
+            /*
             <Task expiration={it.deletedAt !== null}
                 onClick={this.onClickBox.bind(this, it.id)}>
                 <TaskCheckBox>
@@ -102,6 +47,7 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
                 </TaskBody>
                 <TaskRemove onClick={this.onClickDelete.bind(this, it.id)}>❌</TaskRemove>
             </Task>
+            */
         );
     }
     /**

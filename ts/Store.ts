@@ -5,7 +5,6 @@ import { ChatMessageReducer as ChatMessageReducer } from './reducers/ChatMessage
 // 複数の reducer を束ねる
 const combinedReducer = combineReducers<IState>({
         chatMessageList: ChatMessageReducer, // 追加
-
 });
 
 // グローバルオブジェクトとして、store を作成する。

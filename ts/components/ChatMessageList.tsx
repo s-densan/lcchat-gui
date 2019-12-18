@@ -6,42 +6,11 @@ import { createLoadChatMessagesAction , createShowChatMessagesAction } from '../
 import { IState } from '../IStore';
 import { IChatMessageList } from '../states/IChatMessageBox';
 import store from '../Store';
-import { AddTask } from './AddChatMessage';
+import { AddChatMessage } from './AddChatMessage';
 import ChatMessageRow from './ChatMessageBox';
 import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
 import { Loading } from './Loading';
 
-//#region styled
-const MainContainer = Styled.div`
-    margin: 10px auto 0 auto;
-    max-width: 600px;
-    min-width: 300px;
-    width: 80%;
-`;
-
-const Header = Styled.h1`
-    background-color: ${$COLOR_PRIMARY_3};
-    color: ${$COLOR_FOREGROUND_REVERSE};
-    font-size: 160%;
-    padding: 1em;
-    text-align: center;
-`;
-
-const AddButton = Styled.button`
-    border-radius: 5px;
-    background-color: ${$COLOR_PRIMARY_0};
-    color: ${$COLOR_FOREGROUND_REVERSE};
-    width: 100%;
-    padding: 1em;
-`;
-
-const TaskList = Styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: 1em;
-`;
-
-//#endregion
 
 class ChatMessageList extends React.Component<IChatMessageList, {}> {
     public componentDidMount() {
@@ -60,13 +29,8 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
         });
         return (
             <div>
-                <Header>TODO</Header>
-                <MainContainer>
-                    <AddTask taskName="" deadline={Moment().add(1 , 'days').toDate()} />
-                    <TaskList>
-                        {chatMessageListElems}
-                    </TaskList>
-                </MainContainer>
+                <AddChatMessage text="" />
+                {chatMessageListElems}
             </div>
         );
         // <Loading shown={this.props.shownLoading} />{/* <-追加 */}

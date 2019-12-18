@@ -1,25 +1,20 @@
-import React from "react";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; 
 import Button from '@material-ui/core/Button';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import React from 'react';
 
-interface IProps{
+interface IProps {
+  buttonCaption: string;
 }
 export default class ChatBox extends React.Component<IProps, {}> {
-  render() {
+  public render() {
     return (
       <MuiThemeProvider theme={createMuiTheme()}>
         <div className="ChatBox">
-          <div className="">
-            <TextField name='user_name' className=""  placeholder="Name" />
-            <br />
-            <TextField name='profile_image' className="" placeholder="Profile Image URL" />
-          </div>
-          <TextField rows="4" name='text' className="" />
+          <TextField rows="4" helperText="投稿メッセージ" name="text" className="" />
           <Button variant="contained" color="primary">
-            Primary
-            </Button>
-
+            {this.props.buttonCaption}
+          </Button>
         </div>
       </MuiThemeProvider>
     );
