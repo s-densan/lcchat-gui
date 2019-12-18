@@ -52,6 +52,7 @@ class GridLayout extends Component<{}, {}> {
                 />
 
                 <TextField id="time" type="time" inputProps={inputProps} />;
+                <ChatMessageList />
                 <ChatBox buttonCaption="メッセージ" />
               </div>
             </MuiThemeProvider>
