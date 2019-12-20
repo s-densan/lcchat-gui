@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { v4 as UUID } from 'uuid';
-import { IChatMessage } from '../states/IChatMessageBox';
+import { IChatMessage } from '../states/IChatMessage';
 
 /**
  * タスクの一覧を表示するアクションタイプ

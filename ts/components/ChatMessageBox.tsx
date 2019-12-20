@@ -1,35 +1,36 @@
 import Moment from 'moment';
 import React from 'react';
 
+import Box from '@material-ui/core/Box';
 import { createDeleteChatMessageAction} from '../actions/ChatMessageActionCreators';
-import { IChatMessage } from '../states/IChatMessageBox';
+import { IChatMessage } from '../states/IChatMessage';
 import store from '../Store';
 
 const MEDIA_BODY_STYLE = {
-  color: "#888",
-  fontSize:".9em"
+  color: '#888',
+  fontSize: '.9em',
 };
 
 const TIME_STYLE = {
-  marginLeft: 5
+  marginLeft: 5,
 };
 
 const TEXT_STYLE = {
-  whiteSpace:"normal",
-  wordBreak:"break-word"
+  whiteSpace: 'normal',
+  wordBreak: 'break-word',
 };
-
-
 
 class ChatMessageBox extends React.Component<IChatMessage, {}> {
     public render() {
         const deadlineString = Moment(this.props.postedAt).format('YYYY-MM-DD hh:mm');
         return (
             <div className="media-body">
-                <div style={MEDIA_BODY_STYLE}>
+                <Box
+                    border="9"
+                >
                     <span>{this.props.text}</span>
                     <span style={TIME_STYLE}>{this.props.id}</span>
-                </div>
+                </Box>
                 <p onClick={this.onClickBox.bind}> {this.props.text} </p>
             </div>
 

@@ -2,7 +2,7 @@ import FsEx from 'fs-extra'; // ...(a)
 import OS from 'os';
 import Path from 'path';
 
-import { IChatMessage } from '../states/IChatMessageBox';
+import { IChatMessage } from '../states/IChatMessage';
 
 // OSごとのユーザーのプロファイルフォルダに保存される
 const dataFilePath = Path.join(OS.homedir(), 'todo.json');

@@ -1,4 +1,4 @@
-import { IChatMessageList } from './states/IChatMessageBox';
+import { IChatMessageList } from './states/IChatMessage';
 /**
  * store のデータ型を定義する。（親state）
  *

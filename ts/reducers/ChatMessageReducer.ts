@@ -2,7 +2,7 @@ import Clone from 'clone';
 import Redux from 'redux';
 
 import * as Action from '../actions/ChatMessageActions';
-import { createChatMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessageBox';
+import { createChatMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessage';
 import createA2RMapper from '../utils/ActionToReducerMapper';
 
 const a2RMapper = createA2RMapper<IChatMessageList>();

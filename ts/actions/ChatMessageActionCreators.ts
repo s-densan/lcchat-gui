@@ -2,8 +2,9 @@ import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
 import uuid from 'uuid';
 import { IState } from '../IStore';
-import { IChatMessage } from '../states/IChatMessageBox';
+import { IChatMessage } from '../states/IChatMessage';
 import { loadChatMessage as loadChatMessage, saveState } from '../utils/ChatDatabaseIF';
+
 import {
     DELETE_CHAT_MESSAGE,
     IDeleteAction,
@@ -62,7 +63,10 @@ export const createShowChatMessagesAction = (chatMessages: IChatMessage[]): ISho
             userId: 'u123456',
         },
     ];
-    return { chatMessages: dummyChatMessages, type: SHOW_CHAT_MESSAGES, };
+    return {
+        chatMessages: dummyChatMessages,
+        type: SHOW_CHAT_MESSAGES,
+    };
     return {
         // tasks, // 本来はこっち
         chatMessages,

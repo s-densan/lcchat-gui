@@ -1,16 +1,16 @@
-import Moment from 'moment';
+// import Moment from 'moment';
+import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import { connect } from 'react-redux';
-import Styled from 'styled-components';
+// import Styled from 'styled-components';
 import { createLoadChatMessagesAction , createShowChatMessagesAction } from '../actions/ChatMessageActionCreators';
 import { IState } from '../IStore';
-import { IChatMessageList } from '../states/IChatMessageBox';
+import { IChatMessage, IChatMessageList } from '../states/IChatMessage';
 import store from '../Store';
 import { AddChatMessage } from './AddChatMessage';
-import ChatMessageRow from './ChatMessageBox';
+import ChatMessageBox from './ChatMessageBox';
 import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
 import { Loading } from './Loading';
-
 
 class ChatMessageList extends React.Component<IChatMessageList, {}> {
     public componentDidMount() {
@@ -19,18 +19,24 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
     }
     public render() {
         const { chatMessages: tasks } = this.props;
-        const chatMessageListElems = tasks.sort((a, b) => { // ...(b)
+        const compFunc = (a: IChatMessage, b: IChatMessage) => {
             // postedAt
             return (a.postedAt < b.postedAt) ? -1 : (a.postedAt === b.postedAt) ? 0 : 1;
-        }).reverse().map((it) => {
+        };
+        const mapFunc = (it: IChatMessage) => {
             return (
-                <ChatMessageRow key={it.id} {...it} /> // ...(c)
+                <Grid item xs={1}>
+                    <ChatMessageBox key={it.id} {...it} />
+                </Grid>
             );
-        });
+        };
+        const chatMessageListElems = tasks.sort(compFunc).reverse().map(mapFunc);
         return (
             <div>
                 <AddChatMessage text="" />
-                {chatMessageListElems}
+                <Grid container direction="column">
+                    {chatMessageListElems}
+                </Grid>
             </div>
         );
         // <Loading shown={this.props.shownLoading} />{/* <-追加 */}
