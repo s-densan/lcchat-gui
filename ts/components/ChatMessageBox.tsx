@@ -26,7 +26,12 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
         return (
             <div className="media-body">
                 <Box
-                    border="9"
+                    color="text.primary"
+                    bgcolor="primary.main"
+                    component="span"
+                    m={1}
+                    border={5}
+                    borderColor="primary.main"
                 >
                     <span>{this.props.text}</span>
                     <span style={TIME_STYLE}>{this.props.id}</span>
