@@ -11,6 +11,7 @@ import { AddChatMessage } from './AddChatMessage';
 import ChatMessageBox from './ChatMessageBox';
 import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
 import { Loading } from './Loading';
+import Box from '@material-ui/core/Box'
 
 class ChatMessageList extends React.Component<IChatMessageList, {}> {
     public componentDidMount() {
@@ -26,7 +27,9 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
         const mapFunc = (it: IChatMessage) => {
             return (
                 <Grid item xs={1}>
-                    <ChatMessageBox key={it.id} {...it} />
+                    <Box border={1}>
+                        <ChatMessageBox key={it.id} {...it} />
+                    </Box>
                 </Grid>
             );
         };

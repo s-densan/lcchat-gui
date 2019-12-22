@@ -6,6 +6,7 @@ import TaskList from './components/ChatMessageList';
 import { GlobalStyle } from './components/FoundationStyles';
 import GridLayout from './components/GridLayout';
 import TaskStore from './Store'; // 追加
+import Box from '@material-ui/core/Box'
 
 const container = document.getElementById('contents');
 ReactDom.render(
