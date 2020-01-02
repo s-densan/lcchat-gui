@@ -22,13 +22,12 @@ const TEXT_STYLE = {
 
 class ChatMessageBox extends React.Component<IChatMessage, {}> {
     public render() {
-        const deadlineString = Moment(this.props.postedAt).format('YYYY-MM-DD hh:mm');
+        const postedAt = Moment(this.props.postedAt).format('YYYY-MM-DD hh:mm');
         return (
-            <div className="media-body">
-                <Box border={5}>
+            <div>
+                <Box border={1}>
                     <span>{this.props.text}</span>
-                    <span style={TIME_STYLE}>{this.props.id}</span>
-                <p onClick={this.onClickBox.bind}> {this.props.text} </p>
+                    <p onClick={this.onClickBox.bind}> {this.props.text} </p>
                 </Box>
             </div>
 

@@ -28,6 +28,13 @@ const Footer = () => <Fragment>Footer</Fragment>;
 const Menu = () => <Fragment>Menu</Fragment>;
 class GridLayout extends Component<{}, {}> {
   public render() {
+    return (     
+      <div>
+        <ChatMessageList />
+        <ChatBox buttonCaption="メッセージ" />
+      </div>
+    );
+    /*
     return (
       <Fragment>
         <div style={styles.gridContainer}>
@@ -98,6 +105,7 @@ export default function Layout() {
 }
 */
 
+/*
 const styles = {
   content: {
     backgroundColor: 'rgb(230, 255, 230)',
@@ -132,3 +140,4 @@ const styles = {
     gridArea: 'menu',
   },
 };
+*/
