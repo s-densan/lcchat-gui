@@ -2,6 +2,16 @@
 
 ## 記録
 
+### 20200108
+改めて、開発再開です。
+デザインが絶望的なので、なんかいい感じのサンプルとか解説とかを漁る。
+https://hisa-web.net/archives/382
+ちが
+
+https://qiita.com/junara/items/b8251bcb75760467aca4
+スタイル適用方法。いいね。
+https://cieloazul310.github.io/2019/06/typescript-material-ui-v4/
+typescript
 ### 20191202
 webpackのビルドを10倍高速化するプラグインの紹介
 https://qiita.com/kmdsbng/items/d23f9b5f5fbc8869baad

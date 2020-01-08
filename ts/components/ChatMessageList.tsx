@@ -27,7 +27,7 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
         const mapFunc = (it: IChatMessage) => {
             return (
                 <Grid item xs={1}>
-                    <Box border={1}>
+                    <Box style={{ border: 1}} width="75%" >
                         <ChatMessageBox key={it.id} {...it} />
                     </Box>
                 </Grid>

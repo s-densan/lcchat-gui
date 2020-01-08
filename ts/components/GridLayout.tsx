@@ -29,11 +29,16 @@ const Menu = () => <Fragment>Menu</Fragment>;
 class GridLayout extends Component<{}, {}> {
   public render() {
     return (     
-      <div>
+      <MuiThemeProvider theme={createMuiTheme()}>
+      <div style={{width:'75%'}} >
         <ChatMessageList />
         <ChatBox buttonCaption="メッセージ" />
       </div>
+      </MuiThemeProvider>
     );
+  }
+}
+export default GridLayout;
     /*
     return (
       <Fragment>
