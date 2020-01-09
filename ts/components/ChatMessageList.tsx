@@ -27,7 +27,7 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
         const mapFunc = (it: IChatMessage) => {
             return (
                 <Grid item xs={1}>
-                    <Box style={{ border: 1}} width="75%" >
+                    <Box style={{ borderBottom: 1, width: '200%'}} >
                         <ChatMessageBox key={it.id} {...it} />
                     </Box>
                 </Grid>
@@ -35,9 +35,9 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
         };
         const chatMessageListElems = tasks.sort(compFunc).reverse().map(mapFunc);
         return (
-            <div>
+            <div style={{width:800}}>
                 <AddChatMessage text="" />
-                <Grid container direction="column">
+                <Grid container direction="column" style={{width:800}} >
                     {chatMessageListElems}
                 </Grid>
             </div>

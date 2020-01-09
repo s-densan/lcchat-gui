@@ -30,7 +30,7 @@ class GridLayout extends Component<{}, {}> {
   public render() {
     return (     
       <MuiThemeProvider theme={createMuiTheme()}>
-      <div style={{width:'75%'}} >
+      <div>
         <ChatMessageList />
         <ChatBox buttonCaption="メッセージ" />
       </div>
