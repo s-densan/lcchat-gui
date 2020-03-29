@@ -1,8 +1,38 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.tsx'),
+  // ファイルタイプ毎の処理を記述する
+  module: {
+      rules: [{
+          // 正規表現で指定する
+          // 拡張子 .ts または .tsx の場合
+          test: /\.tsx?$/,
+          // ローダーの指定
+          // TypeScript をコンパイルする
+          use: 'ts-loader'
+      }, {
+          // 拡張子 .ts または .tsx の場合
+          test: /\.tsx?$/,
+          // 事前処理
+          enforce: 'pre',
+          // TypeScript をコードチェックする
+          loader: 'tslint-loader',
+          // 定義ファイル
+          options: {
+              configFile: './tslint.json',
+              // airbnb というJavaScriptスタイルガイドに従うには下記が必要
+              typeCheck: true,
+          },
+      }, {
+          test: /\.css$/,
+          loaders: ['style-loader', 'css-loader'],
+      }],
+  },
+  /*
   module: {
     rules: [
       {
@@ -34,6 +64,7 @@ module.exports = {
 
     ],
   },
+  */
   // webpack watch したときに差分ビルドができる
   cache: true,
   // development は、 source map file を作成、再ビルド時間の短縮などの設定となる

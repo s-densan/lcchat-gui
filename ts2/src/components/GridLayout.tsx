@@ -28,7 +28,7 @@ const Footer = () => <Fragment>Footer</Fragment>;
 const Menu = () => <Fragment>Menu</Fragment>;
 class GridLayout extends Component<{}, {}> {
   public render() {
-    return (     
+    return (
       <MuiThemeProvider theme={createMuiTheme()}>
       <div>
         <ChatMessageList />
