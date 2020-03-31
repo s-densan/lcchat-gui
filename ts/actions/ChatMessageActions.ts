@@ -28,6 +28,12 @@ export interface IPostChatMessageAction extends Action {
     messageData: string;
 }
 /**
+ * チャットメニューを表示するアクション
+ */
+export interface IShowChatMessageMenuAction extends Action {
+    chatMessagesId: string;
+}
+/**
  * タスク完了のアクションタイプ
  */
 export const TOGGLE_COMPLETE_TASK = UUID();

@@ -11,7 +11,6 @@ import { $COLOR_SECONDARY_1_3 } from './FoundationStyles';
 
 /**
  * コンポーネント プロパティ
- *
  * ここでは、初期値として扱う
  */
 interface IProps {
@@ -37,14 +36,12 @@ const Container = Styled.div`
 const TextBox = Styled.input`
     box-sizing: border-box;
     width: 100%;
-`;
+`;   
 
-const TaskNameBox = Styled.p`
+const ChatMessageBox = Styled.p`
     flex-grow: 1;
 `;
 
-const DeadlineBox = Styled.div`
-`;
 
 const AddButton = Styled.button`
     background-color: ${$COLOR_SECONDARY_1_3};
@@ -59,6 +56,10 @@ const AddButton = Styled.button`
 
 //#endregion
 
+/**
+ * チャットメッセージ追加エリア
+ * チャット名と＋ボタンの描画
+ */
 export class AddChatMessage extends React.Component<IProps, ILocalState> {
     public constructor(props: IProps) {
         super(props);
@@ -69,42 +70,38 @@ export class AddChatMessage extends React.Component<IProps, ILocalState> {
     }
 
     public render() {
-        const date = Moment(this.state.postedAt);
-        const taskNameId = UUID();
-        const deadlineId = UUID();
+        const chatMessageId = UUID();
         return (
             <Container>
-                <TaskNameBox>
-                    <label htmlFor={taskNameId}>task name</label>
-                    <TextBox id={taskNameId} type="text" value={this.state.text}
-                        onChange={this.onChangeTaskName /*← 変更*/} />
-                </TaskNameBox>
+                <ChatMessageBox>
+                    <label htmlFor={chatMessageId}>チャットメッセージ</label>
+                    <TextBox
+                        id={chatMessageId}
+                        type="text"
+                        value={this.state.text}
+                        onChange={this.onChangeChatMessage} />
+                </ChatMessageBox>
                 <AddButton onClick={this.onClickAdd}>+</AddButton>
             </Container>
         );
-    /*
-    <DeadlineBox>
-        <label htmlFor={deadlineId}>dead line</label>
-        <DatePicker selected={date} showTimeSelect={true}
-            dateFormat="YYYY-MM-DD HH:mm" onChange={this.onChangeDeadLine} />
-    </DeadlineBox>
-    */
     }
 
     /**
      * 追加ボタンを押すと、タスク一覧にタスクを追加する
      */
     private onClickAdd = (e: React.MouseEvent) => {
+        const nowDate = new Date();
+        const messageId = UUID();
         store.dispatch(createPostChatMessageAction(
-            'messageId',
-            'text',
+            messageId,
+            this.state.text,
             'userId',
-            'taskId',
-            new Date(),
+            'talkId',
+            nowDate,
             'messageData',
             store,
             ));
-        const m = Moment(new Date()).add(1, 'days');
+        const m = Moment(nowDate).add(1, 'days');
         this.setState({
             postedAt: m.toDate(),
             text: '',
@@ -115,7 +112,7 @@ export class AddChatMessage extends React.Component<IProps, ILocalState> {
      *
      * テキストボックスの内容をローカルステートに反映する
      */
-    private onChangeTaskName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    private onChangeChatMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             text: e.target.value,
         });

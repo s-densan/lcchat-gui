@@ -10,6 +10,7 @@ import {
     IDeleteAction,
     IPostChatMessageAction,
     IShowChatMessageAction,
+    IShowChatMessageMenuAction,
     IToggleCompleteAction,
     IToggleShowSpinnerAction,
     POST_CHAT_MESSAGE,
@@ -19,6 +20,12 @@ import {
 } from './ChatMessageActions';
 // import { initTaskList } from '../states/ILcChatMessage';
 
+export const createShowChatMessageMenuAction = (chatMessageId: string): IShowChatMessageMenuAction => {
+    const chatMes = {
+        chatMessageId: chatMessageId,
+    }
+    return chatMes;
+}
 /**
  * タスクの表示アクションを作成する
  * @param chatMessages 表示するタスクのリスト

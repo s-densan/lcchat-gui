@@ -49,10 +49,10 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
         );
     }
     /**
-     * ボックスをクリックすると、タスク完了 <-> 未完了 がトグルする
+     * ボックスをクリックすると、メニュー表示する
      */
     private onClickBox = (id: string, e: React.MouseEvent<HTMLElement>) => {
-        // store.dispatch(createToggleCompleteAction(id, store));
+        store.dispatch(createToggleCompleteAction(id, store));
         // do nothing
     }
     /**

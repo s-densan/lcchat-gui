@@ -38,10 +38,14 @@ export const initChatMessageList: IChatMessageList = {chatMessages: []};
 
 /**
  * メッセージを作成する
- * @param id メッセージを一意に判断するID
  * @param messageId メッセージID
  * @param text メッセージテキスト
  * @param userId ユーザID
+ * @param talkId トークルームID
+ * @param postedAt 投稿日
+ * @param messageData メッセージデータ
+ * @param createdAt 作成日時
+ * @param updatedAt 更新日時
  */
 export const createChatMessage = (
     messageId: string,
@@ -53,11 +57,12 @@ export const createChatMessage = (
     createdAt: Date | null,
     updatedAt: Date | null,
     deletedAt: Date | null,
-    ): IChatMessage => {
+): IChatMessage => {
+    let id = UUID();
     return {
         createdAt,
         deletedAt,
-        id: UUID(),
+        id,
         messageData,
         messageId,
         postedAt,
