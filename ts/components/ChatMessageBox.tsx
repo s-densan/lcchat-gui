@@ -2,7 +2,7 @@ import Moment from 'moment';
 import React from 'react';
 
 import Box from '@material-ui/core/Box';
-import { createDeleteChatMessageAction} from '../actions/ChatMessageActionCreators';
+import { createDeleteChatMessageAction, createShowChatMessageMenuAction} from '../actions/ChatMessageActionCreators';
 import { IChatMessage } from '../states/IChatMessage';
 import store from '../Store';
 
@@ -52,7 +52,8 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
      * ボックスをクリックすると、メニュー表示する
      */
     private onClickBox = (id: string, e: React.MouseEvent<HTMLElement>) => {
-        store.dispatch(createToggleCompleteAction(id, store));
+        //store.dispatch(createShowChatMessageMenuAction(id, store));
+        store.dispatch(createDeleteChatMessageAction(id, store));
         // do nothing
     }
     /**

@@ -15,76 +15,44 @@ import {
     IToggleShowSpinnerAction,
     POST_CHAT_MESSAGE,
     SHOW_CHAT_MESSAGES,
+    SHOW_CHAT_MESSAGE_MENU,
     TOGGLE_COMPLETE_TASK,
     TOGGLE_SHOW_SPINNER,
 } from './ChatMessageActions';
 // import { initTaskList } from '../states/ILcChatMessage';
 
+/**
+ * チャットメセージメニュー表示アクション生成
+ * @param chatMessageId チャットメッセージID
+ * @returns チャットメッセージ表示アクション
+ */
 export const createShowChatMessageMenuAction = (chatMessageId: string): IShowChatMessageMenuAction => {
-    const chatMes = {
+    return {
         chatMessageId: chatMessageId,
+        type: SHOW_CHAT_MESSAGE_MENU,
     }
-    return chatMes;
 }
 /**
  * タスクの表示アクションを作成する
  * @param chatMessages 表示するタスクのリスト
  */
 export const createShowChatMessagesAction = (chatMessages: IChatMessage[]): IShowChatMessageAction => {
-    // 確認のため、ダミーデータをハードコーディングする
-    const dummyChatMessages: IChatMessage[] = [
-        {
-            createdAt: null,
-            deletedAt: null,
-            id: '0',
-            messageData: 'task01',
-            messageId: 'm123456',
-            postedAt: new Date(Date.now()),
-            talkId: 't123456',
-            text: 'こんにちは',
-            updatedAt: null,
-            userId: 'u123456',
-        },
-        {
-            createdAt: null,
-            deletedAt: null,
-            id: '1',
-            messageData: 'task01',
-            messageId: 'm123457',
-            postedAt: new Date(Date.now()),
-            talkId: 't123456',
-            text: 'こんにちは2',
-            updatedAt: null,
-            userId: 'u123456',
-        },
-        {
-            createdAt: null,
-            deletedAt: null,
-            id: '2',
-            messageData: 'task01',
-            messageId: 'm123458',
-            postedAt: new Date(Date.now()),
-            talkId: 't123456',
-            text: 'こんにちは3',
-            updatedAt: null,
-            userId: 'u123456',
-        },
-    ];
     return {
-        chatMessages: dummyChatMessages,
-        type: SHOW_CHAT_MESSAGES,
-    };
-    return {
-        // tasks, // 本来はこっち
         chatMessages,
         type: SHOW_CHAT_MESSAGES,
     };
 };
 
 /**
- * 新しいタスクを作成するアクションを作成する
- * @param text 新しいタスクの名前
- * @param postedAt 新しいタクスの期限
+ * 新しいチャットメッセージを投稿するアクションを作成する
+ * 非同期処理のため、ディスパッチャへの登録はアクションクリエータで実行する。
+ * @param messageId メッセージID
+ * @param text メッセージの内容
+ * @param userId 投稿したユーザのID
+ * @param talkId メッセージが所属するトークのID
+ * @param postedAt 投稿日時
+ * @param messageData メッセージの詳細データ
+ * @param store Storeオブジェクト
  */
 export const createPostChatMessageAction =
     (
@@ -106,10 +74,9 @@ export const createPostChatMessageAction =
                 type: POST_CHAT_MESSAGE,
                 userId,
             };
-            store.dispatch(addAction);
+            store.dispatch<IPostChatMessageAction>(addAction);
             const chatMessageList = store.getState().chatMessageList;
             // オンにすると真っ白画面。
-
             await saveState(chatMessageList.chatMessages);
             const action = {
                 type: TOGGLE_SHOW_SPINNER,

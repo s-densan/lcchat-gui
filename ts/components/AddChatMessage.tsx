@@ -87,20 +87,26 @@ export class AddChatMessage extends React.Component<IProps, ILocalState> {
     }
 
     /**
-     * 追加ボタンを押すと、タスク一覧にタスクを追加する
+     * 追加ボタンを押すと、チャット一覧にチャットを追加する
      */
     private onClickAdd = (e: React.MouseEvent) => {
+        // 投稿日時
         const nowDate = new Date();
+        // メッセージIDと
         const messageId = UUID();
-        store.dispatch(createPostChatMessageAction(
+        // 投稿メッセージ
+        const text = this.state.text;
+        // 投稿アクション生成
+        const action = createPostChatMessageAction(
             messageId,
-            this.state.text,
+            text,
             'userId',
             'talkId',
             nowDate,
             'messageData',
             store,
-            ));
+            );
+        store.dispatch(action);
         const m = Moment(nowDate).add(1, 'days');
         this.setState({
             postedAt: m.toDate(),

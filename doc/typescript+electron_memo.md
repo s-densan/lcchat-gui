@@ -2,6 +2,11 @@
 
 ## 記録
 
+### 20200401
+ReduxとかFluxとかよくわからん。手持ちの本はFlux,参考にしたサイトはRedux。
+並列に並べていいものかもよくわからん。調査！
+https://qiita.com/syossan27/items/7e1b2e07ac68b96bdaa7
+どうも、FluxはReduxから派生したものらしい。
 ### 20200330
 なぜかnueに浮気をしつつ。
 

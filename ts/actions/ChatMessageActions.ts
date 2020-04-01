@@ -27,11 +27,12 @@ export interface IPostChatMessageAction extends Action {
     postedAt: Date;
     messageData: string;
 }
+export const SHOW_CHAT_MESSAGE_MENU = UUID();
 /**
  * チャットメニューを表示するアクション
  */
 export interface IShowChatMessageMenuAction extends Action {
-    chatMessagesId: string;
+    chatMessageId: string;
 }
 /**
  * タスク完了のアクションタイプ
