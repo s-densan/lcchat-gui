@@ -5,16 +5,14 @@ import { createMuiTheme, createStyles, makeStyles, MuiThemeProvider, Theme } fro
 import TextField from '@material-ui/core/TextField';
 import React from 'react';
 import { v4 as UUID } from 'uuid';
-import { createPostChatMessageAction } from '../actions/ChatMessageActionCreators';
+import {
+  createPostChatMessageAction,
+  createChangeChatBoxTextAction,
+} from '../actions/ChatMessageActionCreators';
 
 interface IProps {
   buttonCaption: string;
-}
-interface ILocalState {
-    /** テキスト */
-    text: string;
-    /** 投稿日時 */
-    postedAt: Date;
+  chatBoxText: string;
 }
 
 // スタイルを定義
@@ -29,13 +27,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default class ChatBox extends React.Component<IProps, ILocalState> {
+export default class ChatBox extends React.Component<IProps, {}> {
   public constructor(props: IProps) {
     super(props);
+    /*
     this.state = {
       postedAt: new Date(),
       text : "",
-    }
+    }*/
   }
   
   public render() {
@@ -43,12 +42,25 @@ export default class ChatBox extends React.Component<IProps, ILocalState> {
 
     return (
         <div>
-          <TextField rows="4" helperText="投稿メッセージ" name="text" value={this.state.text}/>
+          <TextField
+            rows="4"
+            helperText="投稿メッセージ"
+            name="text"
+            value={this.props.chatBoxText}
+            onChange={this.onChangeChatBox}
+            />
           <Button variant="contained" color="primary" onClick={this.onClickPost}>
             {this.props.buttonCaption}
           </Button>
         </div>
     );
+  }
+  /**
+   * 追加ボタンを押すと、チャット一覧にチャットを追加する
+   */
+  private onChangeChatBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const action = createChangeChatBoxTextAction(e.target.value);
+    store.dispatch(action);
   }
   /**
    * 追加ボタンを押すと、チャット一覧にチャットを追加する
@@ -59,7 +71,7 @@ export default class ChatBox extends React.Component<IProps, ILocalState> {
     // メッセージIDと
     const messageId = UUID();
     // 投稿メッセージ
-    const text = this.state.text;
+    const text = this.props.chatBoxText;
     // 投稿アクション生成
     const action = createPostChatMessageAction(
       messageId,

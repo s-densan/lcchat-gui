@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import React, { Component, Fragment } from 'react';
 import ChatBox from './ChatBox';
 import ChatMessageList from './ChatMessageList';
+import store from '../Store';
 
 /**
  * コンポーネント プロパティ
@@ -28,11 +29,12 @@ const Footer = () => <Fragment>Footer</Fragment>;
 const Menu = () => <Fragment>Menu</Fragment>;
 class GridLayout extends Component<{}, {}> {
   public render() {
+    const chatBoxText = store.getState().chatMessageList.chatBoxText;
     return (     
       <MuiThemeProvider theme={createMuiTheme()}>
       <div>
         <ChatMessageList />
-        <ChatBox buttonCaption="メッセージ" />
+        <ChatBox buttonCaption="メッセージ" chatBoxText={chatBoxText} />
       </div>
       </MuiThemeProvider>
     );

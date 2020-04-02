@@ -7,7 +7,7 @@ import createA2RMapper from '../utils/ActionToReducerMapper';
 
 const a2RMapper = createA2RMapper<IChatMessageList>();
 
-/** タスク一覧を表示する */
+/** チャットメッセージ一覧を表示する */
 a2RMapper.addWork<Action.IShowChatMessageAction>(
     Action.SHOW_CHAT_MESSAGES,
     (state, action) => {
@@ -44,6 +44,17 @@ a2RMapper.addWork<Action.IDeleteAction>(
         state.chatMessages = chatMessages.filter((it) => it.id !== action.chatMessageId);
     },
 );
+
+/** メッセージを削除する */
+a2RMapper.addWork<Action.IChangeChatBoxTextAction>(
+    Action.CHANGE_CHAT_BOX_TEXT,
+    (state, action) => {
+        state.chatBoxText = action.text.toUpperCase();
+        //alert(state.chatBoxText);
+    },
+);
+
+
 /** Reducer 本体 */
 export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {
     return a2RMapper.execute(state, action);

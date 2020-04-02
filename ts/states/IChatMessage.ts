@@ -30,11 +30,17 @@ export interface IChatMessage {
 export interface IChatMessageList {
     /** タスクの一覧 */
     chatMessages: IChatMessage[];
+    /** 入力中チャットメッセージ */
+    chatBoxText: string;
 }
 /**
  * メッセージのリストの初期値
  */
-export const initChatMessageList: IChatMessageList = {chatMessages: []};
+export const initChatMessageList: IChatMessageList = 
+{
+    chatMessages: [],
+    chatBoxText: "",
+};
 
 /**
  * メッセージを作成する

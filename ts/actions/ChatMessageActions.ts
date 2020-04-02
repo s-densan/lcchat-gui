@@ -67,3 +67,17 @@ export const TOGGLE_SHOW_SPINNER = UUID();
 // tslint:disable-next-line:no-empty-interface
 export interface IToggleShowSpinnerAction extends Action {
 }
+
+
+/**
+ * タスクロード開始のアクションタイプ
+ */
+export const CHANGE_CHAT_BOX_TEXT = UUID();
+/**
+ * タスクロード開始のアクション
+ */
+// tslint:disable-next-line:no-empty-interface
+export interface IChangeChatBoxTextAction extends Action {
+    text: string;
+}
+
