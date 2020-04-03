@@ -1,10 +1,8 @@
 // import Moment from 'moment';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
-import { connect } from 'react-redux';
 // import Styled from 'styled-components';
 import { createLoadChatMessagesAction , createShowChatMessagesAction } from '../actions/ChatMessageActionCreators';
-import { IState } from '../IStore';
 import { IChatMessage, IChatMessageList } from '../states/IChatMessage';
 import store from '../Store';
 import { AddChatMessage } from './AddChatMessage';
@@ -47,8 +45,12 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
     }
 }
 
+
+/*
 const mapStateToProps = (state: IState): IChatMessageList => {
     return state.chatMessageList;
 };
+*/
 
-export default connect(mapStateToProps)(ChatMessageList);
+//export default connect(mapStateToProps)(ChatMessageList);
+export default ChatMessageList;

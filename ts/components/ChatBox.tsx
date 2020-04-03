@@ -83,10 +83,5 @@ export default class ChatBox extends React.Component<IProps, {}> {
       store,
     );
     store.dispatch(action);
-    const m = Moment(nowDate).add(1, 'days');
-    this.setState({
-      postedAt: m.toDate(),
-      text: '',
-    });
   }
 }

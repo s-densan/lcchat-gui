@@ -120,7 +120,7 @@ export class AddChatMessage extends React.Component<IProps, ILocalState> {
      */
     private onChangeChatMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
-            text: e.target.value,
+            text: e.target.value.toUpperCase(),
         });
     }
 

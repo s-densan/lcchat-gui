@@ -1,4 +1,4 @@
-import Clone from 'clone';
+// import Clone from 'clone';
 import Redux from 'redux';
 
 import * as Action from '../actions/ChatMessageActions';
@@ -11,11 +11,11 @@ const a2RMapper = createA2RMapper<IChatMessageList>();
 a2RMapper.addWork<Action.IShowChatMessageAction>(
     Action.SHOW_CHAT_MESSAGES,
     (state, action) => {
-        state.chatMessages = Clone(action.chatMessages);
+        state.chatMessages = action.chatMessages;
     },
 );
 
-/** メッセージを追加する */
+/** メッセージを投稿する */
 a2RMapper.addWork<Action.IPostChatMessageAction>(
     Action.POST_CHAT_MESSAGE,
     (state, action) => {
@@ -45,12 +45,12 @@ a2RMapper.addWork<Action.IDeleteAction>(
     },
 );
 
-/** メッセージを削除する */
+/** ChatBoxのメッセージを変更する */
 a2RMapper.addWork<Action.IChangeChatBoxTextAction>(
     Action.CHANGE_CHAT_BOX_TEXT,
     (state, action) => {
         state.chatBoxText = action.text.toUpperCase();
-        //alert(state.chatBoxText);
+        // alert(state.chatBoxText);
     },
 );
 
