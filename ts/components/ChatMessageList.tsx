@@ -42,6 +42,7 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
 
             </div>
         );
+        /*
         const anchorEl = '';
         const handleClose = '';
         const fade = true;
@@ -58,7 +59,7 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
             </Menu>
-
+        */
         // <Loading shown={this.props.shownLoading} />{/* <-追加 */}
 
     }
