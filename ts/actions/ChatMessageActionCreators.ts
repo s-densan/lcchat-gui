@@ -6,7 +6,7 @@ import { IChatMessage } from '../states/IChatMessage';
 import { loadChatMessage as loadChatMessage, saveState } from '../utils/ChatDatabaseIF';
 
 import {
-    IChangeChatBoxTextAction,
+    IChangeChatMessageInputBoxTextAction,
     DELETE_CHAT_MESSAGE,
     IDeleteAction,
     IPostChatMessageAction,
@@ -19,7 +19,7 @@ import {
     SHOW_CHAT_MESSAGE_MENU,
     TOGGLE_COMPLETE_TASK,
     TOGGLE_SHOW_SPINNER,
-    CHANGE_CHAT_BOX_TEXT,
+    CHANGE_CHAT_MESSAGE_INPUT_BOX_TEXT,
 } from './ChatMessageActions';
 // import { initTaskList } from '../states/ILcChatMessage';
 
@@ -34,10 +34,10 @@ export const createShowChatMessageMenuAction = (chatMessageId: string): IShowCha
         type: SHOW_CHAT_MESSAGE_MENU,
     }
 }
-export const createChangeChatBoxTextAction = (text: string): IChangeChatBoxTextAction => {
+export const createChangeChatBoxTextAction = (text: string): IChangeChatMessageInputBoxTextAction => {
     return {
         text,
-        type: CHANGE_CHAT_BOX_TEXT,
+        type: CHANGE_CHAT_MESSAGE_INPUT_BOX_TEXT,
     }
 }
 /**

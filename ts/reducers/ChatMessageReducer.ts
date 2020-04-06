@@ -46,14 +46,21 @@ a2RMapper.addWork<Action.IDeleteAction>(
 );
 
 /** ChatBoxのメッセージを変更する */
-a2RMapper.addWork<Action.IChangeChatBoxTextAction>(
-    Action.CHANGE_CHAT_BOX_TEXT,
+a2RMapper.addWork<Action.IChangeChatMessageInputBoxTextAction>(
+    Action.CHANGE_CHAT_MESSAGE_INPUT_BOX_TEXT,
     (state, action) => {
         state.chatBoxText = action.text.toUpperCase();
         // alert(state.chatBoxText);
     },
 );
 
+/** チャットメッセージのメニューを表示する */
+a2RMapper.addWork<Action.IShowChatMessageMenuAction>(
+    Action.SHOW_CHAT_MESSAGE_MENU,
+    (state, action) => {
+        // do nothing
+    },
+);
 
 /** Reducer 本体 */
 export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {

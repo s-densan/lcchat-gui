@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import React, { Component, Fragment } from 'react';
-import ChatBox from './ChatBox';
+import ChatMessagePostBox from './ChatMessagePostBox';
 import { IChatMessage, IChatMessageList } from '../states/IChatMessage';
 import ChatMessageList from './ChatMessageList';
 import { connect } from 'react-redux';
@@ -39,7 +39,7 @@ class GridLayout extends Component<IChatMessageList, {}> {
           chatBoxText={this.props.chatBoxText}
           children={this.props.children}
           chatMessages={this.props.chatMessages}/>
-        <ChatBox
+        <ChatMessagePostBox
           buttonCaption="メッセージ"
           chatBoxText={this.props.chatBoxText} />
       </div>

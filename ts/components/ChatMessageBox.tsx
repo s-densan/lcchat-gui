@@ -52,9 +52,8 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
      * ボックスをクリックすると、メニュー表示する
      */
     private onClickBox = (id: string, e: React.MouseEvent<HTMLElement>) => {
-        //store.dispatch(createShowChatMessageMenuAction(id, store));
-        store.dispatch(createDeleteChatMessageAction(id, store));
-        // do nothing
+        store.dispatch(createShowChatMessageMenuAction(id/*, store*/));
+        //store.dispatch(createDeleteChatMessageAction(id, store));
     }
     /**
      * 削除ボタンを押すと、タスクを削除する

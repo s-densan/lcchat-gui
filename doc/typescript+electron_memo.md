@@ -22,6 +22,10 @@
 
 ## 記録
 
+### 20200406
+#### Material-UI で Menu を作るときは anchorEl を忘れるな！
+
+https://qiita.com/nacky00/items/d5a2a55735210bfc9c57
 ### 20200403
 https://qiita.com/EBIHARA_kenji/items/1a043794014dc2f3a7db
 > store と component を連結させる

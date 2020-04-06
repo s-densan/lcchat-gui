@@ -27,14 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default class ChatBox extends React.Component<IProps, {}> {
+export default class ChatMessagePostBox extends React.Component<IProps, {}> {
   public constructor(props: IProps) {
     super(props);
-    /*
-    this.state = {
-      postedAt: new Date(),
-      text : "",
-    }*/
   }
   
   public render() {

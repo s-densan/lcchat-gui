@@ -10,6 +10,7 @@ import ChatMessageBox from './ChatMessageBox';
 import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
 import { Loading } from './Loading';
 import Box from '@material-ui/core/Box'
+import { Menu, MenuItem } from '@material-ui/core'
 
 class ChatMessageList extends React.Component<IChatMessageList, {}> {
     public componentDidMount() {
@@ -38,8 +39,26 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
                 <Grid container direction="column" style={{width:800}} >
                     {chatMessageListElems}
                 </Grid>
+
             </div>
         );
+        const anchorEl = '';
+        const handleClose = '';
+        const fade = true;
+        const chatMessageMenu =
+            <Menu
+                id="fade-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={fade}
+            >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
+
         // <Loading shown={this.props.shownLoading} />{/* <-追加 */}
 
     }
