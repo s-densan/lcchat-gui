@@ -22,6 +22,13 @@
 
 ## 記録
 
+### 20200407
+デザインをいじり始めて沼。
+#### 『React』 +『Redux』 + 『Firebase』でLINE風のChat機能を作ろう！ 【Component編】
+
+https://qiita.com/micropig3402/items/3431c998df582a441fa5
+![](img/2020-04-07-21-49-04.png)
+お、悪くない。色々いじっていけそう。
 ### 20200406
 #### Material-UI で Menu を作るときは anchorEl を忘れるな！
 

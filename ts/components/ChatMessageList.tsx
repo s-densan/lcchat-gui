@@ -11,6 +11,8 @@ import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from '.
 import { Loading } from './Loading';
 import Box from '@material-ui/core/Box'
 import { Menu, MenuItem } from '@material-ui/core'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 class ChatMessageList extends React.Component<IChatMessageList, {}> {
     public componentDidMount() {
@@ -25,19 +27,20 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
         };
         const mapFunc = (it: IChatMessage) => {
             return (
-                <Grid item xs={1}>
-                    <Box style={{ borderBottom: 1, width: '200%'}} >
-                        <ChatMessageBox key={it.id} {...it} />
-                    </Box>
-                </Grid>
+                <ListItem alignItems="flex-start">
+                    <ChatMessageBox key={it.id} {...it} />
+                </ListItem>
             );
         };
-        const chatMessageListElems = tasks.sort(compFunc).reverse().map(mapFunc);
+        // const chatMessageListElems = tasks.sort(compFunc).reverse().map(mapFunc);
+        const chatMessageListElems = tasks.map(mapFunc);
         return (
             <div style={{width:800}}>
                 <AddChatMessage text="" />
-                <Grid container direction="column" style={{width:800}} >
+                <List>
                     {chatMessageListElems}
+                </List>
+                <Grid container direction="column" style={{width:800}} >
                 </Grid>
 
             </div>

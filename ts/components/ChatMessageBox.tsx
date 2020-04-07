@@ -5,6 +5,9 @@ import Box from '@material-ui/core/Box';
 import { createDeleteChatMessageAction, createShowChatMessageMenuAction} from '../actions/ChatMessageActionCreators';
 import { IChatMessage } from '../states/IChatMessage';
 import store from '../Store';
+import ListItemText from '@material-ui/core/ListItemText';
+
+
 
 const MEDIA_BODY_STYLE = {
   color: '#888',
@@ -25,27 +28,14 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
         const postedAt = Moment(this.props.postedAt).format('YYYY-MM-DD hh:mm');
         return (
             <div>
-                <Box border={1}>
+                <ListItemText primary="Hello World">
                     <span>{this.props.text}</span>
                     <p onClick={this.onClickBox.bind}> {this.props.text} </p>
+                </ListItemText>
+                <Box color="text.primary" border={1} >
                 </Box>
             </div>
 
-            /*
-            <Task expiration={it.deletedAt !== null}
-                onClick={this.onClickBox.bind(this, it.id)}>
-                <TaskCheckBox>
-                    <TaskCheck>
-                        {it.deletedAt === null ? '✔' : null}
-                    </TaskCheck>
-                </TaskCheckBox>
-                <TaskBody>
-                    <TaskName>{it.text}</TaskName>
-                    <Deadline>⏰{deadlineString}</Deadline>
-                </TaskBody>
-                <TaskRemove onClick={this.onClickDelete.bind(this, it.id)}>❌</TaskRemove>
-            </Task>
-            */
         );
     }
     /**

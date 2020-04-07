@@ -50,7 +50,6 @@ a2RMapper.addWork<Action.IChangeChatMessageInputBoxTextAction>(
     Action.CHANGE_CHAT_MESSAGE_INPUT_BOX_TEXT,
     (state, action) => {
         state.chatBoxText = action.text.toUpperCase();
-        // alert(state.chatBoxText);
     },
 );
 
@@ -64,5 +63,15 @@ a2RMapper.addWork<Action.IShowChatMessageMenuAction>(
 
 /** Reducer 本体 */
 export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {
-    return a2RMapper.execute(state, action);
+    switch(action.type){
+        case Action.CHANGE_CHAT_MESSAGE_INPUT_BOX_TEXT:
+            // お試し
+            const newState:IChatMessageList = {
+                chatBoxText: action.text,
+                chatMessages: state.chatMessages,
+            }
+            return newState;
+        default:
+            return a2RMapper.execute(state, action);
+    }
 };
