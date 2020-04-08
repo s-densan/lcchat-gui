@@ -63,13 +63,36 @@ a2RMapper.addWork<Action.IShowChatMessageMenuAction>(
 
 /** Reducer 本体 */
 export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {
-    switch(action.type){
+    switch (action.type) {
+        case Action.POST_CHAT_MESSAGE:
+            if (action.text == '') {
+                return state;
+            } else {
+                const messageList = state.chatMessages.concat(
+                    createChatMessage(
+                        action.chatMessageId,
+                        action.text,
+                        action.userId,
+                        action.talkId,
+                        action.postedAt,
+                        action.messageData,
+                        null,
+                        null,
+                        null,
+                    )
+                );
+                return {
+                    chatMessages: messageList,
+                    chatBoxText: state.chatBoxText,
+                }
+            }
+            
         case Action.CHANGE_CHAT_MESSAGE_INPUT_BOX_TEXT:
             // お試し
-            const newState:IChatMessageList = {
+            const newState: IChatMessageList = {
                 chatBoxText: action.text,
                 chatMessages: state.chatMessages,
-            }
+            };
             return newState;
         default:
             return a2RMapper.execute(state, action);

@@ -3,7 +3,7 @@ import store from '../Store';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, createStyles, makeStyles, MuiThemeProvider, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 as UUID } from 'uuid';
 import {
   createPostChatMessageAction,
@@ -17,56 +17,35 @@ interface IProps {
 
 // スタイルを定義
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      padding: theme.spacing(2)
+  createStyles(
+    {
+      root: {
+        padding: theme.spacing(2),
+      },
+      title: {
+        borderBottom: `2px solid ${theme.palette.primary.main}`,
+      },
     },
-    title: {
-      borderBottom: `2px solid ${theme.palette.primary.main}`
-    }
-  })
+  )
 );
-
-export default class ChatMessagePostBox extends React.Component<IProps, {}> {
-  public constructor(props: IProps) {
-    super(props);
-  }
-  
-  public render() {
-    //const classes = useStyles();
-
-    return (
-        <div>
-          <TextField
-            rows="4"
-            helperText="投稿メッセージ"
-            name="text"
-            value={this.props.chatBoxText}
-            onChange={this.onChangeChatBox}
-            />
-          <Button variant="contained" color="primary" onClick={this.onClickPost}>
-            {this.props.buttonCaption}
-          </Button>
-        </div>
-    );
-  }
-  /**
-   * 追加ボタンを押すと、チャット一覧にチャットを追加する
-   */
-  private onChangeChatBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+export default function ChatMessagePostBox(props: IProps) {
+  //const classes = useStyles();
+  const [val, setVal] = useState('');
+  const onChangeChatBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // setVal(e.target.value.toUpperCase()); // if use local state
     const action = createChangeChatBoxTextAction(e.target.value);
     store.dispatch(action);
   }
   /**
    * 追加ボタンを押すと、チャット一覧にチャットを追加する
    */
-  private onClickPost = (e: React.MouseEvent) => {
+  const onClickPost = (e: React.MouseEvent) => {
     // 投稿日時
     const nowDate = new Date();
     // メッセージIDと
     const messageId = UUID();
     // 投稿メッセージ
-    const text = this.props.chatBoxText;
+    const text = val;
     // 投稿アクション生成
     const action = createPostChatMessageAction(
       messageId,
@@ -79,4 +58,19 @@ export default class ChatMessagePostBox extends React.Component<IProps, {}> {
     );
     store.dispatch(action);
   }
+
+  return (
+    <div>
+      <TextField
+        rows="4"
+        helperText="投稿メッセージ"
+        name="text"
+        value={props.chatBoxText}
+        onChange={onChangeChatBox}
+      />
+      <Button variant="contained" color="primary" onClick={onClickPost}>
+        {props.buttonCaption}
+      </Button>
+    </div>
+  );
 }

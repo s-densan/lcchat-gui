@@ -4,6 +4,7 @@ var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 module.exports = {
     // Electronのレンダラプロセスで動作することを指定する
     target: 'electron-renderer',
+    // target: 'web',
     // 起点となるファイル
     entry: './ts/index.tsx',
     // webpack watch したときに差分ビルドができる

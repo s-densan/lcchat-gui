@@ -39,7 +39,7 @@ export interface IChatMessageList {
 export const initChatMessageList: IChatMessageList = 
 {
     chatMessages: [],
-    chatBoxText: "",
+    chatBoxText: '',
 };
 
 /**

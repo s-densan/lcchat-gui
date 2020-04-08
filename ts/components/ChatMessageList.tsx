@@ -1,5 +1,4 @@
 // import Moment from 'moment';
-import Grid from '@material-ui/core/Grid';
 import React from 'react';
 // import Styled from 'styled-components';
 import { createLoadChatMessagesAction , createShowChatMessagesAction } from '../actions/ChatMessageActionCreators';
@@ -9,17 +8,35 @@ import { AddChatMessage } from './AddChatMessage';
 import ChatMessageBox from './ChatMessageBox';
 import { $COLOR_FOREGROUND_REVERSE, $COLOR_PRIMARY_0, $COLOR_PRIMARY_3 } from './FoundationStyles';
 import { Loading } from './Loading';
-import Box from '@material-ui/core/Box'
-import { Menu, MenuItem } from '@material-ui/core'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import {
+    List,
+    ListItem,
+    Menu,
+    MenuItem,
+    Box,
+    Grid,
+} from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
+
+
+
 
 class ChatMessageList extends React.Component<IChatMessageList, {}> {
+ 
     public componentDidMount() {
         store.dispatch(createLoadChatMessagesAction(store.dispatch));
         store.dispatch(createShowChatMessagesAction([]));
     }
     public render() {
+        const style = {
+                root: {
+                    width: '100%',
+                    maxWidth: 360,
+                },
+            };
+
+
         const { chatMessages: tasks } = this.props;
         const compFunc = (a: IChatMessage, b: IChatMessage) => {
             // postedAt
@@ -27,7 +44,7 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
         };
         const mapFunc = (it: IChatMessage) => {
             return (
-                <ListItem alignItems="flex-start">
+                <ListItem alignItems="center" button>
                     <ChatMessageBox key={it.id} {...it} />
                 </ListItem>
             );
@@ -37,7 +54,7 @@ class ChatMessageList extends React.Component<IChatMessageList, {}> {
         return (
             <div style={{width:800}}>
                 <AddChatMessage text="" />
-                <List>
+                <List dense style={{width:"100%"}}>
                     {chatMessageListElems}
                 </List>
                 <Grid container direction="column" style={{width:800}} >

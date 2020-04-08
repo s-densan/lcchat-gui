@@ -28,12 +28,9 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
         const postedAt = Moment(this.props.postedAt).format('YYYY-MM-DD hh:mm');
         return (
             <div>
-                <ListItemText primary="Hello World">
-                    <span>{this.props.text}</span>
+                <ListItemText primary={this.props.text}>
                     <p onClick={this.onClickBox.bind}> {this.props.text} </p>
                 </ListItemText>
-                <Box color="text.primary" border={1} >
-                </Box>
             </div>
 
         );
@@ -43,6 +40,7 @@ class ChatMessageBox extends React.Component<IChatMessage, {}> {
      */
     private onClickBox = (id: string, e: React.MouseEvent<HTMLElement>) => {
         store.dispatch(createShowChatMessageMenuAction(id/*, store*/));
+        alert('test');
         //store.dispatch(createDeleteChatMessageAction(id, store));
     }
     /**

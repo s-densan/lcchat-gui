@@ -22,6 +22,32 @@
 
 ## 記録
 
+### 20200408
+```
+Uncaught Error: Invalid hook call. Hooks can only be called inside of the body of ...
+```
+わからんのじゃ！
+うーん、material-uiのサイトを参考にしてたが、うまく行かない。
+https://material-ui.com/components/lists/#simple-list
+→Hookというものを使っていて、それがクラス式のコンポーネントの記載方法に対応していないらしい。
+→``ChatMessagePostBox``を書き直してみたよ！なれない。
+#### Invalid Hook Call Warning
+
+https://ja.reactjs.org/warnings/invalid-hook-call-warning.html
+なんか、クラスの中でフック（useから始まるなにか）を使っちゃいけないんだって。え、どうしろと？
+#### フックに関するよくある質問
+https://ja.reactjs.org/docs/hooks-faq.html#what-can-i-do-with-hooks-that-i-couldnt-with-classes
+わかった。フックはクラスじゃ使えないわ。
+もっというと、クラスで作る設計を置き換える新しい作り方っぽい。えーそうなん？なんでやろ。
+#### React Hooksとは？各Hooksの使い方やルールを紹介
+
+https://microcms.io/blog/what-is-react-hooks/
+わかりやすい開設。うむ、流れはクラスから関数でコンポーネントを実現するのか。
+あんま直感的じゃないけど、副作用を極力排除するならそうなるのか。
+
+#### React+Reduxで書く時に気をつけていること/悩み3：hooks便利すぎ問題
+https://www.fundely.co.jp/blog/tech/2019/11/20/180045/#section4
+ここもわかりやすい。Hook有無比較がいい。
 ### 20200407
 デザインをいじり始めて沼。
 #### 『React』 +『Redux』 + 『Firebase』でLINE風のChat機能を作ろう！ 【Component編】
