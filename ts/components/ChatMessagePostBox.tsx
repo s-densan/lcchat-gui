@@ -56,6 +56,7 @@ export default function ChatMessagePostBox(props: IProps) {
       'messageData',
       store,
     );
+    alert(val);
     store.dispatch(action);
   }
 
