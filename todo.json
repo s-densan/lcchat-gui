@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "createdAt": null,
+      "deletedAt": null,
+      "id": "0d55f9e4-9302-4dc1-9ad4-768bea5ef710",
+      "messageData": "messageData",
+      "messageId": "2cdd8473-d5b8-4a29-8e39-3c260a20b506",
+      "postedAt": "2020-04-12T15:03:04.810Z",
+      "talkId": "talkId",
+      "text": "adf",
+      "updatedAt": null,
+      "userId": "userId"
+    }
+  ]
+}

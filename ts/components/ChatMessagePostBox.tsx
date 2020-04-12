@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
   )
 );
 export default function ChatMessagePostBox(props: IProps) {
-  //const classes = useStyles();
+  // const classes = useStyles();
   const [val, setVal] = useState('');
   const onChangeChatBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setVal(e.target.value.toUpperCase()); // if use local state
@@ -45,7 +45,7 @@ export default function ChatMessagePostBox(props: IProps) {
     // メッセージIDと
     const messageId = UUID();
     // 投稿メッセージ
-    const text = val;
+    const text = props.chatBoxText;
     // 投稿アクション生成
     const action = createPostChatMessageAction(
       messageId,
@@ -56,7 +56,7 @@ export default function ChatMessagePostBox(props: IProps) {
       'messageData',
       store,
     );
-    alert(val);
+    alert(props.chatBoxText);
     store.dispatch(action);
   }
 

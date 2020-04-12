@@ -5,8 +5,9 @@ import Path from 'path';
 import { IChatMessage } from '../states/IChatMessage';
 
 // OSごとのユーザーのプロファイルフォルダに保存される
-//const dataFilePath = Path.join(OS.homedir(), 'todo.json');
-const dataFilePath = Path.join(__dirname, 'todo.json');
+// const dataFilePath = Path.join(OS.homedir(), 'todo.json');
+// const dataFilePath = Path.join(Path.resolve(__dirname), 'todo.json');
+const dataFilePath = Path.join(Path.resolve(process.cwd()), 'todo.json');
 
 /**
  * ファイルからタスクのデータをロードする
@@ -16,7 +17,6 @@ export const loadChatMessage = async () => {
     if (!exist) { // ...(c)
         // データファイルがなけれが、ファイルを作成して、初期データを保存する
         FsEx.ensureFileSync(dataFilePath);
-        alert(dataFilePath);
         await FsEx.writeJSON(dataFilePath, { data: [] });
     }
     // データファイルを読み込む ...(d)
@@ -31,7 +31,7 @@ export const loadChatMessage = async () => {
         },
     });
     // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
-    //await setTimeoutPromise(1000);
+    // await setTimeoutPromise(1000);
     return jsonData;
 };
 
@@ -41,11 +41,10 @@ export const loadChatMessage = async () => {
 export const saveState = async (chatMessageList: IChatMessage[]) => {
     // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
     // await setTimeoutPromise(1000);
-        alert(dataFilePath);
+    // alert(dataFilePath);
     await FsEx.writeJSON(dataFilePath, { data: chatMessageList }, {
         replacer: (key: string, value: any) => {
-            if (key !== 'deadline') { return value; }
-            return new Date((value as string)).getTime();
+            return value;
         },
         spaces: 2,
     });
