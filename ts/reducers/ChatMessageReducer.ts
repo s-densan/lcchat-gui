@@ -65,7 +65,7 @@ a2RMapper.addWork<Action.IShowChatMessageMenuAction>(
 export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {
     switch (action.type) {
         case Action.POST_CHAT_MESSAGE:
-            if (action.text == '') {
+            if (action.text === '') {
                 return state;
             } else {
                 const messageList = state.chatMessages.concat(
@@ -83,7 +83,7 @@ export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = init
                 );
                 return {
                     chatMessages: messageList,
-                    chatBoxText: state.chatBoxText,
+                    chatBoxText: '',
                 }
             }
             

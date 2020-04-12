@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 export default function ChatMessagePostBox(props: IProps) {
   // const classes = useStyles();
-  const [val, setVal] = useState('');
+  // const [val, setVal] = useState(''); if use local state
   const onChangeChatBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setVal(e.target.value.toUpperCase()); // if use local state
     const action = createChangeChatBoxTextAction(e.target.value);
@@ -56,7 +56,7 @@ export default function ChatMessagePostBox(props: IProps) {
       'messageData',
       store,
     );
-    alert(props.chatBoxText);
+    // alert(props.chatBoxText);
     store.dispatch(action);
   }
 
