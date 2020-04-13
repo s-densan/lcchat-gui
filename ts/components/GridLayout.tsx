@@ -37,7 +37,7 @@ class GridLayout extends Component<IChatMessageList, {}> {
       <div>
         <ChatMessageList
           chatBoxText={this.props.chatBoxText}
-          children={this.props.children}
+          //children={this.props.children}
           chatMessages={this.props.chatMessages}/>
         <ChatMessagePostBox
           buttonCaption="メッセージ"
