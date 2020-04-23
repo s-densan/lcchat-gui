@@ -3,7 +3,7 @@ import { Dispatch, Store } from 'redux';
 import uuid from 'uuid';
 import { IState } from '../IStore';
 import { IChatMessage } from '../states/IChatMessage';
-import { loadChatMessage as loadChatMessage, saveState } from '../utils/ChatDatabaseIF';
+import { loadChatMessage as loadChatMessage, saveState, saveStateTest } from '../utils/ChatDatabaseIF';
 
 import {
     IChangeChatMessageInputBoxTextAction,
@@ -72,6 +72,8 @@ export const createPostChatMessageAction =
         messageData: string,
         store: Store<IState>,
     ): IToggleShowSpinnerAction => {
+        const chatMessageList = store.getState().chatMessageList;
+        saveStateTest(chatMessageList.chatMessages);
         (async () => {
             const addAction: IPostChatMessageAction = {
                 chatMessageId: messageId,

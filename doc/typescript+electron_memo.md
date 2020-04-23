@@ -5,22 +5,119 @@
 <!-- code_chunk_output -->
 
 1. [記録](#記録)
-    1. [20200401](#20200401)
-    2. [20200330](#20200330)
-    3. [20200108](#20200108)
-    4. [20191202](#20191202)
-    5. [20191202](#20191202-1)
-    6. [20191201-2](#20191201-2)
-    7. [20191201](#20191201)
-    8. [20191130](#20191130)
-    9. [20191129](#20191129)
-    10. [20191127 4日目～7日目](#20191127-4日目~7日目)
-    11. [20191125 3日目](#20191125-3日目)
-    12. [20191105](#20191105)
+    1. [20200422 SQLite2](#20200422-sqlite2)
+    2. [20200421 SQLite](#20200421-sqlite)
+    3. [20200408](#20200408)
+    4. [20200407](#20200407)
+    5. [20200406](#20200406)
+    6. [20200403](#20200403)
+    7. [20200401](#20200401)
+    8. [20200330](#20200330)
+    9. [20200108](#20200108)
+    10. [20191202](#20191202)
+    11. [20191202](#20191202-1)
+    12. [20191201-2](#20191201-2)
+    13. [20191201](#20191201)
+    14. [20191130](#20191130)
+    15. [20191129](#20191129)
+    16. [20191127 4日目～7日目](#20191127-4日目~7日目)
+    17. [20191125 3日目](#20191125-3日目)
+    18. [20191105](#20191105)
 
 <!-- /code_chunk_output -->
 
 ## 記録
+
+### 20200424 コマンド実行
+sqliteは諦めて外部プログラムを呼び出せるよう、コマンド実行方法を調査。
+```ts
+    child_process.exec('dir', (error, stdout, stderr) => {
+        if (error) {
+            // エラー時は標準エラー出力を表示して終了
+            alert(stderr);
+            return;
+        } else {
+            // 成功時は標準出力を表示して終了
+            alert(stdout);
+        }
+    })
+```
+### 20200422 SQLite2
+【俺メモ】CentOS7にNode.js＋SQLite3環境をインストール
+
+https://qiita.com/nullpointer_t/items/792c35d068d37ed8ce2a
+
+んー？？
+いかが必要かも。
+https://github.com/mapbox/node-pre-gyp
+```
+Add node-pre-gyp to dependencies
+Add aws-sdk as a devDependency
+Add a custom install script
+Declare a binary object
+
+```
+![](img/2020-04-22-21-22-59.png)
+謎のエラーが出るのです。
+これ、Windowsだとだめなやつかな？
+
+→シンプルなプロジェクトだと動く。
+```js
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('D:\\IdeaProjects\\sqlitetest\\test.db');
+ 
+db.serialize(function() {
+  db.run("CREATE TABLE lorem (info TEXT)");
+ 
+  var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
+  for (var i = 0; i < 10; i++) {
+      stmt.run("Ipsum " + i);
+  }
+  stmt.finalize();
+ 
+  db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
+      console.log(row.id + ": " + row.info);
+  });
+});
+ 
+db.close();
+```
+
+typescriptだと以下。
+```ts
+
+import {Database} from 'sqlite3';
+var db = new Database('D:\\IdeaProjects\\sqlitetest\\test.db');
+ 
+db.serialize(function() {
+  db.run("CREATE TABLE lorem (info TEXT)");
+ 
+  var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
+  for (var i = 0; i < 10; i++) {
+      stmt.run("Ipsum " + i);
+  }
+  stmt.finalize();
+ 
+  db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
+      console.log(row.id + ": " + row.info);
+  });
+});
+ 
+db.close();
+```
+
+ヒント
+https://github.com/LedgerHQ/ledgerjs/issues/278
+https://github.com/mapbox/node-sqlite3/issues/909
+
+
+### 20200421 SQLite
+#### Node.js で SQLite を扱う
+
+
+https://neos21.hatenablog.com/entry/2018/04/22/080000
+
+``yarn``で``sqlite3``と``@types/sqlite3``を導入。
 
 ### 20200408
 ```
