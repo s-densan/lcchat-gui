@@ -2,6 +2,7 @@ import FsEx from 'fs-extra'; // ...(a)
 import OS from 'os';
 import Path from 'path';
 import child_process from 'child_process';
+import { createChatMessage } from '../states/IChatMessage';
 
 import { IChatMessage } from '../states/IChatMessage';
 
@@ -48,14 +49,15 @@ export const loadChatMessage = async () => {
 export const saveStateTest = async (chatMessageList: IChatMessage[]) => {
     const sqlCommand = '';
     const sqlCommand2 = '';
-    child_process.exec('dir', (error, stdout, stderr) => {
+    await child_process.exec('echo select * from channel | neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"', (error, stdout, stderr) => {
         if (error) {
             // エラー時は標準エラー出力を表示して終了
             alert(stderr);
             return;
         } else {
             // 成功時は標準出力を表示して終了
-            alert(stdout);
+            chatMessageList.push(createChatMessage('0', stdout, '1', '1', new Date(), 'a', null, null, null));
+            return stdout;
         }
     })
 }

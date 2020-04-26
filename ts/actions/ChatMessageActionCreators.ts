@@ -2,7 +2,7 @@ import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
 import uuid from 'uuid';
 import { IState } from '../IStore';
-import { IChatMessage } from '../states/IChatMessage';
+import { IChatMessage, createChatMessage } from '../states/IChatMessage';
 import { loadChatMessage as loadChatMessage, saveState, saveStateTest } from '../utils/ChatDatabaseIF';
 
 import {
@@ -73,7 +73,6 @@ export const createPostChatMessageAction =
         store: Store<IState>,
     ): IToggleShowSpinnerAction => {
         const chatMessageList = store.getState().chatMessageList;
-        saveStateTest(chatMessageList.chatMessages);
         (async () => {
             const addAction: IPostChatMessageAction = {
                 chatMessageId: messageId,
@@ -91,6 +90,7 @@ export const createPostChatMessageAction =
             const action = {
                 type: TOGGLE_SHOW_SPINNER,
             };
+            const saveRes = await saveStateTest(chatMessageList.chatMessages);
             store.dispatch<IToggleShowSpinnerAction>(action);
         })();
         return {
