@@ -2,8 +2,8 @@ import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
 import uuid from 'uuid';
 import { IState } from '../IStore';
-import { IChatMessage, createChatMessage } from '../states/IChatMessage';
-import { loadChatMessage as loadChatMessage, saveState, saveStateTest } from '../utils/ChatDatabaseIF';
+import { IChatMessage, createChatMessage, initChatMessageList } from '../states/IChatMessage';
+import { loadChatMessage, loadStateDB, saveStateJson} from '../utils/ChatDatabaseIF';
 
 import {
     IChangeChatMessageInputBoxTextAction,
@@ -32,14 +32,14 @@ export const createShowChatMessageMenuAction = (chatMessageId: string): IShowCha
     return {
         chatMessageId: chatMessageId,
         type: SHOW_CHAT_MESSAGE_MENU,
-    }
-}
+    };
+};
 export const createChangeChatBoxTextAction = (text: string): IChangeChatMessageInputBoxTextAction => {
     return {
         text,
         type: CHANGE_CHAT_MESSAGE_INPUT_BOX_TEXT,
-    }
-}
+    };
+};
 /**
  * タスクの表示アクションを作成する
  * @param chatMessages 表示するタスクのリスト
@@ -86,11 +86,10 @@ export const createPostChatMessageAction =
             store.dispatch<IPostChatMessageAction>(addAction);
             const chatMessageList = store.getState().chatMessageList;
             // オンにすると真っ白画面。
-            await saveState(chatMessageList.chatMessages);
+            // await saveStateJson(chatMessageList.chatMessages);
             const action = {
                 type: TOGGLE_SHOW_SPINNER,
             };
-            const saveRes = await saveStateTest(chatMessageList.chatMessages);
             store.dispatch<IToggleShowSpinnerAction>(action);
         })();
         return {
@@ -122,7 +121,7 @@ export const createDeleteChatMessageAction =
     (async () => {
         store.dispatch<IDeleteAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
         const chatMessageList = store.getState().chatMessageList;
-        await saveState(chatMessageList.chatMessages);
+        await saveStateJson(chatMessageList.chatMessages);
         store.dispatch<IToggleShowSpinnerAction>({
             type: TOGGLE_SHOW_SPINNER,
         });
@@ -137,17 +136,90 @@ export const createDeleteChatMessageAction =
  */
 export const createLoadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
     // ファイルを非同期で読み込む
-    let chatMessages: IChatMessage[] = [];
     // データファイルの存在チェック
-    loadChatMessage().then((jsonData) => {
-        // 読み込んだデータで値を表示する
-        // 実際にはデータの内容をチェックする必要がある
-        chatMessages = jsonData.data as IChatMessage[];
-        dispatch(createShowChatMessagesAction(chatMessages));
-        dispatch<IToggleShowSpinnerAction>({
-            type: TOGGLE_SHOW_SPINNER,
+    const SAVE_JSON = false;
+    if (SAVE_JSON) {
+        loadChatMessage().then((jsonData) => {
+            // 読み込んだデータで値を表示する
+            // 実際にはデータの内容をチェックする必要がある
+            const chatMessages = jsonData.data as IChatMessage[];
+            dispatch(createShowChatMessagesAction(chatMessages));
+            dispatch<IToggleShowSpinnerAction>({
+                type: TOGGLE_SHOW_SPINNER,
+            });
         });
-    });
+    } else {
+        loadStateDB().then((mes) => {
+            // DB読み込み後に実行する
+            const chatMessages: IChatMessage[] = [];
+            const chatMessagesJson = JSON.parse(mes);
+            for (const chatMessageJson of chatMessagesJson) {
+                const chatMessage = createChatMessage(
+                    chatMessageJson.message_id,
+                    chatMessageJson.text,
+                    chatMessageJson.user_id,
+                    'dummyTalkId',
+                    chatMessageJson.posted_at,
+                    chatMessageJson.message_data,
+                    chatMessageJson.created_at,
+                    chatMessageJson.updated_at,
+                    chatMessageJson.deleted_at,
+                );
+                chatMessages.push(chatMessage);
+            }
+            dispatch(createShowChatMessagesAction(chatMessages));
+            dispatch<IToggleShowSpinnerAction>({
+                type: TOGGLE_SHOW_SPINNER,
+            });
+        });
+    }
+    return {
+        type: TOGGLE_SHOW_SPINNER,
+    };
+};
+
+/**
+ * タスク再ロード開始のアクションを作成する
+ */
+export const createReloadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
+    // ファイルを非同期で読み込む
+    // データファイルの存在チェック
+    const SAVE_JSON = false;
+    if (SAVE_JSON) {
+        loadChatMessage().then((jsonData) => {
+            // 読み込んだデータで値を表示する
+            // 実際にはデータの内容をチェックする必要がある
+            const chatMessages = jsonData.data as IChatMessage[];
+            dispatch(createShowChatMessagesAction(chatMessages));
+            dispatch<IToggleShowSpinnerAction>({
+                type: TOGGLE_SHOW_SPINNER,
+            });
+        });
+    } else {
+        loadStateDB().then((mes) => {
+            // DB読み込み後に実行する
+            const chatMessages: IChatMessage[] = [];
+            const chatMessagesJson = JSON.parse(mes);
+            for (const chatMessageJson of chatMessagesJson) {
+                const chatMessage = createChatMessage(
+                    chatMessageJson.message_id,
+                    chatMessageJson.text,
+                    chatMessageJson.user_id,
+                    'dummyTalkId',
+                    chatMessageJson.posted_at,
+                    chatMessageJson.message_data,
+                    chatMessageJson.created_at,
+                    chatMessageJson.updated_at,
+                    chatMessageJson.deleted_at,
+                );
+                chatMessages.push(chatMessage);
+            }
+            dispatch(createShowChatMessagesAction(chatMessages));
+            dispatch<IToggleShowSpinnerAction>({
+                type: TOGGLE_SHOW_SPINNER,
+            });
+        });
+    }
     return {
         type: TOGGLE_SHOW_SPINNER,
     };

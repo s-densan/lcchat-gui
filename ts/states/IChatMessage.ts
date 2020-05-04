@@ -36,10 +36,9 @@ export interface IChatMessageList {
 /**
  * メッセージのリストの初期値
  */
-export const initChatMessageList: IChatMessageList = 
-{
-    chatMessages: [],
-    chatBoxText: '',
+export const initChatMessageList: IChatMessageList = {
+  chatMessages: [],
+  chatBoxText: '',
 };
 
 /**
@@ -64,7 +63,7 @@ export const createChatMessage = (
     updatedAt: Date | null,
     deletedAt: Date | null,
 ): IChatMessage => {
-    let id = UUID();
+    const id = UUID();
     return {
         createdAt,
         deletedAt,

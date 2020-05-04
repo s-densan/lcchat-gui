@@ -4,6 +4,7 @@ import Redux from 'redux';
 import * as Action from '../actions/ChatMessageActions';
 import { createChatMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessage';
 import createA2RMapper from '../utils/ActionToReducerMapper';
+import { saveStateDB } from '../utils/ChatDatabaseIF';
 
 const a2RMapper = createA2RMapper<IChatMessageList>();
 
@@ -68,8 +69,7 @@ export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = init
             if (action.text === '') {
                 return state;
             } else {
-                const messageList = state.chatMessages.concat(
-                    createChatMessage(
+                const newMessage = createChatMessage(
                         action.chatMessageId,
                         action.text,
                         action.userId,
@@ -79,14 +79,21 @@ export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = init
                         null,
                         null,
                         null,
-                    )
                 );
+                const messageList = state.chatMessages.concat(newMessage);
+                /*
+                (async () => {
+                })();
+                */
+                // データの保存を非同期で実行する。
+                (async () => {
+                    await saveStateDB(newMessage);
+                })();
                 return {
-                    chatMessages: messageList,
-                    chatBoxText: '',
-                }
+                  chatMessages: messageList,
+                  chatBoxText: '',
+                };
             }
-            
         case Action.CHANGE_CHAT_MESSAGE_INPUT_BOX_TEXT:
             // お試し
             const newState: IChatMessageList = {

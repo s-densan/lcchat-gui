@@ -10,12 +10,48 @@ import { IChatMessage } from '../states/IChatMessage';
 const dbFileName = 'chatroom.db';
 const useJson = !false;
 
+
 // OSごとのユーザーのプロファイルフォルダに保存される
 // const dataFilePath = Path.join(OS.homedir(), 'todo.json');
 // const dataFilePath = Path.join(Path.resolve(__dirname), 'todo.json');
 // プログラムのあるフォルダに記録
 const dataFilePath = Path.join(Path.resolve(process.cwd()), dbFileName);
 
+export const loadStateDB = async () => {
+  const sql = ` SELECT * FROM message `;
+  const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
+  const stdout = child_process.execSync(command,  { input: sql });
+  return stdout.toString();
+  
+  /*
+  const nkf = child_process.exec(
+    `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`,
+    (error, stdout, stderr) => {
+      alert('nkf');
+      if (error) {
+        // エラー時は標準エラー出力を表示して終了
+        alert(stderr);
+        return;
+      } else {
+        alert(stdout);
+        return stdout;
+      }
+    },
+  );
+  alert(sql.trim());
+  if (nkf.stdin !== null) {
+    nkf.stdin.write(sql);
+    nkf.stdin.end();
+  }
+  if (nkf.stdout !== null) {
+    // 標準出力がある場合は標準出力を読み込んだ結果を返す。
+    alert(nkf.stdout);
+    return nkf.stdout.read();
+  } else {
+    return '';
+  }
+  */
+};
 /**
  * ファイルからタスクのデータをロードする
  */
@@ -46,26 +82,43 @@ export const loadChatMessage = async () => {
     }
 };
 
-export const saveStateTest = async (chatMessageList: IChatMessage[]) => {
-    const sqlCommand = '';
-    const sqlCommand2 = '';
-    await child_process.exec('echo select * from channel | neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"', (error, stdout, stderr) => {
-        if (error) {
-            // エラー時は標準エラー出力を表示して終了
-            alert(stderr);
-            return;
-        } else {
-            // 成功時は標準出力を表示して終了
-            chatMessageList.push(createChatMessage('0', stdout, '1', '1', new Date(), 'a', null, null, null));
-            return stdout;
-        }
-    })
-}
+export const saveStateDB = async (newMessage: IChatMessage) => {
+  const sql = `INSERT
+            INTO
+                message
+            VALUES(
+                "${newMessage.id}",
+                "${newMessage.text}",
+                "${newMessage.userId}",
+                "$channel_id",
+                "${newMessage.messageData}",
+                "${newMessage.postedAt}",
+                "${newMessage.createdAt}",
+                "${newMessage.updatedAt}",
+                "${newMessage.deletedAt}"
+    )`.replace('\n', '');
+  const nkf = child_process.exec(
+    `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`,
+    (error, stdout, stderr) => {
+      if (error) {
+        // エラー時は標準エラー出力を表示して終了
+        alert(stderr);
+        return;
+      } else {
+        return stdout;
+      }
+    },
+  );
+  if (nkf.stdin !== null) {
+    nkf.stdin.write(sql);
+    nkf.stdin.end();
+  }
+};
 
 /**
  * ファイルにタスクのデータを保存する
  */
-export const saveState = async (chatMessageList: IChatMessage[]) => {
+export const saveStateJson = async (chatMessageList: IChatMessage[]) => {
     if (useJson) {
         // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
         // await setTimeoutPromise(1000);

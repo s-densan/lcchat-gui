@@ -8,6 +8,7 @@ import { v4 as UUID } from 'uuid';
 import {
   createPostChatMessageAction,
   createChangeChatBoxTextAction,
+  createReloadChatMessagesAction,
 } from '../actions/ChatMessageActionCreators';
 
 interface IProps {
@@ -58,7 +59,8 @@ export default function ChatMessagePostBox(props: IProps) {
     );
     // alert(props.chatBoxText);
     store.dispatch(action);
-  }
+    store.dispatch(createReloadChatMessagesAction(store.dispatch));
+  };
 
   return (
     <div>
