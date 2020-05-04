@@ -3,18 +3,13 @@ import store from '../Store';
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, createStyles, makeStyles, MuiThemeProvider, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { v4 as UUID } from 'uuid';
 import {
   createPostChatMessageAction,
-  createChangeChatBoxTextAction,
   createReloadChatMessagesAction,
 } from '../actions/ChatMessageActionCreators';
 
-interface IProps {
-  buttonCaption: string;
-  chatBoxText: string;
-}
 
 // スタイルを定義
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,37 +24,46 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   )
 );
-export default function ChatMessagePostBox(props: IProps) {
+export default function ChatMessagePostBox(props: {}) {
   // const classes = useStyles();
-  // const [val, setVal] = useState(''); if use local state
-  const onChangeChatBox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setVal(e.target.value.toUpperCase()); // if use local state
-    const action = createChangeChatBoxTextAction(e.target.value);
-    store.dispatch(action);
-  }
+  const [postMessageText, setPostMessageText] = useState('');
+  // 投稿ボタン表示文字
+  const buttonText = postMessageText.trim() === '' ? 'boo' : '投稿';
+  const onChangeChatMessagePostBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPostMessageText(e.target.value); // if use local state
+  };
+  const onKeyPressMessagePostBox = (e: React.KeyboardEvent) => {
+    if (e.which === 13 /* Enter */) {
+      postMessage();
+    }
+  };
   /**
    * 追加ボタンを押すと、チャット一覧にチャットを追加する
    */
   const onClickPost = (e: React.MouseEvent) => {
+    postMessage();
+  };
+
+  const postMessage = () => {
     // 投稿日時
     const nowDate = new Date();
     // メッセージIDと
     const messageId = UUID();
-    // 投稿メッセージ
-    const text = props.chatBoxText;
     // 投稿アクション生成
     const action = createPostChatMessageAction(
       messageId,
-      text,
+      postMessageText,
       'userId',
       'talkId',
       nowDate,
       'messageData',
       store,
     );
+    // メッセージを空にする。
+    setPostMessageText('');
     // alert(props.chatBoxText);
     store.dispatch(action);
-    store.dispatch(createReloadChatMessagesAction(store.dispatch));
+    // store.dispatch(createReloadChatMessagesAction(store.dispatch));
   };
 
   return (
@@ -68,11 +72,12 @@ export default function ChatMessagePostBox(props: IProps) {
         rows="4"
         helperText="投稿メッセージ"
         name="text"
-        value={props.chatBoxText}
-        onChange={onChangeChatBox}
+        value={postMessageText}
+        onChange={onChangeChatMessagePostBox}
+        onKeyPress={onKeyPressMessagePostBox}
       />
       <Button variant="contained" color="primary" onClick={onClickPost}>
-        {props.buttonCaption}
+        {buttonText}
       </Button>
     </div>
   );
