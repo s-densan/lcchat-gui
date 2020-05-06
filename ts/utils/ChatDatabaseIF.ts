@@ -17,7 +17,7 @@ const useJson = !false;
 // プログラムのあるフォルダに記録
 const dataFilePath = Path.join(Path.resolve(process.cwd()), dbFileName);
 
-export const loadStateDB = async () => {
+export const loadChatMessagesDB = async () => {
   const sql = ` SELECT * FROM message `;
   const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
   const stdout = child_process.execSync(command,  { input: sql });
@@ -82,7 +82,7 @@ export const loadChatMessage = async () => {
     }
 };
 
-export const saveStateDB = async (newMessage: IChatMessage) => {
+export const insertMessageDB = async (newMessage: IChatMessage) => {
   const sql = `INSERT
             INTO
                 message
@@ -147,6 +147,13 @@ export const saveStateJson = async (chatMessageList: IChatMessage[]) => {
         await fun();
     }
 };
+
+export const deleteMessageDB = (chatMessageId: string) => {
+  const sql = ` DELETE FROM message WHERE message_id = "${chatMessageId}"`;
+  const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
+  const stdout = child_process.execSync(command, { input: sql });
+  return stdout.toString();
+}
 
 /** 指定ミリ秒 待つ関数 */
 const setTimeoutPromise = (count: number) => {

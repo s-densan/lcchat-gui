@@ -28,6 +28,12 @@
 
 ## 記録
 
+### 20200506
+#### 一番下までスクロールする
+https://dev.classmethod.jp/articles/react-scroll-into-view-on-load/
+https://codepen.io/meltedice/pen/QWjLaad?editors=1111
+#### 横に並べたり右端にアイコンを固定したり。
+https://material-ui.com/components/lists/#interactive
 ### 20200505 DBアクセス
 DBから読み込み、書き込み機能実装。
 JSONからの読み込みで戸惑う。

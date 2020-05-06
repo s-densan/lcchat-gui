@@ -2,9 +2,10 @@
 import Redux from 'redux';
 
 import * as Action from '../actions/ChatMessageActions';
+// import * from '../actions/WindowActions';
 import { createChatMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessage';
 import createA2RMapper from '../utils/ActionToReducerMapper';
-import { saveStateDB } from '../utils/ChatDatabaseIF';
+import { insertMessageDB } from '../utils/ChatDatabaseIF';
 
 const a2RMapper = createA2RMapper<IChatMessageList>();
 
@@ -27,8 +28,8 @@ a2RMapper.addWork<Action.IPostChatMessageAction>(
             action.talkId,
             action.postedAt,
             action.messageData,
-            null,
-            null,
+            new Date(),
+            new Date(),
             null,
         ));
     },
@@ -39,10 +40,10 @@ a2RMapper.addWork<Action.IDeleteAction>(
     Action.DELETE_CHAT_MESSAGE,
     (state, action) => {
         const {chatMessages: chatMessages} = state;
-        const target = chatMessages.find((it) => it.id === action.chatMessageId);
+        const target = chatMessages.find((it) => it.messageId === action.chatMessageId);
         if (!target) { return; }
         // 指定したID以外のオブジェクトを抽出し、それを新しいリストとする
-        state.chatMessages = chatMessages.filter((it) => it.id !== action.chatMessageId);
+        state.chatMessages = chatMessages.filter((it) => it.messageId !== action.chatMessageId);
     },
 );
 
@@ -80,13 +81,19 @@ export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = init
                 */
                 // データの保存を非同期で実行する。
                 (async () => {
-                    await saveStateDB(newMessage);
+                    await insertMessageDB(newMessage);
                 })();
                 return {
-                  chatMessages: messageList,
                   chatBoxText: '',
+                  chatMessages: messageList,
                 };
             }
+//        case from.SCROLL_TO_BOTTOM_ACTION:
+//            action.bottomRef.current!.scrollIntoView({
+//                behavior: 'smooth',
+//                block: 'end',
+//            });
+//            return state;
         default:
             return a2RMapper.execute(state, action);
     }

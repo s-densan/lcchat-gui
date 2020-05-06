@@ -3,7 +3,7 @@ import { Dispatch, Store } from 'redux';
 import uuid from 'uuid';
 import { IState } from '../IStore';
 import { IChatMessage, createChatMessage, initChatMessageList } from '../states/IChatMessage';
-import { loadChatMessage, loadStateDB, saveStateJson} from '../utils/ChatDatabaseIF';
+import { loadChatMessage, loadChatMessagesDB, saveStateJson, deleteMessageDB} from '../utils/ChatDatabaseIF';
 
 import {
     DELETE_CHAT_MESSAGE,
@@ -14,8 +14,8 @@ import {
     IToggleCompleteAction,
     IToggleShowSpinnerAction,
     POST_CHAT_MESSAGE,
-    SHOW_CHAT_MESSAGES,
     SHOW_CHAT_MESSAGE_MENU,
+    SHOW_CHAT_MESSAGES,
     TOGGLE_COMPLETE_TASK,
     TOGGLE_SHOW_SPINNER,
 } from './ChatMessageActions';
@@ -43,6 +43,7 @@ export const createShowChatMessagesAction = (chatMessages: IChatMessage[]): ISho
     };
 };
 
+const SAVE_JSON = false;
 /**
  * 新しいチャットメッセージを投稿するアクションを作成する
  * 非同期処理のため、ディスパッチャへの登録はアクションクリエータで実行する。
@@ -110,14 +111,25 @@ export const createAddTaskAction = (taskName: string, deadline: Date): IAddTaskA
  */
 export const createDeleteChatMessageAction =
         (chatMessageId: string, store: Store<IState>): IToggleShowSpinnerAction => {
-    (async () => {
-        store.dispatch<IDeleteAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
-        const chatMessageList = store.getState().chatMessageList;
-        await saveStateJson(chatMessageList.chatMessages);
-        store.dispatch<IToggleShowSpinnerAction>({
-            type: TOGGLE_SHOW_SPINNER,
-        });
-    })();
+    if (SAVE_JSON) {
+        (async () => {
+            store.dispatch<IDeleteAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
+            const chatMessageList = store.getState().chatMessageList;
+            await saveStateJson(chatMessageList.chatMessages);
+            store.dispatch<IToggleShowSpinnerAction>({
+                type: TOGGLE_SHOW_SPINNER,
+            });
+        })();
+    } else {
+        (async () => {
+            store.dispatch<IDeleteAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
+            const chatMessageList = store.getState().chatMessageList;
+            await deleteMessageDB(chatMessageId);
+            store.dispatch<IToggleShowSpinnerAction>({
+                type: TOGGLE_SHOW_SPINNER,
+            });
+        })();
+    }
     return {
         type: TOGGLE_SHOW_SPINNER,
     };
@@ -129,7 +141,6 @@ export const createDeleteChatMessageAction =
 export const createLoadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
     // ファイルを非同期で読み込む
     // データファイルの存在チェック
-    const SAVE_JSON = false;
     if (SAVE_JSON) {
         loadChatMessage().then((jsonData) => {
             // 読み込んだデータで値を表示する
@@ -141,7 +152,7 @@ export const createLoadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpi
             });
         });
     } else {
-        loadStateDB().then((mes) => {
+        loadChatMessagesDB().then((mes) => {
             // DB読み込み後に実行する
             const chatMessages: IChatMessage[] = [];
             const chatMessagesJson = JSON.parse(mes);
@@ -176,7 +187,6 @@ export const createLoadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpi
 export const createReloadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
     // ファイルを非同期で読み込む
     // データファイルの存在チェック
-    const SAVE_JSON = false;
     if (SAVE_JSON) {
         loadChatMessage().then((jsonData) => {
             // 読み込んだデータで値を表示する
@@ -188,7 +198,7 @@ export const createReloadChatMessagesAction = (dispatch: Dispatch): IToggleShowS
             });
         });
     } else {
-        loadStateDB().then((mes) => {
+        loadChatMessagesDB().then((mes) => {
             // DB読み込み後に実行する
             const chatMessages: IChatMessage[] = [];
             const chatMessagesJson = JSON.parse(mes);

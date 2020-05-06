@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^4.8.0",
+    "@material-ui/icons": "^4.9.1",
     "@types/clone": "^0.1.30",
     "@types/fs-extra": "^8.0.1",
     "@types/material-ui": "^0.21.7",
