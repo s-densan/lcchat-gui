@@ -1,32 +1,15 @@
 import Button from '@material-ui/core/Button';
-import { createMuiTheme, createStyles, makeStyles, MuiThemeProvider, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Moment from 'moment';
 import {hostname} from 'os';
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
 import { v4 as UUID } from 'uuid';
 // import createScrollToBottomAction from '../action/WindowActions';
 import {
   createPostChatMessageAction,
-  createReloadChatMessagesAction,
 } from '../actions/ChatMessageActionCreators';
 import store from '../Store';
 
-// スタイルを定義
-const useStyles = makeStyles((theme: Theme) => {
-  createStyles(
-    {
-      root: {
-        padding: theme.spacing(2),
-      },
-      title: {
-        borderBottom: `2px solid ${theme.palette.primary.main}`,
-      },
-    },
-  );
-});
-
-export default function ChatMessagePostBox(props: { bottomRef: React.RefObject<HTMLDivElement> }) {
+export default function ChatMessagePostBox() {
   // const classes = useStyles();
   const [postMessageText, setPostMessageText] = useState('');
   // 投稿ボタン表示文字
@@ -42,7 +25,7 @@ export default function ChatMessagePostBox(props: { bottomRef: React.RefObject<H
   /**
    * 追加ボタンを押すと、チャット一覧にチャットを追加する
    */
-  const onClickPost = (e: React.MouseEvent) => {
+  const onClickPost = () => {
     postMessage();
   };
 

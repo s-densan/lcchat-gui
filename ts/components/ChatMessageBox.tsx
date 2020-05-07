@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Avatar, ListItemAvatar } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,12 +11,12 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { useState } from 'react';
 import { createDeleteChatMessageAction, createShowChatMessageMenuAction} from '../actions/ChatMessageActionCreators';
 import { IChatMessage } from '../states/IChatMessage';
 import store from '../Store';
-import TextField from '@material-ui/core/TextField';
-import { memo, useState } from 'react';
 
 export default function ChatMessageBox(props: IChatMessage) {
     const [editingMessage, setEditingMessage] = useState('');
@@ -50,7 +51,7 @@ export default function ChatMessageBox(props: IChatMessage) {
     const onOpenMenu = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         setAnchorEl(e.currentTarget);
         // store.dispatch(createDeleteChatMessageAction(props.messageId, store));
-    }
+    };
     const onCloseMenu = () => {
         setAnchorEl(null);
     };
@@ -66,26 +67,71 @@ export default function ChatMessageBox(props: IChatMessage) {
             caption: '削除',
             func: onClickDelete,
             key: 'delete',
-        }, 
+        },
     ];
     const ITEM_HEIGHT = 20;
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
+    const onChangeChatMessageEditBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEditingMessage(e.target.value);
+    };
+    const onClickConfirmButton = (e: React.MouseEvent) => {
+        setEditMode(false);
+    };
+    const toMultiline = (text: string) => {
+        return text.split('\n').map((line, idx, arr) => {
+            return <div>{line}</div>;
+        });
+    };
     const messageArea = () => {
         if (editMode) {
-            return <TextField
-                helperText=""
-                name="text"
-                multiline
-                value={editingMessage}
-                style={{width: '100%'}} />;
+            return <ListItemText>
+                <p>
+                    <TextField
+                        helperText=""
+                        name="text"
+                        multiline
+                        value={editingMessage}
+                        onChange={onChangeChatMessageEditBox}
+                        style={{ width: '100%' }} />
+                </p>
+                <p>
+                    <Button
+                        // variant="contained"
+                        color="primary"
+                        onClick={onClickConfirmButton}
+                        // style={{ width: '20%' }}
+                    >決定</Button>
+                    <Button
+                        // variant="contained"
+                        color="primary"
+                        onClick={onClickConfirmButton}
+                        // style={{ width: '20%' }}
+                    >キャンセル</Button>
+                </p>
+                </ListItemText>;
         } else {
-            return <ListItemText primary={props.text}>
-                {props.text}
+            return <ListItemText>
+                {toMultiline(props.text)}
             </ListItemText>;
-        };
-    }
+        }
+    };
+    const menuButton = () => {
+        if (!editMode) {
+            return <ListItemSecondaryAction style={{ alignContent: 'flex-end' }}>
+                <IconButton
+                    aria-label="more"
+                    aria-controls="long-menu"
+                    aria-haspopup="true"
+                    onClick={onOpenMenu}
+                    edge="end"
+                >
+                    <MoreVertIcon />
+                </IconButton>
+            </ListItemSecondaryAction>;
+        }
+    };
 
     return (
         <div style={{ width: '100%' }}>
@@ -101,17 +147,7 @@ export default function ChatMessageBox(props: IChatMessage) {
                             </Avatar>
                         </ListItemAvatar>
                         {messageArea()}
-                        <ListItemSecondaryAction style={{ alignContent: 'flex-end'}}>
-                            <IconButton
-                                aria-label="more"
-                                aria-controls="long-menu"
-                                aria-haspopup="true"
-                                onClick={onOpenMenu}
-                                edge="end"
-                            >
-                                <MoreVertIcon />
-                            </IconButton>
-                        </ListItemSecondaryAction>
+                        {menuButton()}
                     </ListItem>
                 </List>
             </Box>
@@ -140,4 +176,4 @@ export default function ChatMessageBox(props: IChatMessage) {
         </div>
 
     );
-};
+}

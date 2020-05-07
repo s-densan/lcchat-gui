@@ -1,36 +1,13 @@
-import AppBar from '@material-ui/core/AppBar';
-import Drawer from '@material-ui/core/Drawer';
-import MenuItem from '@material-ui/core/MenuItem';
-import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import React, { useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
+import { IState } from '../IStore';
+import { IChatMessageList } from '../states/IChatMessage';
+import ChatMessageList from './ChatMessageList';
 // import React, { Component, Fragment } from 'react';
 import ChatMessagePostBox from './ChatMessagePostBox';
-import { IChatMessage, IChatMessageList } from '../states/IChatMessage';
-import ChatMessageList from './ChatMessageList';
-import { connect } from 'react-redux';
-import store from '../Store';
-import { IState } from '../IStore';
-import Button from '@material-ui/core/Button';
-import React, { useEffect, useRef } from 'react';
-//import { createScrollToBottomAction } from '../actions/WindowActions';
-
-/**
- * コンポーネント プロパティ
- *
- * ここでは、初期値として扱う
- */
-interface IProps {
-    /** タスク名 */
-    taskName: string;
-    /** 期限 */
-    deadline: Date;
-}
-
-const inputProps = {
-  step: 300,
-};
 
 export function GridLayout(props: IChatMessageList) {
   const initialRef = useRef<boolean>(false);
@@ -50,27 +27,16 @@ export function GridLayout(props: IChatMessageList) {
   }, [props.chatMessages.length]);
 
   const chatMessageListStyle = {
-    top: 0,
     display: 'flex',
     flexFlow: 'column',
+    top: 0,
   };
   const chatMessagePostBoxStyle = {
     bottom: 0,
   };
-  const onClickTest = (e: React.MouseEvent) => {
-    bottomRef.current!.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-    });
-  };
   return (
     <MuiThemeProvider theme={createMuiTheme()}>
       <div style={{ overflow: 'hidden', minHeight: '100vh' }}>
-        <Button
-          onClick={onClickTest}
-        >
-          aaaa
-          </Button>
         <Paper style={chatMessageListStyle}>
           <ChatMessageList
             chatBoxText={props.chatBoxText}
@@ -79,7 +45,7 @@ export function GridLayout(props: IChatMessageList) {
         </Paper>
         <div ref={bottomRef}>
           <Box component="div" style={chatMessagePostBoxStyle}>
-            <ChatMessagePostBox bottomRef={bottomRef} />
+            <ChatMessagePostBox />
           </Box>
         </div>
       </div>

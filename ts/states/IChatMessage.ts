@@ -38,8 +38,8 @@ export interface IChatMessageList {
  * メッセージのリストの初期値
  */
 export const initChatMessageList: IChatMessageList = {
-  chatMessages: [],
   chatBoxText: '',
+  chatMessages: [],
 };
 
 /**

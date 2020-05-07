@@ -1,15 +1,12 @@
-import FsEx from 'fs-extra'; // ...(a)
-import OS from 'os';
-import Path from 'path';
 import child_process from 'child_process';
-import { createChatMessage } from '../states/IChatMessage';
+import FsEx from 'fs-extra'; // ...(a)
+import Path from 'path';
 
 import { IChatMessage } from '../states/IChatMessage';
 
 // データベースファイル名
 const dbFileName = 'chatroom.db';
 const useJson = !false;
-
 
 // OSごとのユーザーのプロファイルフォルダに保存される
 // const dataFilePath = Path.join(OS.homedir(), 'todo.json');
@@ -22,7 +19,6 @@ export const loadChatMessagesDB = async () => {
   const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
   const stdout = child_process.execSync(command,  { input: sql });
   return stdout.toString();
-  
   /*
   const nkf = child_process.exec(
     `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`,
@@ -153,11 +149,4 @@ export const deleteMessageDB = (chatMessageId: string) => {
   const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
   const stdout = child_process.execSync(command, { input: sql });
   return stdout.toString();
-}
-
-/** 指定ミリ秒 待つ関数 */
-const setTimeoutPromise = (count: number) => {
-    return new Promise((resolve) => {
-        setTimeout(() => { resolve(); }, count);
-    });
 };
