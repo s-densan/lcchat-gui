@@ -1,0 +1,4 @@
+dbAccessSynchronous  = false
+testText = "これはてすとなの！！"
+dbFileName = 'chatroom.db'
+useJson = false

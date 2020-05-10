@@ -1,23 +1,22 @@
-import Moment from 'moment';
 import { Dispatch, Store } from 'redux';
-import uuid from 'uuid';
 import { IState } from '../IStore';
-import { IChatMessage, createChatMessage, initChatMessageList } from '../states/IChatMessage';
-import { loadChatMessage, loadChatMessagesDB, saveStateJson, deleteMessageDB} from '../utils/ChatDatabaseIF';
+import { createChatMessage, IChatMessage } from '../states/IChatMessage';
+import store from '../Store';
+import { deleteMessageDB, loadChatMessage, loadChatMessagesDB, saveStateJson, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 
 import {
     DELETE_CHAT_MESSAGE,
-    IDeleteAction,
+    IDeleteChatMessageAction,
     IPostChatMessageAction,
     IShowChatMessageAction,
     IShowChatMessageMenuAction,
-    IToggleCompleteAction,
     IToggleShowSpinnerAction,
+    IUpdateChatMessageAction,
     POST_CHAT_MESSAGE,
     SHOW_CHAT_MESSAGE_MENU,
     SHOW_CHAT_MESSAGES,
-    TOGGLE_COMPLETE_TASK,
     TOGGLE_SHOW_SPINNER,
+    UPDATE_CHAT_MESSAGE,
 } from './ChatMessageActions';
 // import { initTaskList } from '../states/ILcChatMessage';
 
@@ -28,7 +27,7 @@ import {
  */
 export const createShowChatMessageMenuAction = (chatMessageId: string): IShowChatMessageMenuAction => {
     return {
-        chatMessageId: chatMessageId,
+        chatMessageId,
         type: SHOW_CHAT_MESSAGE_MENU,
     };
 };
@@ -63,9 +62,7 @@ export const createPostChatMessageAction =
         talkId: string,
         postedAt: Date,
         messageData: string,
-        store: Store<IState>,
     ): IToggleShowSpinnerAction => {
-        const chatMessageList = store.getState().chatMessageList;
         (async () => {
             const addAction: IPostChatMessageAction = {
                 chatMessageId: messageId,
@@ -77,7 +74,6 @@ export const createPostChatMessageAction =
                 userId,
             };
             store.dispatch<IPostChatMessageAction>(addAction);
-            const chatMessageList = store.getState().chatMessageList;
             // オンにすると真っ白画面。
             // await saveStateJson(chatMessageList.chatMessages);
             const action = {
@@ -90,30 +86,33 @@ export const createPostChatMessageAction =
         };
     };
 
-/**
- * 新しいタスクを作成するアクションを作成する
- * @param taskName 新しいタスクの名前
- * @param deadline 新しいタクスの期限
- */
-/*
-export const createAddTaskAction = (taskName: string, deadline: Date): IAddTaskAction => {
+export const createUpdateChatMessageAction =
+    (chatMessageId: string, text: string): IToggleShowSpinnerAction => {
+    if (SAVE_JSON) {
+        throw new Error('知らんがな');
+    } else {
+        (async () => {
+            store.dispatch<IUpdateChatMessageAction>({ chatMessageId, type: UPDATE_CHAT_MESSAGE, text });
+            await updateMessageTextDB(chatMessageId, text);
+            store.dispatch<IToggleShowSpinnerAction>({
+                type: TOGGLE_SHOW_SPINNER,
+            });
+        })();
+    }
     return {
-        deadline,
-        taskName,
-        type: ADD_TASK,
+        type: TOGGLE_SHOW_SPINNER,
     };
 };
-*/
 
 /**
  * タスクを削除するアクションを作成する
  * @param chatMessageId 削除するタスクのID
  */
 export const createDeleteChatMessageAction =
-        (chatMessageId: string, store: Store<IState>): IToggleShowSpinnerAction => {
+        (chatMessageId: string): IToggleShowSpinnerAction => {
     if (SAVE_JSON) {
         (async () => {
-            store.dispatch<IDeleteAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
+            store.dispatch<IDeleteChatMessageAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
             const chatMessageList = store.getState().chatMessageList;
             await saveStateJson(chatMessageList.chatMessages);
             store.dispatch<IToggleShowSpinnerAction>({
@@ -122,8 +121,7 @@ export const createDeleteChatMessageAction =
         })();
     } else {
         (async () => {
-            store.dispatch<IDeleteAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
-            const chatMessageList = store.getState().chatMessageList;
+            store.dispatch<IDeleteChatMessageAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
             await deleteMessageDB(chatMessageId);
             store.dispatch<IToggleShowSpinnerAction>({
                 type: TOGGLE_SHOW_SPINNER,

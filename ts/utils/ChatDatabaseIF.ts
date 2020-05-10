@@ -1,12 +1,13 @@
 import child_process from 'child_process';
 import FsEx from 'fs-extra'; // ...(a)
 import Path from 'path';
+import {appConfig} from './AppConfig';
 
 import { IChatMessage } from '../states/IChatMessage';
 
 // データベースファイル名
-const dbFileName = 'chatroom.db';
-const useJson = !false;
+const dbFileName = appConfig.dbFileName;
+const useJson = appConfig.useJson;
 
 // OSごとのユーザーのプロファイルフォルダに保存される
 // const dataFilePath = Path.join(OS.homedir(), 'todo.json');
@@ -144,6 +145,12 @@ export const saveStateJson = async (chatMessageList: IChatMessage[]) => {
     }
 };
 
+export const updateMessageTextDB = (chatMessageId: string, text: string) => {
+  const sql = `UPDATE message SET text = "${text}" WHERE message_id = "${chatMessageId}"`;
+  const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
+  const stdout = child_process.execSync(command, { input: sql });
+  return stdout.toString();
+};
 export const deleteMessageDB = (chatMessageId: string) => {
   const sql = ` DELETE FROM message WHERE message_id = "${chatMessageId}"`;
   const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;

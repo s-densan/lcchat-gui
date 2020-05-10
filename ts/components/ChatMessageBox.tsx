@@ -1,6 +1,3 @@
-import Moment from 'moment';
-import React from 'react';
-
 import { Avatar, ListItemAvatar } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -13,8 +10,14 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Moment from 'moment';
+import React from 'react';
 import { useState } from 'react';
-import { createDeleteChatMessageAction, createShowChatMessageMenuAction} from '../actions/ChatMessageActionCreators';
+import {
+    createDeleteChatMessageAction,
+    createShowChatMessageMenuAction,
+    createUpdateChatMessageAction,
+} from '../actions/ChatMessageActionCreators';
 import { IChatMessage } from '../states/IChatMessage';
 import store from '../Store';
 
@@ -33,7 +36,7 @@ export default function ChatMessageBox(props: IChatMessage) {
      * 削除ボタンを押すと、タスクを削除する
      */
     const onClickDelete = (e: React.MouseEvent) => {
-        store.dispatch(createDeleteChatMessageAction(props.messageId, store));
+        store.dispatch(createDeleteChatMessageAction(props.messageId));
         // クリックイベントを親要素の伝播させない
         setAnchorEl(null);
         e.stopPropagation();
@@ -76,7 +79,13 @@ export default function ChatMessageBox(props: IChatMessage) {
     const onChangeChatMessageEditBox = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditingMessage(e.target.value);
     };
-    const onClickConfirmButton = (e: React.MouseEvent) => {
+    const onClickOkEditMessageButton = (e: React.MouseEvent) => {
+        if (editingMessage !== props.text) {
+            store.dispatch(createUpdateChatMessageAction(props.messageId, editingMessage));
+        }
+        setEditMode(false);
+    };
+    const onClickCanselEditMessageButton = (e: React.MouseEvent) => {
         setEditMode(false);
     };
     const toMultiline = (text: string) => {
@@ -100,13 +109,13 @@ export default function ChatMessageBox(props: IChatMessage) {
                     <Button
                         // variant="contained"
                         color="primary"
-                        onClick={onClickConfirmButton}
+                        onClick={onClickOkEditMessageButton}
                         // style={{ width: '20%' }}
-                    >決定</Button>
+                    >OK</Button>
                     <Button
                         // variant="contained"
                         color="primary"
-                        onClick={onClickConfirmButton}
+                        onClick={onClickCanselEditMessageButton}
                         // style={{ width: '20%' }}
                     >キャンセル</Button>
                 </p>

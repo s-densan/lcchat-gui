@@ -28,6 +28,27 @@
 
 ## 記録
 
+### 20200510 
+Reduxが辛いのでredus toolkitというのを導入してみる。:w
+https://redux-toolkit.js.org/introduction/quick-start
+https://qiita.com/__sakito__/items/e446d0f0974f2e12a5f5
+
+### 20200510 
+いっぱい投稿したら出るエラー。
+対策したはずなんだけど。
+![](img/2020-05-10-17-24-47.png)
+
+### 20200509 Electronのパッケージ化
+exeにする。
+
+- Electronの手習い〜Electron環境からパッケージ化まで〜
+https://qiita.com/tagosaku324/items/c720499080d523bbe1d7
+
+```
+yarn add electron-packager
+yarn run electron-packager . sample --platform=win32 --arch=ia32
+```
+SQLインターフェース用のhaxeプログラムについて、リトライ機能をつけた。
 ### 20200506
 #### 一番下までスクロールする
 https://dev.classmethod.jp/articles/react-scroll-into-view-on-load/

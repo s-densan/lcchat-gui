@@ -8,6 +8,7 @@ import {
   createPostChatMessageAction,
 } from '../actions/ChatMessageActionCreators';
 import store from '../Store';
+import {appConfig} from '../utils/AppConfig';
 
 export default function ChatMessagePostBox() {
   // const classes = useStyles();
@@ -44,7 +45,6 @@ export default function ChatMessagePostBox() {
       'talkId',
       nowDate,
       'messageData',
-      store,
     );
     // メッセージを空にする。
     setPostMessageText('');
@@ -53,6 +53,15 @@ export default function ChatMessagePostBox() {
     // store.dispatch(createScrollToBottomAction(props.bottomRef));
     // store.dispatch(createReloadChatMessagesAction(store.dispatch));
   };
+  // ボタンオブジェクト
+  const postButton =
+    <Button
+      variant="contained"
+      color="primary"
+      disabled={(postMessageText.trim() === '')}
+      onClick={onClickPost}
+      style={{ width: '20%' }}
+    >投稿</Button>;
 
   return (
     <div>
@@ -65,14 +74,7 @@ export default function ChatMessagePostBox() {
         onKeyPress={onKeyPressMessagePostBox}
         style={{ width: '80%' }}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={onClickPost}
-        style={{ width: '20%'}}
-      >
-        {buttonText}
-      </Button>
+      {postButton}
     </div>
   );
 }

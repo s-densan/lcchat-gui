@@ -27,6 +27,7 @@ export interface IPostChatMessageAction extends Action {
     postedAt: Date;
     messageData: string;
 }
+
 export const SHOW_CHAT_MESSAGE_MENU = UUID();
 /**
  * チャットメニューを表示するアクション
@@ -34,18 +35,19 @@ export const SHOW_CHAT_MESSAGE_MENU = UUID();
 export interface IShowChatMessageMenuAction extends Action {
     chatMessageId: string;
 }
-/**
- * タスク完了のアクションタイプ
- */
-export const TOGGLE_COMPLETE_TASK = UUID();
 
 /**
- * タスク完了のアクション
+ * チャットメッセージ更新のアクションタイプ
  */
-export interface IToggleCompleteAction extends Action {
+export const UPDATE_CHAT_MESSAGE = UUID();
+
+/**
+ * チャットメッセージ更新のアクション
+ */
+export interface IUpdateChatMessageAction extends Action {
     chatMessageId: string;
+    text: string;
 }
-
 /**
  * タスク削除のアクションタイプ
  */
@@ -54,7 +56,7 @@ export const DELETE_CHAT_MESSAGE = UUID();
 /**
  * タスク削除のアクション
  */
-export interface IDeleteAction extends Action {
+export interface IDeleteChatMessageAction extends Action {
     chatMessageId: string;
 }
 /**
@@ -67,6 +69,3 @@ export const TOGGLE_SHOW_SPINNER = UUID();
 // tslint:disable-next-line:no-empty-interface
 export interface IToggleShowSpinnerAction extends Action {
 }
-
-
-
