@@ -1,18 +1,24 @@
+import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import React, { useEffect, useRef } from 'react';
-import { connect } from 'react-redux';
-import { IState } from '../IStore';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { IChatMessageList } from '../states/IChatMessage';
-import { IDialog } from '../states/IDialog';
+import { dialogReducer } from '../stores/dialogSlice';
+import { dialogActions } from '../stores/dialogSlice';
+import { RootState } from '../stores/RootStore';
 import ChatMessageList from './ChatMessageList';
 // import React, { Component, Fragment } from 'react';
 import ChatMessagePostBox from './ChatMessagePostBox';
 import OkDialog from './OkDialog';
 
-export function GridLayout(props: IChatMessageList & IDialog) {
+export function GridLayout() {
+  const dialog = useSelector((state: RootState) => state.dialog);
+  const message = useSelector((state: RootState) => state.message);
   const initialRef = useRef<boolean>(false);
+  const dispatch = useDispatch();
 
   const bottomRef = React.createRef<HTMLDivElement>();
   useEffect(() => {
@@ -26,7 +32,7 @@ export function GridLayout(props: IChatMessageList & IDialog) {
       block: 'end',
     });
 
-  }, [props.chatMessages.length]);
+  }, [message.chatMessages.length]);
 
   const chatMessageListStyle = {
     display: 'flex',
@@ -36,18 +42,28 @@ export function GridLayout(props: IChatMessageList & IDialog) {
   const chatMessagePostBoxStyle = {
     bottom: 0,
   };
+  const onClickTest = () => {
+    alert(dialog.open);
+    const dialogData = {
+      message: 'テストだってば',
+      onClick: () => dispatch(dialogActions.closeDialog()),
+      onClose: () => dispatch(dialogActions.closeDialog()),
+      title: 'これはテスト',
+    };
+    dispatch(dialogActions.openOkDialog(dialogData));
+  };
   return (
     <MuiThemeProvider theme={createMuiTheme()}>
       <OkDialog
-          title={props.title}
-          message={props.message}
-          onClick={props.onClick}
-          onClose={props.onClose}
-          open={props.open}
+        title={dialog.title}
+        message={dialog.message}
+        onClick={dialog.onClick}
+        onClose={dialog.onClose}
+        open={dialog.open}
       />
       <div style={{ overflow: 'hidden', minHeight: '100vh' }}>
         <Paper style={chatMessageListStyle}>
-          <ChatMessageList chatMessages={props.chatMessages} />
+          <ChatMessageList chatMessages={message.chatMessages} />
         </Paper>
         <div ref={bottomRef}>
           <Box component="div" style={chatMessagePostBoxStyle}>
@@ -55,19 +71,7 @@ export function GridLayout(props: IChatMessageList & IDialog) {
           </Box>
         </div>
       </div>
+      <Button onClick={onClickTest}>open</Button>
     </MuiThemeProvider>
   );
 }
-
-const mapStateToProps = (state: IState): IChatMessageList & IDialog => {
-  return {
-    chatMessages: state.chatMessageList.chatMessages,
-    open: state.dialog.open,
-    title: state.dialog.title,
-    message: state.dialog.message,
-    onClick: state.dialog.onClick,
-    onClose: state.dialog.onClose,
-  };
-};
-
-export default connect(mapStateToProps)(GridLayout);

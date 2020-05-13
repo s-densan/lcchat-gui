@@ -7,7 +7,7 @@ import { v4 as UUID } from 'uuid';
 import {
   createPostChatMessageAction,
 } from '../actions/ChatMessageActionCreators';
-import store from '../Store';
+// import store from '../Store';
 import {appConfig} from '../utils/AppConfig';
 
 export default function ChatMessagePostBox() {

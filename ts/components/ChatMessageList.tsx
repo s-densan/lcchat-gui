@@ -8,17 +8,19 @@ import React, { useEffect, useRef } from 'react';
 // import Styled from 'styled-components';
 import { createLoadChatMessagesAction , createShowChatMessagesAction } from '../actions/ChatMessageActionCreators';
 import { IChatMessage, IChatMessageList } from '../states/IChatMessage';
-import store from '../Store';
+// import store from '../Store';
 import ChatMessageBox from './ChatMessageBox';
+import { useDispatch } from 'react-redux';
 
 export default function ChatMessageList(props: IChatMessageList) {
+    const dispatch = useDispatch();
     // ????????????Ref
     const initialRef = useRef<boolean>(false);
     useEffect(() => {
         // 初回のみ実行
         if (initialRef.current === false) {
-            store.dispatch(createLoadChatMessagesAction(store.dispatch));
-            store.dispatch(createShowChatMessagesAction([]));
+            dispatch(createLoadChatMessagesAction(dispatch));
+            dispatch(createShowChatMessagesAction([]));
             initialRef.current = true;
         }
     });

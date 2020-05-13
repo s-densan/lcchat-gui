@@ -28,11 +28,43 @@
 
 ## 記録
 
+### 20200513 
+tsのbuild時に以下のようなメッセージが大量に表示された。
+```
+[hardsource:815366b5] Could not freeze (webpack)/buildin/module.js: Cannot read property 'hash' of undefined
+```
+https://teratail.com/questions/235183
+ここより、node_modules/.cacheを削除してみると良いとのことで実施。
+```
+ERROR in ./node_modules/@sgarciac/bombadil/node_modules/moment/moment.js
+Module build failed: Error: ENOENT: no such file or directory, open 'D:\IdeaProjects\lcchat-gui\node_modules\@sgarciac\bombadil\node_modules\moment\moment.js'
+ @ ./node_modules/@sgarciac/bombadil/lib/tools.js 3:13-30
+ @ ./node_modules/@sgarciac/bombadil/lib/parser.js
+ @ ./node_modules/@sgarciac/bombadil/lib/tables.js
+ @ ./ts/utils/AppConfig.ts
+ @ ./ts/reducers/ChatMessageReducer.ts
+ @ ./ts/Store.ts
+ @ ./ts/index.tsx
+```
+なんか違うエラーが出た。``yarn upgrade``してみる。
+
+なんだかんだやってたらうまくいった。
+
+#### 状態管理のわかりやすいのがあった。
+https://www.jacepark.com/how-to-use-redux-easily-with-redux-toolkit-in-react-native/
 ### 20200510 
-Reduxが辛いのでredus toolkitというのを導入してみる。:w
+#### Reduxが辛いのでredus toolkitというのを導入してみる。
 https://redux-toolkit.js.org/introduction/quick-start
+#### Redux Toolkit で Redux の煩わしさから解放される
+
 https://qiita.com/__sakito__/items/e446d0f0974f2e12a5f5
 
+#### HookとRedux ToolkitでReact Reduxに入門する
+
+https://www.hypertextcandy.com/learn-react-redux-with-hooks-and-redux-starter-kit
+#### Redux Toolkit で React.js の状態管理をもっと簡単にする方法[TypeScript版]
+
+https://www.webopixel.net/javascript/1601.html
 ### 20200510 
 いっぱい投稿したら出るエラー。
 対策したはずなんだけど。

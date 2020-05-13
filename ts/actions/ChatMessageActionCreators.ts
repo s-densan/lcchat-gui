@@ -1,7 +1,7 @@
 import { Dispatch, Store } from 'redux';
-import { IState } from '../IStore';
+// import { IState } from '../IStore';
 import { createChatMessage, IChatMessage } from '../states/IChatMessage';
-import store from '../Store';
+// import store from '../Store';
 import { deleteMessageDB, loadChatMessage, loadChatMessagesDB, saveStateJson, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 
 import {

@@ -1,5 +1,4 @@
 import { IChatMessageList } from './states/IChatMessage';
-import { IDialogOk } from './states/IDialog';
 /**
  * store のデータ型を定義する。（親state）
  *
@@ -7,6 +6,5 @@ import { IDialogOk } from './states/IDialog';
  */
 export interface IState {
     chatMessageList: IChatMessageList;
-    dialog: IDialogOk;
     // state が増えたら足していく
 }

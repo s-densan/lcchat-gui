@@ -4,7 +4,7 @@ import Redux from 'redux';
 import * as ChatMessageAction from '../actions/ChatMessageActions';
 import { createChatMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessage';
 import createA2RMapper from '../utils/ActionToReducerMapper';
-import {appConfig} from '../utils/AppConfig';
+import { appConfig } from '../utils/AppConfig';
 import { insertMessageDB } from '../utils/ChatDatabaseIF';
 
 const a2RMapper = createA2RMapper<IChatMessageList>();

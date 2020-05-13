@@ -14,4 +14,4 @@ export const initDialogOk: IDialogOk = {
     onClose: (e, reason) => {},
 };
 
-export type IDialog = IDialogOk;
+type IDialog = IDialogOk;

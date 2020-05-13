@@ -19,7 +19,7 @@ import {
     createUpdateChatMessageAction,
 } from '../actions/ChatMessageActionCreators';
 import { IChatMessage } from '../states/IChatMessage';
-import store from '../Store';
+// import store from '../Store';
 
 export default function ChatMessageBox(props: IChatMessage) {
     const [editingMessage, setEditingMessage] = useState('');

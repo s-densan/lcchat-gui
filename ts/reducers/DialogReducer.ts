@@ -1,3 +1,4 @@
+/*
 import Redux from 'redux';
 
 import {
@@ -9,8 +10,7 @@ import {
 import createA2RMapper from '../utils/ActionToReducerMapper';
 
 const a2RMapper = createA2RMapper<IDialog>();
-/** Reducer  */
-export const DialogReducer: Redux.Reducer<IDialog> = (state = initDialogOk, action) => {
+const DialogReducer: Redux.Reducer<IDialog> = (state = initDialogOk, action) => {
     switch (action.type) {
         case SHOW_OK_DIALOG:
             // OK?????????????
@@ -20,3 +20,5 @@ export const DialogReducer: Redux.Reducer<IDialog> = (state = initDialogOk, acti
             return a2RMapper.execute(state, action);
     }
 };
+
+*/

@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @type/toml-node
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js upgrade
 
 PATH: 
-  C:\Program Files\ImageMagick-7.0.10-Q16;C:\Program Files\Python38\Scripts\;C:\Program Files\Python38\;C:\Python38\Scripts\;C:\Python38\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\HaxeToolkit\haxe;C:\HaxeToolkit\neko;C:\Program Files (x86)\Microsoft Visual Studio\2017\WDExpress\VC\Tools\MSVC\14.13.26128\bin\Hostx86\x86;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Common Files\Sony Shared\FeliCaLibrary;C:\Program Files\Common Files\Sony Shared\FeliCaLibrary;C:\Program Files (x86)\Common Files\Sony Shared\FeliCaNFCLibrary;C:\Program Files\Common Files\Sony Shared\FeliCaNFCLibrary;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\dotnet\;C:\Users\Shimpei\AppData\Local\Programs\Python\Python37;C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\hl;C:\Users\Shimpei\AppData\Local\Julia-0.6.2\bin;C:\Program Files\TortoiseGit\bin;C:\Program Files\MongoDB\Server\4.2\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\Shimpei\.cargo\bin;C:\Users\Shimpei\.windows-build-tools\python27\;C:\Users\Shimpei\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Shimpei\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\Shimpei\AppData\Local\atom\bin;C:\ProgramData\chocolatey\lib\ghc\tools\ghc-8.4.2\bin;C:\tools\msys64;C:\Program Files\MKVToolNix;C:\Users\Shimpei\AppData\Local\Programs\Microsoft VS Code\bin;C:\ProgramData\chocolatey\lib\ghc\tools\ghc-8.6.2\bin;C:\Users\Shimpei\AppData\Roaming\local\bin;C:\Users\Shimpei\AppData\Roaming\cabal\bin;C:\Program Files\GPAC;C:\Users\Shimpei\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Docker Toolbox;C:\Users\Shimpei\AppData\Roaming\npm;C:\Users\Shimpei\AppData\Local\Yarn\bin
+  C:\Program Files\ImageMagick-7.0.10-Q16;C:\Program Files\Python38\Scripts\;C:\Program Files\Python38\;C:\Python38\Scripts\;C:\Python38\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\HaxeToolkit\haxe;C:\HaxeToolkit\neko;C:\Program Files (x86)\Microsoft Visual Studio\2017\WDExpress\VC\Tools\MSVC\14.13.26128\bin\Hostx86\x86;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Common Files\Sony Shared\FeliCaLibrary;C:\Program Files\Common Files\Sony Shared\FeliCaLibrary;C:\Program Files (x86)\Common Files\Sony Shared\FeliCaNFCLibrary;C:\Program Files\Common Files\Sony Shared\FeliCaNFCLibrary;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\dotnet\;C:\Users\Shimpei\AppData\Local\Programs\Python\Python37;C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\hl;C:\Users\Shimpei\AppData\Local\Julia-0.6.2\bin;C:\Program Files\TortoiseGit\bin;C:\Program Files\MongoDB\Server\4.2\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\Shimpei\.cargo\bin;C:\Users\Shimpei\.windows-build-tools\python27\;C:\Users\Shimpei\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Shimpei\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\Shimpei\AppData\Local\atom\bin;C:\ProgramData\chocolatey\lib\ghc\tools\ghc-8.4.2\bin;C:\tools\msys64;C:\Program Files\MKVToolNix;C:\Users\Shimpei\AppData\Local\Programs\Microsoft VS Code\bin;C:\ProgramData\chocolatey\lib\ghc\tools\ghc-8.6.2\bin;C:\Users\Shimpei\AppData\Roaming\local\bin;C:\Users\Shimpei\AppData\Roaming\cabal\bin;C:\Program Files\GPAC;C:\Users\Shimpei\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Docker Toolbox;C:\Users\Shimpei\AppData\Roaming\npm;C:\Users\Shimpei\AppData\Local\Yarn\bin;C:\Program Files (x86)\EaseUS\Todo Backup\bin\x64\
 
 Yarn version: 
   1.22.4
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@type%2ftoml-node: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66096:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140748:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141720:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141642:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (_stream_readable.js:1201:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+  Error: EPERM: operation not permitted, unlink 'D:\IdeaProjects\lcchat-gui\node_modules\@sgarciac\bombadil\node_modules\moment\locale'
 
 npm manifest: 
   {
@@ -41,8 +31,11 @@ npm manifest:
     "author": "",
     "license": "ISC",
     "dependencies": {
+      "@ltd/j-toml": "^0.5.107",
       "@material-ui/core": "^4.8.0",
       "@material-ui/icons": "^4.9.1",
+      "@reduxjs/toolkit": "^1.3.6",
+      "@sgarciac/bombadil": "^2.3.0",
       "@types/clone": "^0.1.30",
       "@types/fs-extra": "^8.0.1",
       "@types/material-ui": "^0.21.7",
@@ -67,8 +60,6 @@ npm manifest:
       "reset-css": "^5.0.1",
       "style-loader": "^1.0.1",
       "styled-components": "^4.4.1",
-      "toml": "^3.0.0",
-      "toml-node": "^0.0.1",
       "uuid": "^3.3.3"
     },
     "devDependencies": {
@@ -262,6 +253,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
     integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
   
+  "@ltd/j-toml@^0.5.107":
+    version "0.5.107"
+    resolved "https://registry.yarnpkg.com/@ltd/j-toml/-/j-toml-0.5.107.tgz#b4798a25b8ee83241b622514bd7196a78c037c72"
+    integrity sha512-pqqlZL1e6Wof3sv4pHxwmQDT/nX3YnhRml3WHUgdLVSJZ8YdHJF+cdhF6buP8eKsQOr//QNqH2d4FeG9TxI8qw==
+  
   "@material-ui/core@^4.8.0":
     version "4.9.8"
     resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.9.8.tgz#21c37a9aadf4ff8a2719b8cfcad0ae9e6ca53791"
@@ -331,6 +327,27 @@ Lockfile:
       "@babel/runtime" "^7.4.4"
       prop-types "^15.7.2"
       react-is "^16.8.0"
+  
+  "@reduxjs/toolkit@^1.3.6":
+    version "1.3.6"
+    resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.3.6.tgz#306171fce2ab7423931736c34fa82190959dcd62"
+    integrity sha512-eNYURfoJa6mRNU5YtBVbmE5+nDoc4lpjZ181PBwRC6nIFYZdNR3GcoQ4uomFt8eHpXAUAdpCdxBlDsmwyXOt9Q==
+    dependencies:
+      immer "^6.0.1"
+      redux "^4.0.0"
+      redux-thunk "^2.3.0"
+      reselect "^4.0.0"
+  
+  "@sgarciac/bombadil@^2.3.0":
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/@sgarciac/bombadil/-/bombadil-2.3.0.tgz#13ff5f698585733aedd561aee750a8f6af008201"
+    integrity sha512-jet+J1Dr2NPgVrILO43B6OIFp5v1uyBLGS7pWfQ97YL/zQafayFVCVtSgrRr/gJcyU2Qo3mcqPs4qvvBOydApA==
+    dependencies:
+      chevrotain "^4.3.1"
+      lodash.every "^4.6.0"
+      lodash.includes "^4.3.0"
+      lodash.last "^3.0.0"
+      moment "^2.18.1"
   
   "@sindresorhus/is@^0.14.0":
     version "0.14.0"
@@ -1068,6 +1085,13 @@ Lockfile:
       ansi-styles "^3.2.1"
       escape-string-regexp "^1.0.5"
       supports-color "^5.3.0"
+  
+  chevrotain@^4.3.1:
+    version "4.8.1"
+    resolved "https://registry.yarnpkg.com/chevrotain/-/chevrotain-4.8.1.tgz#9a4d120ae31f63ab3260c589f9eb9362d51acb2b"
+    integrity sha512-Dd2oHFdscdm8MSmG0ejTXdMlqKR5ryeKuwLpsf1ZOs3l8HD/jPfIY0MYs9Eh4X3gm9h0CR155zpVYFK+uAI3tA==
+    dependencies:
+      regexp-to-ast "0.4.0"
   
   chokidar@^2.1.8:
     version "2.1.8"
@@ -2289,6 +2313,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/iferr/-/iferr-0.1.5.tgz#c60eed69e6d8fdb6b3104a1fcbca1c192dc5b501"
     integrity sha1-xg7taebY/bazEEofy8ocGS3FtQE=
   
+  immer@^6.0.1:
+    version "6.0.5"
+    resolved "https://registry.yarnpkg.com/immer/-/immer-6.0.5.tgz#77187d13b71c6cee40dde3b8e87a50a7a636d630"
+    integrity sha512-Q2wd90qrgFieIpLzAO2q9NLEdmyp/sr76Ml4Vm5peUKgyTa2CQa3ey8zuzwSKOlKH7grCeGBGUcLLVCVW1aguA==
+  
   import-local@2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/import-local/-/import-local-2.0.0.tgz#55070be38a5993cf18ef6db7e961f5bee5c5a09d"
@@ -2769,10 +2798,25 @@ Lockfile:
       p-locate "^3.0.0"
       path-exists "^3.0.0"
   
+  lodash.every@^4.6.0:
+    version "4.6.0"
+    resolved "https://registry.yarnpkg.com/lodash.every/-/lodash.every-4.6.0.tgz#eb89984bebc4364279bb3aefbbd1ca19bfa6c6a7"
+    integrity sha1-64mYS+vENkJ5uzrvu9HKGb+mxqc=
+  
   lodash.get@^4.0.0:
     version "4.4.2"
     resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
     integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+  
+  lodash.includes@^4.3.0:
+    version "4.3.0"
+    resolved "https://registry.yarnpkg.com/lodash.includes/-/lodash.includes-4.3.0.tgz#60bb98a87cb923c68ca1e51325483314849f553f"
+    integrity sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8=
+  
+  lodash.last@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/lodash.last/-/lodash.last-3.0.0.tgz#242f663112dd4c6e63728c60a3c909d1bdadbd4c"
+    integrity sha1-JC9mMRLdTG5jcoxgo8kJ0b2tvUw=
   
   lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13:
     version "4.17.15"
@@ -2992,6 +3036,11 @@ Lockfile:
     version "2.24.0"
     resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
     integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+  
+  moment@^2.18.1:
+    version "2.25.3"
+    resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.3.tgz#252ff41319cf41e47761a1a88cab30edfe9808c0"
+    integrity sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
   
   move-concurrently@^1.0.1:
     version "1.0.1"
@@ -3723,6 +3772,11 @@ Lockfile:
       micromatch "^3.1.10"
       readable-stream "^2.0.2"
   
+  redux-thunk@^2.3.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+    integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
+  
   redux@*, redux@^4.0.0, redux@^4.0.4:
     version "4.0.5"
     resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"
@@ -3743,6 +3797,11 @@ Lockfile:
     dependencies:
       extend-shallow "^3.0.2"
       safe-regex "^1.1.0"
+  
+  regexp-to-ast@0.4.0:
+    version "0.4.0"
+    resolved "https://registry.yarnpkg.com/regexp-to-ast/-/regexp-to-ast-0.4.0.tgz#f3dbcb42726cd71902ba50193f63eab5325cd7cb"
+    integrity sha512-4qf/7IsIKfSNHQXSwial1IFmfM1Cc/whNBQqRwe0V2stPe7KmN1U0tWQiIx6JiirgSrisjE0eECdNf7Tav1Ntw==
   
   regexp.prototype.flags@^1.2.0:
     version "1.3.0"
@@ -3784,6 +3843,11 @@ Lockfile:
     dependencies:
       std "0.1.40"
       uglify-js "2.3.0"
+  
+  reselect@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
+    integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
   
   reset-css@^5.0.1:
     version "5.0.1"
@@ -4416,18 +4480,6 @@ Lockfile:
       regex-not "^1.0.2"
       safe-regex "^1.1.0"
   
-  toml-node@^0.0.1:
-    version "0.0.1"
-    resolved "https://registry.yarnpkg.com/toml-node/-/toml-node-0.0.1.tgz#932ca7fd1806d0888d3f57ab49283c8eaf8175ec"
-    integrity sha1-kyyn/RgG0IiNP1erSSg8jq+Bdew=
-    dependencies:
-      underscore latest
-  
-  toml@^3.0.0:
-    version "3.0.0"
-    resolved "https://registry.yarnpkg.com/toml/-/toml-3.0.0.tgz#342160f1af1904ec9d204d03a5d61222d762c5ee"
-    integrity sha512-y/mWCZinnvxjTKYhJ+pYxwD0mRLVvOtdS2Awbgxln6iEnt4rk0yBxeSBHkGJcPucRiG0e55mwWp+g/05rsrd6w==
-  
   truncate-utf8-bytes@^1.0.0:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/truncate-utf8-bytes/-/truncate-utf8-bytes-1.0.2.tgz#405923909592d56f78a5818434b0b78489ca5f2b"
@@ -4526,11 +4578,6 @@ Lockfile:
       async "~0.2.6"
       optimist "~0.3.5"
       source-map "~0.1.7"
-  
-  underscore@latest:
-    version "1.10.2"
-    resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.10.2.tgz#73d6aa3668f3188e4adb0f1943bd12cfd7efaaaf"
-    integrity sha512-N4P+Q/BuyuEKFJ43B9gYuOj4TQUHXX+j2FqguVOpjkssLUUrnJofCcBccJSCoeturDoZU6GorDTHSvUDlSQbTg==
   
   union-value@^1.0.0:
     version "1.0.1"
