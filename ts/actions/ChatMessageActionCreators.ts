@@ -25,7 +25,7 @@ import {
  * @param chatMessageId チャットメッセージID
  * @returns チャットメッセージ表示アクション
  */
-export const createShowChatMessageMenuAction = (chatMessageId: string): IShowChatMessageMenuAction => {
+const createShowChatMessageMenuAction = (chatMessageId: string): IShowChatMessageMenuAction => {
     return {
         chatMessageId,
         type: SHOW_CHAT_MESSAGE_MENU,
@@ -35,7 +35,7 @@ export const createShowChatMessageMenuAction = (chatMessageId: string): IShowCha
  * タスクの表示アクションを作成する
  * @param chatMessages 表示するタスクのリスト
  */
-export const createShowChatMessagesAction = (chatMessages: IChatMessage[]): IShowChatMessageAction => {
+const createShowChatMessagesAction = (chatMessages: IChatMessage[]): IShowChatMessageAction => {
     return {
         chatMessages,
         type: SHOW_CHAT_MESSAGES,
@@ -54,7 +54,7 @@ const SAVE_JSON = false;
  * @param messageData メッセージの詳細データ
  * @param store Storeオブジェクト
  */
-export const createPostChatMessageAction =
+const createPostChatMessageAction =
     (
         messageId: string,
         text: string,
@@ -73,30 +73,30 @@ export const createPostChatMessageAction =
                 type: POST_CHAT_MESSAGE,
                 userId,
             };
-            store.dispatch<IPostChatMessageAction>(addAction);
+            // store.dispatch<IPostChatMessageAction>(addAction);
             // オンにすると真っ白画面。
             // await saveStateJson(chatMessageList.chatMessages);
             const action = {
                 type: TOGGLE_SHOW_SPINNER,
             };
-            store.dispatch<IToggleShowSpinnerAction>(action);
+            // store.dispatch<IToggleShowSpinnerAction>(action);
         })();
         return {
             type: TOGGLE_SHOW_SPINNER,
         };
     };
 
-export const createUpdateChatMessageAction =
+const createUpdateChatMessageAction =
     (chatMessageId: string, text: string): IToggleShowSpinnerAction => {
     if (SAVE_JSON) {
         throw new Error('知らんがな');
     } else {
         (async () => {
-            store.dispatch<IUpdateChatMessageAction>({ chatMessageId, type: UPDATE_CHAT_MESSAGE, text });
+            // store.dispatch<IUpdateChatMessageAction>({ chatMessageId, type: UPDATE_CHAT_MESSAGE, text });
             await updateMessageTextDB(chatMessageId, text);
-            store.dispatch<IToggleShowSpinnerAction>({
-                type: TOGGLE_SHOW_SPINNER,
-            });
+            // store.dispatch<IToggleShowSpinnerAction>({
+            //     type: TOGGLE_SHOW_SPINNER,
+            // });
         })();
     }
     return {
@@ -108,24 +108,24 @@ export const createUpdateChatMessageAction =
  * タスクを削除するアクションを作成する
  * @param chatMessageId 削除するタスクのID
  */
-export const createDeleteChatMessageAction =
+const createDeleteChatMessageAction =
         (chatMessageId: string): IToggleShowSpinnerAction => {
     if (SAVE_JSON) {
         (async () => {
-            store.dispatch<IDeleteChatMessageAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
-            const chatMessageList = store.getState().chatMessageList;
-            await saveStateJson(chatMessageList.chatMessages);
-            store.dispatch<IToggleShowSpinnerAction>({
-                type: TOGGLE_SHOW_SPINNER,
-            });
+            // store.dispatch<IDeleteChatMessageAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
+            // const chatMessageList = store.getState().chatMessageList;
+            // await saveStateJson(chatMessageList.chatMessages);
+            // store.dispatch<IToggleShowSpinnerAction>({
+            //     type: TOGGLE_SHOW_SPINNER,
+            // });
         })();
     } else {
         (async () => {
-            store.dispatch<IDeleteChatMessageAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
-            await deleteMessageDB(chatMessageId);
-            store.dispatch<IToggleShowSpinnerAction>({
-                type: TOGGLE_SHOW_SPINNER,
-            });
+            // store.dispatch<IDeleteChatMessageAction>({ chatMessageId, type: DELETE_CHAT_MESSAGE });
+            // await deleteMessageDB(chatMessageId);
+            // store.dispatch<IToggleShowSpinnerAction>({
+            //     type: TOGGLE_SHOW_SPINNER,
+            // });
         })();
     }
     return {
@@ -136,7 +136,7 @@ export const createDeleteChatMessageAction =
 /**
  * タスクロード開始のアクションを作成する
  */
-export const createLoadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
+const createLoadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
     // ファイルを非同期で読み込む
     // データファイルの存在チェック
     if (SAVE_JSON) {
@@ -182,7 +182,7 @@ export const createLoadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpi
 /**
  * タスク再ロード開始のアクションを作成する
  */
-export const createReloadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
+const createReloadChatMessagesAction = (dispatch: Dispatch): IToggleShowSpinnerAction => {
     // ファイルを非同期で読み込む
     // データファイルの存在チェック
     if (SAVE_JSON) {

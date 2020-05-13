@@ -2,15 +2,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {hostname} from 'os';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { v4 as UUID } from 'uuid';
-// import createScrollToBottomAction from '../action/WindowActions';
-import {
-  createPostChatMessageAction,
-} from '../actions/ChatMessageActionCreators';
-// import store from '../Store';
-import {appConfig} from '../utils/AppConfig';
+import { messageActions } from '../stores/messageSlice';
+import { appConfig } from '../utils/AppConfig';
 
 export default function ChatMessagePostBox() {
+  const dispatch = useDispatch();
   // const classes = useStyles();
   const [postMessageText, setPostMessageText] = useState('');
   // 投稿ボタン表示文字
@@ -38,18 +36,20 @@ export default function ChatMessagePostBox() {
     // ユーザ名（今の所ホスト名）
     const userName = hostname();
     // 投稿アクション生成
-    const action = createPostChatMessageAction(
-      messageId,
-      postMessageText,
-      userName,
-      'talkId',
-      nowDate,
-      'messageData',
+    const action = messageActions.postChatMessage(
+      {
+        chatMessageId: messageId,
+        text: postMessageText,
+        userId: userName,
+        talkId: 'talkId',
+        postedAt: nowDate,
+        messageData: 'messageData',
+      }
     );
     // メッセージを空にする。
     setPostMessageText('');
     // alert(props.chatBoxText);
-    store.dispatch(action);
+    dispatch(action);
     // store.dispatch(createScrollToBottomAction(props.bottomRef));
     // store.dispatch(createReloadChatMessagesAction(store.dispatch));
   };

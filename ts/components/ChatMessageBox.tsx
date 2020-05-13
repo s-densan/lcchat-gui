@@ -13,30 +13,21 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Moment from 'moment';
 import React from 'react';
 import { useState } from 'react';
-import {
-    createDeleteChatMessageAction,
-    createShowChatMessageMenuAction,
-    createUpdateChatMessageAction,
-} from '../actions/ChatMessageActionCreators';
+import { useDispatch } from 'react-redux';
 import { IChatMessage } from '../states/IChatMessage';
+import { messageActions } from '../stores/messageSlice';
 // import store from '../Store';
 
 export default function ChatMessageBox(props: IChatMessage) {
+    const dispatch = useDispatch();
     const [editingMessage, setEditingMessage] = useState('');
     const [editMode, setEditMode] = useState(false);
     const postedAt = Moment(props.postedAt).format('YYYY-MM-DD hh:mm');
     /**
-     * ボックスをクリックすると、メニュー表示する
-     */
-    const onClickBox = (id: string, e: React.MouseEvent<HTMLElement>) => {
-        store.dispatch(createShowChatMessageMenuAction(id/*, store*/));
-        // store.dispatch(createDeleteChatMessageAction(id, store));
-    };
-    /**
      * 削除ボタンを押すと、タスクを削除する
      */
     const onClickDelete = (e: React.MouseEvent) => {
-        store.dispatch(createDeleteChatMessageAction(props.messageId));
+        dispatch(messageActions.deleteChatMessage({chatMessageId: props.messageId}));
         // クリックイベントを親要素の伝播させない
         setAnchorEl(null);
         e.stopPropagation();
@@ -81,7 +72,7 @@ export default function ChatMessageBox(props: IChatMessage) {
     };
     const onClickOkEditMessageButton = (e: React.MouseEvent) => {
         if (editingMessage !== props.text) {
-            store.dispatch(createUpdateChatMessageAction(props.messageId, editingMessage));
+            dispatch(messageActions.updateChatMessage({chatMessageId: props.messageId, text: editingMessage}));
         }
         setEditMode(false);
     };

@@ -6,11 +6,11 @@ import {
 } from '@material-ui/core';
 import React, { useEffect, useRef } from 'react';
 // import Styled from 'styled-components';
-import { createLoadChatMessagesAction , createShowChatMessagesAction } from '../actions/ChatMessageActionCreators';
 import { IChatMessage, IChatMessageList } from '../states/IChatMessage';
 // import store from '../Store';
 import ChatMessageBox from './ChatMessageBox';
 import { useDispatch } from 'react-redux';
+import { messageActions } from '../stores/messageSlice';
 
 export default function ChatMessageList(props: IChatMessageList) {
     const dispatch = useDispatch();
@@ -19,8 +19,8 @@ export default function ChatMessageList(props: IChatMessageList) {
     useEffect(() => {
         // 初回のみ実行
         if (initialRef.current === false) {
-            dispatch(createLoadChatMessagesAction(dispatch));
-            dispatch(createShowChatMessagesAction([]));
+            dispatch(messageActions.loadChatMessages());
+            // dispatch(messageActions.showChatMessage({ chatMessages: [] }));
             initialRef.current = true;
         }
     });

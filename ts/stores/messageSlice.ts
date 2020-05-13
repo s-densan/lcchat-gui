@@ -3,6 +3,7 @@ import { createStore} from '@reduxjs/toolkit';
 import clone from 'clone';
 import { createChatMessage, IChatMessage, IChatMessageList} from '../states/IChatMessage';
 import { insertMessageDB } from '../utils/ChatDatabaseIF';
+import { deleteMessageDB, loadChatMessage, loadChatMessagesDB2, saveStateJson, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 
 // Stateの初期状態
 const initialState: IChatMessageList = {
@@ -15,7 +16,7 @@ export const slice = createSlice({
     name: 'message',
     reducers: {
         showChatMessage: (state, action) => {
-            return action.payload.chatMessages;
+            return {chatMessages: action.payload.chatMessages};
         },
         postChatMessage: (state, action) => {
             if (action.payload.text === '') {
@@ -33,10 +34,8 @@ export const slice = createSlice({
                     null,
                 );
                 const messageList = state.chatMessages.concat(newMessage);
-                const synchronous = false;
                 insertMessageDB(newMessage);
                 return {
-                    chatBoxText: '',
                     chatMessages: messageList,
                 };
             }
@@ -72,6 +71,31 @@ export const slice = createSlice({
             const newState = clone(state);
             newState.chatMessages = chatMessages.filter((it) => it.messageId !== action.payload.chatMessageId);
             return newState;
+        },
+        loadChatMessages: (state) => {
+            // ファイルを非同期で読み込む
+            // データファイルの存在チェック
+            let mes = '';
+            mes = loadChatMessagesDB2();
+            // DB読み込み後に実行する
+            const chatMessages: IChatMessage[] = [];
+            const chatMessagesJson = JSON.parse(mes);
+            for (const chatMessageJson of chatMessagesJson) {
+                const chatMessage = createChatMessage(
+                    chatMessageJson.message_id,
+                    chatMessageJson.text,
+                    chatMessageJson.user_id,
+                    'dummyTalkId',
+                    chatMessageJson.posted_at,
+                    chatMessageJson.message_data,
+                    chatMessageJson.created_at,
+                    chatMessageJson.updated_at,
+                    chatMessageJson.deleted_at,
+                );
+                chatMessages.push(chatMessage);
+            }
+            const res = {chatMessages};
+            return res;
         },
     },
 });

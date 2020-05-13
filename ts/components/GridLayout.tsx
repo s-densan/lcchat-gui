@@ -6,7 +6,6 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { IChatMessageList } from '../states/IChatMessage';
-import { dialogReducer } from '../stores/dialogSlice';
 import { dialogActions } from '../stores/dialogSlice';
 import { RootState } from '../stores/RootStore';
 import ChatMessageList from './ChatMessageList';
@@ -32,7 +31,7 @@ export function GridLayout() {
       block: 'end',
     });
 
-  }, [message.chatMessages.length]);
+  }/*, [message.chatMessages.length]*/);
 
   const chatMessageListStyle = {
     display: 'flex',
@@ -43,9 +42,9 @@ export function GridLayout() {
     bottom: 0,
   };
   const onClickTest = () => {
-    alert(dialog.open);
     const dialogData = {
       message: 'テストだってば',
+      name: 'n',
       onClick: () => dispatch(dialogActions.closeDialog()),
       onClose: () => dispatch(dialogActions.closeDialog()),
       title: 'これはテスト',

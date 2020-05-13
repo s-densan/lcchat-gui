@@ -15,6 +15,12 @@ const useJson = appConfig.useJson;
 // プログラムのあるフォルダに記録
 const dataFilePath = Path.join(Path.resolve(process.cwd()), dbFileName);
 
+export const loadChatMessagesDB2 = () => {
+  const sql = ` SELECT * FROM message `;
+  const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
+  const stdout = child_process.execSync(command,  { input: sql });
+  return stdout.toString();
+};
 export const loadChatMessagesDB = async () => {
   const sql = ` SELECT * FROM message `;
   const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
