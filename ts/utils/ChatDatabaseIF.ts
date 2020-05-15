@@ -163,3 +163,10 @@ export const deleteMessageDB = (chatMessageId: string) => {
   const stdout = child_process.execSync(command, { input: sql });
   return stdout.toString();
 };
+
+export const loadUserFromComputerNameDB = (computerName: string) => {
+  const sql = `SELECT * FROM user`;
+  const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
+  const stdout = child_process.execSync(command, { input: sql });
+  return stdout.toString();
+};

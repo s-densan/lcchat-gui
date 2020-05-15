@@ -4,7 +4,7 @@ import {hostname} from 'os';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as UUID } from 'uuid';
-import { messageActions } from '../stores/messageSlice';
+import { messageActions } from '../slices/MessageSlice';
 import { appConfig } from '../utils/AppConfig';
 
 export default function ChatMessagePostBox() {

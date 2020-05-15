@@ -84,7 +84,7 @@ a2RMapper.addWork<ChatMessageAction.IShowChatMessageMenuAction>(
 );
 
 /** Reducer 本体 */
-export const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {
+const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMessageList, action) => {
     switch (action.type) {
         case ChatMessageAction.POST_CHAT_MESSAGE:
             if (action.text === '') {

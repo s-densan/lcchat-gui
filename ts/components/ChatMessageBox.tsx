@@ -14,8 +14,8 @@ import Moment from 'moment';
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { messageActions } from '../slices/MessageSlice';
 import { IChatMessage } from '../states/IChatMessage';
-import { messageActions } from '../stores/messageSlice';
 // import store from '../Store';
 
 export default function ChatMessageBox(props: IChatMessage) {

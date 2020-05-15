@@ -11,65 +11,19 @@ const initialState: IChatMessageList = {
 };
 
 // Sliceを生成する
-export const slice = createSlice({
+const slice = createSlice({
     initialState,
     name: 'message',
     reducers: {
-        showChatMessage: (state, action) => {
-            return {chatMessages: action.payload.chatMessages};
-        },
-        postChatMessage: (state, action) => {
-            if (action.payload.text === '') {
-                return state;
-            } else {
-                const newMessage = createChatMessage(
-                    action.payload.chatMessageId,
-                    action.payload.text,
-                    action.payload.userId,
-                    action.payload.talkId,
-                    action.payload.postedAt,
-                    action.payload.messageData,
-                    null,
-                    null,
-                    null,
-                );
-                const messageList = state.chatMessages.concat(newMessage);
-                insertMessageDB(newMessage);
-                return {
-                    chatMessages: messageList,
-                };
-            }
-        },
-        updateChatMessage: (state, action) => {
-            const { chatMessages: chatMessages }: IChatMessageList = state;
-            const newChatMessages: IChatMessage[] = chatMessages.map((it) => {
-                if (it.messageId === action.payload.chatMessageId) {
-                    // テキストのみ更新
-                    return {
-                        createdAt: it.createdAt,
-                        deletedAt: it.deletedAt,
-                        id: it.id,
-                        messageData: it.messageData,
-                        messageId: it.messageId,
-                        postedAt: it.postedAt,
-                        talkId: it.talkId,
-                        text: action.payload.text,
-                        updatedAt: it.updatedAt,
-                        userId: it.userId,
-                    };
-                } else {
-                    return it;
-                }
-            });
-            return { chatMessages: newChatMessages };
-        },
         deleteChatMessage: (state, action) => {
+            const chatMessageId: string = action.payload.chatMessageId;
             const { chatMessages: chatMessages } = state;
-            const target = chatMessages.find((it) => it.messageId === action.payload.chatMessageId);
+            const target = chatMessages.find((it) => it.messageId === chatMessageId);
             if (!target) { return; }
             // 指定したID以外のオブジェクトを抽出し、それを新しいリストとする
             const newState = clone(state);
-            newState.chatMessages = chatMessages.filter((it) => it.messageId !== action.payload.chatMessageId);
+            newState.chatMessages = chatMessages.filter((it) => it.messageId !== chatMessageId);
+            deleteMessageDB(chatMessageId);
             return newState;
         },
         loadChatMessages: (state) => {
@@ -96,6 +50,55 @@ export const slice = createSlice({
             }
             const res = {chatMessages};
             return res;
+        },
+        postChatMessage: (state, action) => {
+            if (action.payload.text === '') {
+                return state;
+            } else {
+                const newMessage = createChatMessage(
+                    action.payload.chatMessageId,
+                    action.payload.text,
+                    action.payload.userId,
+                    action.payload.talkId,
+                    action.payload.postedAt,
+                    action.payload.messageData,
+                    null,
+                    null,
+                    null,
+                );
+                const messageList = state.chatMessages.concat(newMessage);
+                insertMessageDB(newMessage);
+                return {
+                    chatMessages: messageList,
+                };
+            }
+        },
+        showChatMessage: (state, action) => {
+            return {chatMessages: action.payload.chatMessages};
+        },
+        updateChatMessage: (state, action) => {
+            const { chatMessages: chatMessages }: IChatMessageList = state;
+            const newChatMessages: IChatMessage[] = chatMessages.map((it) => {
+                if (it.messageId === action.payload.chatMessageId) {
+                    // テキストのみ更新
+                    return {
+                        createdAt: it.createdAt,
+                        deletedAt: it.deletedAt,
+                        id: it.id,
+                        messageData: it.messageData,
+                        messageId: it.messageId,
+                        postedAt: it.postedAt,
+                        talkId: it.talkId,
+                        text: action.payload.text,
+                        updatedAt: it.updatedAt,
+                        userId: it.userId,
+                    };
+                } else {
+                    return it;
+                }
+            });
+            updateMessageTextDB(action.payload.chatMessageId, action.payload.text);
+            return { chatMessages: newChatMessages };
         },
     },
 });

@@ -5,12 +5,12 @@ import {
     ListItem,
 } from '@material-ui/core';
 import React, { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { messageActions } from '../slices/MessageSlice';
 // import Styled from 'styled-components';
 import { IChatMessage, IChatMessageList } from '../states/IChatMessage';
 // import store from '../Store';
 import ChatMessageBox from './ChatMessageBox';
-import { useDispatch } from 'react-redux';
-import { messageActions } from '../stores/messageSlice';
 
 export default function ChatMessageList(props: IChatMessageList) {
     const dispatch = useDispatch();

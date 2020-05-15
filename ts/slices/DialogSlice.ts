@@ -11,7 +11,7 @@ const initialState = {
 };
 
 // Sliceを生成する
-export const slice = createSlice({
+const slice = createSlice({
   initialState,
   name: 'dialog',
   reducers: {

@@ -28,7 +28,30 @@
 
 ## 記録
 
+### 20200514 
+#### Electronタスクトレイ
+- Electronでタスクトレイ常駐のアプリを作る
+  https://officeforest.org/wp/2019/05/15/electron%E3%81%A7%E3%82%BF%E3%82%B9%E3%82%AF%E3%83%88%E3%83%AC%E3%82%A4%E5%B8%B8%E9%A7%90%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%82%8B/
+- Electronでデスクトップウィジェットを作るまで
+  https://qiita.com/SallyAcolyte/items/94ed26ab62b8b32b1b2c
+
+``main.js``に書かなきゃならない？ので注意。
+#### Electron ホットキー
+
+globalShortcutを使う。
+これも``main.js``に書く。
+tsにできないのかしら。
+
+- Electronで、ショートカットキー（globalShortcut）
+  https://programmer-jobs.blogspot.com/2016/06/electron-globalshortcut.html
+
+- Electronでデスクトップウィジェットを作るまで
+  https://qiita.com/SallyAcolyte/items/94ed26ab62b8b32b1b2c
+  画面活性化について
+
 ### 20200513 
+
+
 tsのbuild時に以下のようなメッセージが大量に表示された。
 ```
 [hardsource:815366b5] Could not freeze (webpack)/buildin/module.js: Cannot read property 'hash' of undefined
