@@ -28,6 +28,32 @@
 
 ## 記録
 
+### 20200516 初回ログイン
+#### react-reduxでページ読み込み時、actionを呼び出す方法
+
+https://qiita.com/gaku3601/items/062a52748acc5e368453
+componentDidMountを使う方法
+だけど最近はHookを使うほうが良いかと。
+
+https://ja.reactjs.org/docs/hooks-effect.html
+でもuseEffect内でdispatchしても反応しない？
+
+
+https://qiita.com/keiya01/items/fc5c725fed1ec53c24c5
+```js
+    useEffect(
+        () => {
+            const time = setInterval(() => {
+                dispatch({ type: "ADD_COUNT" });
+            }, state.tick);
+
+            return () => clearInterval(time);
+        },
+        [ state.tick ]
+    );
+```
+こんな感じ
+
 ### 20200514 
 #### Electronタスクトレイ
 - Electronでタスクトレイ常駐のアプリを作る

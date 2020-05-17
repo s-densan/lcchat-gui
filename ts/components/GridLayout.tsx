@@ -6,56 +6,16 @@ import { app, BrowserWindow, Menu, nativeImage, Tray} from 'electron';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { dialogActions } from '../slices/DialogSlice';
+import { dialogActions, IInputDialogState, IOkDialogState } from '../slices/DialogSlice';
 import { RootState } from '../slices/RootStore';
 import { IChatMessageList } from '../states/IChatMessage';
 import ChatMessageList from './ChatMessageList';
 // import React, { Component, Fragment } from 'react';
 import ChatMessagePostBox from './ChatMessagePostBox';
-import OkDialog from './OkDialog';
+import OkDialog from './dialogs/OkDialog';
+import InputDialog from './dialogs/InputDialog';
 import { userActions } from '../slices/UserSlice';
 
-/*
-app.on('ready', (launchInfo:unknown) => {
-
-  const mainWindow: BrowserWindow = new BrowserWindow({
-    // ウィンドウ作成時のオプション
-    width: 250,
-    height: 70,
-    transparent: true,    // ウィンドウの背景を透過
-    frame: false,         // 枠の無いウィンドウ
-    resizable: false,     // ウィンドウのリサイズを禁止
-    show: false,          // アプリ起動時にウィンドウを表示しない
-    skipTaskbar: true,    // タスクバーに表示しない
-  });
-
-  // index.html を開く
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
-
-  // mainWindow.on('closed', () => {
-  //   // mainWindow = null;
-  // });
-  // タスクトレイに格納
-
-  const trayIcon = new Tray(nativeImage.createFromPath(__dirname + '/icon.png'));
-
-  // タスクトレイに右クリックメニューを追加
-  const contextMenu = Menu.buildFromTemplate([
-    { label: '表示', click: () => { mainWindow.focus(); } },
-    { label: '終了', click: () => { mainWindow.close(); } }
-  ]);
-  trayIcon.setContextMenu(contextMenu);
-
-  // タスクトレイのツールチップをアプリ名に
-  trayIcon.setToolTip(app.getName());
-
-  // タスクトレイが左クリックされた場合、アプリのウィンドウをアクティブに
-  //trayIcon.on('balloon-click', () => {
-  //  mainWindow.focus();
-  //});
-    // タスクトレイに格納 ここまで
-});
-*/
 
 export function GridLayout() {
   const dialog = useSelector((state: RootState) => state.dialog);
@@ -70,6 +30,16 @@ export function GridLayout() {
     if (initialRef.current === false) {
       // store.dispatch(createScrollToBottomAction(bottomRef));
       dispatch(userActions.loadUserFromComputerName({computerName: ''}));
+      if (user.user === null) {
+        dispatch(dialogActions.openInputDialog({
+          message: 'ユーザが登録されていません',
+          name: 'ん？',
+          title: 'ユーザ登録',
+          onClickCancel: () => dispatch(dialogActions.closeDialog()),
+          onClickOk: () => dispatch(dialogActions.closeDialog()),
+          onClose: () => dispatch(dialogActions.closeDialog()),
+        }));
+      }
       initialRef.current = true;
     }
     bottomRef.current!.scrollIntoView({
@@ -77,12 +47,11 @@ export function GridLayout() {
       block: 'end',
     });
   }/*, [message.chatMessages.length]*/);
-  const userJson = JSON.parse(user.user);
-  var userDataStr = '';
+  /*
   for(var userData of userJson) {
     userDataStr += JSON.stringify(userData);
   }
-
+  */
 
   const chatMessageListStyle = {
     display: 'flex',
@@ -102,16 +71,36 @@ export function GridLayout() {
     };
     dispatch(dialogActions.openOkDialog(dialogData));
   };
+
+  const dialogComponent = () => {
+    if (dialog.dialogData === undefined) {
+      return <div></div>;
+    } else {
+      switch (dialog.dialogData.type) {
+        case 'input':
+          return <InputDialog
+            title={dialog.dialogData.title}
+            message={dialog.dialogData.message}
+            onClickOk={dialog.dialogData.onClickOk}
+            onClose={dialog.dialogData.onClose}
+            onClickCancel={dialog.dialogData.onClickCancel}
+            open={dialog.dialogData.open}
+          />;
+        case 'ok':
+          return <OkDialog
+            title={dialog.dialogData.title}
+            message={dialog.dialogData.message}
+            onClick={dialog.dialogData.onClickOk}
+            onClose={dialog.dialogData.onClose}
+            open={dialog.dialogData.open}
+          />;
+      }
+    }
+  };
   return (
     <MuiThemeProvider theme={createMuiTheme()}>
-      <OkDialog
-        title={dialog.title}
-        message={dialog.message}
-        onClick={dialog.onClick}
-        onClose={dialog.onClose}
-        open={dialog.open}
-      />
       <div style={{ overflow: 'hidden', minHeight: '100vh' }}>
+        {dialogComponent()}
         <Paper style={chatMessageListStyle}>
           <ChatMessageList chatMessages={message.chatMessages} />
         </Paper>
@@ -123,7 +112,8 @@ export function GridLayout() {
       </div>
       <Button onClick={onClickTest}>open</Button>
       <div>
-        {JSON.stringify(userDataStr)}
+        {user.user !== null ? JSON.stringify(user.user) : ''}
+      </div><div>
       </div>
     </MuiThemeProvider>
   );

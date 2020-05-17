@@ -86,9 +86,10 @@ export default function ChatMessageBox(props: IChatMessage) {
     };
     const messageArea = () => {
         if (editMode) {
-            return <ListItemText>
+            return <ListItemText key="message">
                 <p>
                     <TextField
+                        key="text"
                         helperText=""
                         name="text"
                         multiline
@@ -112,14 +113,16 @@ export default function ChatMessageBox(props: IChatMessage) {
                 </p>
                 </ListItemText>;
         } else {
-            return <ListItemText>
+            return <ListItemText key="text2">
                 {toMultiline(props.text)}
             </ListItemText>;
         }
     };
     const menuButton = () => {
         if (!editMode) {
-            return <ListItemSecondaryAction style={{ alignContent: 'flex-end' }}>
+            return <ListItemSecondaryAction
+                        key="notedit"
+                        style={{ alignContent: 'flex-end' }}>
                 <IconButton
                     aria-label="more"
                     aria-controls="long-menu"
@@ -137,8 +140,8 @@ export default function ChatMessageBox(props: IChatMessage) {
         <div style={{ width: '100%' }}>
             <Box boxShadow={1} px={1} style={{ width: '100%' }}>
                 <List>
-                    <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
+                    <ListItem alignItems="flex-start" key="toriaezu">
+                        <ListItemAvatar key="avater">
                             <Avatar
                                 alt="Remy Sharp"
                                 // src="xxxx.jpg"
