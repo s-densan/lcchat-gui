@@ -1,3 +1,4 @@
+import { TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -5,13 +6,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import React, { useState } from 'react';
-import { TextField } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
 interface IProps {
     open: boolean;
     title: string;
     message: string;
-    onClickOk: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void);
+    onClickOk: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>, inputText: string) => void);
     onClickCancel: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void);
     onClose: ((event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void);
 }
@@ -42,12 +43,10 @@ export default function InputDialog(props: IProps) {
             style={{ width: '100%' }} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.onClickOk} color="primary">
+          <Button onClick={(e) => props.onClickOk(e, inputText)} color="primary">
             OK
           </Button>
-        </DialogActions>
-        <DialogActions>
-          <Button onClick={props.onClickCancel} color="primary">
+          <Button onClick={(e) => props.onClickCancel(e)} color="primary">
             キャンセル
           </Button>
         </DialogActions>
@@ -55,4 +54,3 @@ export default function InputDialog(props: IProps) {
     </div>
   );
 }
-

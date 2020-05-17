@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button, DialogActions } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -8,13 +8,13 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { dialogActions, IInputDialogState, IOkDialogState } from '../slices/DialogSlice';
 import { RootState } from '../slices/RootStore';
+import { userActions } from '../slices/UserSlice';
 import { IChatMessageList } from '../states/IChatMessage';
 import ChatMessageList from './ChatMessageList';
 // import React, { Component, Fragment } from 'react';
 import ChatMessagePostBox from './ChatMessagePostBox';
-import OkDialog from './dialogs/OkDialog';
 import InputDialog from './dialogs/InputDialog';
-import { userActions } from '../slices/UserSlice';
+import OkDialog from './dialogs/OkDialog';
 
 
 export function GridLayout() {
@@ -81,7 +81,11 @@ export function GridLayout() {
           return <InputDialog
             title={dialog.dialogData.title}
             message={dialog.dialogData.message}
-            onClickOk={dialog.dialogData.onClickOk}
+            // onClickOk={dialog.dialogData.onClickOk}
+            onClickOk={(e, inputText) => {
+              dispatch(userActions.insertUser({userId: inputText}));
+              dispatch(dialogActions.closeDialog());
+            }}
             onClose={dialog.dialogData.onClose}
             onClickCancel={dialog.dialogData.onClickCancel}
             open={dialog.dialogData.open}
@@ -90,7 +94,7 @@ export function GridLayout() {
           return <OkDialog
             title={dialog.dialogData.title}
             message={dialog.dialogData.message}
-            onClick={dialog.dialogData.onClickOk}
+            onClickOk={dialog.dialogData.onClickOk}
             onClose={dialog.dialogData.onClose}
             open={dialog.dialogData.open}
           />;

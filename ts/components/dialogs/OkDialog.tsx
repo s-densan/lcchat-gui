@@ -10,7 +10,7 @@ interface IProps {
     open: boolean;
     title: string;
     message: string;
-    onClick: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void);
+    onClickOk: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void);
     onClose: ((event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void);
 }
 export default function OkDialog(props: IProps) {
@@ -30,7 +30,7 @@ export default function OkDialog(props: IProps) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.onClick} color="primary">
+          <Button onClick={props.onClickOk} color="primary">
             OK
           </Button>
         </DialogActions>

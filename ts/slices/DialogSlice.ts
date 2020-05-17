@@ -1,4 +1,4 @@
-import { createSlice, CaseReducer, AnyAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 // ダイアログの状態
 interface IDialogState {
@@ -33,18 +33,6 @@ export type IInputDialogState = {
 const initialState: IDialogState = {dialogData: undefined};
 
 const defaultOnClick = () => { };
-
-const openOkDialog: any = (state: IDialogState, action: AnyAction) => {
-  const res = {
-    message: action.payload.message,
-    name: action.payload.name,
-    onClickOk: action.payload.onClick === undefined ? defaultOnClick : action.payload.onClick,
-    onClose: action.payload.onClose === undefined ? defaultOnClick : action.payload.onClose,
-    open: true,
-    title: action.payload.title,
-  };
-  return res;
-};
 
 // Sliceを生成する
 const slice = createSlice({
