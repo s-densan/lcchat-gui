@@ -17,23 +17,6 @@ a2RMapper.addWork<ChatMessageAction.IShowChatMessageAction>(
     },
 );
 
-/** メッセージを投稿する */
-a2RMapper.addWork<ChatMessageAction.IPostChatMessageAction>(
-    ChatMessageAction.POST_CHAT_MESSAGE,
-    (state, action) => {
-        state.chatMessages.push(createChatMessage(
-            action.chatMessageId,
-            action.text,
-            action.userId,
-            action.talkId,
-            action.postedAt,
-            action.messageData,
-            new Date(),
-            new Date(),
-            null,
-        ));
-    },
-);
 
 /** メッセージを更新する */
 a2RMapper.addWork<ChatMessageAction.IUpdateChatMessageAction>(
@@ -54,6 +37,8 @@ a2RMapper.addWork<ChatMessageAction.IUpdateChatMessageAction>(
                     text : action.text,
                     updatedAt : it.updatedAt,
                     userId : it.userId,
+                    userName : it.userName,
+                    userAvaterText : it.userAvaterText,
                 };
             } else {
                 return it;
@@ -94,6 +79,8 @@ const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMes
                         action.chatMessageId,
                         action.text,
                         action.userId,
+                        action.userName,
+                        action.userAvaterText,
                         action.talkId,
                         action.postedAt,
                         action.messageData,

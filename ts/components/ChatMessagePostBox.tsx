@@ -2,15 +2,17 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {hostname} from 'os';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as UUID } from 'uuid';
 import { messageActions } from '../slices/MessageSlice';
 import { appConfig } from '../utils/AppConfig';
+import { RootState } from '../slices/RootStore';
 
 export default function ChatMessagePostBox() {
   const dispatch = useDispatch();
   // const classes = useStyles();
   const [postMessageText, setPostMessageText] = useState('');
+  const user = useSelector((state: RootState) => state.user);
   // 投稿ボタン表示文字
   const buttonText = postMessageText.trim() === '' ? 'boo' : '投稿';
   const onChangeChatMessagePostBox = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,18 +35,18 @@ export default function ChatMessagePostBox() {
     const nowDate = new Date();
     // メッセージIDと
     const messageId = UUID();
-    // ユーザ名（今の所ホスト名）
-    const userName = hostname();
     // 投稿アクション生成
     const action = messageActions.postChatMessage(
       {
         chatMessageId: messageId,
         text: postMessageText,
-        userId: userName,
+        userId: user.user === undefined ? '' : user.user.userId,
+        userName: user.user === undefined ? '' : user.user.userData.userName,
+        userAvaterText: user.user === undefined ? '' : user.user.userData.userName.slice(0, 2),
         talkId: 'talkId',
         postedAt: nowDate,
         messageData: 'messageData',
-      }
+      },
     );
     // メッセージを空にする。
     setPostMessageText('');

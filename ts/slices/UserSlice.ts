@@ -1,22 +1,30 @@
 import { combineReducers, createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
-import { loadUserFromComputerNameDB as loadUserListDB } from '../utils/ChatDatabaseIF';
+import {
+  insertUser,
+  loadUserFromComputerNameDB as loadUserListDB,
+} from '../utils/ChatDatabaseIF';
+import {
+  dialogActions,
+} from './DialogSlice';
+import { v4 as UUID } from 'uuid';
 
 interface IUserData {
   authentication?: {
     computerName: string;
-  }
+  };
+  userName: string;
 }
-interface IUser {
+export interface IUser {
   userId: string;
   userData: IUserData;
 }
-interface IUserState{
-  user: IUser | null;
+interface IUserState {
+  user: IUser | undefined;
 }
 
 // Stateの初期状態
 const initialState: IUserState = {
-    user: null,
+    user: undefined,
 };
 
 // Sliceを生成する
@@ -25,15 +33,32 @@ const slice = createSlice<IUserState, SliceCaseReducers<IUserState>>({
   name: 'user',
   reducers: {
     insertUser: (state: IUserState, action) => {
+      const userData: IUserData = {
+        userName: action.payload.userName,
+        authentication: {
+          computerName: action.payload.computerName,
+        },
+      };
+      const newUser: IUser = {
+        userData,
+        userId: UUID(),
+      };
+      insertUser(newUser);
+      return {
+        user: newUser,
+      };
+
     },
     loadUserFromComputerName: (state: IUserState, action) => {
+      // コンピュータ名
+      const computerName = action.payload.computerName;
       const userList = JSON.parse(loadUserListDB(action.payload.computerName));
       for (const user of userList) {
         // user_dataはstringのため、JSONパースする
         const userData: IUserData = JSON.parse(user.user_data);
         // user_dataが空辞書、存在しないかnullの場合
-        if (('authentication' in userData) && userData.authentication !== undefined) {
-          if (userData.authentication.computerName === action.payload.computerName) {
+        if (userData.authentication !== undefined) {
+          if (userData.authentication.computerName === computerName) {
             return {
               user: {
                 userData,
@@ -43,7 +68,7 @@ const slice = createSlice<IUserState, SliceCaseReducers<IUserState>>({
           }
         }
       }
-      return {user  : null};
+      return {user: undefined};
     },
   },
 });

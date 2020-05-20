@@ -26,6 +26,7 @@ export type IOkDialogState = {
 
 export type IInputDialogState = {
   onClickCancel: any;
+  enableCancel: boolean;
   type: 'input';
 } & ICommonDialog;
 
@@ -61,6 +62,7 @@ const slice = createSlice({
           onClose: action.payload.onClose === undefined ? defaultOnClick : action.payload.onClose,
           open: true,
           title: action.payload.title,
+          enableCancel: action.payload.enableCancel,
           type: 'input',
       };
       return {dialogData: res};

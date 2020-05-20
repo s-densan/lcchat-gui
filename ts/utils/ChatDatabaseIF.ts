@@ -4,6 +4,7 @@ import Path from 'path';
 import {appConfig} from './AppConfig';
 
 import { IChatMessage } from '../states/IChatMessage';
+import { IUser } from '../slices/UserSlice';
 
 // データベースファイル名
 const dbFileName = appConfig.dbFileName;
@@ -16,7 +17,7 @@ const useJson = appConfig.useJson;
 const dataFilePath = Path.join(Path.resolve(process.cwd()), dbFileName);
 
 export const loadChatMessagesDB2 = () => {
-  const sql = ` SELECT * FROM message `;
+  const sql = `select message.*, user.user_data from message left join user on user.user_id = message.user_id`;
   const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
   const stdout = child_process.execSync(command,  { input: sql });
   return stdout.toString();
@@ -26,34 +27,6 @@ export const loadChatMessagesDB = async () => {
   const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
   const stdout = child_process.execSync(command,  { input: sql });
   return stdout.toString();
-  /*
-  const nkf = child_process.exec(
-    `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`,
-    (error, stdout, stderr) => {
-      alert('nkf');
-      if (error) {
-        // エラー時は標準エラー出力を表示して終了
-        alert(stderr);
-        return;
-      } else {
-        alert(stdout);
-        return stdout;
-      }
-    },
-  );
-  alert(sql.trim());
-  if (nkf.stdin !== null) {
-    nkf.stdin.write(sql);
-    nkf.stdin.end();
-  }
-  if (nkf.stdout !== null) {
-    // 標準出力がある場合は標準出力を読み込んだ結果を返す。
-    alert(nkf.stdout);
-    return nkf.stdout.read();
-  } else {
-    return '';
-  }
-  */
 };
 /**
  * ファイルからタスクのデータをロードする
@@ -166,6 +139,29 @@ export const deleteMessageDB = (chatMessageId: string) => {
 
 export const loadUserFromComputerNameDB = (computerName: string) => {
   const sql = `SELECT * FROM user`;
+  const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
+  const stdout = child_process.execSync(command, { input: sql });
+  return stdout.toString();
+};
+
+export const insertUser = (user: IUser) => {
+  const sql = `INSERT
+            INTO
+                user
+            VALUES(
+                -- ユーザID
+                "${user.userId}",
+                -- ユーザ名
+                "${user.userData.userName}",
+                -- ユーザデータ(SQLのエスケープをする)
+                "${JSON.stringify(user.userData).replace(/"/g, '""')}",
+                -- 作成日時
+                "${new Date()}",
+                -- 更新日時
+                "${new Date()}",
+                -- 削除日時
+                "${undefined}"
+    )`.replace('\n', '');
   const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
   const stdout = child_process.execSync(command, { input: sql });
   return stdout.toString();

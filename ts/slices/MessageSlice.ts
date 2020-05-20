@@ -1,9 +1,8 @@
-import { combineReducers, createSlice } from '@reduxjs/toolkit';
-import { createStore} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import clone from 'clone';
 import { createChatMessage, IChatMessage, IChatMessageList} from '../states/IChatMessage';
 import { insertMessageDB } from '../utils/ChatDatabaseIF';
-import { deleteMessageDB, loadChatMessage, loadChatMessagesDB2, saveStateJson, updateMessageTextDB} from '../utils/ChatDatabaseIF';
+import { deleteMessageDB, loadChatMessagesDB2, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 
 // Stateの初期状態
 const initialState: IChatMessageList = {
@@ -26,7 +25,7 @@ const slice = createSlice({
             deleteMessageDB(chatMessageId);
             return newState;
         },
-        loadChatMessages: (state) => {
+        loadChatMessages: () => {
             // ファイルを非同期で読み込む
             // データファイルの存在チェック
             let mes = '';
@@ -39,6 +38,12 @@ const slice = createSlice({
                     chatMessageJson.message_id,
                     chatMessageJson.text,
                     chatMessageJson.user_id,
+                    chatMessageJson.user_data === null ?
+                        'unknown' :
+                        JSON.parse(chatMessageJson.user_data).userName,
+                    chatMessageJson.user_data === null ?
+                        'un' :
+                        JSON.parse(chatMessageJson.user_data).userName.slice(0, 2),
                     'dummyTalkId',
                     chatMessageJson.posted_at,
                     chatMessageJson.message_data,
@@ -59,6 +64,8 @@ const slice = createSlice({
                     action.payload.chatMessageId,
                     action.payload.text,
                     action.payload.userId,
+                    action.payload.userName,
+                    action.payload.userAvaterText,
                     action.payload.talkId,
                     action.payload.postedAt,
                     action.payload.messageData,
@@ -92,6 +99,8 @@ const slice = createSlice({
                         text: action.payload.text,
                         updatedAt: it.updatedAt,
                         userId: it.userId,
+                        userName: it.userName,
+                        userAvaterText: it.userAvaterText,
                     };
                 } else {
                     return it;

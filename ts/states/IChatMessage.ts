@@ -12,6 +12,10 @@ export interface IChatMessage {
     text: string;
     /** ユーザID */
     userId: string;
+    /** ユーザ名 */
+    userName: string;
+    /** ユーザアバターテキスト */
+    userAvaterText: string;
     /** トークID */
     talkId: string;
     /** 投稿日時 */
@@ -54,6 +58,8 @@ export const createChatMessage = (
     messageId: string,
     text: string,
     userId: string,
+    userName: string,
+    userAvaterText: string,
     talkId: string,
     postedAt: Date,
     messageData: string,
@@ -73,5 +79,7 @@ export const createChatMessage = (
         text,
         updatedAt,
         userId,
+        userName,
+        userAvaterText,
     };
 };

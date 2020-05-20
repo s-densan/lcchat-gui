@@ -1,51 +1,53 @@
-import { Button, DialogActions } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import { app, BrowserWindow, Menu, nativeImage, Tray} from 'electron';
-import React, { useEffect, useRef } from 'react';
+import os from 'os';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { dialogActions, IInputDialogState, IOkDialogState } from '../slices/DialogSlice';
+import { dialogActions } from '../slices/DialogSlice';
 import { RootState } from '../slices/RootStore';
 import { userActions } from '../slices/UserSlice';
-import { IChatMessageList } from '../states/IChatMessage';
 import ChatMessageList from './ChatMessageList';
 // import React, { Component, Fragment } from 'react';
 import ChatMessagePostBox from './ChatMessagePostBox';
 import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
 
-
 export function GridLayout() {
   const dialog = useSelector((state: RootState) => state.dialog);
   const message = useSelector((state: RootState) => state.message);
   const user = useSelector((state: RootState) => state.user);
-  const initialRef = useRef<boolean>(false);
+  const [initial, setInitial] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const bottomRef = React.createRef<HTMLDivElement>();
   useEffect(() => {
     // 初回のみ実行
-    if (initialRef.current === false) {
+    if (initial === false) {
       // store.dispatch(createScrollToBottomAction(bottomRef));
-      dispatch(userActions.loadUserFromComputerName({computerName: ''}));
-      if (user.user === null) {
-        dispatch(dialogActions.openInputDialog({
-          message: 'ユーザが登録されていません',
-          name: 'ん？',
-          title: 'ユーザ登録',
-          onClickCancel: () => dispatch(dialogActions.closeDialog()),
-          onClickOk: () => dispatch(dialogActions.closeDialog()),
-          onClose: () => dispatch(dialogActions.closeDialog()),
-        }));
-      }
-      initialRef.current = true;
+      dispatch(userActions.loadUserFromComputerName({computerName: os.hostname()}));
+      setInitial(true);
     }
-    bottomRef.current!.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-    });
+    // 初期化が済んでもユーザがundefinedの場合
+    if (user.user === undefined && dialog.dialogData === undefined && initial) {
+      dispatch(dialogActions.openInputDialog({
+        message: 'ユーザが登録されていません',
+        name: 'ん？',
+        title: 'ユーザ登録',
+        enableCancel: false,
+        onClickCancel: () => dispatch(dialogActions.closeDialog()),
+        onClickOk: () => dispatch(dialogActions.closeDialog()),
+        onClose: () => dispatch(dialogActions.closeDialog()),
+      }));
+    }
+    if (bottomRef.current) {
+      bottomRef.current!.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+    }
   }/*, [message.chatMessages.length]*/);
   /*
   for(var userData of userJson) {
@@ -61,16 +63,6 @@ export function GridLayout() {
   const chatMessagePostBoxStyle = {
     bottom: 0,
   };
-  const onClickTest = () => {
-    const dialogData = {
-      message: 'テストだってば',
-      name: 'n',
-      onClick: () => dispatch(dialogActions.closeDialog()),
-      onClose: () => dispatch(dialogActions.closeDialog()),
-      title: 'これはテスト',
-    };
-    dispatch(dialogActions.openOkDialog(dialogData));
-  };
 
   const dialogComponent = () => {
     if (dialog.dialogData === undefined) {
@@ -83,9 +75,10 @@ export function GridLayout() {
             message={dialog.dialogData.message}
             // onClickOk={dialog.dialogData.onClickOk}
             onClickOk={(e, inputText) => {
-              dispatch(userActions.insertUser({userId: inputText}));
+              dispatch(userActions.insertUser({userId: inputText, userName: inputText, computerName: os.hostname()}));
               dispatch(dialogActions.closeDialog());
             }}
+            enableCancel={dialog.dialogData.enableCancel}
             onClose={dialog.dialogData.onClose}
             onClickCancel={dialog.dialogData.onClickCancel}
             open={dialog.dialogData.open}
@@ -101,23 +94,27 @@ export function GridLayout() {
       }
     }
   };
+  const chatArea = () => {
+    if (initial && user.user) {
+      return  <div>
+          <Paper style={chatMessageListStyle}>
+            <ChatMessageList chatMessages={message.chatMessages} />
+          </Paper>
+          <div ref={bottomRef}>
+            <Box component="div" style={chatMessagePostBoxStyle}>
+              <ChatMessagePostBox />
+            </Box>
+          </div>
+        </div>;
+    } else {
+      return <div></div>;
+    }
+  }
   return (
     <MuiThemeProvider theme={createMuiTheme()}>
       <div style={{ overflow: 'hidden', minHeight: '100vh' }}>
         {dialogComponent()}
-        <Paper style={chatMessageListStyle}>
-          <ChatMessageList chatMessages={message.chatMessages} />
-        </Paper>
-        <div ref={bottomRef}>
-          <Box component="div" style={chatMessagePostBoxStyle}>
-            <ChatMessagePostBox />
-          </Box>
-        </div>
-      </div>
-      <Button onClick={onClickTest}>open</Button>
-      <div>
-        {user.user !== null ? JSON.stringify(user.user) : ''}
-      </div><div>
+        {chatArea()}
       </div>
     </MuiThemeProvider>
   );

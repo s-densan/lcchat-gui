@@ -25,7 +25,7 @@ export default function ChatMessageList(props: IChatMessageList) {
         }
     });
 
-    const { chatMessages: tasks } = props;
+    const { chatMessages: chatMessages } = props;
     const mapFunc = (it: IChatMessage) => {
         return (
             <ListItem alignItems="center" >
@@ -34,7 +34,7 @@ export default function ChatMessageList(props: IChatMessageList) {
         );
     };
     // const chatMessageListElems = tasks.sort(compFunc).reverse().map(mapFunc);
-    const chatMessageListElems = tasks.map(mapFunc);
+    const chatMessageListElems = chatMessages.map(mapFunc);
             // <AddChatMessage text="" />
     return (
         <div style={{ width: '100%' }} >
