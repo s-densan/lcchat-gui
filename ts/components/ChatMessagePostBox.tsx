@@ -5,8 +5,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as UUID } from 'uuid';
 import { messageActions } from '../slices/MessageSlice';
-import { appConfig } from '../utils/AppConfig';
 import { RootState } from '../slices/RootStore';
+import { windowActions } from '../slices/WindowSlice';
+import { appConfig } from '../utils/AppConfig';
 
 export default function ChatMessagePostBox() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ export default function ChatMessagePostBox() {
     setPostMessageText('');
     // alert(props.chatBoxText);
     dispatch(action);
+    dispatch(windowActions.moveToBottom());
     // store.dispatch(createScrollToBottomAction(props.bottomRef));
     // store.dispatch(createReloadChatMessagesAction(store.dispatch));
   };
