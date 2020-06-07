@@ -22,8 +22,11 @@ import { IChatMessage } from '../states/IChatMessage';
 
 export default function ChatMessageBox(props: IChatMessage) {
   const dispatch = useDispatch();
+  // 
   const [editingMessage, setEditingMessage] = useState('');
+  // 編集モード
   const [editMode, setEditMode] = useState(false);
+  // 投稿日時
   const postedAt = Moment(props.postedAt).format('YYYY-MM-DD hh:mm');
   const user = useSelector((state: RootState) => state.user);
   /**
@@ -91,30 +94,31 @@ export default function ChatMessageBox(props: IChatMessage) {
     if (editMode) {
       // 編集モードの場合
       return <ListItemText key="message">
-        <p>
+        <div>
           <TextField
             key="text"
             helperText=""
             name="text"
             multiline
+            type="text"
             value={editingMessage}
             onChange={onChangeChatMessageEditBox}
             style={{ width: '100%' }} />
-        </p>
-        <p>
+        </div>
+        <div>
           <Button
             // variant="contained"
             color="primary"
             onClick={onClickOkEditMessageButton}
-          // style={{ width: '20%' }}
+            // style={{ width: '20%' }}
           >OK</Button>
           <Button
             // variant="contained"
             color="primary"
             onClick={onClickCanselEditMessageButton}
-          // style={{ width: '20%' }}
+            // style={{ width: '20%' }}
           >キャンセル</Button>
-        </p>
+        </div>
       </ListItemText>;
     } else {
       // 編集モードでない場合
@@ -156,7 +160,7 @@ export default function ChatMessageBox(props: IChatMessage) {
                 {props.userAvaterText}
               </Avatar>
             </ListItemAvatar>
-            <p>
+            <div style={{ width: '100%' }}>
               <span style={{ color: '#00F' }}>
                 {props.userName === undefined ? 'unknown' : props.userName}
               </span>
@@ -165,7 +169,7 @@ export default function ChatMessageBox(props: IChatMessage) {
                 {postedAt}
               </span>
               {messageArea()}
-            </p>
+            </div>
             {menuButton()}
           </ListItem>
         </List>
