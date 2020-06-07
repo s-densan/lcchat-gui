@@ -18,6 +18,17 @@ const lcchatPath = '..\\lcchat\\Sqltest.n'
 // プログラムのあるフォルダに記録
 const dataFilePath = Path.join(Path.resolve(process.cwd()), dbFileName);
 
+export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
+  const sql = `select message.*, user.user_data from message
+               left join user
+               on
+                   user.user_id = message.user_id and
+                   message.message_id <> ${latestMessageId} and
+                   message.created_at >= ${latestUpdatedAt}`;
+  const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
+  const stdout = child_process.execSync(command,  { input: sql });
+  return stdout.toString();
+};
 export const loadChatMessagesDB2 = () => {
   const sql = `select message.*, user.user_data from message left join user on user.user_id = message.user_id`;
   const command = `neko "${lcchatPath}"`;

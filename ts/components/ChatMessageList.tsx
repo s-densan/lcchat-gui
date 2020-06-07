@@ -3,6 +3,7 @@ import {
     Grid,
     List,
     ListItem,
+    Paper,
 } from '@material-ui/core';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
@@ -37,13 +38,10 @@ export default function ChatMessageList(props: IChatMessageList) {
     const chatMessageListElems = chatMessages.map(mapFunc);
             // <AddChatMessage text="" />
     return (
-        <div style={{ width: '100%' }} >
+        <div style={{ width: '97%', margin: 'auto' }} >
             <List dense style={{ width: '100%' }}>
                 {chatMessageListElems}
             </List>
-            <Grid container direction="column" style={{ width: '100%' }} >
-            </Grid>
-
         </div>
     );
 }
