@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "lcchat",
+			"path": "C:\\Users\\shimp\\OneDrive\\Documents\\lcchat"
+		},
+		{
+			"name": "lcchat-gui",
+			"path": "C:\\Users\\shimp\\OneDrive\\Documents\\lcchat-gui"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true,
+		"search.useIgnoreFiles": false,
+		"haxe.configurations": []
+	}
+}
