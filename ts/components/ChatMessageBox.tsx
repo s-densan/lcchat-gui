@@ -16,8 +16,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { messageActions } from '../slices/MessageSlice';
-import { IChatMessage } from '../states/IChatMessage';
 import { RootState } from '../slices/RootStore';
+import { IChatMessage } from '../states/IChatMessage';
 // import store from '../Store';
 
 export default function ChatMessageBox(props: IChatMessage) {
@@ -89,6 +89,7 @@ export default function ChatMessageBox(props: IChatMessage) {
   };
   const messageArea = () => {
     if (editMode) {
+      // 編集モードの場合
       return <ListItemText key="message">
         <p>
           <TextField
@@ -116,10 +117,8 @@ export default function ChatMessageBox(props: IChatMessage) {
         </p>
       </ListItemText>;
     } else {
+      // 編集モードでない場合
       return <ListItemText key="text2">
-        <div style={{ color: '#00F' }}>
-          {props.userName === undefined ? 'unknown' : props.userName}
-        </div>
         <div>
           {toMultiline(props.text)}
         </div>
@@ -157,7 +156,16 @@ export default function ChatMessageBox(props: IChatMessage) {
                 {props.userAvaterText}
               </Avatar>
             </ListItemAvatar>
-            {messageArea()}
+            <p>
+              <span style={{ color: '#00F' }}>
+                {props.userName === undefined ? 'unknown' : props.userName}
+              </span>
+              <span>   </span>
+              <span style={{ color: '#77F' }}>
+                {postedAt}
+              </span>
+              {messageArea()}
+            </p>
             {menuButton()}
           </ListItem>
         </List>
@@ -194,7 +202,7 @@ export default function ChatMessageBox(props: IChatMessage) {
 
             </MenuItem>;
           }
-        }
+        },
         )}
       </Menu>
     </div>
