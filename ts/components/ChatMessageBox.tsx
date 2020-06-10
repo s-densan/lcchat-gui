@@ -25,10 +25,11 @@ export default function ChatMessageBox(props: IChatMessage) {
   // 
   const [editingMessage, setEditingMessage] = useState('');
   // 編集モード
-  const [editMode, setEditMode] = useState(false);
+  // const [editMode, setEditMode] = useState(false);
   // 投稿日時
   const postedAt = Moment(props.postedAt).format('YYYY-MM-DD hh:mm');
-  const user = useSelector((state: RootState) => state.user);
+  const userState = useSelector((state: RootState) => state.user);
+  const messageState = useSelector((state: RootState) => state.message);
   /**
    * 削除ボタンを押すと、タスクを削除する
    */
@@ -45,7 +46,7 @@ export default function ChatMessageBox(props: IChatMessage) {
     // クリックイベントを親要素の伝播させない
     setAnchorEl(null);
     setEditingMessage(props.text);
-    setEditMode(true);
+    dispatch(messageActions.startEditMessage({ message: props }));
     e.stopPropagation();
   };
   const onOpenMenu = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -80,10 +81,10 @@ export default function ChatMessageBox(props: IChatMessage) {
     if (editingMessage !== props.text) {
       dispatch(messageActions.updateChatMessage({ chatMessageId: props.messageId, text: editingMessage }));
     }
-    setEditMode(false);
+    dispatch(messageActions.endEditMessage());
   };
   const onClickCanselEditMessageButton = (e: React.MouseEvent) => {
-    setEditMode(false);
+    dispatch(messageActions.endEditMessage());
   };
   const toMultiline = (text: string) => {
     return text.split('\n').map((line, idx, arr) => {
@@ -91,7 +92,7 @@ export default function ChatMessageBox(props: IChatMessage) {
     });
   };
   const messageArea = () => {
-    if (editMode) {
+    if (messageState.editingMessage !== undefined && messageState.editingMessage.messageId === props.messageId) {
       // 編集モードの場合
       return <ListItemText key="message">
         <div>
@@ -130,7 +131,7 @@ export default function ChatMessageBox(props: IChatMessage) {
     }
   };
   const menuButton = () => {
-    if (!editMode) {
+    if (messageState.editingMessage === undefined) {
       return <ListItemSecondaryAction
         key="notedit"
         style={{ alignContent: 'flex-end' }}>
@@ -146,6 +147,7 @@ export default function ChatMessageBox(props: IChatMessage) {
       </ListItemSecondaryAction>;
     }
   };
+  const userNameColor = (props.userId === userState.user!.userId) ? '#A00' : '#00F';
 
   return (
     <div style={{ width: '100%' }}>
@@ -161,7 +163,7 @@ export default function ChatMessageBox(props: IChatMessage) {
               </Avatar>
             </ListItemAvatar>
             <div style={{ width: '100%' }}>
-              <span style={{ color: '#00F' }}>
+              <span style={{ color: userNameColor }}>
                 {props.userName === undefined ? 'unknown' : props.userName}
               </span>
               <span>   </span>
@@ -188,7 +190,7 @@ export default function ChatMessageBox(props: IChatMessage) {
         }}
       >
         {options.map((option) => {
-          if (props.userId === user.user!.userId) {
+          if (props.userId === userState.user!.userId && messageState.editingMessage === undefined) {
             return <MenuItem
               key={option.key}
               selected={option.key === 'Pyxis'}

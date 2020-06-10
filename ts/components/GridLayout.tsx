@@ -88,7 +88,15 @@ export function GridLayout() {
     bottom: 0,
   };
   const onTimer = () => {
-    dispatch(messageActions.loadChatMessages());
+      dispatch(messageActions.loadChatMessages());
+  };
+  const clockArea = () => {
+    if (message.editingMessage === undefined) {
+      // 編集中モードでない場合
+      return <Clock interval={10000} onTimer={onTimer}></Clock>;
+    } else {
+      return <div></div>;
+    }
   };
 
   const dialogComponent = () => {
@@ -142,7 +150,10 @@ export function GridLayout() {
       <div style={{ overflow: 'hidden', height: '95vh' }} >
         {dialogComponent()}
         {chatArea()}
-        <Clock interval={10000} onTimer={onTimer}></Clock>
+        {clockArea()}
+      </div>
+      <div>
+        {JSON.stringify(message.editingMessage)}
       </div>
     </MuiThemeProvider>
   );

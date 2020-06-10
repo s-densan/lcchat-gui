@@ -5,8 +5,9 @@ import { insertMessageDB } from '../utils/ChatDatabaseIF';
 import { deleteMessageDB, loadChatMessagesDB2, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 
 // Stateの初期状態
-const initialState: IChatMessageList = {
+const initialState: IChatMessageList & {editingMessage: IChatMessage | undefined} = {
     chatMessages: [],
+    editingMessage: undefined,
 };
 
 // Sliceを生成する
@@ -25,7 +26,7 @@ const slice = createSlice({
             deleteMessageDB(chatMessageId);
             return newState;
         },
-        loadChatMessages: () => {
+        loadChatMessages: (state) => {
             // ファイルを非同期で読み込む
             // データファイルの存在チェック
             let mes = '';
@@ -53,7 +54,10 @@ const slice = createSlice({
                 );
                 chatMessages.push(chatMessage);
             }
-            const res = {chatMessages};
+            const res = {
+                chatMessages,
+                editingMessage: state.editingMessage,
+            };
             return res;
         },
         postChatMessage: (state, action) => {
@@ -77,11 +81,15 @@ const slice = createSlice({
                 insertMessageDB(newMessage);
                 return {
                     chatMessages: messageList,
+                    editingMessage: state.editingMessage,
                 };
             }
         },
         showChatMessage: (state, action) => {
-            return {chatMessages: action.payload.chatMessages};
+            return {
+                chatMessages: action.payload.chatMessages,
+                editingMessage: state.editingMessage,
+            };
         },
         updateChatMessage: (state, action) => {
             const { chatMessages: chatMessages }: IChatMessageList = state;
@@ -107,7 +115,22 @@ const slice = createSlice({
                 }
             });
             updateMessageTextDB(action.payload.chatMessageId, action.payload.text);
-            return { chatMessages: newChatMessages };
+            return {
+                chatMessages: newChatMessages,
+                editingMessage: state.editingMessage,
+            };
+        },
+        startEditMessage: (state, action) => {
+            return {
+                chatMessages: state.chatMessages,
+                editingMessage: action.payload.message,
+            };
+        },
+        endEditMessage: (state) => {
+            return {
+                chatMessages: state.chatMessages,
+                editingMessage: undefined,
+            };
         },
     },
 });
