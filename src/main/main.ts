@@ -5,7 +5,7 @@ import {
     Tray,
     nativeImage,
     globalShortcut,
-} from 'electron'
+} from 'electron';
 import { appConfig } from './AppConfig';
 
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
@@ -18,21 +18,29 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
-        }
+            nodeIntegration: true,
+        },
     })
     // index.html をロードする
-    win.loadFile('index.html')
+    win.loadFile('index.html');
     // 起動オプションに、 "--debug"があれば開発者ツールを起動する
     if (process.argv.find((arg) => arg === '--debug')) {
-        win.webContents.openDevTools()
+        win.webContents.openDevTools();
     }
     // ブラウザウィンドウを閉じたときのイベントハンドラ
     win.on('closed', () => {
         // 閉じたウィンドウオブジェクトにはアクセスできない
-        win = undefined
+        win = undefined;
     })
-    addTaskTray()
+    // 閉じるボタンでタスクトレイに入れる
+    win.on('close', (event) => {
+        event.
+        alert('tojiru');
+        if (win) {
+            win.hide();
+        }
+    });
+    addTaskTray();
     setHotKey()
 }
 
@@ -73,8 +81,22 @@ function addTaskTray() {
 
     // タスクトレイに右クリックメニューを追加
     var contextMenu = Menu.buildFromTemplate([
-        { label: "表示", click: function () { if (win !== undefined) { win.show(); win.focus(); } } },
-        { label: "終了", click: function () { if (win !== undefined) { win.close(); } } }
+        {
+            label: "表示",
+            click: function () {
+                if (win !== undefined) {
+                    win.show(); win.focus();
+                }
+            },
+        },
+        {
+            label: "終了",
+            click: function () {
+                if (win !== undefined) {
+                    win.close();
+                }
+            },
+        },
     ]);
     trayIcon.setContextMenu(contextMenu);
 
@@ -84,7 +106,7 @@ function addTaskTray() {
     // タスクトレイが左クリックされた場合、アプリのウィンドウをアクティブに
     trayIcon.on("click", function () {
         if (win !== undefined) {
-            win.show()
+            win.show();
             win.focus();
         }
     });
@@ -97,13 +119,13 @@ function setHotKey() {
             if (win.isVisible()) {
                 if (win.isFocused()) {
                     // win.minimize()
-                    win.hide()
+                    win.hide();
                 } else {
-                    win.focus()
+                    win.focus();
                 }
             } else {
-                win.show()
-                win.focus()
+                win.show();
+                win.focus();
             }
         }
     })

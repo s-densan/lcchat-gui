@@ -51,6 +51,10 @@ Cannot read property 'readFileSync' of undefined
 ```
 意味不。メインプロセスがうまいことライブラリの解決？ターゲットの設定？ができていないみたい。
 https://www.subarunari.com/entry/electronWebpackConfig
+→うまくいった。
+
+タスクトレイ常駐
+https://taku-o.hatenablog.jp/entry/2019/02/05/224111
 ### 20200531 
 サボりすぎー
 Todo追加
