@@ -2,3 +2,8 @@ dbAccessSynchronous  = false
 testText = "これはてすとなの！！"
 dbFileName = 'chatroom.db'
 useJson = false
+
+
+[hotkeys]
+# toggleVisible = 'CommandOrControl+Shift+A'
+toggleVisible = 'CommandOrControl+Shift+Z'

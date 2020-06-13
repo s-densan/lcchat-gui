@@ -42,6 +42,15 @@
 ### 20200613 滑川図書館にて
 Trelloボード作成。 
 https://trello.com/b/Dmnn4KKp/lcchat
+メインプロセスとレンダラプロセスでデータを共有したい。
+https://qiita.com/sprout2000/items/5253a8dee40197359949
+
+
+```
+Cannot read property 'readFileSync' of undefined
+```
+意味不。メインプロセスがうまいことライブラリの解決？ターゲットの設定？ができていないみたい。
+https://www.subarunari.com/entry/electronWebpackConfig
 ### 20200531 
 サボりすぎー
 Todo追加
