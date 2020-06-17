@@ -1,16 +1,15 @@
 import child_process from 'child_process';
-import FsEx from 'fs-extra'; // ...(a)
+import FsEx from 'fs-extra';
 import Path from 'path';
-import {appConfig} from './AppConfig';
-
-import { IChatMessage } from '../states/IChatMessage';
+import { appConfig } from '../../common/AppConfig';
 import { IUser } from '../slices/UserSlice';
+import { IChatMessage } from '../states/IChatMessage';
 
 // データベースファイル名
 const dbFileName = appConfig.dbFileName;
 const useJson = appConfig.useJson;
 
-const lcchatPath = '..\\lcchat\\Sqltest.n'
+const lcchatPath = appConfig.lcchatCuiCommand;
 
 // OSごとのユーザーのプロファイルフォルダに保存される
 // const dataFilePath = Path.join(OS.homedir(), 'todo.json');

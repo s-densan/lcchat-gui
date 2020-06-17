@@ -1,26 +1,26 @@
 import {
     app,
     BrowserWindow,
-    Menu,
-    Tray,
-    nativeImage,
     globalShortcut,
+    Menu,
+    nativeImage,
+    Tray,
 } from 'electron';
-import { appConfig } from './AppConfig';
+import { appConfig } from '../common/AppConfig';
 
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
 // オブジェクトが破棄されると、プロセスも終了するので、グローバルオブジェクトとする。
-var win: BrowserWindow | undefined;
+let win: BrowserWindow | undefined;
 
 function createWindow() {
     // ブラウザウィンドウの作成
     win = new BrowserWindow({
-        width: 800,
         height: 600,
         webPreferences: {
             nodeIntegration: true,
         },
-    })
+        width: 800,
+    });
     // index.html をロードする
     win.loadFile('index.html');
     // 起動オプションに、 "--debug"があれば開発者ツールを起動する
@@ -31,23 +31,21 @@ function createWindow() {
     win.on('closed', () => {
         // 閉じたウィンドウオブジェクトにはアクセスできない
         win = undefined;
-    })
+    });
     // 閉じるボタンでタスクトレイに入れる
     win.on('close', (event) => {
-        event.
-        alert('tojiru');
         if (win) {
             win.hide();
         }
     });
     addTaskTray();
-    setHotKey()
+    setHotKey();
 }
 
 // このメソッドは、Electronが初期化を終了し、
 // ブラウザウィンドウを作成する準備ができたら呼び出される。
 // 一部のAPIは、このイベントが発生した後にのみ使用できる。
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // 全てのウィンドウオブジェクトが閉じたときのイベントハンドラ
 app.on('window-all-closed', () => {
@@ -55,7 +53,7 @@ app.on('window-all-closed', () => {
     // 明示的に終了するまでアクティブになるのが一般的なため、
     // メインプロセスは終了させない
     if (process.platform !== 'darwin') {
-        app.quit()
+        app.quit();
     }
 });
 
@@ -64,11 +62,9 @@ app.on('activate', () => {
     // 他のウィンドウが開いていないときに、アプリケーションでウィンドウを
     // 再作成するのが一般的です。
     if (win === undefined) {
-        createWindow()
+        createWindow();
     }
 });
-
-
 
 // ここから拡張
 // const HOTKEY = "";
@@ -77,21 +73,21 @@ const HOTKEY = appConfig.hotkeys.toggleVisible;
 function addTaskTray() {
     // タスクトレイに格納
 
-    var trayIcon = new Tray(nativeImage.createFromPath(__dirname + "/img/test.ico"));
+    const trayIcon = new Tray(nativeImage.createFromPath(__dirname + '/img/test.ico'));
 
     // タスクトレイに右クリックメニューを追加
-    var contextMenu = Menu.buildFromTemplate([
+    const contextMenu = Menu.buildFromTemplate([
         {
-            label: "表示",
-            click: function () {
+            label: '表示',
+            click() {
                 if (win !== undefined) {
                     win.show(); win.focus();
                 }
             },
         },
         {
-            label: "終了",
-            click: function () {
+            label: '終了',
+            click() {
                 if (win !== undefined) {
                     win.close();
                 }
@@ -104,7 +100,7 @@ function addTaskTray() {
     trayIcon.setToolTip(app.name);
 
     // タスクトレイが左クリックされた場合、アプリのウィンドウをアクティブに
-    trayIcon.on("click", function () {
+    trayIcon.on('click', () => {
         if (win !== undefined) {
             win.show();
             win.focus();
@@ -113,7 +109,7 @@ function addTaskTray() {
     // タスクトレイに格納 ここまで
 }
 function setHotKey() {
-    globalShortcut.register(HOTKEY, function () {
+    globalShortcut.register(HOTKEY, () => {
         if (win !== undefined) {
             // ホットキーでウィンドウをアクティベート
             if (win.isVisible()) {
@@ -128,5 +124,5 @@ function setHotKey() {
                 win.focus();
             }
         }
-    })
+    });
 }

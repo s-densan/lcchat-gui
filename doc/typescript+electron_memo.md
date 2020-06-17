@@ -39,6 +39,15 @@
 - [ ] メッセージ編集を選んだ際に、メッセージ部分を選択状態にする
 ## 記録
 
+### 20200617 exe化
+electron-packagerでexe化を目指す。
+その他の依存ファイルをコピーするため、バッチにしよう。
+あと、どうもアドミンじゃないと設定の一部が反映されない？
+```
+$ D:\IdeaProjects\lcchat-gui\node_modules\.bin\electron-packager . lcchat-gui --platform=darwin,win32 --arch=x64
+Packaging app for platform win32 x64 using electron v7.3.1
+Cannot create symlinks (on Windows hosts, it requires admin privileges); skipping darwin platform
+```
 ### 20200613 滑川図書館にて
 Trelloボード作成。 
 https://trello.com/b/Dmnn4KKp/lcchat

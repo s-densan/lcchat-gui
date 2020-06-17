@@ -7,7 +7,7 @@ import { v4 as UUID } from 'uuid';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { windowActions } from '../slices/WindowSlice';
-import { appConfig } from '../utils/AppConfig';
+import { appConfig } from '../../common/AppConfig';
 
 export default function ChatMessagePostBox() {
   const dispatch = useDispatch();
