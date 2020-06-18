@@ -40,6 +40,23 @@
 ## 記録
 
 ### 20200618 タリーズ滑川
+electron exe化
+
+サイズを小さくする方法
+https://tsuwatch.hatenablog.com/entry/2017/05/29/130829
+resourceフォルダ以下はこれだけで良いようで。
+```
+.\RESOURCES\APP
+│  index.html
+│  package.json
+│
+├─dist
+│      index.js
+│      main.js
+│
+└─img
+        test.ico
+```
 ### 20200617 exe化
 electron-packagerでexe化を目指す。
 その他の依存ファイルをコピーするため、バッチにしよう。
