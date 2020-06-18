@@ -9,7 +9,7 @@ import { IChatMessage } from '../states/IChatMessage';
 const dbFileName = appConfig.dbFileName;
 const useJson = appConfig.useJson;
 
-const lcchatPath = appConfig.lcchatCuiCommand;
+const lcchatCommand = appConfig.lcchatCuiCommand;
 
 // OSごとのユーザーのプロファイルフォルダに保存される
 // const dataFilePath = Path.join(OS.homedir(), 'todo.json');
@@ -24,19 +24,19 @@ export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Da
                    user.user_id = message.user_id and
                    message.message_id <> ${latestMessageId} and
                    message.created_at >= ${latestUpdatedAt}`;
-  const command = `neko "D:\\IdeaProjects\\lcchat\\Sqltest.n"`;
+  const command = lcchatCommand;
   const stdout = child_process.execSync(command,  { input: sql });
   return stdout.toString();
 };
 export const loadChatMessagesDB2 = () => {
   const sql = `select message.*, user.user_data from message left join user on user.user_id = message.user_id`;
-  const command = `neko "${lcchatPath}"`;
+  const command = lcchatCommand;
   const stdout = child_process.execSync(command,  { input: sql });
   return stdout.toString();
 };
 export const loadChatMessagesDB = async () => {
   const sql = ` SELECT * FROM message `;
-  const command = `neko "${lcchatPath}"`;
+  const command = lcchatCommand;
   const stdout = child_process.execSync(command,  { input: sql });
   return stdout.toString();
 };
@@ -86,7 +86,7 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
                 "${newMessage.deletedAt}"
     )`.replace('\n', '');
   const nkf = child_process.exec(
-    `neko "${lcchatPath}"`,
+    lcchatCommand,
     (error, stdout, stderr) => {
       if (error) {
         // エラー時は標準エラー出力を表示して終了
@@ -138,20 +138,20 @@ export const saveStateJson = async (chatMessageList: IChatMessage[]) => {
 
 export const updateMessageTextDB = (chatMessageId: string, text: string) => {
   const sql = `UPDATE message SET text = "${text}" WHERE message_id = "${chatMessageId}"`;
-  const command = `neko "${lcchatPath}"`;
+  const command = lcchatCommand;
   const stdout = child_process.execSync(command, { input: sql });
   return stdout.toString();
 };
 export const deleteMessageDB = (chatMessageId: string) => {
   const sql = ` DELETE FROM message WHERE message_id = "${chatMessageId}"`;
-  const command = `neko "${lcchatPath}"`;
+  const command = lcchatCommand;
   const stdout = child_process.execSync(command, { input: sql });
   return stdout.toString();
 };
 
 export const loadUserFromComputerNameDB = (computerName: string) => {
   const sql = `SELECT * FROM user`;
-  const command = `neko "${lcchatPath}"`;
+  const command = lcchatCommand;
   const stdout = child_process.execSync(command, { input: sql });
   return stdout.toString();
 };
@@ -174,7 +174,7 @@ export const insertUser = (user: IUser) => {
                 -- 削除日時
                 "${undefined}"
     )`.replace('\n', '');
-  const command = `neko "${lcchatPath}"`;
+  const command = lcchatCommand;
   const stdout = child_process.execSync(command, { input: sql });
   return stdout.toString();
 };

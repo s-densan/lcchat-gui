@@ -2,7 +2,8 @@ dbAccessSynchronous  = false
 testText = "これはてすとなの！！"
 dbFileName = 'chatroom.db'
 useJson = false
-lcchatCuiCommand = 'Sqltest.exe'
+# lcchatCuiCommand = 'Sqltest.exe'
+lcchatCuiCommand = 'neko Sqltest.n'
 
 
 [hotkeys]
