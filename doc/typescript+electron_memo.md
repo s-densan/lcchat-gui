@@ -39,6 +39,20 @@
 - [ ] メッセージ編集を選んだ際に、メッセージ部分を選択状態にする
 ## 記録
 
+### 20200621 通知
+@ドトール豊田文苑堂
+``Electron: Notification is not a constructor``
+
+https://stackoverflow.com/questions/51028866/electron-notification-is-not-a-constructor
+```
+I think you should write
+
+new electron.remote.Notification({....})
+instead of
+
+new electron.Notification({....})
+```
+
 ### 20200618 タリーズ滑川
 electron exe化
 

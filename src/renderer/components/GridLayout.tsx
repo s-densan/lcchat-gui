@@ -47,6 +47,8 @@ export function GridLayout() {
       if (win !== null) {
         win.on('resize', fixWindowHeight);
       }
+
+
     }
     // 初期化が済んでもユーザがundefinedの場合
     if (user.user === undefined && dialog.dialogData === undefined && initial) {
@@ -98,6 +100,15 @@ export function GridLayout() {
       return <div></div>;
     }
   };
+  const notificationTest = () => {
+    // 通知
+    let notify = new remote.Notification({ body: '本体', title: 'title' });
+
+    notify.on('click', () => {
+      console.log('Notification clicked')
+    })
+
+  }
 
   const dialogComponent = () => {
     if (dialog.dialogData === undefined) {
@@ -154,6 +165,7 @@ export function GridLayout() {
       </div>
       <div>
         {JSON.stringify(message.editingMessage)}
+        <Button onClick={notificationTest}>aa</Button>
       </div>
     </MuiThemeProvider>
   );
