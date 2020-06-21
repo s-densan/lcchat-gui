@@ -54,6 +54,9 @@ instead of
 
 new electron.Notification({....})
 ```
+ノートPCの不調か、アクションセンターが起動しない事があったけど、
+再起動したら通知された。
+![](img/2020-06-21-20-34-21.png)
 
 ### 20200618 タリーズ滑川
 electron exe化

@@ -134,7 +134,3 @@ function setHotKey() {
         }
     });
 }
-
-// 通知の有効化のため
-// Seealso: https://www.electronjs.org/docs/tutorial/notifications
-app.setAppUserModelId(process.execPath);
