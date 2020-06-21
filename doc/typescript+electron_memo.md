@@ -41,6 +41,8 @@
 
 ### 20200621 通知
 @ドトール豊田文苑堂
+通知させようとすると以下のエラー。
+レンダラーからはremoteでNotificationオブジェクトにアクセスする必要があるっぽい。
 ``Electron: Notification is not a constructor``
 
 https://stackoverflow.com/questions/51028866/electron-notification-is-not-a-constructor

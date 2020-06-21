@@ -5,6 +5,7 @@ import {
     Menu,
     nativeImage,
     Tray,
+    Notification,
 } from 'electron';
 import { appConfig } from '../common/AppConfig';
 
@@ -93,6 +94,13 @@ function addTaskTray() {
                 }
             },
         },
+        {
+            label: 'もにゅもにゅ',
+            click() {
+                const n = new Notification({ title: 'title', body: 'body' });
+                n.show();
+            },
+        },
     ]);
     trayIcon.setContextMenu(contextMenu);
 
@@ -126,3 +134,7 @@ function setHotKey() {
         }
     });
 }
+
+// 通知の有効化のため
+// Seealso: https://www.electronjs.org/docs/tutorial/notifications
+app.setAppUserModelId(process.execPath);

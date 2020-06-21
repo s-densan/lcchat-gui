@@ -102,12 +102,13 @@ export function GridLayout() {
   };
   const notificationTest = () => {
     // 通知
-    let notify = new remote.Notification({ body: '本体', title: 'title' });
+    const notify = new remote.Notification({ body: '本体', title: 'title' });
+
+    notify.show();
 
     notify.on('click', () => {
       console.log('Notification clicked')
-    })
-
+    });
   }
 
   const dialogComponent = () => {
