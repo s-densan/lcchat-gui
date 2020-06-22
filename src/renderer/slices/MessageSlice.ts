@@ -3,6 +3,7 @@ import clone from 'clone';
 import { createChatMessage, IChatMessage, IChatMessageList} from '../states/IChatMessage';
 import { insertMessageDB } from '../utils/ChatDatabaseIF';
 import { deleteMessageDB, loadChatMessagesDB2, updateMessageTextDB} from '../utils/ChatDatabaseIF';
+import { remote } from 'electron';
 
 // Stateの初期状態
 const initialState: IChatMessageList & {editingMessage: IChatMessage | undefined} = {
@@ -54,6 +55,11 @@ const slice = createSlice({
                 chatMessages,
                 editingMessage: state.editingMessage,
             };
+            if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
+                const num = chatMessages.length - state.chatMessages.length;
+                const notify = new remote.Notification({ body: `新規メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
+                notify.show();
+            }
             return res;
         },
         postChatMessage: (state, action) => {

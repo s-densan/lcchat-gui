@@ -47,8 +47,6 @@ export function GridLayout() {
       if (win !== null) {
         win.on('resize', fixWindowHeight);
       }
-
-
     }
     // 初期化が済んでもユーザがundefinedの場合
     if (user.user === undefined && dialog.dialogData === undefined && initial) {
@@ -90,7 +88,7 @@ export function GridLayout() {
     bottom: 0,
   };
   const onTimer = () => {
-      dispatch(messageActions.loadChatMessages());
+    dispatch(messageActions.loadChatMessages());
   };
   const clockArea = () => {
     if (message.editingMessage === undefined) {

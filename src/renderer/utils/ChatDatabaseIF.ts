@@ -90,8 +90,7 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
     (error, stdout, stderr) => {
       if (error) {
         // エラー時は標準エラー出力を表示して終了
-        alert(stderr);
-        return;
+        throw new Error(stderr);
       } else {
         return stdout;
       }
