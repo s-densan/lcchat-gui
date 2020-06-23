@@ -7,6 +7,7 @@ import {
     Tray,
     Notification,
 } from 'electron';
+import { join } from 'path';
 import { appConfig } from '../common/AppConfig';
 
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
@@ -33,8 +34,8 @@ function createWindow() {
         // 閉じたウィンドウオブジェクトにはアクセスできない
         win = undefined;
     });
-    // 閉じるボタンでタスクトレイに入れる
-    win.on('close', (event) => {
+    // 最小化ボタンでタスクトレイに入れる
+    win.on('minimize', () => {
         if (win) {
             win.hide();
         }
@@ -74,7 +75,7 @@ const HOTKEY = appConfig.hotkeys.toggleVisible;
 function addTaskTray() {
     // タスクトレイに格納
 
-    const trayIcon = new Tray(nativeImage.createFromPath(__dirname + '/img/test.ico'));
+    const trayIcon = new Tray(nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png')));
 
     // タスクトレイに右クリックメニューを追加
     const contextMenu = Menu.buildFromTemplate([
@@ -82,7 +83,8 @@ function addTaskTray() {
             label: '表示',
             click() {
                 if (win !== undefined) {
-                    win.show(); win.focus();
+                    win.show();
+                    win.focus();
                 }
             },
         },
@@ -92,13 +94,6 @@ function addTaskTray() {
                 if (win !== undefined) {
                     win.close();
                 }
-            },
-        },
-        {
-            label: 'もにゅもにゅ',
-            click() {
-                const n = new Notification({ title: 'title', body: 'body' });
-                n.show();
             },
         },
     ]);

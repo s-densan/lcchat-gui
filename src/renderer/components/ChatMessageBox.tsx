@@ -27,7 +27,7 @@ export default function ChatMessageBox(props: IChatMessage) {
   // 編集モード
   // const [editMode, setEditMode] = useState(false);
   // 投稿日時
-  const postedAt = Moment(props.postedAt).format('YYYY-MM-DD hh:mm');
+  const postedAt = Moment(props.postedAt).format('YYYY-MM-DD HH:mm');
   const userState = useSelector((state: RootState) => state.user);
   const messageState = useSelector((state: RootState) => state.message);
   /**
@@ -74,14 +74,17 @@ export default function ChatMessageBox(props: IChatMessage) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const onChangeChatMessageEditBox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditingMessage(e.target.value);
-  };
-  const onClickOkEditMessageButton = (e: React.MouseEvent) => {
+  const editMessage = () => {
     if (editingMessage !== props.text) {
       dispatch(messageActions.updateChatMessage({ chatMessageId: props.messageId, text: editingMessage }));
     }
     dispatch(messageActions.endEditMessage());
+  }
+  const onChangeChatMessageEditBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEditingMessage(e.target.value);
+  };
+  const onClickOkEditMessageButton = (e: React.MouseEvent) => {
+    editMessage();
   };
   const onClickCanselEditMessageButton = (e: React.MouseEvent) => {
     dispatch(messageActions.endEditMessage());
@@ -90,6 +93,12 @@ export default function ChatMessageBox(props: IChatMessage) {
     return text.split('\n').map((line, idx, arr) => {
       return <div>{line}</div>;
     });
+  };
+  // メッセージ編集ボックスでキー押下時のイベント
+  const onKeyPressChatMessageEditBox = (e: React.KeyboardEvent) => {
+    if (e.which === 13 /* Enter */) {
+      editMessage();
+    }
   };
   const messageArea = () => {
     if (messageState.editingMessage !== undefined && messageState.editingMessage.messageId === props.messageId) {
@@ -103,6 +112,7 @@ export default function ChatMessageBox(props: IChatMessage) {
             multiline
             type="text"
             value={editingMessage}
+            onKeyPress={onKeyPressChatMessageEditBox}
             onChange={onChangeChatMessageEditBox}
             style={{ width: '100%' }} />
         </div>

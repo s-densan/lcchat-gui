@@ -18,6 +18,7 @@ import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { remote } from 'electron';
+import { join } from 'path';
 
 export function GridLayout() {
   const dialog = useSelector((state: RootState) => state.dialog);
@@ -105,7 +106,11 @@ export function GridLayout() {
     notify.show();
 
     notify.on('click', () => {
-      console.log('Notification clicked')
+      const wins = remote.BrowserWindow.getAllWindows();
+      for (const win of wins) {
+        win.show();
+        win.focus();
+      }
     });
   }
 
@@ -163,8 +168,9 @@ export function GridLayout() {
         {clockArea()}
       </div>
       <div>
-        {JSON.stringify(message.editingMessage)}
+        {/*
         <Button onClick={notificationTest}>aa</Button>
+        */}
       </div>
     </MuiThemeProvider>
   );

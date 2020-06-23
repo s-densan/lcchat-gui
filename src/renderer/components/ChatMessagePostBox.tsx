@@ -19,6 +19,7 @@ export default function ChatMessagePostBox() {
   const onChangeChatMessagePostBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPostMessageText(e.target.value); // if use local state
   };
+  // メッセージボックスでキー押下時のイベント
   const onKeyPressMessagePostBox = (e: React.KeyboardEvent) => {
     if (e.which === 13 /* Enter */) {
       postMessage();

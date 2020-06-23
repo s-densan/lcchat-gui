@@ -13,12 +13,20 @@ interface IProps {
     title: string;
     message: string;
     enableCancel: boolean;
-    onClickOk: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>, inputText: string) => void);
+    onClickOk: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined, inputText: string) => void);
     onClickCancel: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void);
     onClose: ((event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void);
 }
 export default function InputDialog(props: IProps) {
   const [inputText, setInputText] = useState('');
+
+  // メッセージボックスでキー押下時のイベント
+  const onKeyPressInputBox = (e: React.KeyboardEvent) => {
+    if (e.which === 13 /* Enter */) {
+      // マウスイベントはundefined
+      props.onClickOk(undefined, inputText);
+    }
+  };
 
   const buttons =
     props.enableCancel ?
@@ -57,6 +65,7 @@ export default function InputDialog(props: IProps) {
             name="text"
             value={inputText}
             onChange={(e) => { setInputText(e.target.value); }}
+            onKeyPress={onKeyPressInputBox}
             style={{ width: '100%' }} />
         </DialogContent>
         {buttons}

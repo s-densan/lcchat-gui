@@ -57,8 +57,17 @@ const slice = createSlice({
             };
             if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
                 const num = chatMessages.length - state.chatMessages.length;
-                const notify = new remote.Notification({ body: `新規メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
+                const notify = new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
                 notify.show();
+                // 通知メッセージクリック時イベント
+                notify.on('click', () => {
+                    // 全ウィンドウを表示してフォーカスする
+                    const wins = remote.BrowserWindow.getAllWindows();
+                    for (const win of wins) {
+                        win.show();
+                        win.focus();
+                    }
+                });
             }
             return res;
         },
