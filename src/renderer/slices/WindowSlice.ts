@@ -15,7 +15,6 @@ const slice = createSlice({
     reducers: {
         moveToBottom: (state, action) => {
             const ref = action.payload.ref;
-            alert('kore');
             if (ref.current) {
                 ref.current.scrollIntoView({
                     behavior: 'smooth',
