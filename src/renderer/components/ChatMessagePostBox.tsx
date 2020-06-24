@@ -9,7 +9,7 @@ import { RootState } from '../slices/RootStore';
 import { windowActions } from '../slices/WindowSlice';
 import { appConfig } from '../../common/AppConfig';
 
-export default function ChatMessagePostBox() {
+export default function ChatMessagePostBox(prop: { bottomRef?: React.RefObject<HTMLDivElement> }) {
   const dispatch = useDispatch();
   // const classes = useStyles();
   const [postMessageText, setPostMessageText] = useState('');
@@ -54,7 +54,7 @@ export default function ChatMessagePostBox() {
     setPostMessageText('');
     // alert(props.chatBoxText);
     dispatch(action);
-    dispatch(windowActions.moveToBottom());
+    dispatch(windowActions.moveToBottom(prop.bottomRef));
     // store.dispatch(createScrollToBottomAction(props.bottomRef));
     // store.dispatch(createReloadChatMessagesAction(store.dispatch));
   };

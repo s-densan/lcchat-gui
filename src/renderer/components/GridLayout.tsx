@@ -35,7 +35,7 @@ export function GridLayout() {
       // store.dispatch(createScrollToBottomAction(bottomRef));
       dispatch(userActions.loadUserFromComputerName({computerName: os.hostname()}));
       setInitial(true);
-      dispatch(windowActions.initWindowState({bottomRef}));
+      //dispatch(windowActions.initWindowState({bottomRef}));
       // Windowリサイズイベント
       const win = remote.getCurrentWindow();
       const fixWindowHeight = () => {
@@ -63,18 +63,15 @@ export function GridLayout() {
     }
     /*
     if (bottomRef.current) {
-      bottomRef.current!.scrollIntoView({
+      bottomRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'end',
       });
     }
     */
+      windowActions.moveToBottom(bottomRef);
+    
   }/*, [message.chatMessages.length]*/);
-  /*
-  for(var userData of userJson) {
-    userDataStr += JSON.stringify(userData);
-  }
-  */
 
   const chatMessageListStyle: CSSProperties = {
     display: 'flex',
@@ -148,11 +145,11 @@ export function GridLayout() {
     if (initial && user.user) {
       return  <div>
           <Paper style={chatMessageListStyle}>
-            <ChatMessageList chatMessages={message.chatMessages} />
+            <ChatMessageList chatMessages={message.chatMessages} bottomRef={bottomRef} />
           </Paper>
-          <div ref={bottomRef}>
+          <div>
             <Box component="div" style={chatMessagePostBoxStyle}>
-              <ChatMessagePostBox />
+              <ChatMessagePostBox bottomRef={bottomRef}/>
             </Box>
           </div>
         </div>;
