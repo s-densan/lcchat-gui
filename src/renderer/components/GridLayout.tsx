@@ -69,7 +69,7 @@ export function GridLayout() {
       });
     }
     */
-      windowActions.moveToBottom(bottomRef);
+      //windowActions.moveToBottom(bottomRef);
     
   }/*, [message.chatMessages.length]*/);
 
@@ -85,9 +85,11 @@ export function GridLayout() {
   const chatMessagePostBoxStyle = {
     bottom: 0,
   };
+  // DBファイルから新規メッセージ読み込み
   const onTimer = () => {
     dispatch(messageActions.loadChatMessages());
   };
+  // タイマークロック用エリア
   const clockArea = () => {
     if (message.editingMessage === undefined) {
       // 編集中モードでない場合
@@ -96,20 +98,6 @@ export function GridLayout() {
       return <div></div>;
     }
   };
-  const notificationTest = () => {
-    // 通知
-    const notify = new remote.Notification({ body: '本体', title: 'title' });
-
-    notify.show();
-
-    notify.on('click', () => {
-      const wins = remote.BrowserWindow.getAllWindows();
-      for (const win of wins) {
-        win.show();
-        win.focus();
-      }
-    });
-  }
 
   const dialogComponent = () => {
     if (dialog.dialogData === undefined) {
@@ -143,16 +131,18 @@ export function GridLayout() {
   };
   const chatArea = () => {
     if (initial && user.user) {
-      return  <div>
-          <Paper style={chatMessageListStyle}>
-            <ChatMessageList chatMessages={message.chatMessages} bottomRef={bottomRef} />
-          </Paper>
-          <div>
-            <Box component="div" style={chatMessagePostBoxStyle}>
-              <ChatMessagePostBox bottomRef={bottomRef}/>
-            </Box>
-          </div>
-        </div>;
+      return <div>
+        <Paper style={chatMessageListStyle}>
+          <ChatMessageList chatMessages={message.chatMessages} bottomRef={bottomRef} />
+          <div ref={bottomRef}>{/*bottom*/}</div>
+        </Paper>
+        <div>
+          <Box component="div" style={chatMessagePostBoxStyle}>
+            <ChatMessagePostBox bottomRef={bottomRef} />
+          </Box>
+        </div>
+        <button onClick={()=>bottomRef.current!.scrollIntoView()}>tes</button>
+      </div>;
     } else {
       return <div></div>;
     }

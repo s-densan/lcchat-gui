@@ -53,7 +53,8 @@ export default function ChatMessageList(props: IChatMessageList & {bottomRef: Re
             <List dense style={{ width: '100%' }}>
                 {chatMessageListElems}
             </List>
-            <div ref={props.bottomRef}>{/*bottom*/}</div>
+            <div>{/*bottom*/}</div>
+            <button onClick={()=>props.bottomRef.current!.scrollIntoView()}>testes</button>
         </div>
     );
 }

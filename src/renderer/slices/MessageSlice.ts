@@ -90,6 +90,10 @@ const slice = createSlice({
                 );
                 const messageList = state.chatMessages.concat(newMessage);
                 insertMessageDB(newMessage);
+                action.payload.bottomRef!.current!.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end',
+                });
                 return {
                     chatMessages: messageList,
                     editingMessage: state.editingMessage,

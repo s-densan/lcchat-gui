@@ -9,7 +9,7 @@ import { RootState } from '../slices/RootStore';
 import { windowActions } from '../slices/WindowSlice';
 import { appConfig } from '../../common/AppConfig';
 
-export default function ChatMessagePostBox(prop: { bottomRef?: React.RefObject<HTMLDivElement> }) {
+export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<HTMLDivElement> }) {
   const dispatch = useDispatch();
   // const classes = useStyles();
   const [postMessageText, setPostMessageText] = useState('');
@@ -48,13 +48,16 @@ export default function ChatMessagePostBox(prop: { bottomRef?: React.RefObject<H
         talkId: 'talkId',
         postedAt: nowDate,
         messageData: 'messageData',
+        bottomRef: props.bottomRef,
       },
     );
     // メッセージを空にする。
     setPostMessageText('');
     // alert(props.chatBoxText);
     dispatch(action);
-    dispatch(windowActions.moveToBottom(prop.bottomRef));
+    // 最下部へスクロール
+    // props.bottomRef!.current!.scrollIntoView();
+    // dispatch(windowActions.moveToBottom(props.bottomRef));
     // store.dispatch(createScrollToBottomAction(props.bottomRef));
     // store.dispatch(createReloadChatMessagesAction(store.dispatch));
   };

@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface IWindowState {
-    ref?: React.RefObject<HTMLDivElement>;
+    scrollPosition: 'bottom' | undefined,
 }
 // Stateの初期状態
 const initialState: IWindowState = {
-    ref: undefined,
+    scrollPosition: undefined,
 };
 
 // Sliceを生成する
@@ -14,13 +14,7 @@ const slice = createSlice({
     name: 'window',
     reducers: {
         moveToBottom: (state, action) => {
-            const ref = action.payload.ref;
-            if (ref.current) {
-                ref.current.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'end',
-                });
-            }
+            state.scrollPosition = 'bottom';
         },
     },
 });
