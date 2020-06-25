@@ -34,7 +34,7 @@ export default function ChatMessageList(props: IChatMessageList & {bottomRef: Re
             }
         }
         */
-        windowActions.moveToBottom(props.bottomRef);
+        windowActions.moveToBottom();
     });
 
     const { chatMessages: chatMessages } = props;
