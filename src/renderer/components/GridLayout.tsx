@@ -24,6 +24,7 @@ export function GridLayout() {
   const dialog = useSelector((state: RootState) => state.dialog);
   const message = useSelector((state: RootState) => state.message);
   const user = useSelector((state: RootState) => state.user);
+  const windowSlice = useSelector((state: RootState) => state.window);
   const [initial, setInitial] = useState<boolean>(false);
   const [windowHeight, setWindowHeight] = useState<number>(window.parent.screen.height);
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export function GridLayout() {
       if (win !== null) {
         win.on('resize', fixWindowHeight);
       }
+      dispatch(windowActions.moveToBottom());
     }
     // 初期化が済んでもユーザがundefinedの場合
     if (user.user === undefined && dialog.dialogData === undefined && initial) {
@@ -60,6 +62,16 @@ export function GridLayout() {
         onClickOk: () => dispatch(dialogActions.closeDialog()),
         onClose: () => dispatch(dialogActions.closeDialog()),
       }));
+      
+    }
+    if (windowSlice.scrollPosition === 'bottom'){
+      if (bottomRef.current) {
+        bottomRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        });
+      }
+      dispatch(windowActions.scrollUnset());
     }
     /*
     if (bottomRef.current) {

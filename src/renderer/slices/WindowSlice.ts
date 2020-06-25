@@ -13,8 +13,11 @@ const slice = createSlice({
     initialState,
     name: 'window',
     reducers: {
-        moveToBottom: (state, action) => {
+        moveToBottom: (state) => {
             state.scrollPosition = 'bottom';
+        },
+        scrollUnset: (state) => {
+            state.scrollPosition = undefined;
         },
     },
 });

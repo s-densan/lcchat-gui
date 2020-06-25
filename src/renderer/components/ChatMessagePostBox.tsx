@@ -56,6 +56,7 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
     // alert(props.chatBoxText);
     dispatch(action);
     // 最下部へスクロール
+    dispatch(windowActions.moveToBottom());
     // props.bottomRef!.current!.scrollIntoView();
     // dispatch(windowActions.moveToBottom(props.bottomRef));
     // store.dispatch(createScrollToBottomAction(props.bottomRef));
