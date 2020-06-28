@@ -53,17 +53,23 @@ export function GridLayout() {
     }
     // 初期化が済んでもユーザがundefinedの場合
     if (user.user === undefined && dialog.dialogData === undefined && initial) {
+      // ユーザ登録ダイアログ表示アクション
       dispatch(dialogActions.openInputDialog({
         message: 'ユーザが登録されていません',
         name: 'ん？',
         title: 'ユーザ登録',
         enableCancel: false,
-        onClickCancel: () => dispatch(dialogActions.closeDialog()),
+        // キャンセル時・クローズ時は何もしない
+        // onClickCancel: () => dispatch(dialogActions.closeDialog()),
+        onClickCancel: () => {},
         onClickOk: () => dispatch(dialogActions.closeDialog()),
-        onClose: () => dispatch(dialogActions.closeDialog()),
+        // onClose: () => dispatch(dialogActions.closeDialog()),
+        onClose: () => {},
       }));
       
     }
+    // スクロール位置がbottomの場合
+    // bottomRefまでスクロールし、scrollUnsetアクションをディスパッチする。
     if (windowSlice.scrollPosition === 'bottom'){
       if (bottomRef.current) {
         bottomRef.current.scrollIntoView({
@@ -122,7 +128,12 @@ export function GridLayout() {
             message={dialog.dialogData.message}
             // onClickOk={dialog.dialogData.onClickOk}
             onClickOk={(e, inputText) => {
-              dispatch(userActions.insertUser({userId: inputText, userName: inputText, computerName: os.hostname()}));
+              const userInfo = { 
+                userId: inputText,
+                userName: inputText,
+                computerName: os.hostname(),
+              };
+              dispatch(userActions.insertUser(userInfo));
               dispatch(dialogActions.closeDialog());
             }}
             enableCancel={dialog.dialogData.enableCancel}
@@ -153,7 +164,6 @@ export function GridLayout() {
             <ChatMessagePostBox bottomRef={bottomRef} />
           </Box>
         </div>
-        <button onClick={()=>bottomRef.current!.scrollIntoView()}>tes</button>
       </div>;
     } else {
       return <div></div>;
