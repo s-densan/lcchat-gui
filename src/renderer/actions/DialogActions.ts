@@ -1,6 +1,5 @@
 import { Action } from 'redux';
 import { v4 as UUID } from 'uuid';
-import { IChatMessage } from '../states/IChatMessage';
 
 /**
  * チャットメッセージDB追加アクションタイプ

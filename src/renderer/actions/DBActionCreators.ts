@@ -1,7 +1,4 @@
-import { Dispatch, Store } from 'redux';
-import { IState } from '../IStore';
-import { createChatMessage, IChatMessage } from '../states/IChatMessage';
-import { deleteMessageDB, loadChatMessage, loadChatMessagesDB, saveStateJson, updateMessageTextDB} from '../utils/ChatDatabaseIF';
+import { IChatMessage } from '../states/IChatMessage';
 import {
     INSERT_CHAT_MESSAGE_TO_DB,
     IInsertChatMessageToDBAction,

@@ -1,5 +1,4 @@
 import { v4 as UUID } from 'uuid';
-import { IChatMessage } from '../states/IChatMessage';
 import Redux from 'redux';
 
 /**

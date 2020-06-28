@@ -1,11 +1,8 @@
-import { combineReducers, createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
+import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
 import {
   insertUser,
   loadUserFromComputerNameDB as loadUserListDB,
 } from '../utils/ChatDatabaseIF';
-import {
-  dialogActions,
-} from './DialogSlice';
 import { v4 as UUID } from 'uuid';
 
 interface IUserData {
