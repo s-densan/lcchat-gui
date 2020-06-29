@@ -61,6 +61,30 @@ https://trello.com/b/Dmnn4KKp
 おかしなところがあるものの、とりあえず完成。
 配布方法というか、GitHubでの管理方法を調べる。
 まずはbitbucketから引っ越ししよう。
+#### ElectronのMenuのカスタマイズ
+https://qiita.com/ferretdayo/items/bcbbf8246cdfa8d2ee2a
+メニューの作り方
+#### HTMLでテキストを下寄せに配置する方法を現役エンジニアが解説【初心者向け】
+https://techacademy.jp/magazine/29525
+下寄せCSS
+
+- 親要素positionにrelativeを指定する
+- 子要素positionにabsolute
+- 子要素bottomに0
+
+```tsx
+<div style={{ width: '97%', height:'100%', position: 'relative' }} >
+    <List dense style={{
+        width: '100%',
+        verticalAlign: 'left',
+        bottom: 0,
+        position: 'absolute'
+    }} >
+        {chatMessageListElems}
+    </List>
+</div>
+```
+
 ### 20200623 通知とか
 #### tsxのコメント
 tsxでコメントを書く場合は{}をつけてtsのコメントを書く。
