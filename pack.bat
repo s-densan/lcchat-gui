@@ -10,12 +10,12 @@ xcopy sql %dirname%\sql /s
 copy ../lcchat/bin/cpp/Sqltest.exe %dirname%
 
 :: 不要ファイル削除
-del %dirname%\locales
+del %dirname%\locales /q /s
 set app=%dirname%\resources\app
-del %app%\doc
-del %app%\memo
-del %app%\node_modules
-del %app%\sql
-del %app%\src
-del %app%\.gitignore
-del %app%\.yarnclean
+del %app%\doc /q /s
+del %app%\memo /q /s
+del %app%\node_modules /q /s
+del %app%\sql /q /s
+del %app%\src /q /s
+del %app%\.gitignore /q
+del %app%\.yarnclean /q
