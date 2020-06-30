@@ -51,10 +51,17 @@
 
 <!-- /code_chunk_output -->
 
+## Link
+### Github
+https://github.com/s-densan/lcchat-gui
 ## todo
 Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
+
+### 20200630 
+GitHubで実行ファイル（ソースコードを含まない）をZIPファイルで配布してみる
+https://qiita.com/keita69sawada/items/da6d8f6b6fb8f05ca670
 
 ### 20200628 
 

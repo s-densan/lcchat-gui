@@ -6,16 +6,26 @@ yarn run electron-packager . %name% --platform=darwin,win32 --arch=x64 --overwri
 copy aaa.db %dirname%
 copy appconfig.toml %dirname%
 mkdir %dirname%\sql
-xcopy sql %dirname%\sql /s
+echo D | xcopy sql %dirname%\sql /s /y /e
+echo D | xcopy img %dirname%\img /s /y /e
 copy ../lcchat/bin/cpp/Sqltest.exe %dirname%
 
 :: 不要ファイル削除
-del %dirname%\locales /q /s
+:: rmdir %dirname%\locales /q /s
 set app=%dirname%\resources\app
-del %app%\doc /q /s
-del %app%\memo /q /s
-del %app%\node_modules /q /s
-del %app%\sql /q /s
-del %app%\src /q /s
+rmdir %app%\doc /q /s
+rmdir %app%\memo /q /s
+rmdir %app%\node_modules /q /s
+rmdir %app%\sql /q /s
+rmdir %app%\src /q /s
+rmdir %app%\.vscode /q /s
 del %app%\.gitignore /q
 del %app%\.yarnclean /q
+del %app%\package-lock.json /q
+del %app%\tsconfig.json /q
+del %app%\tslint.json /q
+del %app%\webpack.config.js /q
+del %app%\yarn.lock /q
+del %app%\yarn-error.log /q
+del %app%\pack.bat /q
+del %app%\lcchat_note.code-workspace /q
