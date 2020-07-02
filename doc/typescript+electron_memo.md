@@ -59,6 +59,27 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200702
+electron-packagerのignoreオプションが余計なファイルを巻き込みすぎるのを何とかした
+
+https://taku-o.hatenablog.jp/entry/20171204/1512415038
+
+不要ファイルを無視する方法
+```sh
+electron-packager . MYukkuriVoice --platform=darwin --arch=x64 --electronVersion=1.7.9 --icon=icns/myukkurivoice.icns \
+  --overwrite --asar.unpackDir=vendor \
+  --ignore="^/\.gitignore" \
+  --ignore="^/\.gitmodules" \
+  --ignore="^/bin" \
+  --ignore="^/docs" \
+  --ignore="^/icns" \
+  --ignore="^/test" \
+  --ignore="^/README.md" \
+  --ignore="^/vendor/aqk2k_mac" \
+  --ignore="^/vendor/aqtk1-mac" \
+  --ignore="^/vendor/aqtk2-mac" \
+  --ignore="^/vendor/aqtk10-mac"
+```
 ### 20200630 
 GitHubで実行ファイル（ソースコードを含まない）をZIPファイルで配布してみる
 https://qiita.com/keita69sawada/items/da6d8f6b6fb8f05ca670
