@@ -1,0 +1,10 @@
+dbAccessSynchronous  = false
+dbFileName = 'chatroom.db'
+useJson = false
+# lcchatCuiCommand = 'Sqltest.exe'
+lcchatCuiCommand = 'neko Sqltest.n'
+
+
+[hotkeys]
+# toggleVisible = 'CommandOrControl+Shift+A'
+toggleVisible = 'CommandOrControl+Shift+Z'

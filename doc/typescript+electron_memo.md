@@ -59,6 +59,9 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200705
+electronプログラムのアプリディレクトリの取得
+https://qiita.com/ikasumi_wt/items/6cda005500f1d3dc6b2d
 ### 20200702
 electron-packagerのignoreオプションが余計なファイルを巻き込みすぎるのを何とかした
 

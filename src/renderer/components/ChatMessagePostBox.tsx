@@ -1,13 +1,11 @@
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import {hostname} from 'os';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as UUID } from 'uuid';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { windowActions } from '../slices/WindowSlice';
-import { appConfig } from '../../common/AppConfig';
 
 export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<HTMLDivElement> }) {
   const dispatch = useDispatch();
@@ -15,7 +13,6 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
   const [postMessageText, setPostMessageText] = useState('');
   const user = useSelector((state: RootState) => state.user);
   // 投稿ボタン表示文字
-  const buttonText = postMessageText.trim() === '' ? 'boo' : '投稿';
   const onChangeChatMessagePostBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPostMessageText(e.target.value); // if use local state
   };

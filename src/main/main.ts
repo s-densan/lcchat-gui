@@ -157,4 +157,4 @@ const topMenu = Menu.buildFromTemplate(
         */
     ]
 );
-Menu.setApplicationMenu(topMenu);
+// Menu.setApplicationMenu(topMenu);
