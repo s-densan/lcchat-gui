@@ -9,7 +9,8 @@ import {
     Notification,
 } from 'electron';
 import { join } from 'path';
-import { appConfig } from '../common/AppConfig';
+import { appConfig, initAppConfig } from '../common/AppConfig';
+initAppConfig(app.getAppPath());
 
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
 // オブジェクトが破棄されると、プロセスも終了するので、グローバルオブジェクトとする。
@@ -71,6 +72,7 @@ app.on('activate', () => {
 
 // ここから拡張
 // const HOTKEY = "";
+console.log(JSON.stringify(appConfig));
 const HOTKEY = appConfig.hotkeys.toggleVisible;
 
 function addTaskTray() {
