@@ -5,18 +5,19 @@ import Path from 'path';
 import { IUser } from '../slices/UserSlice';
 import { IChatMessage } from '../states/IChatMessage';
 
+const appPath = remote.app.getAppPath();
 const appConfig = remote.getGlobal('appConfig');
 // データベースファイル名
 const dbFileName = appConfig.dbFileName;
 const useJson = appConfig.useJson;
 
-const lcchatCommand = appConfig.lcchatCuiCommand;
+const lcchatCommand = Path.join(appPath, appConfig.lcchatCuiCommand);
 
 // OSごとのユーザーのプロファイルフォルダに保存される
 // const dataFilePath = Path.join(OS.homedir(), 'todo.json');
 // const dataFilePath = Path.join(Path.resolve(__dirname), 'todo.json');
 // プログラムのあるフォルダに記録
-const dataFilePath = Path.join(Path.resolve(process.cwd()), dbFileName);
+const dataFilePath = Path.join(appPath, dbFileName);
 
 export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
   const sql = `select message.*, user.user_data from message
@@ -150,6 +151,7 @@ export const deleteMessageDB = (chatMessageId: string) => {
 };
 
 export const loadUserFromComputerNameDB = (computerName: string) => {
+  alert(lcchatCommand);
   const sql = `SELECT * FROM user`;
   const command = lcchatCommand;
   const stdout = child_process.execSync(command, { input: sql });
