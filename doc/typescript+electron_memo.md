@@ -59,6 +59,23 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200706
+メインプロセスでConfigファイルを読み込んで、レンダラプロセスで参照したい。
+
+#### ElectronのBrowserWindow間で直接メッセージをやりとりする
+
+https://taku-o.hatenablog.jp/entry/20181013/1539424953
+global/getGlobalを使う。
+
+ただし、typescriptだとglobalに型がついていて、追加できない。
+declareで無理やりanyにする。
+#### taku-o / hello-electron-003-to-sub-msg
+
+https://github.com/taku-o/hello-electron-003-to-sub-msg/blob/master/electron.ts
+#### アンビエント宣言(declare)と型定義ファイル(d.ts)
+
+型をあとから強制する
+https://www.wakuwakubank.com/posts/501-typescript-declaration/
 ### 20200705
 electronプログラムのアプリディレクトリの取得
 https://qiita.com/ikasumi_wt/items/6cda005500f1d3dc6b2d

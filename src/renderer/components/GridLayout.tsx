@@ -1,4 +1,3 @@
-import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';;
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
@@ -18,7 +17,6 @@ import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { remote } from 'electron';
-import { join } from 'path';
 
 export function GridLayout() {
   const dialog = useSelector((state: RootState) => state.dialog);

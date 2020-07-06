@@ -1,10 +1,11 @@
+import { remote } from 'electron';
 import child_process from 'child_process';
 import FsEx from 'fs-extra';
 import Path from 'path';
-import { appConfig } from '../../common/AppConfig';
 import { IUser } from '../slices/UserSlice';
 import { IChatMessage } from '../states/IChatMessage';
 
+const appConfig = remote.getGlobal('appConfig');
 // データベースファイル名
 const dbFileName = appConfig.dbFileName;
 const useJson = appConfig.useJson;

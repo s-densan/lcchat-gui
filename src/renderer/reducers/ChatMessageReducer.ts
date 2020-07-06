@@ -1,11 +1,12 @@
 // import Clone from 'clone';
 import Redux from 'redux';
 
-import { appConfig } from '../../common/appConfig';
 import * as ChatMessageAction from '../actions/ChatMessageActions';
 import { createChatMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessage';
 import createA2RMapper from '../utils/ActionToReducerMapper';
 import { insertMessageDB } from '../utils/ChatDatabaseIF';
+import { remote } from 'electron';
+const appConfig = remote.getGlobal('appConfig');
 
 const a2RMapper = createA2RMapper<IChatMessageList>();
 

@@ -3,14 +3,16 @@ import {
     BrowserWindow,
     globalShortcut,
     Menu,
-    MenuItem,
     nativeImage,
     Tray,
-    Notification,
 } from 'electron';
 import { join } from 'path';
 import { appConfig, initAppConfig } from '../common/AppConfig';
 initAppConfig(app.getAppPath());
+global.appConfig = appConfig;
+// globalに値をセットするため型をanyに強制する
+declare const global: any;
+
 
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
 // オブジェクトが破棄されると、プロセスも終了するので、グローバルオブジェクトとする。
@@ -134,29 +136,4 @@ function setHotKey() {
 }
 
 // ElectronのMenuの設定
-const topMenu = Menu.buildFromTemplate(
-    [
-        {
-            label: 'ファイル(&F)',
-            submenu: [
-                {
-                    label: '終了(&E)',
-                    //accelerator: 'CmdOrCtrl+R',
-                    click(item, focusedWindow) {
-                        focusedWindow.close();
-                    },
-                },
-            ],
-            
-        },
-        /*
-        {
-            label: '編集(&E)'
-        },
-        {
-            label: 'ヘルプ(&H)'
-        },
-        */
-    ]
-);
 // Menu.setApplicationMenu(topMenu);
