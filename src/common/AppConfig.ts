@@ -5,7 +5,7 @@ import path from 'path';
 import { app, App, BrowserWindow } from 'electron';
 
 // アプリケーション設定
-interface IAppConfig {
+export interface IAppConfig {
     dbAccessSynchronous: boolean;
     dbFileName: string;
     useJson: boolean;

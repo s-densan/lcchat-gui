@@ -4,14 +4,16 @@ import FsEx from 'fs-extra';
 import Path from 'path';
 import { IUser } from '../slices/UserSlice';
 import { IChatMessage } from '../states/IChatMessage';
+import { IAppConfig } from '../../common/AppConfig';
 
 const appPath = remote.app.getAppPath();
-const appConfig = remote.getGlobal('appConfig');
+const appConfig: IAppConfig = remote.getGlobal('appConfig');
 // データベースファイル名
 const dbFileName = appConfig.dbFileName;
 const useJson = appConfig.useJson;
 
-const lcchatCommand = Path.join(appPath, appConfig.lcchatCuiCommand);
+const lcchatCommand = appConfig.lcchatCuiCommand.replace('{$appPath}', appPath);
+const dbFilePath = Path.join(appPath, appConfig.dbFileName);
 
 // OSごとのユーザーのプロファイルフォルダに保存される
 // const dataFilePath = Path.join(OS.homedir(), 'todo.json');
@@ -19,6 +21,12 @@ const lcchatCommand = Path.join(appPath, appConfig.lcchatCuiCommand);
 // プログラムのあるフォルダに記録
 const dataFilePath = Path.join(appPath, dbFileName);
 
+const runCommand = (sql: string) => {
+  const inputData = {query: sql, dbFilePath: dbFilePath};
+  // alert(JSON.stringify(inputData));
+  const stdout = child_process.execSync(lcchatCommand,  { input: JSON.stringify(inputData) });
+  return stdout
+};
 export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
   const sql = `select message.*, user.user_data from message
                left join user
@@ -26,20 +34,17 @@ export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Da
                    user.user_id = message.user_id and
                    message.message_id <> ${latestMessageId} and
                    message.created_at >= ${latestUpdatedAt}`;
-  const command = lcchatCommand;
-  const stdout = child_process.execSync(command,  { input: sql });
+  const stdout = runCommand(sql);
   return stdout.toString();
 };
 export const loadChatMessagesDB2 = () => {
   const sql = `select message.*, user.user_data from message left join user on user.user_id = message.user_id`;
-  const command = lcchatCommand;
-  const stdout = child_process.execSync(command,  { input: sql });
+  const stdout = runCommand(sql);
   return stdout.toString();
 };
 export const loadChatMessagesDB = async () => {
   const sql = ` SELECT * FROM message `;
-  const command = lcchatCommand;
-  const stdout = child_process.execSync(command,  { input: sql });
+  const stdout = runCommand(sql);
   return stdout.toString();
 };
 /**
@@ -87,6 +92,9 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
                 "${newMessage.updatedAt}",
                 "${newMessage.deletedAt}"
     )`.replace('\n', '');
+  const stdout = runCommand(sql);
+  return stdout.toString();
+  /*
   const nkf = child_process.exec(
     lcchatCommand,
     (error, stdout, stderr) => {
@@ -102,6 +110,7 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
     nkf.stdin.write(sql);
     nkf.stdin.end();
   }
+  */
 };
 
 /**
@@ -139,22 +148,19 @@ export const saveStateJson = async (chatMessageList: IChatMessage[]) => {
 
 export const updateMessageTextDB = (chatMessageId: string, text: string) => {
   const sql = `UPDATE message SET text = "${text}" WHERE message_id = "${chatMessageId}"`;
-  const command = lcchatCommand;
-  const stdout = child_process.execSync(command, { input: sql });
+  const stdout = runCommand(sql);
   return stdout.toString();
 };
 export const deleteMessageDB = (chatMessageId: string) => {
   const sql = ` DELETE FROM message WHERE message_id = "${chatMessageId}"`;
-  const command = lcchatCommand;
-  const stdout = child_process.execSync(command, { input: sql });
+  const stdout = runCommand(sql);
   return stdout.toString();
 };
 
 export const loadUserFromComputerNameDB = (computerName: string) => {
-  alert(lcchatCommand);
+  // alert(lcchatCommand);
   const sql = `SELECT * FROM user`;
-  const command = lcchatCommand;
-  const stdout = child_process.execSync(command, { input: sql });
+  const stdout = runCommand(sql);
   return stdout.toString();
 };
 
@@ -176,7 +182,6 @@ export const insertUser = (user: IUser) => {
                 -- 削除日時
                 "${undefined}"
     )`.replace('\n', '');
-  const command = lcchatCommand;
-  const stdout = child_process.execSync(command, { input: sql });
+  const stdout = runCommand(sql);
   return stdout.toString();
 };

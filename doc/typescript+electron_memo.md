@@ -1,4 +1,4 @@
-# TypescriptでElectron
+# TypeScriptでElectron
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=3 orderedList=true} -->
 
@@ -52,12 +52,18 @@
 <!-- /code_chunk_output -->
 
 ## Link
-### Github
+### GitHub
 https://github.com/s-densan/lcchat-gui
 ## todo
 Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
+
+### 20200708
+exeパック時のパス見つからない問題を解決。
+app.getAppPathを起点にすればだいたい解決するみたい。頑張って見直した。
+これで仮リリースできるかな。
+これは些細だけど、ノートPCでHaxe cppでコンパイルできない。なんで？
 
 ### 20200706
 メインプロセスでConfigファイルを読み込んで、レンダラプロセスで参照したい。
@@ -152,7 +158,7 @@ const postedAt = Moment(props.postedAt).format('YYYY-MM-DD HH:mm');
 #### 実行パス取得
 アイコン画像のパスを指定するのに必要。
 ``__dirname``を使っていたが、これだとjsファイルの場所になってしまう。
-なのでカレントディレクトリを取得するために``process.cwd()``にする。
+なのでカレントディレクトリを取得するために``process.cwd()``とする。
 
 ```
 process.argv[1] から、node コマンドに指定された a.js のパス( ~/hoge/Foo.js/a.js )を取得できます
@@ -176,7 +182,7 @@ https://icooon-mono.com/15528-%e4%bc%9a%e8%a9%b1%e3%82%a2%e3%82%a4%e3%82%b3%e3%8
 ![](https://icooon-mono.com/i/icon_15528/icon_155281_64.png)
 ### 20200621 通知
 @ドトール豊田文苑堂
-通知させようとすると以下のエラー。
+通知させようとしたところ以下のエラー。
 レンダラーからはremoteでNotificationオブジェクトにアクセスする必要があるっぽい。
 ``Electron: Notification is not a constructor``
 
@@ -189,7 +195,7 @@ instead of
 
 new electron.Notification({....})
 ```
-ノートPCの不調か、アクションセンターが起動しない事があったけど、
+ノートPCの不調か、アクションセンターが起動しない事もあったけど、
 再起動したら通知された。
 ![](img/2020-06-21-20-34-21.png)
 
@@ -388,7 +394,7 @@ https://qiita.com/tagosaku324/items/c720499080d523bbe1d7
 yarn add electron-packager
 yarn run electron-packager . sample --platform=win32 --arch=ia32
 ```
-SQLインターフェース用のhaxeプログラムについて、リトライ機能をつけた。
+SQLインターフェイス用のhaxeプログラムについて、リトライ機能をつけた。
 ### 20200506
 #### 一番下までスクロールする
 https://dev.classmethod.jp/articles/react-scroll-into-view-on-load/
@@ -551,7 +557,7 @@ https://qiita.com/EBIHARA_kenji/items/1a043794014dc2f3a7db
 React+Redux、わっかりづらいなあー
 
 ### 20200401
-ReduxとかFluxとかよくわからん。手持ちの本はFlux,参考にしたサイトはRedux。
+ReduxとかFluxがよくわからん。手持ちの本はFlux、参考にしたサイトはRedux。
 並列に並べていいものかもよくわからん。調査！
 https://qiita.com/syossan27/items/7e1b2e07ac68b96bdaa7
 どうも、FluxはReduxから派生したものらしい。
@@ -645,7 +651,7 @@ Electron+typescriptでasyncが使えない件だが、ここのサンプルは�
 Reactだとだめなんかな。
 →なんか動かんくなった。もうわからんよ。複雑すぎる。
 
-で、モジュールインポートの方式が今まで見てきたTypescriptのソースと異なるのだが、なんでだろう？
+で、モジュールインポートの方式が今まで見てきたTypeScriptのソースと異なるのだが、なんでだろう？
 モジュール側1
 ```ts
 export const waitAsync = async function waitAsync(n: number): Promise<number> {
@@ -780,7 +786,7 @@ yarn start
 ```
 
 ### 20191105
-#### TypescriptでElectron始め
+#### TypeScriptでElectron始め
 ここ見ながらセットアップ。ただし、npmの代わりにyarnを使ってみる。
 https://qiita.com/necomeshi/items/1861ff80e689a377899a
 
