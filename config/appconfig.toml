@@ -1,8 +1,10 @@
 dbAccessSynchronous  = false
 dbFileName = 'aaa.db'
 useJson = false
-lcchatCuiCommand = '{$appPath}\Sqltest.exe'
-# lcchatCuiCommand = 'neko {$appPath}\Sqltest.n'
+lcchatCuiCommand = 'C:\Users\shimp\OneDrive\Documents\lcchat\bin\cpp\Sqltest.exe'
+# lcchatCuiCommand = '${appPath}/../lcchat/bin/cpp/Sqltest.exe'
+# lcchatCuiCommand = '"${appPath}/Sqltest.exe"'
+# lcchatCuiCommand = 'neko "${appPath}/Sqltest.n"'
 
 
 [hotkeys]

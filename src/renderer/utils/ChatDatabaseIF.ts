@@ -5,6 +5,8 @@ import Path from 'path';
 import { IUser } from '../slices/UserSlice';
 import { IChatMessage } from '../states/IChatMessage';
 import { IAppConfig } from '../../common/AppConfig';
+import os from 'os';
+import uuid from 'uuid';
 
 const appPath = remote.app.getAppPath();
 const appConfig: IAppConfig = remote.getGlobal('appConfig');
@@ -12,7 +14,7 @@ const appConfig: IAppConfig = remote.getGlobal('appConfig');
 const dbFileName = appConfig.dbFileName;
 const useJson = appConfig.useJson;
 
-const lcchatCommand = appConfig.lcchatCuiCommand.replace('{$appPath}', appPath);
+const lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
 const dbFilePath = Path.join(appPath, appConfig.dbFileName);
 
 // OSごとのユーザーのプロファイルフォルダに保存される
@@ -21,11 +23,25 @@ const dbFilePath = Path.join(appPath, appConfig.dbFileName);
 // プログラムのあるフォルダに記録
 const dataFilePath = Path.join(appPath, dbFileName);
 
-const runCommand = (sql: string) => {
-  const inputData = {query: sql, dbFilePath: dbFilePath};
+const runCommand = (sql: string): { stdout: Buffer, result: any } => {
+  // 問い合わせコマンドファイル作成
+  const requestFilePath = Path.join(os.tmpdir(), uuid() + '.json');
+  const resultFilePath = Path.join(os.tmpdir(), uuid() + '.json');
+  const inputData = { query: sql, dbFilePath: dbFilePath, resultFilePath: resultFilePath };
   // alert(JSON.stringify(inputData));
-  const stdout = child_process.execSync(lcchatCommand,  { input: JSON.stringify(inputData) });
-  return stdout
+
+  FsEx.writeFileSync(requestFilePath, JSON.stringify(inputData));
+  // コマンド実行
+  const command = `${lcchatCommand} file ${requestFilePath}`;
+  // alert(command);
+  // alert(JSON.stringify(inputData));
+  // 
+  const stdout = child_process.execSync(command);
+  // alert(stdout.toString());
+  // 結果Json
+  const resultData = FsEx.readJsonSync(resultFilePath);
+  // const stdout = child_process.execSync(lcchatCommand + ' stdin',  { input: JSON.stringify(inputData) });
+  return { stdout: stdout, result: JSON.stringify(resultData) };
 };
 export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
   const sql = `select message.*, user.user_data from message
@@ -34,47 +50,47 @@ export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Da
                    user.user_id = message.user_id and
                    message.message_id <> ${latestMessageId} and
                    message.created_at >= ${latestUpdatedAt}`;
-  const stdout = runCommand(sql);
-  return stdout.toString();
+  const { stdout: stdout, result: result } = runCommand(sql);
+  return result;
 };
 export const loadChatMessagesDB2 = () => {
   const sql = `select message.*, user.user_data from message left join user on user.user_id = message.user_id`;
-  const stdout = runCommand(sql);
-  return stdout.toString();
+  const { stdout: stdout, result: result } = runCommand(sql);
+  return result;
 };
 export const loadChatMessagesDB = async () => {
   const sql = ` SELECT * FROM message `;
-  const stdout = runCommand(sql);
-  return stdout.toString();
+  const { stdout: stdout, result: result } = runCommand(sql);
+  return result;
 };
 /**
  * ファイルからタスクのデータをロードする
  */
 export const loadChatMessage = async () => {
-    const exist = await FsEx.pathExists(dataFilePath); // ...(b)
-    if (!exist) { // ...(c)
-        // データファイルがなけれが、ファイルを作成して、初期データを保存する
-        FsEx.ensureFileSync(dataFilePath);
-        await FsEx.writeJSON(dataFilePath, { data: [] });
-    }
-    if (useJson) {
-        // データファイルを読み込む ...(d)
-        const jsonData = await FsEx.readJSON(dataFilePath, {
-            // 日付型は、数値で格納しているので、日付型に変換する
-            reviver: (key: string, value: any) => {
-                if (key === 'deadline') {
-                    return new Date(value as number);
-                } else {
-                    return value;
-                }
-            },
-        });
-        // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
-        // await setTimeoutPromise(1000);
-        return jsonData;
-    } else {
-        return '';
-    }
+  const exist = await FsEx.pathExists(dataFilePath); // ...(b)
+  if (!exist) { // ...(c)
+    // データファイルがなけれが、ファイルを作成して、初期データを保存する
+    FsEx.ensureFileSync(dataFilePath);
+    await FsEx.writeJSON(dataFilePath, { data: [] });
+  }
+  if (useJson) {
+    // データファイルを読み込む ...(d)
+    const jsonData = await FsEx.readJSON(dataFilePath, {
+      // 日付型は、数値で格納しているので、日付型に変換する
+      reviver: (key: string, value: any) => {
+        if (key === 'deadline') {
+          return new Date(value as number);
+        } else {
+          return value;
+        }
+      },
+    });
+    // 早すぎて非同期処理を実感できないので、ちょっと時間がかかる処理のシミュレート
+    // await setTimeoutPromise(1000);
+    return jsonData;
+  } else {
+    return '';
+  }
 };
 
 export const insertMessageDB = async (newMessage: IChatMessage) => {
@@ -92,8 +108,8 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
                 "${newMessage.updatedAt}",
                 "${newMessage.deletedAt}"
     )`.replace('\n', '');
-  const stdout = runCommand(sql);
-  return stdout.toString();
+  const { stdout: stdout, result: result } = runCommand(sql);
+  return result;
   /*
   const nkf = child_process.exec(
     lcchatCommand,
@@ -148,20 +164,20 @@ export const saveStateJson = async (chatMessageList: IChatMessage[]) => {
 
 export const updateMessageTextDB = (chatMessageId: string, text: string) => {
   const sql = `UPDATE message SET text = "${text}" WHERE message_id = "${chatMessageId}"`;
-  const stdout = runCommand(sql);
-  return stdout.toString();
+  const {stdout: stdout, result: result} = runCommand(sql);
+  return result;
 };
 export const deleteMessageDB = (chatMessageId: string) => {
   const sql = ` DELETE FROM message WHERE message_id = "${chatMessageId}"`;
-  const stdout = runCommand(sql);
-  return stdout.toString();
+  const {stdout: stdout, result: result} = runCommand(sql);
+  return result;
 };
 
 export const loadUserFromComputerNameDB = (computerName: string) => {
   // alert(lcchatCommand);
   const sql = `SELECT * FROM user`;
-  const stdout = runCommand(sql);
-  return stdout.toString();
+  const {stdout: stdout, result: result} = runCommand(sql);
+  return result;
 };
 
 export const insertUser = (user: IUser) => {
@@ -182,6 +198,6 @@ export const insertUser = (user: IUser) => {
                 -- 削除日時
                 "${undefined}"
     )`.replace('\n', '');
-  const stdout = runCommand(sql);
-  return stdout.toString();
+  const {stdout: stdout, result: result} = runCommand(sql);
+  return result;
 };
