@@ -1,7 +1,7 @@
 dbAccessSynchronous  = false
 dbFileName = 'aaa.db'
 useJson = false
-# lcchatCuiCommand = '{$appPath}\Sqltest.exe'
+lcchatCuiCommand = '{$appPath}\Sqltest.exe'
 # lcchatCuiCommand = 'neko {$appPath}\Sqltest.n'
 
 
