@@ -59,6 +59,39 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200716
+Rustを試したけどうーーーんということで、
+nimに手を出してみようかな（だからなぜマイナーなのに手を出す。。。）
+#### nim言語でSQLiteを扱ってみる
+
+https://nnahito.com/articles/33
+```nim
+import db_sqlite
+import os,times
+
+
+proc dbTest(dbFilePath : string, sqlFilePath: string) = 
+  var f : File = open(sqlFilePath, FileMode.fmRead)
+  defer:
+    close(f)
+    echo "closed"
+  let query = f.readAll()
+  let db = open(dbFilePath, "", "", "")
+  db.exec(sql(query))
+  echo "テーブル作ったヨン"
+
+
+let sqlPath = "../sql/create_table/create_room.sql"
+let sqlDirPath = "../sql/create_table"
+# let sqlPath = "create_room.sql"
+let dbPath = "aaa.db"
+
+for kind, path in os.walkDir(sqlDirPath):
+  if path.splitFile[2] == ".sql":
+    echo(path)
+    dbTest(dbPath, path)
+```
+かんたんに作れます。すげー。
 ### 20200711
 Haxe cppだとSQLiteコマンドに日本語(英語以外?)が含まれる場合にエラーとなるようで、困った。
 なんだろこの縛り。。。
