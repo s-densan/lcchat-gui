@@ -92,6 +92,48 @@ for kind, path in os.walkDir(sqlDirPath):
     dbTest(dbPath, path)
 ```
 かんたんに作れます。すげー。
+### 20200717
+nimたん、代数的データ型行けてるじゃないですか。
+書きづらいけど。
+ちゃんとコンパイル時にチェックしてくれます。
+```nim
+type
+  FooEnum = enum
+    Stringer, Numberer
+  Foo = object
+    case kind: FooEnum
+    of Stringer:
+      x: string
+    of Numberer:
+      x1: int
+      y: int
+
+
+let
+  a = Foo(kind: Stringer, x: "hi")
+  b = Foo(kind: Stringer, x: "hello")
+  c = Foo(kind: Numberer, x1:444, y: 333)
+proc FooTest(t: Foo) = 
+  case t.kind:
+  of Stringer:
+    echo t.x
+    # echo t.y # error
+  of Numberer:
+    echo t.y
+    echo t.x1
+    # echo t.x # error
+    echo "num"
+  echo t
+FooTest(a)
+FooTest(b)
+FooTest(c)
+```
+### 20200712
+Rustで作るという案。
+#### 競技プログラミングにおけるPythonとRustの対応関係まとめ - Qiita
+https://qiita.com/wotsushi/items/4a6797f52080453a0440
+比較が非常にわかりやすい。
+
 ### 20200711
 Haxe cppだとSQLiteコマンドに日本語(英語以外?)が含まれる場合にエラーとなるようで、困った。
 なんだろこの縛り。。。
