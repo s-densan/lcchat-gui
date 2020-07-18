@@ -34,7 +34,7 @@ export function GridLayout() {
       // store.dispatch(createScrollToBottomAction(bottomRef));
       dispatch(userActions.loadUserFromComputerName({computerName: os.hostname()}));
       setInitial(true);
-      //dispatch(windowActions.initWindowState({bottomRef}));
+      // dispatch(windowActions.initWindowState({bottomRef}));
       // Windowリサイズイベント
       const win = remote.getCurrentWindow();
       const fixWindowHeight = () => {
@@ -59,16 +59,15 @@ export function GridLayout() {
         enableCancel: false,
         // キャンセル時・クローズ時は何もしない
         // onClickCancel: () => dispatch(dialogActions.closeDialog()),
-        onClickCancel: () => {},
+        onClickCancel: () => { },
         onClickOk: () => dispatch(dialogActions.closeDialog()),
         // onClose: () => dispatch(dialogActions.closeDialog()),
-        onClose: () => {},
+        onClose: () => { },
       }));
-      
     }
     // スクロール位置がbottomの場合
     // bottomRefまでスクロールし、scrollUnsetアクションをディスパッチする。
-    if (windowSlice.scrollPosition === 'bottom'){
+    if (windowSlice.scrollPosition === 'bottom') {
       if (bottomRef.current) {
         bottomRef.current.scrollIntoView({
           behavior: 'smooth',
@@ -85,17 +84,19 @@ export function GridLayout() {
       });
     }
     */
-      //windowActions.moveToBottom(bottomRef);
-    
+      // windowActions.moveToBottom(bottomRef);
   }/*, [message.chatMessages.length]*/);
 
+  const windowHeightVh = (windowHeight - 150) / windowHeight * 100;
   const chatMessageListStyle: CSSProperties = {
     display: 'flex',
     flexFlow: 'column',
     top: 0,
     height: windowHeight - 150,
+    // height: `${windowHeightVh}vh`,
     width: '100%',
     overflowY: 'scroll',
+    transform: 'translateZ(0)',
 
   };
   const chatMessagePostBoxStyle = {
