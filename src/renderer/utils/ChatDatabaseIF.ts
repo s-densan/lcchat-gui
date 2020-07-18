@@ -39,6 +39,7 @@ const runCommand = (sql: string): { stdout: Buffer, result: any } => {
   const stdout = child_process.execSync(command);
   // alert(stdout.toString());
   // 結果Json
+  console.log(stdout.toString());
   const resultData = FsEx.readJsonSync(resultFilePath);
   // const stdout = child_process.execSync(lcchatCommand + ' stdin',  { input: JSON.stringify(inputData) });
   return { stdout: stdout, result: JSON.stringify(resultData) };
