@@ -39,13 +39,17 @@ function createWindow() {
         win = undefined;
     });
     // 最小化ボタンでタスクトレイに入れる
-    win.on('minimize', () => {
-        if (win) {
-            win.hide();
-        }
-    });
-    addTaskTray();
-    setHotKey();
+    const enableTasktray = false;
+    // うまく動かないので無効化する
+    if (enableTasktray) {
+        win.on('minimize', () => {
+            if (win) {
+                win.hide();
+            }
+        });
+        addTaskTray();
+        setHotKey();
+    }
 }
 
 // このメソッドは、Electronが初期化を終了し、
@@ -74,7 +78,7 @@ app.on('activate', () => {
 
 // ここから拡張
 // const HOTKEY = "";
-console.log(JSON.stringify(appConfig));
+// console.log(JSON.stringify(appConfig));
 const HOTKEY = appConfig.hotkeys.toggleVisible;
 
 function addTaskTray() {

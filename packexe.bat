@@ -9,3 +9,5 @@ yarn run electron-packager . --platform=darwin,win32 --arch=x64 --overwrite ^
   --ignore="^/\.vscode" ^
   --ignore="^/\.yarnclean" ^
   --ignore="^/node_modules.*"
+  --ignore="^*/.zip"
+  --ignore="^*/.tgz"
