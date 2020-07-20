@@ -1,3 +1,5 @@
 node_modules/*
 dist/*
 lcchat-gui-win32-x64/*
+*.tgz
+*.zip

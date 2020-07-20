@@ -49,14 +49,17 @@ export default function ChatMessageList(props: IChatMessageList & {bottomRef: Re
     const chatMessageListElems = chatMessages.map(mapFunc);
             // <AddChatMessage text="" />
     return (
-        <div style={{ width: '97%', height:'100%', position: 'relative' }} >
+        <div style={{ width: '97%', height: '100%', position: 'relative'}} >
             <List dense style={{
                 width: '100%',
                 verticalAlign: 'left',
                 bottom: 0,
-                position: 'absolute'
+                height: '100%',
+                position: 'absolute',
             }} >
                 {chatMessageListElems}
+                {/*最下部スクロール用*/}
+                <div ref={props.bottomRef}></div>
             </List>
         </div>
     );

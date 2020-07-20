@@ -65,9 +65,9 @@ export function GridLayout() {
         onClose: () => { },
       }));
     }
-    // スクロール位置がbottomの場合
+    // スクロール位置がbottomの場合かつチャットメッセージのロードが完了して1件以上存在する場合
     // bottomRefまでスクロールし、scrollUnsetアクションをディスパッチする。
-    if (windowSlice.scrollPosition === 'bottom') {
+    if (windowSlice.scrollPosition === 'bottom' && message.chatMessages.length > 0) {
       if (bottomRef.current) {
         bottomRef.current.scrollIntoView({
           behavior: 'smooth',
@@ -154,9 +154,9 @@ export function GridLayout() {
   const chatArea = () => {
     if (initial && user.user) {
       return <div>
+        {/*</div><Paper style={chatMessageListStyle}>*/}
         <Paper style={chatMessageListStyle}>
           <ChatMessageList chatMessages={message.chatMessages} bottomRef={bottomRef} />
-          <div ref={bottomRef}>{/*bottom*/}</div>
         </Paper>
         <div>
           <Box component="div" style={chatMessagePostBoxStyle}>
