@@ -38,6 +38,7 @@ function createWindow() {
         // 閉じたウィンドウオブジェクトにはアクセスできない
         win = undefined;
     });
+    win.setTitle('Communication App')
     // 最小化ボタンでタスクトレイに入れる
     const enableTasktray = false;
     // うまく動かないので無効化する
