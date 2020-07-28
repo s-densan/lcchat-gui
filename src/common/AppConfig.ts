@@ -7,8 +7,7 @@ import { app, App, BrowserWindow } from 'electron';
 // アプリケーション設定
 export interface IAppConfig {
     dbAccessSynchronous: boolean;
-    dbFileName: string;
-    useJson: boolean;
+    dbFilePath: string;
     hotkeys: {
         toggleVisible: string;
     };
