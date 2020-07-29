@@ -37,22 +37,22 @@ const runCommand = (sql: string): { stdout: Buffer, result: any } => {
   return { stdout: stdout, result: JSON.stringify(resultData) };
 };
 export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
-  const sql = `select message.*, user.user_data from message
-               left join user
+  const sql = `select messages.*, users.user_data from messages
+               left join users
                on
-                   user.user_id = message.user_id and
-                   message.message_id <> ${latestMessageId} and
-                   message.created_at >= ${latestUpdatedAt}`;
+                   users.user_id = messages.user_id and
+                   messages.message_id <> ${latestMessageId} and
+                   messages.created_at >= ${latestUpdatedAt}`;
   const { stdout: stdout, result: result } = runCommand(sql);
   return result;
 };
 export const loadChatMessagesDB2 = () => {
-  const sql = `select message.*, user.user_data from message left join user on user.user_id = message.user_id`;
+  const sql = `select messages.*, users.user_data from messages left join users on users.user_id = messages.user_id`;
   const { stdout: stdout, result: result } = runCommand(sql);
   return result;
 };
 export const loadChatMessagesDB = async () => {
-  const sql = ` SELECT * FROM message `;
+  const sql = ` SELECT * FROM messages `;
   const { stdout: stdout, result: result } = runCommand(sql);
   return result;
 };
@@ -60,7 +60,7 @@ export const loadChatMessagesDB = async () => {
 export const insertMessageDB = async (newMessage: IChatMessage) => {
   const sql = `INSERT
             INTO
-                message
+                messages
             VALUES(
                 "${newMessage.id}",
                 "${newMessage.text}",
@@ -74,39 +74,21 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
     )`.replace('\n', '');
   const { stdout: stdout, result: result } = runCommand(sql);
   return result;
-  /*
-  const nkf = child_process.exec(
-    lcchatCommand,
-    (error, stdout, stderr) => {
-      if (error) {
-        // エラー時は標準エラー出力を表示して終了
-        throw new Error(stderr);
-      } else {
-        return stdout;
-      }
-    },
-  );
-  if (nkf.stdin !== null) {
-    nkf.stdin.write(sql);
-    nkf.stdin.end();
-  }
-  */
 };
 
 export const updateMessageTextDB = (chatMessageId: string, text: string) => {
-  const sql = `UPDATE message SET text = "${text}" WHERE message_id = "${chatMessageId}"`;
+  const sql = `UPDATE messages SET text = "${text}" WHERE message_id = "${chatMessageId}"`;
   const {stdout: stdout, result: result} = runCommand(sql);
   return result;
 };
 export const deleteMessageDB = (chatMessageId: string) => {
-  const sql = ` DELETE FROM message WHERE message_id = "${chatMessageId}"`;
+  const sql = ` DELETE FROM messages WHERE message_id = "${chatMessageId}"`;
   const {stdout: stdout, result: result} = runCommand(sql);
   return result;
 };
 
 export const loadUserFromComputerNameDB = (computerName: string) => {
-  // alert(lcchatCommand);
-  const sql = `SELECT * FROM user`;
+  const sql = `SELECT * FROM users`;
   const {stdout: stdout, result: result} = runCommand(sql);
   return result;
 };
@@ -114,7 +96,7 @@ export const loadUserFromComputerNameDB = (computerName: string) => {
 export const insertUser = (user: IUser) => {
   const sql = `INSERT
             INTO
-                user
+                users
             VALUES(
                 -- ユーザID
                 "${user.userId}",
