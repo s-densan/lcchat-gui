@@ -32,22 +32,32 @@ const slice = createSlice({
             // データファイルの存在チェック
             let mes = '';
             mes = loadChatMessagesDB2();
+            alert(mes)
             // DB読み込み後に実行する
             const chatMessages: IChatMessage[] = [];
             const chatMessagesJson = JSON.parse(mes);
+            
             for (const chatMessageJson of chatMessagesJson) {
+                var userName : string;
+                if (chatMessageJson.userData) {
+                    userName = JSON.parse(chatMessageJson.userData).userName;
+                } else {
+                    userName = 'unknown';
+                }
+                const chatMessageData = JSON.parse(chatMessageJson.messageData)
+                console.log(chatMessageData)
                 const chatMessage = createChatMessage(
-                    chatMessageJson.message_id,
-                    chatMessageJson.text,
-                    chatMessageJson.user_id,
-                    chatMessageJson.user_data ? JSON.parse(chatMessageJson.user_data).userName : 'unknown',
-                    chatMessageJson.user_data ? JSON.parse(chatMessageJson.user_data).userName.slice(0, 2) : 'un',
+                    chatMessageJson.messageId,
+                    chatMessageData.text,
+                    chatMessageJson.userId,
+                    userName,
+                    userName.slice(0, 2),
                     'dummyTalkId',
-                    chatMessageJson.posted_at,
-                    chatMessageJson.message_data,
-                    chatMessageJson.created_at,
-                    chatMessageJson.updated_at,
-                    chatMessageJson.deleted_at,
+                    chatMessageJson.postedAt,
+                    chatMessageJson.messageData,
+                    chatMessageJson.createdAt,
+                    chatMessageJson.updatedAt,
+                    null,
                 );
                 chatMessages.push(chatMessage);
             }

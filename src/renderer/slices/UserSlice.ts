@@ -49,17 +49,17 @@ const slice = createSlice<IUserState, SliceCaseReducers<IUserState>>({
     loadUserFromComputerName: (state: IUserState, action) => {
       // コンピュータ名
       const computerName = action.payload.computerName;
-      const userList = JSON.parse(loadUserListDB(action.payload.computerName));
+      const userList = loadUserListDB(action.payload.computerName);
       for (const user of userList) {
         // user_dataはstringのため、JSONパースする
-        const userData: IUserData = JSON.parse(user.user_data);
+        const userData: IUserData = JSON.parse(user.userData);
         // user_dataが空辞書、存在しないかnullの場合
         if (userData.authentication !== undefined) {
           if (userData.authentication.computerName === computerName) {
             return {
               user: {
                 userData,
-                userId : user.user_id,
+                userId : user.userId,
               },
             };
           }

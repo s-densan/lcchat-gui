@@ -1,12 +1,8 @@
 dbAccessSynchronous  = false
-dbFilePath = '${appPath}/chatroom.db'
-# dbFilePath = 'C:\Users\shimp\Desktop\chatroom.db'
-# lcchatCuiCommand = 'C:\Users\shimp\OneDrive\Documents\lcchat\bin\cpp\Sqltest.exe'
-# lcchatCuiCommand = '${appPath}/../lcchat/bin/cpp/Sqltest.exe'
-## lcchatCuiCommand = 'C:\Users\shimp\OneDrive\Documents\lcchat\nim\sqltest.exe'
-# lcchatCuiCommand = '${appPath}\..\lcchat\nim\sqltest.exe'
-# lcchatCuiCommand = 'neko "${appPath}/../lcchat/Sqltest.n"'
-lcchatCuiCommand = '"${appPath}/Sqltest.exe"'
+# dbFilePath = '${appPath}/chatroom.db'
+dbFilePath = '${appPath}/../lcchat/chatroom.db'
+# lcchatCuiCommand = '"${appPath}/Sqltest.exe"'
+lcchatCuiCommand = '"${appPath}/../lcchat/lcchat.exe"'
 
 
 [hotkeys]
