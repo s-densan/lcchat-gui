@@ -59,6 +59,18 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200802
+nimのユニットテストについて。
+https://qiita.com/honeytrap15/items/3bb0dcd63e12983ab975
+ついでにnimbleを使って管理してみる。
+
+typescriptのユニットテストについて。
+https://qiita.com/karak/items/9d0ebf7bc50085624913
+テストツールが複数あるらしく、どうもjestを推している人が多いみたい。
+```
+yarn add jest ts-jest @types/jest
+```
+
 ### 20200716
 Rustを試したけどうーーーんということで、
 nimに手を出してみようかな（だからなぜマイナーなのに手を出す。。。）

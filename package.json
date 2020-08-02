@@ -21,6 +21,7 @@
     "@sgarciac/bombadil": "^2.3.0",
     "@types/clone": "^0.1.30",
     "@types/fs-extra": "^8.0.1",
+    "@types/jest": "^26.0.8",
     "@types/material-ui": "^0.21.7",
     "@types/moment": "^2.13.0",
     "@types/react-datepicker": "1.1.7",
@@ -32,6 +33,7 @@
     "fs-extra": "^8.1.0",
     "graceful-fs": "^4.2.3",
     "hard-source-webpack-plugin": "^0.13.1",
+    "jest": "^26.2.2",
     "moment": "^2.24.0",
     "os": "^0.1.1",
     "react": "^16.12.0",
@@ -43,6 +45,7 @@
     "reset-css": "^5.0.1",
     "style-loader": "^1.0.1",
     "styled-components": "^4.4.1",
+    "ts-jest": "^26.1.4",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
