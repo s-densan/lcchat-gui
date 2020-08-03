@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import clone from 'clone';
-import { createChatMessage, IChatMessage, IChatMessageList} from '../states/IChatMessage';
+import { createChatMessage, IChatMessage, IChatMessageList, IMessageData} from '../states/IChatMessage';
 import { insertMessageDB } from '../utils/ChatDatabaseIF';
 import { deleteMessageDB, loadChatMessagesDB2, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 import { remote } from 'electron';
@@ -119,12 +119,16 @@ const slice = createSlice({
             const { chatMessages: chatMessages }: IChatMessageList = state;
             const newChatMessages: IChatMessage[] = chatMessages.map((it) => {
                 if (it.messageId === action.payload.chatMessageId) {
+                    const messageData: IMessageData = {
+                        text: action.payload.text,
+                    };
                     // テキストのみ更新
+                    updateMessageTextDB(action.payload.chatMessageId, messageData);
                     return {
                         createdAt: it.createdAt,
                         deletedAt: it.deletedAt,
                         id: it.id,
-                        messageData: it.messageData,
+                        messageData: messageData,
                         messageId: it.messageId,
                         postedAt: it.postedAt,
                         talkId: it.talkId,
@@ -138,7 +142,6 @@ const slice = createSlice({
                     return it;
                 }
             });
-            updateMessageTextDB(action.payload.chatMessageId, action.payload.text);
             return {
                 chatMessages: newChatMessages,
                 editingMessage: state.editingMessage,

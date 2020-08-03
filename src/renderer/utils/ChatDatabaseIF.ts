@@ -3,7 +3,7 @@ import child_process from 'child_process';
 import FsEx from 'fs-extra';
 import Path from 'path';
 import { IUser } from '../slices/UserSlice';
-import { IChatMessage } from '../states/IChatMessage';
+import { IChatMessage, IMessageData } from '../states/IChatMessage';
 import { IAppConfig } from '../../common/AppConfig';
 import os from 'os';
 import uuid from 'uuid';
@@ -79,15 +79,16 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
   return data;
 };
 
-export const updateMessageTextDB = (chatMessageId: string, text: string) => {
-  const sql = `UPDATE messages SET text = "${text}" WHERE message_id = "${chatMessageId}"`;
+export const updateMessageTextDB = (chatMessageId: string, messageData: IMessageData) => {
+  const messageDataJson = JSON.stringify(messageData).replace(/"/g, '""');
+  const sql = `UPDATE messages SET message_data = "${messageDataJson}" WHERE message_id = "${chatMessageId}"`;
   const data = runCommand(sql);
   return data;
 };
 export const deleteMessageDB = (chatMessageId: string) => {
   const sql = ` DELETE FROM messages WHERE message_id = "${chatMessageId}"`;
-  const {stdout: stdout, result: result} = runCommand(sql);
-  return result;
+  const data = runCommand(sql);
+  return data;
 };
 
 export const loadUserFromComputerNameDB = (computerName: string) => {

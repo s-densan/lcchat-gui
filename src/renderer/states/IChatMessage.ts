@@ -1,5 +1,8 @@
 import { v4 as UUID } from 'uuid';
 
+export interface IMessageData {
+    text: string;
+}
 /**
  * タスク
  */
@@ -21,7 +24,7 @@ export interface IChatMessage {
     /** 投稿日時 */
     postedAt: Date;
     /** メッセージデータ */
-    messageData: string;
+    messageData: IMessageData;
     /** 作成日時 */
     createdAt: Date | null;
     /** 更新日時 */
@@ -62,7 +65,7 @@ export const createChatMessage = (
     userAvaterText: string,
     talkId: string,
     postedAt: Date,
-    messageData: string,
+    messageData: IMessageData,
     createdAt: Date | null,
     updatedAt: Date | null,
     deletedAt: Date | null,
