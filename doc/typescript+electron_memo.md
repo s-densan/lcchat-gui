@@ -59,6 +59,9 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200803
+jestについて
+https://typescript-jp.gitbook.io/deep-dive/intro-1/jest
 ### 20200802
 nimのユニットテストについて。
 https://qiita.com/honeytrap15/items/3bb0dcd63e12983ab975

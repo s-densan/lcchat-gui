@@ -34,7 +34,6 @@ const runCommand = (sql: string): any => {
     throw Error(`sql command error: sql:${sql} stdout:${stdout}`);
   }
   
-  alert({ data: data, ok: ok })
   return data;
 };
 export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
@@ -54,7 +53,6 @@ export const loadChatMessagesDB2 = () => {
     LEFT JOIN users
     ON users.user_id = messages.user_id`;
   const data = runCommand(sql);
-  alert(data);
   return data;
 };
 export const loadChatMessagesDB = async () => {
@@ -69,11 +67,11 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
                 messages
             VALUES(
                 "${newMessage.id}",
-                "${newMessage.text}",
                 "${newMessage.userId}",
-                "$channel_id",
-                "${newMessage.messageData}",
+                "$talk_id",
+                "${JSON.stringify(newMessage.messageData).replace(/"/g, '""')}",
                 "${newMessage.postedAt}",
+                "publish",
                 "${newMessage.createdAt}",
                 "${newMessage.updatedAt}"
     )`.replace('\n', '');

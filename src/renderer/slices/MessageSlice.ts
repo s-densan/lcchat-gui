@@ -28,24 +28,22 @@ const slice = createSlice({
             return newState;
         },
         loadChatMessages: (state) => {
-            // ファイルを非同期で読み込む
-            // データファイルの存在チェック
-            let mes = '';
-            mes = loadChatMessagesDB2();
-            alert(mes)
             // DB読み込み後に実行する
             const chatMessages: IChatMessage[] = [];
-            const chatMessagesJson = JSON.parse(mes);
+            const chatMessagesJson: any = loadChatMessagesDB2();
             
             for (const chatMessageJson of chatMessagesJson) {
                 var userName : string;
                 if (chatMessageJson.userData) {
-                    userName = JSON.parse(chatMessageJson.userData).userName;
+                    userName = chatMessageJson.userData.userName;
                 } else {
                     userName = 'unknown';
                 }
+                alert(JSON.stringify(chatMessageJson))
+                //alert(JSON.stringify(chatMessageJson.messageData))
                 const chatMessageData = JSON.parse(chatMessageJson.messageData)
-                console.log(chatMessageData)
+                // console.log(chatMessageData)
+                alert(chatMessageData.text)
                 const chatMessage = createChatMessage(
                     chatMessageJson.messageId,
                     chatMessageData.text,

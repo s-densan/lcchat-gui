@@ -44,7 +44,7 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
         userAvaterText: user.user === undefined ? '' : user.user.userData.userName.slice(0, 2),
         talkId: 'talkId',
         postedAt: nowDate,
-        messageData: 'messageData',
+        messageData: { text: postMessageText },
         bottomRef: props.bottomRef,
       },
     );
