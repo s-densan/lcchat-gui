@@ -34,16 +34,17 @@ const slice = createSlice({
             
             for (const chatMessageJson of chatMessagesJson) {
                 var userName : string;
+                const chatMessageData = JSON.parse(chatMessageJson.messageData);
+                const userData = JSON.parse(chatMessageJson.userData);
                 if (chatMessageJson.userData) {
-                    userName = chatMessageJson.userData.userName;
+                    userName = userData.userName;
                 } else {
                     userName = 'unknown';
                 }
-                alert(JSON.stringify(chatMessageJson))
+                //alert(JSON.stringify(chatMessageJson))
                 //alert(JSON.stringify(chatMessageJson.messageData))
-                const chatMessageData = JSON.parse(chatMessageJson.messageData)
                 // console.log(chatMessageData)
-                alert(chatMessageData.text)
+                //alert(chatMessageData.text)
                 const chatMessage = createChatMessage(
                     chatMessageJson.messageId,
                     chatMessageData.text,
