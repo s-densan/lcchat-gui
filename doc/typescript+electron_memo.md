@@ -59,6 +59,17 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200805
+Reactでドラッグアンドドロップに対応する。
+
+- [React]ドラッグ&ドロップのファイルアップロードを簡単実装！「react-dropzone」の紹介
+https://www.aizulab.com/blog/react-dropzone/
+
+
+Electronでローカルファイル画像を表示する
+
+- ローカルファイルシステムからのElectron JS画像
+https://www.it-swarm.dev/ja/electron/%e3%83%ad%e3%83%bc%e3%82%ab%e3%83%ab%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%81%8b%e3%82%89%e3%81%aeelectron-js%e7%94%bb%e5%83%8f/838519275/
 ### 20200803
 jestについて
 https://typescript-jp.gitbook.io/deep-dive/intro-1/jest

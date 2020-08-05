@@ -154,3 +154,4 @@ function setHotKey() {
 
 // ElectronのMenuの設定
 // Menu.setApplicationMenu(topMenu);
+

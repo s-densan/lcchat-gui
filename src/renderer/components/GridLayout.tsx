@@ -18,7 +18,10 @@ import OkDialog from './dialogs/OkDialog';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { remote } from 'electron';
 
+
 export function GridLayout() {
+
+
   const dialog = useSelector((state: RootState) => state.dialog);
   const message = useSelector((state: RootState) => state.message);
   const user = useSelector((state: RootState) => state.user);
@@ -76,15 +79,6 @@ export function GridLayout() {
       }
       dispatch(windowActions.scrollUnset());
     }
-    /*
-    if (bottomRef.current) {
-      bottomRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'end',
-      });
-    }
-    */
-      // windowActions.moveToBottom(bottomRef);
   }/*, [message.chatMessages.length]*/);
 
   const windowHeightVh = (windowHeight - 150) / windowHeight * 100;
@@ -170,7 +164,13 @@ export function GridLayout() {
   };
   return (
     <MuiThemeProvider theme={createMuiTheme()}>
-      <div style={{ overflow: 'hidden', height: '95vh' }} >
+      {/**/}
+      <div style={{ overflow: 'hidden', height: '95vh' }}>
+        { /*
+          // ファイル選択ダイアログを表示する場合
+          <input {...getInputProps()} />
+        */ }
+
         {dialogComponent()}
         {chatArea()}
         {clockArea()}
