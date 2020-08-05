@@ -10,14 +10,20 @@ import { join } from 'path';
 import {
     appConfig,
     initAppConfig,
+    IAppConfig,
 } from '../common/AppConfig';
+
+interface IGlobal {
+    appConfig: IAppConfig;
+}
+
 
 // configファイル読み込み
 initAppConfig(app.getAppPath());
 // rendererプロセスからアクセスできるようにglobalに設定
 global.appConfig = appConfig;
 // globalに値をセットするため型をanyに強制する
-declare const global: any;
+declare const global: IGlobal;
 
 
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
