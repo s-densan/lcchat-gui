@@ -33,7 +33,7 @@ const slice = createSlice({
             const chatMessagesJson: any = loadChatMessagesDB2();
             
             for (const chatMessageJson of chatMessagesJson) {
-                var userName : string;
+                var userName: string;
                 const chatMessageData = JSON.parse(chatMessageJson.messageData);
                 const userData = JSON.parse(chatMessageJson.userData);
                 if (chatMessageJson.userData) {
@@ -45,18 +45,34 @@ const slice = createSlice({
                 //alert(JSON.stringify(chatMessageJson.messageData))
                 // console.log(chatMessageData)
                 //alert(chatMessageData.text)
-                const chatMessage = createTextMessage(
-                    chatMessageJson.messageId,
-                    chatMessageData.text,
-                    chatMessageJson.userId,
-                    userName,
-                    userName.slice(0, 2),
-                    'dummyTalkId',
-                    chatMessageJson.postedAt,
-                    chatMessageJson.createdAt,
-                    chatMessageJson.updatedAt,
-                );
-                chatMessages.push(chatMessage);
+                switch(chatMessageJson.kind){
+                    case 'text':
+                        const chatMessage = createTextMessage(
+                            chatMessageJson.messageId,
+                            chatMessageData.text,
+                            chatMessageJson.userId,
+                            userName,
+                            userName.slice(0, 2),
+                            'dummyTalkId',
+                            chatMessageJson.postedAt,
+                            chatMessageJson.createdAt,
+                            chatMessageJson.updatedAt,
+                        );
+                        chatMessages.push(chatMessage);
+                    case 'attachment':
+                        const chatAMessage = createAttachmentMessage(
+                            chatMessageJson.messageId,
+                            chatMessageData.attachmentPath,
+                            chatMessageJson.userId,
+                            userName,
+                            userName.slice(0, 2),
+                            'dummyTalkId',
+                            chatMessageJson.postedAt,
+                            chatMessageJson.createdAt,
+                            chatMessageJson.updatedAt,
+                        );
+                        chatMessages.push(chatAMessage);
+                }
             }
             const res = {
                 chatMessages,

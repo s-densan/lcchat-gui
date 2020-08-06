@@ -36,16 +36,16 @@ const runCommand = (sql: string): any => {
   
   return data;
 };
-export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
-  const sql = `select messages.*, users.user_data from messages
-               left join users
-               on
-                   users.user_id = messages.user_id and
-                   messages.message_id <> ${latestMessageId} and
-                   messages.created_at >= ${latestUpdatedAt}`;
-  const data = runCommand(sql);
-  return data;
-};
+// export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
+//   const sql = `select messages.*, users.user_data from messages
+//                left join users
+//                on
+//                    users.user_id = messages.user_id and
+//                    messages.message_id <> ${latestMessageId} and
+//                    messages.created_at >= ${latestUpdatedAt}`;
+//   const data = runCommand(sql);
+//   return data;
+// };
 export const loadChatMessagesDB2 = () => {
   const sql = `
     SELECT messages.*, users.user_data
@@ -55,11 +55,11 @@ export const loadChatMessagesDB2 = () => {
   const data = runCommand(sql);
   return data;
 };
-export const loadChatMessagesDB = async () => {
-  const sql = ` SELECT * FROM messages `;
-  const data = runCommand(sql);
-  return data;
-};
+// export const loadChatMessagesDB = async () => {
+//   const sql = ` SELECT * FROM messages `;
+//   const data = runCommand(sql);
+//   return data;
+// };
 
 export const insertMessageDB = async (newMessage: IChatMessage) => {
   const sql = `INSERT
@@ -69,6 +69,7 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
                 "${newMessage.id}",
                 "${newMessage.userId}",
                 "$talk_id",
+                "${newMessage.type}",
                 "${JSON.stringify(newMessage.messageData).replace(/"/g, '""')}",
                 "${newMessage.postedAt}",
                 "publish",

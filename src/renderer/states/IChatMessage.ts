@@ -1,19 +1,19 @@
 import { v4 as UUID } from 'uuid';
 
 export interface IAttachmentMessageData {
-    type: 'attachment';
     attachmentPath: string;
 }
 export interface ITextMessageData {
-    type: 'text';
     text: string;
 }
 export type IChatMessage = ITextMessage | IAttachmentMessage;
 export type ITextMessage = IChatMessageBase & {
+    type: 'text';
     /** メッセージデータ */
     messageData: ITextMessageData;
 };
 export type IAttachmentMessage = IChatMessageBase & {
+    type: 'attachment';
     /** メッセージデータ */
     messageData: IAttachmentMessageData;
 };
