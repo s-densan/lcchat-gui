@@ -17,11 +17,11 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
-import { ITextMessage } from '../states/IChatMessage';
+import { IAttachmentMessage } from '../states/IChatMessage';
 // import store from '../Store';
 
 
-export default function ChatMessageBox(props: ITextMessage) {
+export default function ChatMessageBox(props: IAttachmentMessage) {
   const dispatch = useDispatch();
   // 
   const [editingMessage, setEditingMessage] = useState('');
@@ -46,7 +46,7 @@ export default function ChatMessageBox(props: ITextMessage) {
   const onEditChatMessage = (e: React.MouseEvent) => {
     // クリックイベントを親要素の伝播させない
     setAnchorEl(null);
-    setEditingMessage(props.messageData.text);
+    //setEditingMessage(props.messageData.text);
     dispatch(messageActions.startEditMessage({ message: props }));
     e.stopPropagation();
   };
@@ -76,10 +76,7 @@ export default function ChatMessageBox(props: ITextMessage) {
   const open = Boolean(anchorEl);
 
   const editMessage = () => {
-    if (editingMessage !== props.messageData.text) {
-      dispatch(messageActions.updateChatMessage({ chatMessageId: props.messageId, text: editingMessage }));
-    }
-    dispatch(messageActions.endEditMessage());
+    // 検討中
   }
   const onChangeChatMessageEditBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditingMessage(e.target.value);
@@ -136,7 +133,7 @@ export default function ChatMessageBox(props: ITextMessage) {
       // 編集モードでない場合
       return <ListItemText key="text2">
         <div>
-          {toMultiline(props.messageData.text)}
+          <img src={props.messageData.attachmentPath}></img>
         </div>
       </ListItemText>;
     }
@@ -226,3 +223,4 @@ export default function ChatMessageBox(props: ITextMessage) {
 
   );
 }
+

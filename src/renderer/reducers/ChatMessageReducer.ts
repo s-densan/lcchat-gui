@@ -2,7 +2,7 @@
 import Redux from 'redux';
 
 import * as ChatMessageAction from '../actions/ChatMessageActions';
-import { createChatMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessage';
+import { IChatMessage, createTextMessage, IChatMessageList, initChatMessageList } from '../states/IChatMessage';
 import createA2RMapper from '../utils/ActionToReducerMapper';
 import { insertMessageDB } from '../utils/ChatDatabaseIF';
 import { remote } from 'electron';
@@ -27,20 +27,23 @@ a2RMapper.addWork<ChatMessageAction.IUpdateChatMessageAction>(
         const newChatMessages = chatMessages.map((it) => {
             if (it.messageId === action.chatMessageId) {
                 // テキストのみ更新
-                return {
-                    createdAt : it.createdAt,
-                    deletedAt : it.deletedAt,
-                    id : it.id,
-                    messageData : it.messageData,
-                    messageId : it.messageId,
-                    postedAt : it.postedAt,
-                    talkId : it.talkId,
-                    text : action.text,
-                    updatedAt : it.updatedAt,
-                    userId : it.userId,
-                    userName : it.userName,
-                    userAvaterText : it.userAvaterText,
+                const res : IChatMessage = {
+                    createdAt: it.createdAt,
+                    id: it.id,
+                    type: "text",
+                    messageData:
+                    {
+                        text: action.text,
+                    },
+                    messageId: it.messageId,
+                    postedAt: it.postedAt,
+                    talkId: it.talkId,
+                    updatedAt: it.updatedAt,
+                    userId: it.userId,
+                    userName: it.userName,
+                    userAvaterText: it.userAvaterText,
                 };
+                return res;
             } else {
                 return it;
             }
@@ -76,7 +79,7 @@ const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMes
             if (action.text === '') {
                 return state;
             } else {
-                const newMessage = createChatMessage(
+                const newMessage = createTextMessage(
                         action.chatMessageId,
                         action.text,
                         action.userId,
@@ -84,8 +87,6 @@ const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMes
                         action.userAvaterText,
                         action.talkId,
                         action.postedAt,
-                        action.messageData,
-                        null,
                         null,
                         null,
                 );

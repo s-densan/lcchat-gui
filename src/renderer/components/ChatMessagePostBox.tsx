@@ -30,6 +30,23 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
         if (/(jpe?g|gif|png|webp)/.test(ext)) {
           fs.copyFileSync(srcFilePath, dstFilePath);
           setAttachmentFilePath(dstFilePath);
+          // 投稿日時
+          const nowDate = new Date();
+          // メッセージIDと
+          const messageId = UUID();
+          const newMessage = {
+              chatMessageId: messageId,
+              attachmentPath: dstFilePath,
+              userId: user.user === undefined ? '' : user.user.userId,
+              userName: user.user === undefined ? '' : user.user.userData.userName,
+              userAvaterText: user.user === undefined ? '' : user.user.userData.userName.slice(0, 2),
+              talkId: 'talkId',
+              postedAt: nowDate,
+              bottomRef: props.bottomRef,
+            };
+          messageActions.postAttachmentMessage(newMessage);
+
+          alert(JSON.stringify(newMessage));
         } else {
           // do nothing
         }
@@ -73,7 +90,7 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
     // メッセージIDと
     const messageId = UUID();
     // 投稿アクション生成
-    const action = messageActions.postChatMessage(
+    const action = messageActions.postTextMessage(
       {
         chatMessageId: messageId,
         text: postMessageText,

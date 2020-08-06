@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import clone from 'clone';
-import { createChatMessage, IChatMessage, IChatMessageList, IMessageData} from '../states/IChatMessage';
+import { createTextMessage, IChatMessage, IChatMessageList, ITextMessageData, createAttachmentMessage} from '../states/IChatMessage';
 import { insertMessageDB } from '../utils/ChatDatabaseIF';
 import { deleteMessageDB, loadChatMessagesDB2, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 import { remote } from 'electron';
@@ -45,7 +45,7 @@ const slice = createSlice({
                 //alert(JSON.stringify(chatMessageJson.messageData))
                 // console.log(chatMessageData)
                 //alert(chatMessageData.text)
-                const chatMessage = createChatMessage(
+                const chatMessage = createTextMessage(
                     chatMessageJson.messageId,
                     chatMessageData.text,
                     chatMessageJson.userId,
@@ -53,10 +53,8 @@ const slice = createSlice({
                     userName.slice(0, 2),
                     'dummyTalkId',
                     chatMessageJson.postedAt,
-                    chatMessageJson.messageData,
                     chatMessageJson.createdAt,
                     chatMessageJson.updatedAt,
-                    null,
                 );
                 chatMessages.push(chatMessage);
             }
@@ -80,11 +78,11 @@ const slice = createSlice({
             }
             return res;
         },
-        postChatMessage: (state, action) => {
+        postTextMessage: (state, action) => {
             if (action.payload.text === '') {
                 return state;
             } else {
-                const newMessage = createChatMessage(
+                const newMessage = createTextMessage(
                     action.payload.chatMessageId,
                     action.payload.text,
                     action.payload.userId,
@@ -92,8 +90,33 @@ const slice = createSlice({
                     action.payload.userAvaterText,
                     action.payload.talkId,
                     action.payload.postedAt,
-                    action.payload.messageData,
                     null,
+                    null,
+                );
+                const messageList = state.chatMessages.concat(newMessage);
+                insertMessageDB(newMessage);
+                action.payload.bottomRef!.current!.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end',
+                });
+                return {
+                    chatMessages: messageList,
+                    editingMessage: state.editingMessage,
+                };
+            }
+        },
+        postAttachmentMessage: (state, action) => {
+            if (action.payload.attachmentPath === '') {
+                return state;
+            } else {
+                const newMessage = createAttachmentMessage(
+                    action.payload.chatMessageId,
+                    action.payload.attachmentPath,
+                    action.payload.userId,
+                    action.payload.userName,
+                    action.payload.userAvaterText,
+                    action.payload.talkId,
+                    action.payload.postedAt,
                     null,
                     null,
                 );
@@ -119,25 +142,25 @@ const slice = createSlice({
             const { chatMessages: chatMessages }: IChatMessageList = state;
             const newChatMessages: IChatMessage[] = chatMessages.map((it) => {
                 if (it.messageId === action.payload.chatMessageId) {
-                    const messageData: IMessageData = {
+                    const messageData: ITextMessageData = {
                         text: action.payload.text,
                     };
                     // テキストのみ更新
                     updateMessageTextDB(action.payload.chatMessageId, messageData);
-                    return {
+                    const res : IChatMessage = {
                         createdAt: it.createdAt,
-                        deletedAt: it.deletedAt,
                         id: it.id,
+                        type: "text",
                         messageData: messageData,
                         messageId: it.messageId,
                         postedAt: it.postedAt,
                         talkId: it.talkId,
-                        text: action.payload.text,
                         updatedAt: it.updatedAt,
                         userId: it.userId,
                         userName: it.userName,
                         userAvaterText: it.userAvaterText,
                     };
+                    return res;
                 } else {
                     return it;
                 }
