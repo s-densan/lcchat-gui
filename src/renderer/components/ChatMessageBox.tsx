@@ -93,9 +93,13 @@ export default function ChatMessageBox(props: ITextMessage) {
     dispatch(messageActions.endEditMessage());
   };
   const toMultiline = (text: string) => {
-    return text.split('\n').map((line, idx, arr) => {
-      return <div>{line}</div>;
-    });
+    if (text) {
+      return text.split('\n').map((line, idx, arr) => {
+        return <div>{line}</div>;
+      });
+    } else {
+      return '';
+    }
   };
   // メッセージ編集ボックスでキー押下時のイベント
   const onKeyPressChatMessageEditBox = (e: React.KeyboardEvent) => {

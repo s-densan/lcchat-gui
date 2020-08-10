@@ -21,7 +21,7 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
   const [attachmentFilePath, setAttachmentFilePath] = useState('');
   const user = useSelector((state: RootState) => state.user);
   useEffect(() => {
-    if(acceptedFiles.length == 1){
+    if (acceptedFiles.length === 1) {
       // ファイルパスが存在する場合
       if (fs.existsSync(acceptedFiles[0].path)) {
         const srcFilePath = acceptedFiles[0].path;
@@ -44,9 +44,9 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
               postedAt: nowDate,
               bottomRef: props.bottomRef,
             };
-          messageActions.postAttachmentMessage(newMessage);
+          const action = messageActions.postAttachmentMessage(newMessage);
+          dispatch(action);
 
-          alert(JSON.stringify(newMessage));
         } else {
           // do nothing
         }

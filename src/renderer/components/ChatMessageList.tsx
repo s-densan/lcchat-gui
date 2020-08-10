@@ -8,10 +8,10 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { messageActions } from '../slices/MessageSlice';
-import { IChatMessage, IChatMessageList, ITextMessage, IAttachmentMessage } from '../states/IChatMessage';
-import ChatMessageBox from './ChatMessageBox';
 import { windowActions } from '../slices/WindowSlice';
+import { IAttachmentMessage, IChatMessage, IChatMessageList, ITextMessage } from '../states/IChatMessage';
 import AttachmentMessageBox from './AttachmentMessageBox';
+import ChatMessageBox from './ChatMessageBox';
 
 export default function ChatMessageList(props: IChatMessageList & { bottomRef: React.RefObject<HTMLDivElement> }) {
   const dispatch = useDispatch();
@@ -40,16 +40,16 @@ export default function ChatMessageList(props: IChatMessageList & { bottomRef: R
 
   const { chatMessages: chatMessages } = props;
   const mapFunc = (it: IChatMessage) => {
-    if (it.type == "text") {
+    if (it.type === 'text') {
       return (
         <ListItem alignItems="center" >
           <ChatMessageBox key={it.id} {...it} />
         </ListItem>
       );
-    } else if (it.type == "attachment") {
+    } else if (it.type === 'attachment') {
       return (
         <ListItem alignItems="center" >
-          <AttachmentMessageBox key={it.id} {...it} />
+          <div>attach</div><AttachmentMessageBox key={it.id} {...it} />
         </ListItem>
       );
     }

@@ -8,12 +8,12 @@ export interface ITextMessageData {
 }
 export type IChatMessage = ITextMessage | IAttachmentMessage;
 export type ITextMessage = IChatMessageBase & {
-    type: "text";
+    type: 'text';
     /** メッセージデータ */
     messageData: ITextMessageData;
 };
 export type IAttachmentMessage = IChatMessageBase & {
-    type: "attachment";
+    type: 'attachment';
     /** メッセージデータ */
     messageData: IAttachmentMessageData;
 };
@@ -80,7 +80,7 @@ export const createTextMessage = (
     return {
         createdAt,
         id,
-        type: "text",
+        type: 'text',
         messageData: {
             text: text,
         },
@@ -114,12 +114,12 @@ export const createAttachmentMessage = (
     postedAt: Date,
     createdAt: Date | null,
     updatedAt: Date | null,
-): IChatMessage => {
+): IAttachmentMessage => {
     const id = UUID();
     return {
         createdAt,
         id,
-        type: "attachment",
+        type: 'attachment',
         messageData: {
             attachmentPath: attachmentPath,
         },
