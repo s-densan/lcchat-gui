@@ -18,6 +18,7 @@ import { useSelector } from 'react-redux';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { IAttachmentMessage } from '../states/IChatMessage';
+import { v4 as UUID } from 'uuid';
 // import store from '../Store';
 
 
@@ -101,10 +102,9 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   const messageArea = () => {
     if (messageState.editingMessage !== undefined && messageState.editingMessage.messageId === props.messageId) {
       // 編集モードの場合
-      return <ListItemText key="message">
+      return <ListItemText>
         <div>
           <TextField
-            key="text"
             helperText=""
             name="text"
             multiline
@@ -131,7 +131,7 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
       </ListItemText>;
     } else {
       // 編集モードでない場合
-      return <ListItemText key="text2">
+      return <ListItemText>
         <div>
           <img src={props.messageData.attachmentPath}></img>
         </div>
@@ -141,7 +141,6 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   const menuButton = () => {
     if (messageState.editingMessage === undefined) {
       return <ListItemSecondaryAction
-        key="notedit"
         style={{ alignContent: 'flex-end' }}>
         <IconButton
           aria-label="more"

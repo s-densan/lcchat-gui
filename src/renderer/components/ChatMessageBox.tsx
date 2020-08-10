@@ -18,10 +18,12 @@ import { useSelector } from 'react-redux';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { ITextMessage } from '../states/IChatMessage';
+import { v4 as UUID } from 'uuid';
 // import store from '../Store';
 
 
 export default function ChatMessageBox(props: ITextMessage) {
+  const key = UUID();
   const dispatch = useDispatch();
   // 
   const [editingMessage, setEditingMessage] = useState('');
@@ -63,12 +65,12 @@ export default function ChatMessageBox(props: ITextMessage) {
     {
       caption: '編集',
       func: onEditChatMessage,
-      key: 'edit',
+      key: key + '_edit',
     },
     {
       caption: '削除',
       func: onClickDelete,
-      key: 'delete',
+      key: key + '_delete',
     },
   ];
   const ITEM_HEIGHT = 20;
@@ -104,10 +106,9 @@ export default function ChatMessageBox(props: ITextMessage) {
   const messageArea = () => {
     if (messageState.editingMessage !== undefined && messageState.editingMessage.messageId === props.messageId) {
       // 編集モードの場合
-      return <ListItemText key="message">
+      return <ListItemText key={key}>
         <div>
           <TextField
-            key="text"
             helperText=""
             name="text"
             multiline
@@ -134,7 +135,7 @@ export default function ChatMessageBox(props: ITextMessage) {
       </ListItemText>;
     } else {
       // 編集モードでない場合
-      return <ListItemText key="text2">
+      return <ListItemText key={key}>
         <div>
           {toMultiline(props.messageData.text)}
         </div>
@@ -144,7 +145,7 @@ export default function ChatMessageBox(props: ITextMessage) {
   const menuButton = () => {
     if (messageState.editingMessage === undefined) {
       return <ListItemSecondaryAction
-        key="notedit"
+        key={key + "_menuButton"}
         style={{ alignContent: 'flex-end' }}>
         <IconButton
           aria-label="more"
@@ -164,8 +165,8 @@ export default function ChatMessageBox(props: ITextMessage) {
     <div style={{ width: '100%' }}>
       <Box boxShadow={1} px={1} style={{ width: '100%' }}>
         <List>
-          <ListItem alignItems="flex-start" key="toriaezu">
-            <ListItemAvatar key="avater">
+          <ListItem alignItems="flex-start" key={key + "_tekitou"}>
+            <ListItemAvatar key={key + "_avatar1"}>
               <Avatar
                 alt="Remy Sharp"
               // src="xxxx.jpg"
@@ -173,16 +174,17 @@ export default function ChatMessageBox(props: ITextMessage) {
                 {props.userAvaterText}
               </Avatar>
             </ListItemAvatar>
-            <div style={{ width: '100%' }}>
-              <span style={{ color: userNameColor }}>
-                {props.userName === undefined ? 'unknown' : props.userName}
-              </span>
-              <span>   </span>
-              <span style={{ color: '#77F' }}>
-                {postedAt}
-              </span>
-              {messageArea()}
-            </div>
+            <ListItemText key={key + "_itemtext"}>
+              <div style={{ width: '100%' }}>
+                <span style={{ color: userNameColor }}>
+                  {props.userName === undefined ? 'unknown' : props.userName}
+                </span>
+                <span>   </span>
+                <span style={{ color: '#77F' }}>
+                  {postedAt}
+                </span>            </div>
+            </ListItemText>
+            {messageArea()}
             {menuButton()}
           </ListItem>
         </List>
@@ -203,7 +205,6 @@ export default function ChatMessageBox(props: ITextMessage) {
         {options.map((option) => {
           if (props.userId === userState.user!.userId && messageState.editingMessage === undefined) {
             return <MenuItem
-              key={option.key}
               selected={option.key === 'Pyxis'}
               onClick={option.func}
             >
@@ -212,7 +213,6 @@ export default function ChatMessageBox(props: ITextMessage) {
             </MenuItem>;
           } else {
             return <MenuItem
-              key={option.key}
               style={{ color: '#AAA' }}
             >
               {option.caption}
