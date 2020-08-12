@@ -23,7 +23,6 @@ import { v4 as UUID } from 'uuid';
 
 
 export default function ChatMessageBox(props: ITextMessage) {
-  const key = UUID();
   const dispatch = useDispatch();
   // 
   const [editingMessage, setEditingMessage] = useState('');
@@ -65,12 +64,12 @@ export default function ChatMessageBox(props: ITextMessage) {
     {
       caption: '編集',
       func: onEditChatMessage,
-      key: key + '_edit',
+      key: 'edit',
     },
     {
       caption: '削除',
       func: onClickDelete,
-      key: key + '_delete',
+      key: 'delete',
     },
   ];
   const ITEM_HEIGHT = 20;
@@ -95,7 +94,7 @@ export default function ChatMessageBox(props: ITextMessage) {
   const toMultiline = (text: string) => {
     if (text) {
       return text.split('\n').map((line, idx, arr) => {
-        return <div>{line}</div>;
+        return <div key={idx}>{line}</div>;
       });
     } else {
       return '';
@@ -110,7 +109,7 @@ export default function ChatMessageBox(props: ITextMessage) {
   const messageArea = () => {
     if (messageState.editingMessage !== undefined && messageState.editingMessage.messageId === props.messageId) {
       // 編集モードの場合
-      return <ListItemText key={key}>
+      return <ListItemText>
         <div>
           <TextField
             helperText=""
@@ -139,7 +138,7 @@ export default function ChatMessageBox(props: ITextMessage) {
       </ListItemText>;
     } else {
       // 編集モードでない場合
-      return <ListItemText key={key}>
+      return <ListItemText>
         <div>
           {toMultiline(props.messageData.text)}
         </div>
@@ -149,7 +148,6 @@ export default function ChatMessageBox(props: ITextMessage) {
   const menuButton = () => {
     if (messageState.editingMessage === undefined) {
       return <ListItemSecondaryAction
-        key={key + "_menuButton"}
         style={{ alignContent: 'flex-end' }}>
         <IconButton
           aria-label="more"
@@ -169,8 +167,8 @@ export default function ChatMessageBox(props: ITextMessage) {
     <div style={{ width: '100%' }}>
       <Box boxShadow={1} px={1} style={{ width: '100%' }}>
         <List>
-          <ListItem alignItems="flex-start" key={key + "_tekitou"}>
-            <ListItemAvatar key={key + "_avatar1"}>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar>
               <Avatar
                 alt="Remy Sharp"
               // src="xxxx.jpg"
@@ -178,7 +176,7 @@ export default function ChatMessageBox(props: ITextMessage) {
                 {props.userAvaterText}
               </Avatar>
             </ListItemAvatar>
-            <ListItemText key={key + "_itemtext"}>
+            <ListItemText>
               <div style={{ width: '100%' }}>
                 <span style={{ color: userNameColor }}>
                   {props.userName === undefined ? 'unknown' : props.userName}
@@ -211,6 +209,7 @@ export default function ChatMessageBox(props: ITextMessage) {
             return <MenuItem
               selected={option.key === 'Pyxis'}
               onClick={option.func}
+              key={option.key}
             >
               {option.caption}
 
@@ -218,6 +217,7 @@ export default function ChatMessageBox(props: ITextMessage) {
           } else {
             return <MenuItem
               style={{ color: '#AAA' }}
+              key={option.key}
             >
               {option.caption}
 

@@ -12,6 +12,7 @@ import { windowActions } from '../slices/WindowSlice';
 import { IAttachmentMessage, IChatMessage, IChatMessageList, ITextMessage } from '../states/IChatMessage';
 import AttachmentMessageBox from './AttachmentMessageBox';
 import ChatMessageBox from './ChatMessageBox';
+import { v4 as UUID } from 'uuid';
 
 export default function ChatMessageList(props: IChatMessageList & { bottomRef: React.RefObject<HTMLDivElement> }) {
   const dispatch = useDispatch();
@@ -42,14 +43,14 @@ export default function ChatMessageList(props: IChatMessageList & { bottomRef: R
   const mapFunc = (it: IChatMessage) => {
     if (it.type === 'text') {
       return (
-        <ListItem alignItems="center" >
-          <ChatMessageBox key={it.id} {...it} />
+        <ListItem alignItems="center" key={it.id} >
+          <ChatMessageBox {...it} />
         </ListItem>
       );
     } else if (it.type === 'attachment') {
       return (
-        <ListItem alignItems="center" >
-          <div>attach</div><AttachmentMessageBox key={it.id} {...it} />
+        <ListItem alignItems="center" key={it.id}>
+          <AttachmentMessageBox {...it} />
         </ListItem>
       );
     }

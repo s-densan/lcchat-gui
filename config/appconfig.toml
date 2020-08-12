@@ -1,6 +1,6 @@
 dbAccessSynchronous  = false
 # dbFilePath = '${appPath}/chatroom.db'
-dbFilePath = '${appPath}/../lcchat/chatroom.db'
+dbFilePath = '${appPath}/../lcchat/db/chatroom.db'
 # lcchatCuiCommand = '"${appPath}/Sqltest.exe"'
 lcchatCuiCommand = '"${appPath}/../lcchat/lcchat.exe"'
 

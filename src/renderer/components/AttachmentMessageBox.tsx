@@ -21,10 +21,8 @@ import { IAttachmentMessage } from '../states/IChatMessage';
 import { v4 as UUID } from 'uuid';
 // import store from '../Store';
 
-
 export default function ChatMessageBox(props: IAttachmentMessage) {
   const dispatch = useDispatch();
-  // 
   const [editingMessage, setEditingMessage] = useState('');
   // 編集モード
   // const [editMode, setEditMode] = useState(false);
@@ -47,7 +45,7 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   const onEditChatMessage = (e: React.MouseEvent) => {
     // クリックイベントを親要素の伝播させない
     setAnchorEl(null);
-    //setEditingMessage(props.messageData.text);
+    // setEditingMessage(props.messageData.text);
     dispatch(messageActions.startEditMessage({ message: props }));
     e.stopPropagation();
   };
@@ -87,11 +85,6 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   };
   const onClickCanselEditMessageButton = (e: React.MouseEvent) => {
     dispatch(messageActions.endEditMessage());
-  };
-  const toMultiline = (text: string) => {
-    return text.split('\n').map((line, idx, arr) => {
-      return <div>{line}</div>;
-    });
   };
   // メッセージ編集ボックスでキー押下時のイベント
   const onKeyPressChatMessageEditBox = (e: React.KeyboardEvent) => {
@@ -133,7 +126,7 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
       // 編集モードでない場合
       return <ListItemText>
         <div>
-          <img src={props.messageData.attachmentPath}></img>
+          <img src={props.messageData.attachmentPath} width={200}></img>
         </div>
       </ListItemText>;
     }

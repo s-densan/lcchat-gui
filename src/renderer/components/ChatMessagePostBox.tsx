@@ -1,16 +1,17 @@
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import CardMedia from '@material-ui/core/CardMedia';
-import React, { useState, useEffect } from 'react';
+import TextField from '@material-ui/core/TextField';
+import { remote } from 'electron';
+import fs from 'fs';
+import path from 'path';
+import React, { useEffect, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as UUID } from 'uuid';
+import { IAppConfig } from '../../common/AppConfig';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { windowActions } from '../slices/WindowSlice';
-import fs from 'fs';
-import path from 'path';
-import { useDropzone } from 'react-dropzone';
-import { remote } from 'electron';
 
 export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<HTMLDivElement> }) {
   // ドラッグアンドドロップ
@@ -25,7 +26,15 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
       // ファイルパスが存在する場合
       if (fs.existsSync(acceptedFiles[0].path)) {
         const srcFilePath = acceptedFiles[0].path;
-        const dstFilePath = path.join(remote.app.getAppPath(), path.basename(srcFilePath));
+        const appConfig: IAppConfig = remote.getGlobal('appConfig');
+        const appPath = remote.app.getAppPath();
+        const dbFilePath = path.resolve(appConfig.dbFilePath.replace('${appPath}', appPath));
+        const dstDirPath = path.join(path.dirname(dbFilePath) , 'attachments');
+        const dstFilePath = path.join(dstDirPath, path.basename(srcFilePath));
+        if (!fs.existsSync(dstDirPath)) {
+          // 添付フォルダが存在しない場合、作成する。
+          fs.mkdirSync(dstDirPath);
+        }
         const ext = path.extname(srcFilePath).toLowerCase();
         if (/(jpe?g|gif|png|webp)/.test(ext)) {
           fs.copyFileSync(srcFilePath, dstFilePath);
