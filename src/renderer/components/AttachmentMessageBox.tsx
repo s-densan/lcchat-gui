@@ -8,7 +8,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Moment from 'moment';
 import React from 'react';
@@ -18,12 +17,13 @@ import { useSelector } from 'react-redux';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { IAttachmentMessage } from '../states/IChatMessage';
-import { v4 as UUID } from 'uuid';
+import { remote } from 'electron';
+import path from 'path';
 // import store from '../Store';
 
 export default function ChatMessageBox(props: IAttachmentMessage) {
   const dispatch = useDispatch();
-  const [editingMessage, setEditingMessage] = useState('');
+  const [, setEditingMessage] = useState('');
   // 編集モード
   // const [editMode, setEditMode] = useState(false);
   // 投稿日時
@@ -77,35 +77,19 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   const editMessage = () => {
     // 検討中
   }
-  const onChangeChatMessageEditBox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditingMessage(e.target.value);
-  };
-  const onClickOkEditMessageButton = (e: React.MouseEvent) => {
+  const onClickOkEditMessageButton = () => {
     editMessage();
   };
-  const onClickCanselEditMessageButton = (e: React.MouseEvent) => {
+  const onClickCanselEditMessageButton = () => {
     dispatch(messageActions.endEditMessage());
   };
   // メッセージ編集ボックスでキー押下時のイベント
-  const onKeyPressChatMessageEditBox = (e: React.KeyboardEvent) => {
-    if (e.which === 13 /* Enter */) {
-      editMessage();
-    }
-  };
   const messageArea = () => {
     if (messageState.editingMessage !== undefined && messageState.editingMessage.messageId === props.messageId) {
       // 編集モードの場合
       return <ListItemText>
         <div>
-          <TextField
-            helperText=""
-            name="text"
-            multiline
-            type="text"
-            value={editingMessage}
-            onKeyPress={onKeyPressChatMessageEditBox}
-            onChange={onChangeChatMessageEditBox}
-            style={{ width: '100%' }} />
+          未実装
         </div>
         <div>
           <Button
@@ -124,9 +108,10 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
       </ListItemText>;
     } else {
       // 編集モードでない場合
+      const filePath = path.resolve(path.join(remote.getGlobal('appConfig').dbFilePath, props.attachmentData.createUserId));
       return <ListItemText>
         <div>
-          <img src={props.messageData.attachmentPath} width={200}></img>
+          <img src={filePath} width={200}></img>
         </div>
       </ListItemText>;
     }

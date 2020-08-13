@@ -2,16 +2,16 @@ import Button from '@material-ui/core/Button';
 import CardMedia from '@material-ui/core/CardMedia';
 import TextField from '@material-ui/core/TextField';
 import { remote } from 'electron';
-import fs from 'fs';
-import path from 'path';
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as UUID } from 'uuid';
-import { IAppConfig } from '../../common/AppConfig';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { windowActions } from '../slices/WindowSlice';
+import { createAttachment } from '../states/IAttachment';
+import fs from 'fs';
+import path from 'path';
 
 export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<HTMLDivElement> }) {
   // ドラッグアンドドロップ
@@ -19,33 +19,21 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
   const dispatch = useDispatch();
   // const classes = useStyles();
   const [postMessageText, setPostMessageText] = useState('');
-  const [attachmentFilePath, setAttachmentFilePath] = useState('');
   const user = useSelector((state: RootState) => state.user);
   useEffect(() => {
     if (acceptedFiles.length === 1) {
       // ファイルパスが存在する場合
       if (fs.existsSync(acceptedFiles[0].path)) {
         const srcFilePath = acceptedFiles[0].path;
-        const appConfig: IAppConfig = remote.getGlobal('appConfig');
-        const appPath = remote.app.getAppPath();
-        const dbFilePath = path.resolve(appConfig.dbFilePath.replace('${appPath}', appPath));
-        const dstDirPath = path.join(path.dirname(dbFilePath) , 'attachments');
-        const dstFilePath = path.join(dstDirPath, path.basename(srcFilePath));
-        if (!fs.existsSync(dstDirPath)) {
-          // 添付フォルダが存在しない場合、作成する。
-          fs.mkdirSync(dstDirPath);
-        }
         const ext = path.extname(srcFilePath).toLowerCase();
         if (/(jpe?g|gif|png|webp)/.test(ext)) {
-          fs.copyFileSync(srcFilePath, dstFilePath);
-          setAttachmentFilePath(dstFilePath);
           // 投稿日時
           const nowDate = new Date();
           // メッセージIDと
           const messageId = UUID();
           const newMessage = {
+              sourceFilePath: srcFilePath,
               chatMessageId: messageId,
-              attachmentPath: dstFilePath,
               userId: user.user === undefined ? '' : user.user.userId,
               userName: user.user === undefined ? '' : user.user.userData.userName,
               userAvaterText: user.user === undefined ? '' : user.user.userData.userName.slice(0, 2),
@@ -53,6 +41,7 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
               postedAt: nowDate,
               bottomRef: props.bottomRef,
             };
+          
           const action = messageActions.postAttachmentMessage(newMessage);
           dispatch(action);
 
@@ -79,19 +68,21 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
     postMessage();
   };
 
+  /*
   const attachmentFile = () => {
     // ファイルパスが存在する場合
     if (fs.existsSync(attachmentFilePath)) {
       const filePath = attachmentFilePath;
       const ext = path.extname(filePath).toLowerCase();
       if (/(jpe?g|gif|png|webp)/.test(ext)) {
-        return <div><CardMedia image={"file://" + filePath} title=""></CardMedia>
-        <img src={"file://" + filePath} title="" width="32" height="32"></img></div>;
+        return <div><CardMedia image={'file://' + filePath} title=""></CardMedia>
+          <img src={'file://' + filePath} title="" width="32" height="32"></img></div>;
       } else {
         return <div>{ext}</div>;
       }
     }
   };
+  */
 
   const postMessage = () => {
     // 投稿日時
@@ -142,10 +133,10 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
         value={postMessageText}
         onChange={onChangeChatMessagePostBox}
         onKeyPress={onKeyPressMessagePostBox}
-        style={{ width: '30%' }}
-      />{attachmentFile()}
+        style={{ width: '80%' }}
+      />
       {postButton}
-      {attachmentFilePath}
+      {/*attachmentFilePath*/}
     </div>
   );
 }

@@ -1,18 +1,15 @@
 // import Moment from 'moment';
 import {
-  Grid,
   List,
   ListItem,
-  Paper,
 } from '@material-ui/core';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { messageActions } from '../slices/MessageSlice';
 import { windowActions } from '../slices/WindowSlice';
-import { IAttachmentMessage, IChatMessage, IChatMessageList, ITextMessage } from '../states/IChatMessage';
+import { IChatMessage, IChatMessageList } from '../states/IChatMessage';
 import AttachmentMessageBox from './AttachmentMessageBox';
-import ChatMessageBox from './ChatMessageBox';
-import { v4 as UUID } from 'uuid';
+import TextMessageBox from './TextMessageBox';
 
 export default function ChatMessageList(props: IChatMessageList & { bottomRef: React.RefObject<HTMLDivElement> }) {
   const dispatch = useDispatch();
@@ -44,7 +41,7 @@ export default function ChatMessageList(props: IChatMessageList & { bottomRef: R
     if (it.type === 'text') {
       return (
         <ListItem alignItems="center" key={it.id} >
-          <ChatMessageBox {...it} />
+          <TextMessageBox {...it} />
         </ListItem>
       );
     } else if (it.type === 'attachment') {
@@ -53,6 +50,8 @@ export default function ChatMessageList(props: IChatMessageList & { bottomRef: R
           <AttachmentMessageBox {...it} />
         </ListItem>
       );
+    } else {
+      return (<div></div>);
     }
   };
   // const chatMessageListElems = tasks.sort(compFunc).reverse().map(mapFunc);

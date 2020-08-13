@@ -22,7 +22,7 @@ import { v4 as UUID } from 'uuid';
 // import store from '../Store';
 
 
-export default function ChatMessageBox(props: ITextMessage) {
+export default function TextMessageBox(props: ITextMessage) {
   const dispatch = useDispatch();
   // 
   const [editingMessage, setEditingMessage] = useState('');

@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import clone from 'clone';
-import { createTextMessage, IChatMessage, IChatMessageList, ITextMessageData, createAttachmentMessage} from '../states/IChatMessage';
-import { insertMessageDB } from '../utils/ChatDatabaseIF';
-import { deleteMessageDB, loadChatMessagesDB2, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 import { remote } from 'electron';
+import fs from 'fs';
+import { TimePicker } from 'material-ui';
+import path from 'path';
+import uuid from 'uuid';
+import { IAppConfig } from '../../common/AppConfig';
+import { createAttachment, IAttachment } from '../states/IAttachment';
+import { createAttachmentMessage, createTextMessage, IChatMessage, IChatMessageList, ITextMessageData} from '../states/IChatMessage';
+import { insertAttachmentDB, insertMessageDB } from '../utils/ChatDatabaseIF';
+import { deleteMessageDB, loadChatMessagesDB, updateMessageTextDB} from '../utils/ChatDatabaseIF';
 
 // Stateの初期状態
 const initialState: IChatMessageList & {editingMessage: IChatMessage | undefined} = {
@@ -30,10 +36,9 @@ const slice = createSlice({
         loadChatMessages: (state) => {
             // DB読み込み後に実行する
             const chatMessages: IChatMessage[] = [];
-            const chatMessagesJson: any = loadChatMessagesDB2();
-            
+            const chatMessagesJson: any = loadChatMessagesDB();
             for (const chatMessageJson of chatMessagesJson) {
-                var userName: string;
+                let userName: string;
                 const chatMessageData = JSON.parse(chatMessageJson.messageData);
                 const userData = JSON.parse(chatMessageJson.userData);
                 if (chatMessageJson.userData) {
@@ -41,13 +46,13 @@ const slice = createSlice({
                 } else {
                     userName = 'unknown';
                 }
-                //alert(JSON.stringify(chatMessageJson))
-                //alert(JSON.stringify(chatMessageJson.messageData))
+                // alert(JSON.stringify(chatMessageJson))
+                // alert(JSON.stringify(chatMessageJson.messageData))
                 // console.log(chatMessageData)
-                //alert(chatMessageData.text)
-                switch(chatMessageJson.kind){
+                // alert(chatMessageData.text)
+                switch (chatMessageJson.type) {
                     case 'text':
-                        const chatMessage = createTextMessage(
+                        const textMessage = createTextMessage(
                             chatMessageJson.messageId,
                             chatMessageData.text,
                             chatMessageJson.userId,
@@ -58,20 +63,40 @@ const slice = createSlice({
                             chatMessageJson.createdAt,
                             chatMessageJson.updatedAt,
                         );
-                        chatMessages.push(chatMessage);
+                        chatMessages.push(textMessage);
+                        break;
                     case 'attachment':
-                        const chatAMessage = createAttachmentMessage(
+                        // デフォルト添付
+                        let attachmentData = {
+                            // ファイルタイプ
+                            fileType: 'none',
+                            // 添付者ID
+                            createUserId: '',
+                            // 添付者名
+                            createUserName: '',
+                            // 添付コンピュータ名
+                            sourceComputerName: '',
+                            // 元ファイルパス
+                            sourceFilePath: '',
+                        };
+                        if (chatMessageJson.attachmentData.trim() !== '') {
+                            attachmentData = JSON.parse(chatMessageJson.attachmentData);
+                        }
+                        const attachmentMessage = createAttachmentMessage(
                             chatMessageJson.messageId,
-                            chatMessageData.attachmentPath,
                             chatMessageJson.userId,
                             userName,
                             userName.slice(0, 2),
                             'dummyTalkId',
                             chatMessageJson.postedAt,
+                            attachmentData,
                             chatMessageJson.createdAt,
                             chatMessageJson.updatedAt,
                         );
-                        chatMessages.push(chatAMessage);
+                        chatMessages.push(attachmentMessage);
+                        break;
+                    default:
+                        throw new Error(`Unknown message type: ${chatMessageJson.type}`);
                 }
             }
             const res = {
@@ -98,6 +123,7 @@ const slice = createSlice({
             if (action.payload.text === '') {
                 return state;
             } else {
+                const nowDatetime = new Date();
                 const newMessage = createTextMessage(
                     action.payload.chatMessageId,
                     action.payload.text,
@@ -106,8 +132,8 @@ const slice = createSlice({
                     action.payload.userAvaterText,
                     action.payload.talkId,
                     action.payload.postedAt,
-                    null,
-                    null,
+                    nowDatetime,
+                    nowDatetime,
                 );
                 const messageList = state.chatMessages.concat(newMessage);
                 insertMessageDB(newMessage);
@@ -125,19 +151,45 @@ const slice = createSlice({
             if (action.payload.attachmentPath === '') {
                 return state;
             } else {
+                const nowDatetime = new Date();
+                const newAttachment = createAttachment(
+                    uuid(),
+                    action.payload.chatMessageId,
+                    'image',
+                    action.payload.userId,
+                    action.payload.userName,
+                    'dummy computer name',
+                    action.payload.sourceFilePath,
+                    nowDatetime,
+                    nowDatetime,
+                );
                 const newMessage = createAttachmentMessage(
                     action.payload.chatMessageId,
-                    action.payload.attachmentPath,
                     action.payload.userId,
                     action.payload.userName,
                     action.payload.userAvaterText,
                     action.payload.talkId,
                     action.payload.postedAt,
-                    null,
-                    null,
+                    newAttachment.attachmentData,
+                    nowDatetime,
+                    nowDatetime,
                 );
+                // DBへの書き込み
                 const messageList = state.chatMessages.concat(newMessage);
                 insertMessageDB(newMessage);
+                insertAttachmentDB(newAttachment);
+                // 添付ファイルのコピー
+                const appConfig: IAppConfig = remote.getGlobal('appConfig');
+                const appPath = remote.app.getAppPath();
+                const dbFilePath = path.resolve(appConfig.dbFilePath.replace('${appPath}', appPath));
+                const dstDirPath = path.join(path.dirname(dbFilePath), 'attachments');
+                const dstFilePath = path.join(dstDirPath, newAttachment.id);
+                if (!fs.existsSync(dstDirPath)) {
+                    // 添付フォルダが存在しない場合、作成する。
+                    fs.mkdirSync(dstDirPath);
+                }
+                fs.copyFileSync(action.payload.sourceFilePath, dstFilePath);
+
                 action.payload.bottomRef!.current!.scrollIntoView({
                     behavior: 'smooth',
                     block: 'end',

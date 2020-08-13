@@ -4,6 +4,7 @@ import FsEx from 'fs-extra';
 import Path from 'path';
 import { IUser } from '../slices/UserSlice';
 import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
+import { IAttachment, IAttachmentData } from '../states/IAttachment';
 import { IAppConfig } from '../../common/AppConfig';
 import os from 'os';
 import uuid from 'uuid';
@@ -46,12 +47,14 @@ const runCommand = (sql: string): any => {
 //   const data = runCommand(sql);
 //   return data;
 // };
-export const loadChatMessagesDB2 = () => {
+export const loadChatMessagesDB = () => {
   const sql = `
-    SELECT messages.*, users.user_data
+    SELECT messages.*, users.user_data, attachments.attachment_id, attachments.attachment_data
     FROM messages
     LEFT JOIN users
-    ON users.user_id = messages.user_id`;
+    ON users.user_id = messages.user_id
+    LEFT JOIN attachments
+    ON attachments.message_id = messages.message_id`;
   const data = runCommand(sql);
   return data;
 };
@@ -117,3 +120,24 @@ export const insertUser = (user: IUser) => {
   const data = runCommand(sql);
   return data;
 };
+
+/**
+ * 
+ */
+export const insertAttachmentDB = (newAttachment: IAttachment) => {
+  const sql = `INSERT
+            INTO
+                attachments
+            VALUES(
+                "${newAttachment.id}",
+                "${newAttachment.messageId}",
+                "${JSON.stringify(newAttachment.attachmentData).replace(/"/g, '""')}",
+                "available",
+                "${newAttachment.createdAt}",
+                "${newAttachment.updatedAt}"
+    )`.replace('\n', '');
+  const data = runCommand(sql);
+  return data;
+};
+
+
