@@ -70,6 +70,8 @@ const slice = createSlice({
                         let attachmentData = {
                             // ファイルタイプ
                             fileType: 'none',
+                            // ファイル名
+                            fileName: '',
                             // 添付者ID
                             createUserId: '',
                             // 添付者名
@@ -79,8 +81,10 @@ const slice = createSlice({
                             // 元ファイルパス
                             sourceFilePath: '',
                         };
-                        if (chatMessageJson.attachmentData.trim() !== '') {
+                        if (chatMessageJson.attachmentData !== undefined &&
+                            chatMessageJson.attachmentData.trim() !== '') {
                             attachmentData = JSON.parse(chatMessageJson.attachmentData);
+                            console.log(attachmentData.fileName);
                         }
                         const attachmentMessage = createAttachmentMessage(
                             chatMessageJson.messageId,
@@ -183,7 +187,7 @@ const slice = createSlice({
                 const appPath = remote.app.getAppPath();
                 const dbFilePath = path.resolve(appConfig.dbFilePath.replace('${appPath}', appPath));
                 const dstDirPath = path.join(path.dirname(dbFilePath), 'attachments');
-                const dstFilePath = path.join(dstDirPath, newAttachment.id);
+                const dstFilePath = path.join(dstDirPath, newAttachment.attachmentId);
                 if (!fs.existsSync(dstDirPath)) {
                     // 添付フォルダが存在しない場合、作成する。
                     fs.mkdirSync(dstDirPath);

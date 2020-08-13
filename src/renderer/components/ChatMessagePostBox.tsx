@@ -67,6 +67,9 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
   const onClickPost = () => {
     postMessage();
   };
+  const onClickPaste = () => {
+    
+  };
 
   /*
   const attachmentFile = () => {
@@ -123,6 +126,13 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
       onClick={onClickPost}
       style={{ width: '20%' }}
     >投稿</Button>;
+    <Button
+      variant="contained"
+      color="primary"
+      disabled={false}
+      onClick={onClickPaste}
+      style={{ width: '20%' }}
+    >貼付け</Button>;
 
   return (
     <div {...getRootProps()}>
@@ -133,7 +143,7 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
         value={postMessageText}
         onChange={onChangeChatMessagePostBox}
         onKeyPress={onKeyPressMessagePostBox}
-        style={{ width: '80%' }}
+        style={{ width: '60%' }}
       />
       {postButton}
       {/*attachmentFilePath*/}

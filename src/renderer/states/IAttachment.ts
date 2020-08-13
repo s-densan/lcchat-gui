@@ -3,6 +3,8 @@ import { v4 as UUID } from 'uuid';
 export interface IAttachmentData {
     // ファイルタイプ
     fileType: string;
+    // ファイルタイプ
+    fileName: string;
     // 添付者ID
     createUserId: string;
     // 添付者名
@@ -68,6 +70,8 @@ export const createAttachment = (
         attachmentData: {
             // ファイルタイプ
             fileType,
+            // ファイル名
+            fileName: attachmentId,
             // 添付者ID
             createUserId: userId,
             // 添付者名

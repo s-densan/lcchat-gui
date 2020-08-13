@@ -19,7 +19,7 @@ interface IGlobal {
 
 
 // configファイル読み込み
-initAppConfig(app.getAppPath());
+initAppConfig();
 // rendererプロセスからアクセスできるようにglobalに設定
 global.appConfig = appConfig;
 // globalに値をセットするため型をanyに強制する

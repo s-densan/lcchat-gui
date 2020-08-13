@@ -49,7 +49,7 @@ const slice = createSlice<IUserState, SliceCaseReducers<IUserState>>({
     loadUserFromComputerName: (state: IUserState, action) => {
       // コンピュータ名
       const computerName = action.payload.computerName;
-      const userList = loadUserListDB(action.payload.computerName);
+      const userList = loadUserListDB();
       for (const user of userList) {
         // user_dataはstringのため、JSONパースする
         const userData: IUserData = JSON.parse(user.userData);

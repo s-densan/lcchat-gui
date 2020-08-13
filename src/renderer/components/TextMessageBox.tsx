@@ -176,17 +176,20 @@ export default function TextMessageBox(props: ITextMessage) {
                 {props.userAvaterText}
               </Avatar>
             </ListItemAvatar>
-            <ListItemText>
-              <div style={{ width: '100%' }}>
-                <span style={{ color: userNameColor }}>
-                  {props.userName === undefined ? 'unknown' : props.userName}
-                </span>
-                <span>   </span>
-                <span style={{ color: '#77F' }}>
-                  {postedAt}
-                </span>            </div>
-            </ListItemText>
-            {messageArea()}
+            <div>
+              <ListItemText>
+                <div style={{ width: '100%' }}>
+                  <span style={{ color: userNameColor }}>
+                    {props.userName === undefined ? 'unknown' : props.userName}
+                  </span>
+                  <span>   </span>
+                  <span style={{ color: '#77F' }}>
+                    {postedAt}
+                  </span>
+                </div>
+              </ListItemText>
+              {messageArea()}
+            </div>
             {menuButton()}
           </ListItem>
         </List>

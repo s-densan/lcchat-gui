@@ -1,26 +1,26 @@
-import { remote } from 'electron';
 import child_process from 'child_process';
+import { remote } from 'electron';
 import FsEx from 'fs-extra';
-import Path from 'path';
-import { IUser } from '../slices/UserSlice';
-import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
-import { IAttachment, IAttachmentData } from '../states/IAttachment';
-import { IAppConfig } from '../../common/AppConfig';
 import os from 'os';
+import Path from 'path';
 import uuid from 'uuid';
+import { IAppConfig } from '../../common/AppConfig';
+import { IUser } from '../slices/UserSlice';
+import { IAttachment } from '../states/IAttachment';
+import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
 
 const appPath = remote.app.getAppPath();
 const appConfig: IAppConfig = remote.getGlobal('appConfig');
 
 const lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
-const dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath)
+const dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
 
 
 const runCommand = (sql: string): any => {
   // 問い合わせコマンドファイル作成
   const requestFilePath = Path.join(os.tmpdir(), uuid() + '.json');
   const resultFilePath = Path.join(os.tmpdir(), uuid() + '.json');
-  const inputData = { query: sql, dbFilePath: dbFilePath, resultFilePath: resultFilePath };
+  const inputData = { query: sql, dbFilePath, resultFilePath };
 
   FsEx.writeFileSync(requestFilePath, JSON.stringify(inputData));
   // コマンド実行
@@ -69,7 +69,7 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
             INTO
                 messages
             VALUES(
-                "${newMessage.id}",
+                "${newMessage.messageId}",
                 "${newMessage.userId}",
                 "$talk_id",
                 "${newMessage.type}",
@@ -95,7 +95,7 @@ export const deleteMessageDB = (chatMessageId: string) => {
   return data;
 };
 
-export const loadUserFromComputerNameDB = (computerName: string) => {
+export const loadUserFromComputerNameDB = () => {
   const sql = `SELECT * FROM users`;
   const data = runCommand(sql);
   return data;
@@ -129,7 +129,7 @@ export const insertAttachmentDB = (newAttachment: IAttachment) => {
             INTO
                 attachments
             VALUES(
-                "${newAttachment.id}",
+                "${newAttachment.attachmentId}",
                 "${newAttachment.messageId}",
                 "${JSON.stringify(newAttachment.attachmentData).replace(/"/g, '""')}",
                 "available",

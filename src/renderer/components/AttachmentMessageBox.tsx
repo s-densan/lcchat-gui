@@ -19,6 +19,7 @@ import { RootState } from '../slices/RootStore';
 import { IAttachmentMessage } from '../states/IChatMessage';
 import { remote } from 'electron';
 import path from 'path';
+import { IAppConfig } from '../../common/AppConfig';
 // import store from '../Store';
 
 export default function ChatMessageBox(props: IAttachmentMessage) {
@@ -108,10 +109,14 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
       </ListItemText>;
     } else {
       // 編集モードでない場合
-      const filePath = path.resolve(path.join(remote.getGlobal('appConfig').dbFilePath, props.attachmentData.createUserId));
+      const appPath = remote.app.getAppPath();
+      const appConfig: IAppConfig = remote.getGlobal('appConfig');
+      const dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
+      const dbFileDirPath = path.dirname(dbFilePath);
+      const filePath = path.resolve(path.join(dbFileDirPath, 'attachments', props.attachmentData.fileName));
       return <ListItemText>
         <div>
-          <img src={filePath} width={200}></img>
+          <img src={filePath} width={200} alt={filePath}></img>{filePath}
         </div>
       </ListItemText>;
     }

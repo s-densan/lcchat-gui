@@ -1,8 +1,8 @@
 // import Toml from '@ltd/j-toml';
 import {TomlReader} from '@sgarciac/bombadil/lib/tables';
+import { app } from 'electron';
 import fs from 'fs';
 import path from 'path';
-import { app, App, BrowserWindow } from 'electron';
 
 // アプリケーション設定
 export interface IAppConfig {
@@ -14,14 +14,13 @@ export interface IAppConfig {
     lcchatCuiCommand: string;
 }
 
-export const initAppConfig = (configPath : string) => {
+export const initAppConfig = () => {
     const fileName = 'appconfig.toml';
     // ファイルパスは、アプリフォルダ以下のconfig/appconfig.toml
-    console.log(JSON.stringify(app));
     const filePath = path.join(app.getAppPath(), 'config', fileName);
     const tomlFileData: string = fs.readFileSync(filePath).toString();
     const reader = new TomlReader();
     reader.readToml(tomlFileData);
     appConfig = reader.result;
 }
-export let appConfig : IAppConfig;
+export let appConfig: IAppConfig;
