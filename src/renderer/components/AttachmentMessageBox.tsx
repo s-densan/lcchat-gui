@@ -8,6 +8,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { remote } from 'electron';
 import fs from 'fs';
@@ -21,7 +22,6 @@ import { IAppConfig } from '../../common/AppConfig';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { IAttachmentMessage } from '../states/IChatMessage';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { getAttachmentFilePath } from '../utils/FileUtils';
 // import store from '../Store';
 

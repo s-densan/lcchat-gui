@@ -1,6 +1,7 @@
 import child_process from 'child_process';
 import { remote } from 'electron';
 import FsEx from 'fs-extra';
+import Moment from 'moment';
 import os from 'os';
 import Path from 'path';
 import uuid from 'uuid';
@@ -8,7 +9,6 @@ import { IAppConfig } from '../../common/AppConfig';
 import { IUser } from '../slices/UserSlice';
 import { IAttachment } from '../states/IAttachment';
 import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
-import Moment from 'moment';
 
 const sqlDatetimeFormat = 'YYYY-MM-DD HH:mm:ss.sss';
 const appPath = remote.app.getAppPath();
@@ -16,7 +16,6 @@ const appConfig: IAppConfig = remote.getGlobal('appConfig');
 
 const lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
 const dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
-
 
 const runCommand = (sql: string): any => {
   // 問い合わせコマンドファイル作成
@@ -36,7 +35,7 @@ const runCommand = (sql: string): any => {
   if (!ok) {
     throw Error(`sql command error: sql:${sql} stdout:${stdout}`);
   }
-  
+
   return data;
 };
 // export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
@@ -138,7 +137,7 @@ export const insertUser = (user: IUser) => {
 };
 
 /**
- * 
+ *
  */
 export const insertAttachmentDB = (newAttachment: IAttachment) => {
   const sql = `INSERT
@@ -155,7 +154,6 @@ export const insertAttachmentDB = (newAttachment: IAttachment) => {
   const data = runCommand(sql);
   return data;
 };
-
 
 export const deleteAttachmentDB = (attachmentId: string) => {
   const sql = ` DELETE FROM attachments WHERE attachment_id = "${attachmentId}"`;

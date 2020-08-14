@@ -1,10 +1,13 @@
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';;
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
+import { remote } from 'electron';
 import os from 'os';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { IAppConfig } from '../../common/AppConfig';
 import { dialogActions } from '../slices/DialogSlice';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
@@ -15,9 +18,6 @@ import ChatMessagePostBox from './ChatMessagePostBox';
 import { Clock } from './Clock';
 import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
-import { remote } from 'electron';
-import { IAppConfig } from '../../common/AppConfig';
 
 export function GridLayout() {
 

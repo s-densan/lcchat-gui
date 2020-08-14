@@ -157,7 +157,7 @@ const slice = createSlice({
       // DB読み込み後に実行する
       const chatMessages: IChatMessage[] = [];
       let chatMessagesJson: any;
-      let newLastLoadDatetime = new Date();
+      const newLastLoadDatetime = new Date();
       console.info(state.lastLoadDatetime);
       if (state.lastLoadDatetime) {
         chatMessagesJson = loadNewChatMessagesDB(state.lastLoadDatetime);
@@ -324,7 +324,7 @@ const slice = createSlice({
             createdAt: it.createdAt,
             id: it.id,
             type: 'text',
-            messageData: messageData,
+            messageData,
             messageId: it.messageId,
             postedAt: it.postedAt,
             talkId: it.talkId,
