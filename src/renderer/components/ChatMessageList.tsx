@@ -18,7 +18,7 @@ export default function ChatMessageList(props: IChatMessageList & { bottomRef: R
   useEffect(() => {
     // 初回のみ実行
     if (initialed === false) {
-      dispatch(messageActions.loadChatMessages());
+      dispatch(messageActions.loadAllChatMessages());
       // dispatch(messageActions.showChatMessage({ chatMessages: [] }));
       setInitialed(true);
     }

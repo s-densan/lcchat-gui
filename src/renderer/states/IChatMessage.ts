@@ -1,5 +1,5 @@
 import { v4 as UUID } from 'uuid';
-import { IAttachmentData } from './IAttachment';
+import { IAttachment } from './IAttachment';
 
 export interface IAttachmentMessageData {
 }
@@ -17,7 +17,7 @@ export type IAttachmentMessage = IChatMessageBase & {
     /** メッセージデータ */
     messageData: IAttachmentMessageData;
     /** 添付データ */
-    attachmentData: IAttachmentData;
+    attachment: IAttachment;
 };
 
 /**
@@ -78,7 +78,8 @@ export const createTextMessage = (
     createdAt: Date | null,
     updatedAt: Date | null,
 ): IChatMessage => {
-    const id = UUID();
+    // const id = UUID();
+    const id = messageId;
     return {
         createdAt,
         id,
@@ -113,7 +114,7 @@ export const createAttachmentMessage = (
     userAvaterText: string,
     talkId: string,
     postedAt: Date,
-    attachmentData: IAttachmentData,
+    attachment: IAttachment,
     createdAt: Date | null,
     updatedAt: Date | null,
 ): IAttachmentMessage => {
@@ -124,7 +125,7 @@ export const createAttachmentMessage = (
         type: 'attachment',
         messageData: {
         },
-        attachmentData,
+        attachment,
         messageId,
         postedAt,
         talkId,

@@ -17,10 +17,9 @@ import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { remote } from 'electron';
-
+import { IAppConfig } from '../../common/AppConfig';
 
 export function GridLayout() {
-
 
   const dialog = useSelector((state: RootState) => state.dialog);
   const message = useSelector((state: RootState) => state.message);
@@ -29,6 +28,7 @@ export function GridLayout() {
   const [initial, setInitial] = useState<boolean>(false);
   const [windowHeight, setWindowHeight] = useState<number>(window.parent.screen.height);
   const dispatch = useDispatch();
+  const appConfig: IAppConfig = remote.getGlobal('appConfig');
 
   const bottomRef = React.createRef<HTMLDivElement>();
   useEffect(() => {
@@ -98,13 +98,13 @@ export function GridLayout() {
   };
   // DBファイルから新規メッセージ読み込み
   const onTimer = () => {
-    dispatch(messageActions.loadChatMessages());
+    dispatch(messageActions.loadNewChatMessages());
   };
   // タイマークロック用エリア
   const clockArea = () => {
     if (message.editingMessage === undefined) {
       // 編集中モードでない場合
-      return <Clock interval={10000} onTimer={onTimer}></Clock>;
+      return <Clock interval={appConfig.reloadIntervalSecond * 1000} onTimer={onTimer}></Clock>;
     } else {
       return <div></div>;
     }

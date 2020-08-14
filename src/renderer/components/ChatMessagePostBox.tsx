@@ -25,29 +25,24 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
       // ファイルパスが存在する場合
       if (fs.existsSync(acceptedFiles[0].path)) {
         const srcFilePath = acceptedFiles[0].path;
-        const ext = path.extname(srcFilePath).toLowerCase();
-        if (/(jpe?g|gif|png|webp)/.test(ext)) {
-          // 投稿日時
-          const nowDate = new Date();
-          // メッセージIDと
-          const messageId = UUID();
-          const newMessage = {
-              sourceFilePath: srcFilePath,
-              chatMessageId: messageId,
-              userId: user.user === undefined ? '' : user.user.userId,
-              userName: user.user === undefined ? '' : user.user.userData.userName,
-              userAvaterText: user.user === undefined ? '' : user.user.userData.userName.slice(0, 2),
-              talkId: 'talkId',
-              postedAt: nowDate,
-              bottomRef: props.bottomRef,
-            };
-          
-          const action = messageActions.postAttachmentMessage(newMessage);
-          dispatch(action);
+        // 投稿日時
+        const nowDate = new Date();
+        // メッセージIDと
+        const messageId = UUID();
+        const newMessage = {
+          sourceFilePath: srcFilePath,
+          chatMessageId: messageId,
+          userId: user.user === undefined ? '' : user.user.userId,
+          userName: user.user === undefined ? '' : user.user.userData.userName,
+          userAvaterText: user.user === undefined ? '' : user.user.userData.userName.slice(0, 2),
+          talkId: 'talkId',
+          postedAt: nowDate,
+          bottomRef: props.bottomRef,
+        };
 
-        } else {
-          // do nothing
-        }
+        const action = messageActions.postAttachmentMessage(newMessage);
+        dispatch(action);
+
       }
     }
   }, [acceptedFiles]);
@@ -68,7 +63,6 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
     postMessage();
   };
   const onClickPaste = () => {
-    
   };
 
   /*
@@ -118,21 +112,6 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
     // store.dispatch(createReloadChatMessagesAction(store.dispatch));
   };
   // ボタンオブジェクト
-  const postButton =
-    <Button
-      variant="contained"
-      color="primary"
-      disabled={(postMessageText.trim() === '')}
-      onClick={onClickPost}
-      style={{ width: '20%' }}
-    >投稿</Button>;
-    <Button
-      variant="contained"
-      color="primary"
-      disabled={false}
-      onClick={onClickPaste}
-      style={{ width: '20%' }}
-    >貼付け</Button>;
 
   return (
     <div {...getRootProps()}>
@@ -143,9 +122,22 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
         value={postMessageText}
         onChange={onChangeChatMessagePostBox}
         onKeyPress={onKeyPressMessagePostBox}
-        style={{ width: '60%' }}
+        style={{ }}
       />
-      {postButton}
+      <Button
+        variant="contained"
+        color="primary"
+        disabled={(postMessageText.trim() === '')}
+        onClick={onClickPost}
+        style={{ width: '40px' }}
+      >投稿</Button>
+      <Button
+        variant="contained"
+        color="primary"
+        disabled={false}
+        onClick={onClickPaste}
+        style={{ width: 105 }}
+      >貼付け</Button>
       {/*attachmentFilePath*/}
     </div>
   );

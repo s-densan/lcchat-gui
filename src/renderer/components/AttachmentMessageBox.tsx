@@ -9,17 +9,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { remote } from 'electron';
+import fs from 'fs';
 import Moment from 'moment';
+import path from 'path';
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { IAppConfig } from '../../common/AppConfig';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { IAttachmentMessage } from '../states/IChatMessage';
-import { remote } from 'electron';
-import path from 'path';
-import { IAppConfig } from '../../common/AppConfig';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import { getAttachmentFilePath } from '../utils/FileUtils';
 // import store from '../Store';
 
 export default function ChatMessageBox(props: IAttachmentMessage) {
@@ -31,6 +34,10 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   const postedAt = Moment(props.postedAt).format('YYYY-MM-DD HH:mm');
   const userState = useSelector((state: RootState) => state.user);
   const messageState = useSelector((state: RootState) => state.message);
+  // 添付ファイルパス
+  const attachmentFilePath = getAttachmentFilePath(props.attachment.attachmentData.fileName);
+  // もとファイルパス
+  const sourceFilePath = props.attachment.attachmentData.sourceFilePath;
   /**
    * 削除ボタンを押すと、タスクを削除する
    */
@@ -50,6 +57,43 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
     dispatch(messageActions.startEditMessage({ message: props }));
     e.stopPropagation();
   };
+  /**
+   * 添付ファイル保存ボタン
+   */
+  const onClickSaveAttachmentFile = (e: React.MouseEvent) => {
+    // クリックイベントを親要素の伝播させない
+    setAnchorEl(null);
+    const win = remote.getCurrentWindow();
+    const defaultFileName = path.basename(sourceFilePath);
+    const ext = path.extname(defaultFileName);
+    const dialogOptions = {
+      title: '保存先パス選択',
+      defaultPath: defaultFileName,
+      filters: [
+        { name: 'Source File Extention', extensions: [ext.slice(1)/*ドットは除く*/] },
+        { name: 'All Files', extensions: ['*'] },
+      ],
+    };
+    remote.dialog.showSaveDialog(win, dialogOptions).then(
+      (value) => {
+        if (value.filePath) {
+          // キャンセルをしなかった場合
+          fs.copyFileSync(attachmentFilePath, value.filePath);
+        }
+      },
+    );
+    /*
+    const saveFilePath = remote.dialog.showSaveDialogSync(win, dialogOptions);
+    if (saveFilePath) {
+      // // setEditingMessage(props.messageData.text);
+      // dispatch(messageActions.startEditMessage({ message: props }));
+      // e.stopPropagation();
+    } else {
+      // キャンセル
+    }
+    */
+
+  };
   const onOpenMenu = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setAnchorEl(e.currentTarget);
     // store.dispatch(createDeleteChatMessageAction(props.messageId, store));
@@ -60,15 +104,24 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
 
   // メニュークリック
   const options = [
+    /*
     {
       caption: '編集',
       func: onEditChatMessage,
       key: 'edit',
     },
+    */
     {
       caption: '削除',
       func: onClickDelete,
       key: 'delete',
+      onlyAuthor: true,
+    },
+    {
+      caption: '添付ファイルを保存',
+      func: onClickSaveAttachmentFile,
+      key: 'saveAttachmentFile',
+      onlyAuthor: false,
     },
   ];
   const ITEM_HEIGHT = 20;
@@ -109,16 +162,61 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
       </ListItemText>;
     } else {
       // 編集モードでない場合
-      const appPath = remote.app.getAppPath();
-      const appConfig: IAppConfig = remote.getGlobal('appConfig');
-      const dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
-      const dbFileDirPath = path.dirname(dbFilePath);
-      const filePath = path.resolve(path.join(dbFileDirPath, 'attachments', props.attachmentData.fileName));
-      return <ListItemText>
-        <div>
-          <img src={filePath} width={200} alt={filePath}></img>{filePath}
-        </div>
-      </ListItemText>;
+      if (isImageFile(sourceFilePath)) {
+        // 画像ファイル
+        return (
+          <ListItemText>
+            <div>
+              <img src={attachmentFilePath} width="50%" alt={attachmentFilePath}></img>
+            </div>
+            <div>
+              {path.basename(sourceFilePath)}
+            </div>
+          </ListItemText>
+        );
+      } else if (isAudioFile(sourceFilePath)){
+        // 音楽ファイル
+        return (
+          <ListItemText>
+            <div>
+              <audio controls>
+                <source src={attachmentFilePath} />
+                <p>音楽再生に対応していません。</p>
+              </audio>
+            </div>
+            <div>
+              {path.basename(sourceFilePath)}
+            </div>
+          </ListItemText>
+        );
+      } else if (isVideoFile(sourceFilePath)) {
+        // 動画ファイル
+        return (
+          <ListItemText>
+            <div>
+              <video controls width="50%">
+                <source src={attachmentFilePath} />
+                <p>動画再生に対応していません。</p>
+              </video>
+            </div>
+            <div>
+              {path.basename(sourceFilePath)}
+            </div>
+          </ListItemText>
+        );
+      } else {
+        // その他のファイル
+        return (
+          <ListItemText>
+            <div>
+              <FileCopyIcon>Filled</FileCopyIcon>
+            </div>
+            <div>
+              {path.basename(sourceFilePath)}
+            </div>
+          </ListItemText>
+        );
+      }
     }
   };
   const menuButton = () => {
@@ -174,13 +272,18 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
         onClose={onCloseMenu}
         PaperProps={{
           style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
+            maxHeight: ITEM_HEIGHT * 4.5 * options.length,
             width: 'auto',
           },
         }}
       >
         {options.map((option) => {
-          if (props.userId === userState.user!.userId && messageState.editingMessage === undefined) {
+          if (option.onlyAuthor ||
+            (props.userId === userState.user!.userId &&
+              messageState.editingMessage === undefined)
+          ) {
+            // 管理者限定メニューでない、または
+            // 管理者でログインしている場合、使用可能なメニューを表示する
             return <MenuItem
               key={option.key}
               selected={option.key === 'Pyxis'}
@@ -190,6 +293,8 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
 
             </MenuItem>;
           } else {
+            // 上記以外の場合
+            // 使用不可メニューを表示する。
             return <MenuItem
               key={option.key}
               style={{ color: '#AAA' }}
@@ -206,3 +311,16 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   );
 }
 
+const isImageFile = (filePath: string): boolean => {
+  const ext = path.extname(filePath).toLowerCase();
+  return /(jpe?g|gif|png|webp|bmp)/.test(ext);
+};
+
+const isAudioFile = (filePath: string): boolean => {
+  const ext = path.extname(filePath).toLowerCase();
+  return /(mp3|aac|m4a|ogg|wav)/.test(ext);
+};
+const isVideoFile = (filePath: string): boolean => {
+  const ext = path.extname(filePath).toLowerCase();
+  return /(mp4|mkv|m4v)/.test(ext);
+};

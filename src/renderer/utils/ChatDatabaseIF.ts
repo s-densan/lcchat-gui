@@ -8,7 +8,9 @@ import { IAppConfig } from '../../common/AppConfig';
 import { IUser } from '../slices/UserSlice';
 import { IAttachment } from '../states/IAttachment';
 import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
+import Moment from 'moment';
 
+const sqlDatetimeFormat = 'YYYY-MM-DD HH:mm:ss.sss';
 const appPath = remote.app.getAppPath();
 const appConfig: IAppConfig = remote.getGlobal('appConfig');
 
@@ -58,6 +60,19 @@ export const loadChatMessagesDB = () => {
   const data = runCommand(sql);
   return data;
 };
+export const loadNewChatMessagesDB = (lastLoadDatetime: Date) => {
+  console.log(lastLoadDatetime);
+  const sql = `
+    SELECT messages.*, users.user_data, attachments.attachment_id, attachments.attachment_data
+    FROM messages
+    LEFT JOIN users
+    ON users.user_id = messages.user_id
+    LEFT JOIN attachments
+    ON attachments.message_id = messages.message_id
+    WHERE DATETIME("${Moment(lastLoadDatetime).format(sqlDatetimeFormat)}") < DATETIME(messages.updated_at)`;
+  const data = runCommand(sql);
+  return data;
+};
 // export const loadChatMessagesDB = async () => {
 //   const sql = ` SELECT * FROM messages `;
 //   const data = runCommand(sql);
@@ -74,10 +89,10 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
                 "$talk_id",
                 "${newMessage.type}",
                 "${JSON.stringify(newMessage.messageData).replace(/"/g, '""')}",
-                "${newMessage.postedAt}",
+                DATETIME("${Moment(newMessage.postedAt).format(sqlDatetimeFormat)}"),
                 "publish",
-                "${newMessage.createdAt}",
-                "${newMessage.updatedAt}"
+                DATETIME("${Moment(newMessage.createdAt).format(sqlDatetimeFormat)}"),
+                DATETIME("${Moment(newMessage.updatedAt).format(sqlDatetimeFormat)}")
     )`.replace('\n', '');
   const data = runCommand(sql);
   return data;
@@ -102,6 +117,7 @@ export const loadUserFromComputerNameDB = () => {
 };
 
 export const insertUser = (user: IUser) => {
+  const nowDatetime = new Date();
   const sql = `INSERT
             INTO
                 users
@@ -113,9 +129,9 @@ export const insertUser = (user: IUser) => {
                 -- ステータス
                 "active",
                 -- 作成日時
-                "${new Date()}",
+                "${Moment(nowDatetime).format(sqlDatetimeFormat)}",
                 -- 更新日時
-                "${new Date()}"
+                "${Moment(nowDatetime).format(sqlDatetimeFormat)}"
     )`.replace('\n', '');
   const data = runCommand(sql);
   return data;
@@ -133,11 +149,16 @@ export const insertAttachmentDB = (newAttachment: IAttachment) => {
                 "${newAttachment.messageId}",
                 "${JSON.stringify(newAttachment.attachmentData).replace(/"/g, '""')}",
                 "available",
-                "${newAttachment.createdAt}",
-                "${newAttachment.updatedAt}"
+                "${Moment(newAttachment.createdAt).format(sqlDatetimeFormat)}",
+                "${Moment(newAttachment.updatedAt).format(sqlDatetimeFormat)}"
     )`.replace('\n', '');
   const data = runCommand(sql);
   return data;
 };
 
 
+export const deleteAttachmentDB = (attachmentId: string) => {
+  const sql = ` DELETE FROM attachments WHERE attachment_id = "${attachmentId}"`;
+  const data = runCommand(sql);
+  return data;
+};

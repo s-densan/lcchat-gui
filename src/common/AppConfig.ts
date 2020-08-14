@@ -12,6 +12,7 @@ export interface IAppConfig {
         toggleVisible: string;
     };
     lcchatCuiCommand: string;
+    reloadIntervalSecond: number;
 }
 
 export const initAppConfig = () => {
