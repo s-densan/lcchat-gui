@@ -380,6 +380,61 @@ const slice = createSlice({
         };
       }
     },
+    postAttachmentMessageFromMemory: (state, action) => {
+      // クリップボードなどのメモリから添付ファイルを貼り付ける
+      console.log('write');
+      const data: Buffer[] = action.payload.data;
+      // const datatype: 'file' | 'image' = action.datatype;
+      const nowDatetime = new Date();
+      console.log('write');
+      const newAttachment = createAttachment(
+        uuid(),
+        action.payload.chatMessageId,
+        'image',
+        action.payload.userId,
+        action.payload.userName,
+        'dummy computer name',
+        'clipboard.png',
+        nowDatetime,
+        nowDatetime,
+      );
+      console.log('write');
+      const newMessage = createAttachmentMessage(
+        action.payload.chatMessageId,
+        action.payload.userId,
+        action.payload.userName,
+        action.payload.userAvaterText,
+        action.payload.talkId,
+        action.payload.postedAt,
+        newAttachment,
+        nowDatetime,
+        nowDatetime,
+      );
+      console.log('write');
+      // DBへの書き込み
+      const messageList = state.chatMessages.concat(newMessage);
+      insertMessageDB(newMessage);
+      insertAttachmentDB(newAttachment);
+      // 添付ファイルのコピー
+      const dstFilePath = getAttachmentFilePath(newAttachment.attachmentId);
+      const dstDirPath = path.dirname(dstFilePath);
+      fs.exists(dstDirPath, (exists) => {
+        if (exists) {
+          // 添付フォルダが存在しない場合、作成する。
+          fs.mkdirSync(dstDirPath);
+        }
+      });
+      fs.writeFileSync(dstFilePath, Buffer.from(data), 'binary');
+
+      action.payload.bottomRef!.current!.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+      return {
+        chatMessages: messageList,
+        editingMessage: state.editingMessage,
+      };
+    },
     showChatMessage: (state, action) => {
       return {
         chatMessages: action.payload.chatMessages,

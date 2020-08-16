@@ -12,7 +12,7 @@ export interface IAttachmentData {
     // 添付コンピュータ名
     sourceComputerName: string;
     // 元ファイルパス
-    sourceFilePath: string;
+    sourceFilePath: string | 'clipboardImage';
 }
 
 /**
@@ -52,7 +52,7 @@ export const createAttachment = (
     userId: string,
     userName: string,
     sourceComputerName: string,
-    sourceFilePath: string,
+    sourceFilePath: string | 'clipboardImage',
     createdAt: Date | null,
     updatedAt: Date | null,
 ): IAttachment => {

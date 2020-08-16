@@ -13,6 +13,8 @@ export interface IAppConfig {
     };
     lcchatCuiCommand: string;
     reloadIntervalSecond: number;
+    useTasktray: boolean;
+    isDebug: boolean;
 }
 
 export const initAppConfig = () => {

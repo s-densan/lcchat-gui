@@ -7,6 +7,7 @@ import { v4 as UUID } from 'uuid';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { windowActions } from '../slices/WindowSlice';
+import {clipboard} from 'electron';
 import fs from 'fs';
 
 export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<HTMLDivElement> }) {
@@ -59,6 +60,31 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
     postMessage();
   };
   const onClickPaste = () => {
+    if (clipboard.availableFormats().includes('image/png')) {
+      const image = clipboard.readImage();
+      // console.log(image);
+      // 投稿日時
+      const nowDate = new Date();
+      // メッセージIDと
+      const messageId = UUID();
+      const newMessage = {
+        chatMessageId: messageId,
+        userId: user.user === undefined ? '' : user.user.userId,
+        userName: user.user === undefined ? '' : user.user.userData.userName,
+        userAvaterText: user.user === undefined ? '' : user.user.userData.userName.slice(0, 2),
+        talkId: 'talkId',
+        postedAt: nowDate,
+        bottomRef: props.bottomRef,
+        data: image.toPNG(),
+        datatype: 'image',
+      };
+      const action = messageActions.postAttachmentMessageFromMemory(newMessage);
+      dispatch(action);
+    } else if (clipboard.availableFormats().includes('text/plain')) {
+      const text = clipboard.readText();
+      setPostMessageText(text);
+      console.log(text);
+    }
   };
 
   /*

@@ -5,6 +5,10 @@ dbFilePath = '${appPath}/../lcchat/db/chatroom.db'
 lcchatCuiCommand = '"${appPath}/../lcchat/lcchat.exe"'
 # 更新間隔(sec)
 reloadIntervalSecond = 10
+# tasktrayに格納するか
+useTasktray = true
+# デバッグモードか
+isDebug = true
 
 
 [hotkeys]

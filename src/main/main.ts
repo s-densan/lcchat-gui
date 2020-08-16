@@ -5,6 +5,7 @@ import {
     Menu,
     nativeImage,
     Tray,
+    screen,
 } from 'electron';
 import { join } from 'path';
 import {
@@ -31,13 +32,20 @@ declare const global: IGlobal;
 let win: BrowserWindow | undefined;
 
 function createWindow() {
+    // ウィンドウ位置設定
+    const desktopSize = screen.getPrimaryDisplay().workAreaSize;
+    const appHeight = 800
+    const appWidth = 800
     // ブラウザウィンドウの作成
     win = new BrowserWindow({
-        height: 600,
+        height: appHeight,
+        width: appWidth,
+        x: desktopSize.width - appWidth,
+        y: desktopSize.height - appHeight,
         webPreferences: {
             nodeIntegration: true,
         },
-        width: 800,
+        title: 'Communication App'
     });
     // index.html をロードする
     win.loadFile('index.html');
@@ -50,11 +58,9 @@ function createWindow() {
         // 閉じたウィンドウオブジェクトにはアクセスできない
         win = undefined;
     });
-    win.setTitle('Communication App')
+
     // 最小化ボタンでタスクトレイに入れる
-    const enableTasktray = false;
-    // うまく動かないので無効化する
-    if (enableTasktray) {
+    if (appConfig.useTasktray) {
         win.on('minimize', () => {
             if (win) {
                 win.hide();
@@ -63,6 +69,7 @@ function createWindow() {
         addTaskTray();
         setHotKey();
     }
+
 }
 
 // このメソッドは、Electronが初期化を終了し、
@@ -78,13 +85,14 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
+
 });
 
 app.on('activate', () => {
     // MacOSでは、ドックアイコンがクリックされ、
     // 他のウィンドウが開いていないときに、アプリケーションでウィンドウを
     // 再作成するのが一般的です。
-    if (win === undefined) {
+    if (!win) {
         createWindow();
     }
 });
@@ -104,7 +112,7 @@ function addTaskTray() {
         {
             label: '表示',
             click() {
-                if (win !== undefined) {
+                if (win) {
                     win.show();
                     win.focus();
                 }
@@ -113,7 +121,7 @@ function addTaskTray() {
         {
             label: '終了',
             click() {
-                if (win !== undefined) {
+                if (win) {
                     win.close();
                 }
             },
@@ -126,7 +134,7 @@ function addTaskTray() {
 
     // タスクトレイが左クリックされた場合、アプリのウィンドウをアクティブに
     trayIcon.on('click', () => {
-        if (win !== undefined) {
+        if (win) {
             win.show();
             win.focus();
         }
@@ -135,7 +143,7 @@ function addTaskTray() {
 }
 function setHotKey() {
     globalShortcut.register(HOTKEY, () => {
-        if (win !== undefined) {
+        if (win) {
             // ホットキーでウィンドウをアクティベート
             if (win.isVisible()) {
                 if (win.isFocused()) {
@@ -153,5 +161,7 @@ function setHotKey() {
 }
 
 // ElectronのMenuの設定
-// Menu.setApplicationMenu(topMenu);
+if (!appConfig.isDebug) {
+    Menu.setApplicationMenu(new Menu());
+}
 
