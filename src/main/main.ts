@@ -102,10 +102,12 @@ app.on('activate', () => {
 // console.log(JSON.stringify(appConfig));
 const HOTKEY = appConfig.hotkeys.toggleVisible;
 
+// GC回避のためグローバル
+let trayIcon: Tray | undefined = undefined;
 function addTaskTray() {
     // タスクトレイに格納
 
-    const trayIcon = new Tray(nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png')));
+    trayIcon = new Tray(nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png')));
 
     // タスクトレイに右クリックメニューを追加
     const contextMenu = Menu.buildFromTemplate([
