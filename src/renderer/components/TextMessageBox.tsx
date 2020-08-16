@@ -18,7 +18,6 @@ import { useSelector } from 'react-redux';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { ITextMessage } from '../states/IChatMessage';
-import { v4 as UUID } from 'uuid';
 // import store from '../Store';
 
 
@@ -85,15 +84,15 @@ export default function TextMessageBox(props: ITextMessage) {
   const onChangeChatMessageEditBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditingMessage(e.target.value);
   };
-  const onClickOkEditMessageButton = (e: React.MouseEvent) => {
+  const onClickOkEditMessageButton = () => {
     editMessage();
   };
-  const onClickCanselEditMessageButton = (e: React.MouseEvent) => {
+  const onClickCanselEditMessageButton = () => {
     dispatch(messageActions.endEditMessage());
   };
   const toMultiline = (text: string) => {
     if (text) {
-      return text.split('\n').map((line, idx, arr) => {
+      return text.split('\n').map((line, idx) => {
         return <div key={idx}>{line}</div>;
       });
     } else {
@@ -109,7 +108,7 @@ export default function TextMessageBox(props: ITextMessage) {
   const messageArea = () => {
     if (messageState.editingMessage !== undefined && messageState.editingMessage.messageId === props.messageId) {
       // 編集モードの場合
-      return <ListItemText>
+      return <ListItemText style={{width: '100%'}}>
         <div>
           <TextField
             helperText=""
@@ -176,7 +175,7 @@ export default function TextMessageBox(props: ITextMessage) {
                 {props.userAvaterText}
               </Avatar>
             </ListItemAvatar>
-            <div>
+            <div style={{ width: '100%'}}>
               <ListItemText>
                 <div style={{ width: '100%' }}>
                   <span style={{ color: userNameColor }}>

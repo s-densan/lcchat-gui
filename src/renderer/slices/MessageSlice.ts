@@ -159,17 +159,22 @@ const slice = createSlice({
       let chatMessagesJson: any;
       const newLastLoadDatetime = new Date();
       console.info(state.lastLoadDatetime);
-      if (state.lastLoadDatetime) {
-        chatMessagesJson = loadNewChatMessagesDB(state.lastLoadDatetime);
+      // 差分更新処理未作成
+      if (state.lastLoadDatetime && false) {
+        // 新規・更新分メッセージ一覧
+        // chatMessagesJson = loadNewChatMessagesDB(state.lastLoadDatetime);
       } else {
+        // 全メッセージ一覧
         chatMessagesJson = loadChatMessagesDB();
       }
+      // 新規・更新メッセージなし
       if (chatMessagesJson.length === 0) {
         return state;
       }
 
       console.info(chatMessagesJson.length);
-      for (const currentMessage of state.chatMessages){
+      // 更新メッセージを反映する
+      for (const currentMessage of state.chatMessages) {
         // currentMessageの更新があるか確認
         const filtered = chatMessagesJson.filter(
           (loadedMessage: any) => loadedMessage.messageId === currentMessage.messageId);
@@ -177,31 +182,101 @@ const slice = createSlice({
           // 更新あり
           const userData = JSON.parse(filtered[0].userData);
           const messageData = JSON.parse(filtered[0].messageData);
+          // ユーザ名デフォルトはunknown
           let userName = 'unknown';
-          if (filtered[0].userData) {
+          if (userData) {
+            // ユーザデータが設定されている場合
             userName = userData.userName;
           }
-          switch (filtered[0].type) {
-            case 'text':
-              const loadedMessage = createTextMessage(
-              filtered[0].messageId,
-              messageData.text + '💩',
-              filtered[0].userId,
-              userName,
-              userName.slice(0, 2),
-              'dummyTalkId',
-              filtered[0].postedAt,
-              filtered[0].createdAt,
-              filtered[0].updatedAt,
-              );
-              chatMessages.push(loadedMessage);
-              break;
-            case 'attachment':
-              break;
+          if (messageData.updatedAt !== currentMessage.updatedAt) {
+            // メッセージが変更されている場合
+            switch (filtered[0].type) {
+              case 'text':
+                const loadedMessage = createTextMessage(
+                  filtered[0].messageId,
+                  messageData.text,
+                  filtered[0].userId,
+                  userName,
+                  userName.slice(0, 2),
+                  'dummyTalkId',
+                  filtered[0].postedAt,
+                  filtered[0].createdAt,
+                  filtered[0].updatedAt,
+                );
+                chatMessages.push(loadedMessage);
+                break;
+              case 'attachment':
+                // 添付メッセージの編集は不可
+                chatMessages.push(currentMessage)
+                break;
+            }
+          } else {
+            // メッセージが変更されていない場合
+            // 更新なし
+            chatMessages.push(currentMessage);
           }
         } else if (filtered.length === 0) {
-          // 更新なし
-          chatMessages.push(currentMessage);
+          // 削除済み(何もしない)
+          // chatMessages.push(currentMessage);
+        }
+      }
+
+      // 新規メッセージ追加
+      for (const loadedMessage of chatMessagesJson) {
+        const filtered = state.chatMessages.filter(
+          (currentMessage: any) => loadedMessage.messageId === currentMessage.messageId);
+        if (filtered.length === 0) {
+          // メッセージIDが一致するメッセージがない場合、新規メッセージとして追加する
+          const userData = JSON.parse(loadedMessage.userData);
+          const messageData = JSON.parse(loadedMessage.messageData);
+          // ユーザ名デフォルトはunknown
+          let userName = 'unknown';
+          if (userData) {
+            userName = userData.userName;
+          }
+          switch (loadedMessage.type) {
+            case 'text':
+              // 新規テキストメッセージ
+              const newMessage = createTextMessage(
+                loadedMessage.messageId,
+                messageData.text,
+                userData.userId,
+                userData.userName,
+                userData.userName.slice(0, 2),
+                'dummyTalkId',
+                loadedMessage.postedAt,
+                loadedMessage.createdAt,
+                loadedMessage.updatedAt,
+              );
+              chatMessages.push(newMessage);
+              break;
+            case 'attachment':
+              // 新規添付メッセージ
+              const attachmentData = JSON.parse(loadedMessage.attachmentData);
+              const newAttachmentMessage = createAttachmentMessage(
+                loadedMessage.messageId,
+                userData.userId,
+                userData.userName,
+                userData.userName.slice(0, 2),
+                'dummyTalkId',
+                loadedMessage.postedAt,
+                createAttachment(
+                  loadedMessage.attachmentId,
+                  loadedMessage.messageId,
+                  attachmentData.fileType,
+                  attachmentData.createUserId,
+                  attachmentData.createUserName,
+                  attachmentData.sourceComputerName,
+                  attachmentData.sourceFilePath,
+                  loadedMessage.createdAt,
+                  loadedMessage.updatedAt,
+                ),
+                loadedMessage.createdAt,
+                loadedMessage.updatedAt,
+              );
+              chatMessages.push(newAttachmentMessage);
+              break;
+          }
         }
       }
       const res = {

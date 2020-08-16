@@ -95,6 +95,7 @@ export function GridLayout() {
   };
   const chatMessagePostBoxStyle = {
     bottom: 0,
+    width: '100%',
   };
   // DBファイルから新規メッセージ読み込み
   const onTimer = () => {
@@ -147,16 +148,14 @@ export function GridLayout() {
   };
   const chatArea = () => {
     if (initial && user.user) {
-      return <div>
+      return <div style={{width: '100%'}}>
         {/*</div><Paper style={chatMessageListStyle}>*/}
         <Paper style={chatMessageListStyle}>
           <ChatMessageList chatMessages={message.chatMessages} bottomRef={bottomRef} />
         </Paper>
-        <div>
-          <Box component="div" style={chatMessagePostBoxStyle}>
-            <ChatMessagePostBox bottomRef={bottomRef} />
-          </Box>
-        </div>
+        <Box component="div" style={chatMessagePostBoxStyle}>
+          <ChatMessagePostBox bottomRef={bottomRef} />
+        </Box>
       </div>;
     } else {
       return <div></div>;

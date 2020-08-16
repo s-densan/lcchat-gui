@@ -1,7 +1,5 @@
 import Button from '@material-ui/core/Button';
-import CardMedia from '@material-ui/core/CardMedia';
 import TextField from '@material-ui/core/TextField';
-import { remote } from 'electron';
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,13 +7,11 @@ import { v4 as UUID } from 'uuid';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { windowActions } from '../slices/WindowSlice';
-import { createAttachment } from '../states/IAttachment';
 import fs from 'fs';
-import path from 'path';
 
 export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<HTMLDivElement> }) {
   // ドラッグアンドドロップ
-  const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
+  const {acceptedFiles, getRootProps} = useDropzone();
   const dispatch = useDispatch();
   // const classes = useStyles();
   const [postMessageText, setPostMessageText] = useState('');
@@ -113,8 +109,15 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
   };
   // ボタンオブジェクト
 
+  const style = {
+    display: 'flex',
+    flexFlow: 'row',
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  }
   return (
-    <div {...getRootProps()}>
+    <div {...getRootProps()} style={style}>
       <TextField
         rows="4"
         helperText="投稿メッセージ"
@@ -122,23 +125,27 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
         value={postMessageText}
         onChange={onChangeChatMessagePostBox}
         onKeyPress={onKeyPressMessagePostBox}
-        style={{ }}
+        style={{width: '100%', marginRight: 'auto'}}
       />
       <Button
         variant="contained"
         color="primary"
         disabled={(postMessageText.trim() === '')}
         onClick={onClickPost}
-        style={{ width: '40px' }}
+        style={{
+          width: '40px',
+          height: '40px',
+          marginLeft: '4px',
+          marginRight: '4px',
+        }}
       >投稿</Button>
       <Button
         variant="contained"
         color="primary"
         disabled={false}
         onClick={onClickPaste}
-        style={{ width: 105 }}
+        style={{ width: '105px', height: '40px' }}
       >貼付け</Button>
-      {/*attachmentFilePath*/}
     </div>
   );
 }
