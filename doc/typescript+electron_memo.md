@@ -59,6 +59,10 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200817 Action実行後に次のAction実行
+https://teratail.com/questions/130390
+https://qiita.com/muiyama/items/63386fd65c7e9f06f5d4
+https://github.com/redux-saga/redux-saga/blob/master/README_ja.md
 ### 20200814 ファイル保存ダイアログ
 https://www.google.com/search?q=electron+%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%BF%9D%E5%AD%98%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0&oq=electron+%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E4%BF%9D%E5%AD%98%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0&aqs=chrome..69i57j69i61.14495j0j4&sourceid=chrome&ie=UTF-8
 公式 : https://www.electronjs.org/docs/api/dialog

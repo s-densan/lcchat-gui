@@ -13,6 +13,7 @@ import {
   loadChatMessagesDB,
   loadNewChatMessagesDB,
   updateMessageTextDB,
+  deleteAttachmentDB,
 } from '../utils/ChatDatabaseIF';
 import { getAttachmentFilePath } from '../utils/FileUtils'
 
@@ -39,6 +40,7 @@ const slice = createSlice({
       deleteMessageDB(chatMessageId);
       if (target.type === 'attachment') {
         // 添付ファイルの場合、attachmentsテーブルと添付データを削除
+        deleteAttachmentDB(target.attachment.attachmentId);
         const attachmentFilePath = getAttachmentFilePath(target.attachment.attachmentId);
         fs.exists(attachmentFilePath, (exists: boolean) => {
           if (exists) {
@@ -368,7 +370,9 @@ const slice = createSlice({
           fs.mkdirSync(dstDirPath);
           }
         });
-        fs.copyFile(action.payload.sourceFilePath, dstFilePath, () => { });
+        fs.copyFile(action.payload.sourceFilePath, dstFilePath, () => {
+
+        });
 
         action.payload.bottomRef!.current!.scrollIntoView({
           behavior: 'smooth',

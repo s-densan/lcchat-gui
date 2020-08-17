@@ -38,10 +38,20 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   const attachmentFilePath = getAttachmentFilePath(props.attachment.attachmentData.fileName);
   // もとファイルパス
   const sourceFilePath = props.attachment.attachmentData.sourceFilePath;
+  // image
+  const imageRef = React.createRef<HTMLImageElement>();
+
+  if (imageRef.current) {
+    imageRef.current.onload = () => {
+      console.log('loaded');
+
+    };
+  }
   /**
    * 削除ボタンを押すと、タスクを削除する
    */
   const onClickDelete = (e: React.MouseEvent) => {
+    const action = messageActions.deleteChatMessage({ chatMessageId: props.messageId });
     dispatch(messageActions.deleteChatMessage({ chatMessageId: props.messageId }));
     // クリックイベントを親要素の伝播させない
     setAnchorEl(null);
@@ -167,7 +177,7 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
         return (
           <ListItemText>
             <div>
-              <img src={attachmentFilePath} width="50%" alt={attachmentFilePath}></img>
+              <img src={attachmentFilePath} width="50%" alt={attachmentFilePath} ref={imageRef}></img>
             </div>
             <div>
               {path.basename(sourceFilePath)}

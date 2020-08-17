@@ -16,6 +16,9 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
   const dispatch = useDispatch();
   // const classes = useStyles();
   const [postMessageText, setPostMessageText] = useState('');
+  // 貼り付けボタン有効フラグ
+  const [enablePasteButton, setEnablePasteButton] = useState(false);
+
   const user = useSelector((state: RootState) => state.user);
   useEffect(() => {
     if (acceptedFiles.length === 1) {
@@ -43,6 +46,16 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
       }
     }
   }, [acceptedFiles]);
+  // 貼り付けボタンの有効・無効制御
+  useEffect(() => {
+    const enablePasteFormats = ['image/png', 'text/plain']
+    if (clipboard.availableFormats().filter((v, idx, obj) => enablePasteFormats.includes(v)).length) {
+      clipboard.availableFormats().map
+      setEnablePasteButton(true);
+    }else{
+      setEnablePasteButton(false);
+    }
+  }, [clipboard.availableFormats()])
   // 投稿ボタン表示文字
   const onChangeChatMessagePostBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPostMessageText(e.target.value); // if use local state
@@ -168,7 +181,7 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
       <Button
         variant="contained"
         color="primary"
-        disabled={false}
+        disabled={!enablePasteButton}
         onClick={onClickPaste}
         style={{ width: '105px', height: '40px' }}
       >貼付け</Button>
