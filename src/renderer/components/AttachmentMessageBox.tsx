@@ -40,10 +40,13 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   const sourceFilePath = props.attachment.attachmentData.sourceFilePath;
   // image
   const imageRef = React.createRef<HTMLImageElement>();
+  const [loaded, setLoaded] = useState(false);
+  const [imageData, setImageData] = useState<Buffer | undefined>(undefined);
 
   if (imageRef.current) {
     imageRef.current.onload = () => {
       console.log('loaded');
+      setLoaded(true);
 
     };
   }
@@ -174,16 +177,38 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
       // 編集モードでない場合
       if (isImageFile(sourceFilePath)) {
         // 画像ファイル
-        return (
-          <ListItemText>
-            <div>
-              <img src={attachmentFilePath} width="50%" alt={attachmentFilePath} ref={imageRef}></img>
-            </div>
-            <div>
-              {path.basename(sourceFilePath)}
-            </div>
-          </ListItemText>
-        );
+        // const imgSource = require(attachmentFilePath);
+        fs.readFile(attachmentFilePath, (err, val) => {
+          if (val) {
+            setImageData(val);
+          }
+        });
+        if (imageData) {
+          // 画像ファイル読み込み済みの場合
+          return (
+            <ListItemText>
+              <div>
+                {/*<img src={imgSource} width="50%" ref={imageRef} />*/}
+                {/*<img src={attachmentFilePath} width="50%" alt={attachmentFilePath} ref={imageRef}></img>*/}
+                <img src={`data:image/png;base64,${imageData.toString('base64')}`}
+                     width="50%"
+                     alt={attachmentFilePath}
+                     ref={imageRef} />
+              </div>
+              <div>
+                {path.basename(sourceFilePath)}
+              </div>
+            </ListItemText>
+          );
+        } else {
+          return (
+            <ListItemText>
+              <div>
+                Loading
+              </div>
+            </ListItemText>
+          );
+        }
       } else if (isAudioFile(sourceFilePath)){
         // 音楽ファイル
         return (
