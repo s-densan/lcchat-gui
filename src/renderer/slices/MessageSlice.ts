@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import clone from 'clone';
-import { remote } from 'electron';
+import { remote, Tray, nativeImage } from 'electron';
 import fs from 'fs';
 import path from 'path';
 import uuid from 'uuid';
@@ -137,6 +137,10 @@ const slice = createSlice({
         lastLoadDatetime: new Date(),
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
+        const trayIcon: Tray = remote.getGlobal('trayIcon');
+        const imagePath = nativeImage.createFromPath(path.join(process.cwd(), 'img', 'talk2.png'));
+        trayIcon.setImage(imagePath);
+
         const num = chatMessages.length - state.chatMessages.length;
         const notify = new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
         notify.show();
@@ -287,6 +291,11 @@ const slice = createSlice({
         lastLoadDatetime: newLastLoadDatetime,
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
+        console.log('kitayo');
+        const trayIcon:Tray = remote.getGlobal('trayIcon');
+        const imagePath = nativeImage.createFromPath(path.join(process.cwd(), 'img', 'talk2.png'));
+        trayIcon.setImage(imagePath);
+
         const num = chatMessages.length - state.chatMessages.length;
         const notify = new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
         notify.show();

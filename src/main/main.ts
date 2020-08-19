@@ -16,6 +16,7 @@ import {
 
 interface IGlobal {
     appConfig: IAppConfig;
+    trayIcon: Tray;
 }
 
 
@@ -66,7 +67,7 @@ function createWindow() {
                 win.hide();
             }
         });
-        addTaskTray();
+        global.trayIcon = addTaskTray();
         setHotKey();
     }
 
@@ -96,18 +97,24 @@ app.on('activate', () => {
         createWindow();
     }
 });
+app.on('browser-window-focus', () => {
+    if (global.trayIcon) {
+        const trayIcon: Tray = global.trayIcon;
+        const imagePath = nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png'));
+        trayIcon.setImage(imagePath);
+        console.log('set tray icon');
+    }
+});
 
 // ここから拡張
 // const HOTKEY = "";
 // console.log(JSON.stringify(appConfig));
 const HOTKEY = appConfig.hotkeys.toggleVisible;
 
-// GC回避のためグローバル
-let trayIcon: Tray | undefined = undefined;
-function addTaskTray() {
+function addTaskTray(): Tray {
     // タスクトレイに格納
 
-    trayIcon = new Tray(nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png')));
+    const trayIcon = new Tray(nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png')));
 
     // タスクトレイに右クリックメニューを追加
     const contextMenu = Menu.buildFromTemplate([
@@ -141,6 +148,7 @@ function addTaskTray() {
             win.focus();
         }
     });
+    return trayIcon;
     // タスクトレイに格納 ここまで
 }
 function setHotKey() {
