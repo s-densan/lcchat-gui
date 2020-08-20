@@ -371,17 +371,29 @@ const slice = createSlice({
         insertMessageDB(newMessage);
         insertAttachmentDB(newAttachment);
         // 添付ファイルのコピー
-        const dstFilePath = getAttachmentFilePath(newAttachment.attachmentId);
+        const srcFilePath: string = action.payload.sourceFilePath;
+        const dstFilePath: string = getAttachmentFilePath(newAttachment.attachmentId);
         const dstDirPath = path.dirname(dstFilePath);
-        fs.exists(dstDirPath, (exists) => {
-          if (exists) {
-          // 添付フォルダが存在しない場合、作成する。
-          fs.mkdirSync(dstDirPath);
+        if (true) {
+          fs.exists(dstDirPath, (exists) => {
+            if (!exists) {
+              // 添付フォルダが存在しない場合、作成する。
+              fs.mkdir(dstDirPath, () => {
+                fs.copyFile(srcFilePath, dstFilePath, () => { });
+              });
+            } else {
+              fs.copyFile(srcFilePath, dstFilePath, () => { });
+            }
+          });
+        } else {
+          const exists = fs.existsSync(dstDirPath);
+          if (!exists) {
+            // 添付フォルダが存在しない場合、作成する。
+            fs.mkdirSync(dstDirPath);
           }
-        });
-        fs.copyFile(action.payload.sourceFilePath, dstFilePath, () => {
-
-        });
+          fs.copyFile(action.payload.sourceFilePath, dstFilePath, () => {
+          });
+        }
 
         action.payload.bottomRef!.current!.scrollIntoView({
           behavior: 'smooth',
@@ -431,13 +443,25 @@ const slice = createSlice({
       // 添付ファイルのコピー
       const dstFilePath = getAttachmentFilePath(newAttachment.attachmentId);
       const dstDirPath = path.dirname(dstFilePath);
-      fs.exists(dstDirPath, (exists) => {
+      if (true) {
+        fs.exists(dstDirPath, (exists) => {
+          if (exists) {
+            // 添付フォルダが存在しない場合、作成する。
+            fs.mkdir(dstDirPath, () => {
+              fs.writeFileSync(dstFilePath, Buffer.from(data), 'binary');
+            });
+          } else {
+            fs.writeFileSync(dstFilePath, Buffer.from(data), 'binary');
+          }
+        });
+      } else {
+        const exists = fs.existsSync(dstDirPath)
         if (exists) {
-          // 添付フォルダが存在しない場合、作成する。
+            // 添付フォルダが存在しない場合、作成する。
           fs.mkdirSync(dstDirPath);
         }
         fs.writeFileSync(dstFilePath, Buffer.from(data), 'binary');
-      });
+      }
 
       action.payload.bottomRef!.current!.scrollIntoView({
         behavior: 'smooth',
