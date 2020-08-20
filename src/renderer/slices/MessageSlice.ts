@@ -436,8 +436,8 @@ const slice = createSlice({
           // 添付フォルダが存在しない場合、作成する。
           fs.mkdirSync(dstDirPath);
         }
+        fs.writeFileSync(dstFilePath, Buffer.from(data), 'binary');
       });
-      fs.writeFileSync(dstFilePath, Buffer.from(data), 'binary');
 
       action.payload.bottomRef!.current!.scrollIntoView({
         behavior: 'smooth',

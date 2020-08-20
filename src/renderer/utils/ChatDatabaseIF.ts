@@ -87,18 +87,18 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
                 "${newMessage.userId}",
                 "$talk_id",
                 "${newMessage.type}",
-                "${JSON.stringify(newMessage.messageData).replace(/"/g, '""')}",
+                "${JSON.stringify(newMessage.messageData).replace(/"/g, '""').replace('?', '?')}",
                 DATETIME("${Moment(newMessage.postedAt).format(sqlDatetimeFormat)}"),
                 "publish",
                 DATETIME("${Moment(newMessage.createdAt).format(sqlDatetimeFormat)}"),
                 DATETIME("${Moment(newMessage.updatedAt).format(sqlDatetimeFormat)}")
-    )`.replace('\n', '');
+    )`;
   const data = runCommand(sql);
   return data;
 };
 
 export const updateMessageTextDB = (chatMessageId: string, messageData: ITextMessageData) => {
-  const messageDataJson = JSON.stringify(messageData).replace(/"/g, '""');
+  const messageDataJson = JSON.stringify(messageData).replace(/"/g, '""').replace('?', '??');
   const sql = `UPDATE messages SET message_data = "${messageDataJson}" WHERE message_id = "${chatMessageId}"`;
   const data = runCommand(sql);
   return data;
@@ -124,14 +124,14 @@ export const insertUser = (user: IUser) => {
                 -- ユーザID
                 "${user.userId}",
                 -- ユーザデータ(SQLのエスケープをする)
-                "${JSON.stringify(user.userData).replace(/"/g, '""')}",
+                "${JSON.stringify(user.userData).replace(/"/g, '""').replace('?', '??')}",
                 -- ステータス
                 "active",
                 -- 作成日時
                 "${Moment(nowDatetime).format(sqlDatetimeFormat)}",
                 -- 更新日時
                 "${Moment(nowDatetime).format(sqlDatetimeFormat)}"
-    )`.replace('\n', '');
+    )`;
   const data = runCommand(sql);
   return data;
 };
@@ -146,11 +146,11 @@ export const insertAttachmentDB = (newAttachment: IAttachment) => {
             VALUES(
                 "${newAttachment.attachmentId}",
                 "${newAttachment.messageId}",
-                "${JSON.stringify(newAttachment.attachmentData).replace(/"/g, '""')}",
+                "${JSON.stringify(newAttachment.attachmentData).replace(/"/g, '""').replace('?', '??')}",
                 "available",
                 "${Moment(newAttachment.createdAt).format(sqlDatetimeFormat)}",
                 "${Moment(newAttachment.updatedAt).format(sqlDatetimeFormat)}"
-    )`.replace('\n', '');
+    )`;
   const data = runCommand(sql);
   return data;
 };
