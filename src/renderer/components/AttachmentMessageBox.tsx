@@ -105,16 +105,16 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   // メニュークリック
   const options = [
     {
-      caption: '削除',
-      func: onClickDelete,
-      key: 'delete',
-      onlyAuthor: true,
-    },
-    {
       caption: '添付ファイルを保存',
       func: onClickSaveAttachmentFile,
       key: 'saveAttachmentFile',
       onlyAuthor: false,
+    },
+    {
+      caption: '削除',
+      func: onClickDelete,
+      key: 'delete',
+      onlyAuthor: true,
     },
   ];
   const ITEM_HEIGHT = 20;

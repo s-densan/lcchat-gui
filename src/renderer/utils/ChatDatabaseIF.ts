@@ -4,7 +4,7 @@ import FsEx from 'fs-extra';
 import Moment from 'moment';
 import os from 'os';
 import Path from 'path';
-import uuid from 'uuid';
+import { v4 as UUID } from 'uuid';
 import { IAppConfig } from '../../common/AppConfig';
 import { IUser } from '../slices/UserSlice';
 import { IAttachment } from '../states/IAttachment';
@@ -19,8 +19,8 @@ const dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
 
 const runCommand = (sql: string): any => {
   // 問い合わせコマンドファイル作成
-  const requestFilePath = Path.join(os.tmpdir(), uuid() + '.json');
-  const resultFilePath = Path.join(os.tmpdir(), uuid() + '.json');
+  const requestFilePath = Path.join(os.tmpdir(), UUID() + '.json');
+  const resultFilePath = Path.join(os.tmpdir(), UUID() + '.json');
   const inputData = { query: sql, dbFilePath, resultFilePath };
 
   FsEx.writeFileSync(requestFilePath, JSON.stringify(inputData));

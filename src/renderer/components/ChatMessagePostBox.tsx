@@ -50,7 +50,7 @@ export default function ChatMessagePostBox(props: { bottomRef?: React.RefObject<
   useEffect(() => {
     const enablePasteFormats = ['image/png', 'text/plain']
     if (clipboard.availableFormats().filter((v, idx, obj) => enablePasteFormats.includes(v)).length) {
-      clipboard.availableFormats().map
+      // clipboard.availableFormats().map
       setEnablePasteButton(true);
     }else{
       setEnablePasteButton(false);

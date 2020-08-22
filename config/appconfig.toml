@@ -1,7 +1,6 @@
 dbAccessSynchronous  = false
-# dbFilePath = '${appPath}/chatroom.db'
-dbFilePath = '${appPath}/../lcchat/db/chatroom.db'
-# lcchatCuiCommand = '"${appPath}/Sqltest.exe"'
+dbFilePath = '${appPath}/db/chatroom.db'
+# lcchatCuiCommand = '"${appPath}/lcchat.exe"'
 lcchatCuiCommand = '"${appPath}/../lcchat/lcchat.exe"'
 # 更新間隔(sec)
 reloadIntervalSecond = 10

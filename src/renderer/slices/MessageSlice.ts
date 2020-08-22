@@ -3,7 +3,7 @@ import clone from 'clone';
 import { remote, Tray, nativeImage } from 'electron';
 import fs from 'fs';
 import path from 'path';
-import uuid from 'uuid';
+import { v4 as UUID } from 'uuid';
 import { createAttachment } from '../states/IAttachment';
 import { createAttachmentMessage, createTextMessage, IChatMessage, IChatMessageList, ITextMessageData } from '../states/IChatMessage';
 import {
@@ -344,7 +344,7 @@ const slice = createSlice({
         const mineType = getMINEType(action.payload.sourceFilePath);
         const mineTypeStr = mineType ? mineType.type + '/' + mineType.subType : '';
         const newAttachment = createAttachment(
-          uuid(),
+          UUID(),
           action.payload.chatMessageId,
           mineTypeStr,
           action.payload.userId,
@@ -377,12 +377,9 @@ const slice = createSlice({
           fs.exists(dstDirPath, (exists) => {
             if (!exists) {
               // 添付フォルダが存在しない場合、作成する。
-              fs.mkdir(dstDirPath, () => {
-                fs.copyFile(srcFilePath, dstFilePath, () => { });
-              });
-            } else {
-              fs.copyFile(srcFilePath, dstFilePath, () => { });
+              fs.mkdirSync(dstDirPath)
             }
+              fs.copyFileSync(srcFilePath, dstFilePath);
           });
         } else {
           const exists = fs.existsSync(dstDirPath);
@@ -410,7 +407,7 @@ const slice = createSlice({
       // const datatype: 'file' | 'image' = action.datatype;
       const nowDatetime = new Date();
       const newAttachment = createAttachment(
-        uuid(),
+        UUID(),
         action.payload.chatMessageId,
         'image',
         action.payload.userId,

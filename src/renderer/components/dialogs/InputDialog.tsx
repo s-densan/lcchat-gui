@@ -22,28 +22,41 @@ export default function InputDialog(props: IProps) {
 
   // メッセージボックスでキー押下時のイベント
   const onKeyPressInputBox = (e: React.KeyboardEvent) => {
-    if (e.which === 13 /* Enter */) {
+    if (inputText.trim() !== ''
+        && e.which === 13 /* Enter */) {
       // マウスイベントはundefined
       props.onClickOk(undefined, inputText);
     }
   };
 
-  const buttons =
-    props.enableCancel ?
+  const getButtons = () => {
+    const disabled = inputText.trim() === '';
+    const okButton = (
+      <Button
+        onClick={(e) => props.onClickOk(e, inputText)}
+        color="primary"
+        disabled={disabled}
+      >
+        OK
+      </Button>
+    );
+    if (props.enableCancel) {
+      return (
         <DialogActions>
-          <Button onClick={(e) => props.onClickOk(e, inputText)} color="primary">
-            OK
-          </Button>
+          {okButton}
           <Button onClick={(e) => props.onClickCancel(e)} color="primary">
             キャンセル
           </Button>
         </DialogActions>
-      :
+      );
+    } else {
+      return (
         <DialogActions>
-          <Button onClick={(e) => props.onClickOk(e, inputText)} color="primary">
-            OK
-          </Button>
-        </DialogActions> ;
+          {okButton}
+        </DialogActions>
+      )
+    }
+  };
   return (
     <div>
       <Dialog
@@ -68,7 +81,7 @@ export default function InputDialog(props: IProps) {
             onKeyPress={onKeyPressInputBox}
             style={{ width: '100%' }} />
         </DialogContent>
-        {buttons}
+        {getButtons()}
       </Dialog>
     </div>
   );
