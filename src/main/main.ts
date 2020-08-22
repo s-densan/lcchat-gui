@@ -100,7 +100,7 @@ app.on('activate', () => {
 app.on('browser-window-focus', () => {
     if (global.trayIcon) {
         const trayIcon: Tray = global.trayIcon;
-        const imagePath = nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png'));
+        const imagePath = nativeImage.createFromPath(join(app.getAppPath(), 'img', 'talk.png'));
         trayIcon.setImage(imagePath);
     }
 });
@@ -113,7 +113,7 @@ const HOTKEY = appConfig.hotkeys.toggleVisible;
 function addTaskTray(): Tray {
     // タスクトレイに格納
 
-    const trayIcon = new Tray(nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png')));
+    const trayIcon = new Tray(nativeImage.createFromPath(join(app.getAppPath(), 'img', 'talk.png')));
 
     // タスクトレイに右クリックメニューを追加
     const contextMenu = Menu.buildFromTemplate([
