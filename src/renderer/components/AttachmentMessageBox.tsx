@@ -22,6 +22,7 @@ import { IAppConfig } from '../../common/AppConfig';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
 import { IAttachmentMessage } from '../states/IChatMessage';
+import { isAudioFile, isImageFile, isVideoFile } from '../utils/AttachmentUtils';
 import { getAttachmentFilePath } from '../utils/FileUtils';
 // import store from '../Store';
 
@@ -40,14 +41,11 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   const sourceFilePath = props.attachment.attachmentData.sourceFilePath;
   // image
   const imageRef = React.createRef<HTMLImageElement>();
-  const [loaded, setLoaded] = useState(false);
   const [imageData, setImageData] = useState<Buffer | undefined>(undefined);
 
   if (imageRef.current) {
     imageRef.current.onload = () => {
       console.log('loaded');
-      setLoaded(true);
-
     };
   }
   /**
@@ -95,17 +93,6 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
         }
       },
     );
-    /*
-    const saveFilePath = remote.dialog.showSaveDialogSync(win, dialogOptions);
-    if (saveFilePath) {
-      // // setEditingMessage(props.messageData.text);
-      // dispatch(messageActions.startEditMessage({ message: props }));
-      // e.stopPropagation();
-    } else {
-      // キャンセル
-    }
-    */
-
   };
   const onOpenMenu = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setAnchorEl(e.currentTarget);
@@ -117,13 +104,6 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
 
   // メニュークリック
   const options = [
-    /*
-    {
-      caption: '編集',
-      func: onEditChatMessage,
-      key: 'edit',
-    },
-    */
     {
       caption: '削除',
       func: onClickDelete,
@@ -190,7 +170,7 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
               <div>
                 {/*<img src={imgSource} width="50%" ref={imageRef} />*/}
                 {/*<img src={attachmentFilePath} width="50%" alt={attachmentFilePath} ref={imageRef}></img>*/}
-                <img src={`data:image/png;base64,${imageData.toString('base64')}`}
+                <img src={`data:${props.type};base64,${imageData.toString('base64')}`}
                      width="50%"
                      alt={attachmentFilePath}
                      ref={imageRef} />
@@ -204,7 +184,7 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
           return (
             <ListItemText>
               <div>
-                Loading
+                <i>Loading</i>
               </div>
             </ListItemText>
           );
@@ -345,17 +325,3 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
 
   );
 }
-
-const isImageFile = (filePath: string): boolean => {
-  const ext = path.extname(filePath).toLowerCase();
-  return /(jpe?g|gif|png|webp|bmp)/.test(ext);
-};
-
-const isAudioFile = (filePath: string): boolean => {
-  const ext = path.extname(filePath).toLowerCase();
-  return /(mp3|aac|m4a|ogg|wav)/.test(ext);
-};
-const isVideoFile = (filePath: string): boolean => {
-  const ext = path.extname(filePath).toLowerCase();
-  return /(mp4|mkv|m4v)/.test(ext);
-};

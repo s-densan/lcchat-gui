@@ -16,6 +16,7 @@ import {
   deleteAttachmentDB,
 } from '../utils/ChatDatabaseIF';
 import { getAttachmentFilePath } from '../utils/FileUtils'
+import { getMINEType } from '../utils/AttachmentUtils';
 
 // Stateの初期状態
 const initialState: IChatMessageList & { editingMessage: IChatMessage | undefined } & {lastLoadDatetime?: Date} = {
@@ -102,7 +103,6 @@ const slice = createSlice({
             if (chatMessageJson.attachmentData !== undefined &&
               chatMessageJson.attachmentData.trim() !== '') {
               attachmentData = JSON.parse(chatMessageJson.attachmentData);
-              console.log(attachmentData.fileName);
             }
             const attachmentMessage = createAttachmentMessage(
               chatMessageJson.messageId,
@@ -164,7 +164,6 @@ const slice = createSlice({
       const chatMessages: IChatMessage[] = [];
       let chatMessagesJson: any;
       const newLastLoadDatetime = new Date();
-      console.info(state.lastLoadDatetime);
       // 差分更新処理未作成
       if (state.lastLoadDatetime && false) {
         // 新規・更新分メッセージ一覧
@@ -178,7 +177,6 @@ const slice = createSlice({
         return state;
       }
 
-      console.info(chatMessagesJson.length);
       // 更新メッセージを反映する
       for (const currentMessage of state.chatMessages) {
         // currentMessageの更新があるか確認
@@ -291,7 +289,6 @@ const slice = createSlice({
         lastLoadDatetime: newLastLoadDatetime,
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
-        console.log('kitayo');
         const trayIcon:Tray = remote.getGlobal('trayIcon');
         const imagePath = nativeImage.createFromPath(path.join(process.cwd(), 'img', 'talk2.png'));
         trayIcon.setImage(imagePath);
@@ -344,10 +341,12 @@ const slice = createSlice({
         return state;
       } else {
         const nowDatetime = new Date();
+        const mineType = getMINEType(action.payload.sourceFilePath);
+        const mineTypeStr = mineType ? mineType.type + '/' + mineType.subType : '';
         const newAttachment = createAttachment(
           uuid(),
           action.payload.chatMessageId,
-          'image',
+          mineTypeStr,
           action.payload.userId,
           action.payload.userName,
           'dummy computer name',
@@ -407,11 +406,9 @@ const slice = createSlice({
     },
     postAttachmentMessageFromMemory: (state, action) => {
       // クリップボードなどのメモリから添付ファイルを貼り付ける
-      console.log('write');
       const data: Buffer[] = action.payload.data;
       // const datatype: 'file' | 'image' = action.datatype;
       const nowDatetime = new Date();
-      console.log('write');
       const newAttachment = createAttachment(
         uuid(),
         action.payload.chatMessageId,
@@ -423,7 +420,6 @@ const slice = createSlice({
         nowDatetime,
         nowDatetime,
       );
-      console.log('write');
       const newMessage = createAttachmentMessage(
         action.payload.chatMessageId,
         action.payload.userId,
@@ -435,7 +431,6 @@ const slice = createSlice({
         nowDatetime,
         nowDatetime,
       );
-      console.log('write');
       // DBへの書き込み
       const messageList = state.chatMessages.concat(newMessage);
       insertMessageDB(newMessage);

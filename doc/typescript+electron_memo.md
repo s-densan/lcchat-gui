@@ -77,6 +77,9 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200822
+``yarn upgrade --latest``でパッケージを最新化。気持ちがいいね。バグの原因になりそうだけど。
+![](img/2020-08-22-21-03-51.webp)
 ### 20200820 通知アイコン変化
 新着があると通知アイコンを赤くする。
 
@@ -331,7 +334,7 @@ new electron.Notification({....})
 ```
 ノートPCの不調か、アクションセンターが起動しない事もあったけど、
 再起動したら通知された。
-![](img/2020-06-21-20-34-21.png)
+![](img/2020-06-21-20-34-21.webp)
 
 ### 20200618 タリーズ滑川
 electron exe化
@@ -423,7 +426,7 @@ https://blog.ikappio.com/drawing-with-setinterval-on-react/
 https://teratail.com/questions/130390
 wakaran
 ### 20200518 初回ログイン
-![](img/2020-05-18-23-24-56.png)
+![](img/2020-05-18-23-24-56.webp)
 →エラー。
 理解不能理解不能理解不能
 ``userData = ""``にすると通る。再び理解不能理解不能理解不能
@@ -516,7 +519,7 @@ https://www.webopixel.net/javascript/1601.html
 ### 20200510 
 いっぱい投稿したら出るエラー。
 対策したはずなんだけど。
-![](img/2020-05-10-17-24-47.png)
+![](img/2020-05-10-17-24-47.webp)
 
 ### 20200509 Electronのパッケージ化
 exeにする。
@@ -550,7 +553,7 @@ DB情報を読み込むタイミングを検討。
 https://www.weed.nagoya/entry/2016/05/11/105145
 ### 20200426 SQL
 HaxeのSQL実行機能と連携して、SQL打てるようにした。
-![](img/2020-04-26-22-55-15.png)
+![](img/2020-04-26-22-55-15.webp)
 ### 20200424 コマンド実行
 sqliteは諦めて外部プログラムを呼び出せるよう、コマンド実行方法を調査。
 ```ts
@@ -580,7 +583,7 @@ Add a custom install script
 Declare a binary object
 
 ```
-![](img/2020-04-22-21-22-59.png)
+![](img/2020-04-22-21-22-59.webp)
 謎のエラーが出るのです。
 これ、Windowsだとだめなやつかな？
 
@@ -673,7 +676,7 @@ https://www.fundely.co.jp/blog/tech/2019/11/20/180045/#section4
 #### 『React』 +『Redux』 + 『Firebase』でLINE風のChat機能を作ろう！ 【Component編】
 
 https://qiita.com/micropig3402/items/3431c998df582a441fa5
-![](img/2020-04-07-21-49-04.png)
+![](img/2020-04-07-21-49-04.webp)
 お、悪くない。色々いじっていけそう。
 ### 20200406
 #### Material-UI で Menu を作るときは anchorEl を忘れるな！
@@ -723,7 +726,7 @@ http://jesus9387.hatenablog.com/entry/2017/10/24/182438
 どうも``import OS from 'os'``が悪さをしているように見える。なんでやねん。
 と思ったけど、やっぱfs-extraも悪さしているみたい。みんな悪い子。
 なにか設定が足りんのかしら。
-![](./img/2019-12-01-23-39-27.png)
+![](./img/2019-12-01-23-39-27.webp)
 
 
 →きたー！！これか、requireが働いていなかったのか。クソかよ。
@@ -874,7 +877,7 @@ yarn add @types/clone
 yarn build
 yarn start
 ```
-![](img/2019-11-25-20-35-02.png)
+![](img/2019-11-25-20-35-02.webp)
 おお、手順通りにするだけでそれっぽい画面がでけたで！素敵！
 
 ``yarn watch``を使えるように、``package.json``をいじる。

@@ -102,7 +102,6 @@ app.on('browser-window-focus', () => {
         const trayIcon: Tray = global.trayIcon;
         const imagePath = nativeImage.createFromPath(join(process.cwd(), 'img', 'talk.png'));
         trayIcon.setImage(imagePath);
-        console.log('set tray icon');
     }
 });
 

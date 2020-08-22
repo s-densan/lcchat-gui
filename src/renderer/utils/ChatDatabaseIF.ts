@@ -29,7 +29,6 @@ const runCommand = (sql: string): any => {
   // 
   const stdout = child_process.execSync(command);
   // 結果Json
-  console.log(stdout.toString());
   const { data: data, ok: ok } = FsEx.readJsonSync(resultFilePath);
   // const stdout = child_process.execSync(lcchatCommand + ' stdin',  { input: JSON.stringify(inputData) });
   if (!ok) {
@@ -60,7 +59,6 @@ export const loadChatMessagesDB = () => {
   return data;
 };
 export const loadNewChatMessagesDB = (lastLoadDatetime: Date) => {
-  console.log(lastLoadDatetime);
   const sql = `
     SELECT messages.*, users.user_data, attachments.attachment_id, attachments.attachment_data
     FROM messages
