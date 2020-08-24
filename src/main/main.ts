@@ -17,15 +17,21 @@ import {
 interface IGlobal {
     appConfig: IAppConfig;
     trayIcon: Tray;
+    trayIconImagePath1: string,
+    trayIconImagePath2: string,
 }
+
 
 
 // configファイル読み込み
 initAppConfig();
-// rendererプロセスからアクセスできるようにglobalに設定
-global.appConfig = appConfig;
 // globalに値をセットするため型をanyに強制する
 declare const global: IGlobal;
+// rendererプロセスからアクセスできるようにglobalに設定
+global.appConfig = appConfig;
+// トレイアイコン
+global.trayIconImagePath1 = join(app.getAppPath(), 'img', 'talk.png');
+global.trayIconImagePath2 = join(app.getAppPath(), 'img', 'talk2.png');
 
 
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
@@ -100,8 +106,8 @@ app.on('activate', () => {
 app.on('browser-window-focus', () => {
     if (global.trayIcon) {
         const trayIcon: Tray = global.trayIcon;
-        const imagePath = nativeImage.createFromPath(join(app.getAppPath(), 'img', 'talk.png'));
-        trayIcon.setImage(imagePath);
+        const image = nativeImage.createFromPath(global.trayIconImagePath1);
+        trayIcon.setImage(image);
     }
 });
 
@@ -113,7 +119,7 @@ const HOTKEY = appConfig.hotkeys.toggleVisible;
 function addTaskTray(): Tray {
     // タスクトレイに格納
 
-    const trayIcon = new Tray(nativeImage.createFromPath(join(app.getAppPath(), 'img', 'talk.png')));
+    const trayIcon = new Tray(nativeImage.createFromPath(global.trayIconImagePath1));
 
     // タスクトレイに右クリックメニューを追加
     const contextMenu = Menu.buildFromTemplate([

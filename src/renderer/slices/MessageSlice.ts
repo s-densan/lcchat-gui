@@ -138,8 +138,9 @@ const slice = createSlice({
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
         const trayIcon: Tray = remote.getGlobal('trayIcon');
-        const imagePath = nativeImage.createFromPath(path.join(process.cwd(), 'img', 'talk2.png'));
-        trayIcon.setImage(imagePath);
+        const imagePath = remote.getGlobal('trayIconImagePath2')
+        const image = nativeImage.createFromPath(imagePath);
+        trayIcon.setImage(image);
 
         const num = chatMessages.length - state.chatMessages.length;
         const notify = new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
@@ -290,8 +291,9 @@ const slice = createSlice({
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
         const trayIcon:Tray = remote.getGlobal('trayIcon');
-        const imagePath = nativeImage.createFromPath(path.join(process.cwd(), 'img', 'talk2.png'));
-        trayIcon.setImage(imagePath);
+        const imagePath = remote.getGlobal('trayIconImagePath2')
+        const image = nativeImage.createFromPath(imagePath);
+        trayIcon.setImage(image);
 
         const num = chatMessages.length - state.chatMessages.length;
         const notify = new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
