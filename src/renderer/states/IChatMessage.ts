@@ -1,11 +1,14 @@
 import { v4 as UUID } from 'uuid';
 import { IAttachment } from './IAttachment';
 
-export interface IAttachmentMessageData {
+export interface IMessageData {
+    reactions?: string[];
 }
-export interface ITextMessageData {
-    text: string;
-}
+export type IAttachmentMessageData = {
+} & IMessageData;
+export type ITextMessageData = {
+    text: string
+} & IMessageData;
 export type IChatMessage = ITextMessage | IAttachmentMessage;
 export type ITextMessage = IChatMessageBase & {
     type: 'text';
@@ -15,7 +18,7 @@ export type ITextMessage = IChatMessageBase & {
 export type IAttachmentMessage = IChatMessageBase & {
     type: 'attachment';
     /** メッセージデータ */
-    messageData: IAttachmentMessageData;
+    messageData: IAttachmentMessageData & {reactions? : string[]};
     /** 添付データ */
     attachment: IAttachment;
 };
@@ -74,6 +77,7 @@ export const createTextMessage = (
     userName: string,
     userAvaterText: string,
     talkId: string,
+    reactions: string[] | undefined,
     postedAt: Date,
     createdAt: Date | null,
     updatedAt: Date | null,
@@ -85,7 +89,8 @@ export const createTextMessage = (
         id,
         type: 'text',
         messageData: {
-            text: text,
+            text,
+            reactions,
         },
         messageId,
         postedAt,
@@ -113,6 +118,7 @@ export const createAttachmentMessage = (
     userName: string,
     userAvaterText: string,
     talkId: string,
+    reactions: string[] | undefined,
     postedAt: Date,
     attachment: IAttachment,
     createdAt: Date | null,
@@ -124,6 +130,7 @@ export const createAttachmentMessage = (
         id,
         type: 'attachment',
         messageData: {
+            reactions
         },
         attachment,
         messageId,

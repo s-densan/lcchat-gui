@@ -4,8 +4,8 @@ import { remote, Tray, nativeImage } from 'electron';
 import fs from 'fs';
 import path from 'path';
 import { v4 as UUID } from 'uuid';
-import { createAttachment } from '../states/IAttachment';
-import { createAttachmentMessage, createTextMessage, IChatMessage, IChatMessageList, ITextMessageData } from '../states/IChatMessage';
+import { createAttachment, IAttachmentData } from '../states/IAttachment';
+import { createAttachmentMessage, createTextMessage, IChatMessage, IChatMessageList, ITextMessageData, IAttachmentMessageData } from '../states/IChatMessage';
 import {
   deleteMessageDB,
   insertAttachmentDB,
@@ -58,19 +58,15 @@ const slice = createSlice({
       const chatMessagesJson: any = loadChatMessagesDB();
       for (const chatMessageJson of chatMessagesJson) {
         let userName: string;
-        const chatMessageData = JSON.parse(chatMessageJson.messageData);
         const userData = JSON.parse(chatMessageJson.userData);
         if (chatMessageJson.userData) {
           userName = userData.userName;
         } else {
           userName = 'unknown';
         }
-        // alert(JSON.stringify(chatMessageJson))
-        // alert(JSON.stringify(chatMessageJson.messageData))
-        // console.log(chatMessageData)
-        // alert(chatMessageData.text)
         switch (chatMessageJson.type) {
           case 'text':
+            const chatMessageData: ITextMessageData = JSON.parse(chatMessageJson.messageData);
             const textMessage = createTextMessage(
               chatMessageJson.messageId,
               chatMessageData.text,
@@ -78,6 +74,7 @@ const slice = createSlice({
               userName,
               userName.slice(0, 2),
               'dummyTalkId',
+              chatMessageJson.reactions,
               chatMessageJson.postedAt,
               chatMessageJson.createdAt,
               chatMessageJson.updatedAt,
@@ -86,7 +83,7 @@ const slice = createSlice({
             break;
           case 'attachment':
             // デフォルト添付
-            let attachmentData = {
+            let attachmentData: IAttachmentData = {
               // ファイルタイプ
               fileType: 'none',
               // ファイル名
@@ -110,6 +107,7 @@ const slice = createSlice({
               userName,
               userName.slice(0, 2),
               'dummyTalkId',
+              chatMessageJson.reactions,
               chatMessageJson.postedAt,
               createAttachment(
                 chatMessageJson.attachmentId,
@@ -204,6 +202,7 @@ const slice = createSlice({
                   userName,
                   userName.slice(0, 2),
                   'dummyTalkId',
+                  filtered[0].reactions,
                   filtered[0].postedAt,
                   filtered[0].createdAt,
                   filtered[0].updatedAt,
@@ -233,7 +232,6 @@ const slice = createSlice({
         if (filtered.length === 0) {
           // メッセージIDが一致するメッセージがない場合、新規メッセージとして追加する
           const userData = JSON.parse(loadedMessage.userData);
-          const messageData = JSON.parse(loadedMessage.messageData);
           // ユーザ名デフォルトはunknown
           let userName = 'unknown';
           if (userData) {
@@ -241,6 +239,7 @@ const slice = createSlice({
           }
           switch (loadedMessage.type) {
             case 'text':
+              const messageData: ITextMessageData = JSON.parse(loadedMessage.messageData);
               // 新規テキストメッセージ
               const newMessage = createTextMessage(
                 loadedMessage.messageId,
@@ -249,6 +248,7 @@ const slice = createSlice({
                 userData.userName,
                 userData.userName.slice(0, 2),
                 'dummyTalkId',
+                messageData.reactions,
                 loadedMessage.postedAt,
                 loadedMessage.createdAt,
                 loadedMessage.updatedAt,
@@ -257,13 +257,15 @@ const slice = createSlice({
               break;
             case 'attachment':
               // 新規添付メッセージ
-              const attachmentData = JSON.parse(loadedMessage.attachmentData);
+              const attachmentData: IAttachmentData = JSON.parse(loadedMessage.attachmentData);
+              const attachmentMessageData: IAttachmentMessageData = JSON.parse(loadedMessage.messageData);
               const newAttachmentMessage = createAttachmentMessage(
                 loadedMessage.messageId,
                 userData.userId,
                 userData.userName,
                 userData.userName.slice(0, 2),
                 'dummyTalkId',
+                attachmentMessageData.reactions,
                 loadedMessage.postedAt,
                 createAttachment(
                   loadedMessage.attachmentId,
@@ -322,6 +324,7 @@ const slice = createSlice({
           action.payload.userName,
           action.payload.userAvaterText,
           action.payload.talkId,
+          action.payload.reactions,
           action.payload.postedAt,
           nowDatetime,
           nowDatetime,
@@ -362,6 +365,7 @@ const slice = createSlice({
           action.payload.userName,
           action.payload.userAvaterText,
           action.payload.talkId,
+          action.payload.reaction,
           action.payload.postedAt,
           newAttachment,
           nowDatetime,
@@ -425,6 +429,7 @@ const slice = createSlice({
         action.payload.userName,
         action.payload.userAvaterText,
         action.payload.talkId,
+        action.payload.reactions,
         action.payload.postedAt,
         newAttachment,
         nowDatetime,

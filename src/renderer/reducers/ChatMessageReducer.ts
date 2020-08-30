@@ -86,6 +86,7 @@ const ChatMessageReducer: Redux.Reducer<IChatMessageList> = (state = initChatMes
                         action.userName,
                         action.userAvaterText,
                         action.talkId,
+                        action.reactions,
                         action.postedAt,
                         null,
                         null,
