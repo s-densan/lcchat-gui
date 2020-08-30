@@ -77,6 +77,9 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20200828
+Electronアプでしたら破壊的変更でremoteが設定なしに使えなくなってた。
+https://www.electronjs.org/docs/breaking-changes
 ### 20200822
 ``yarn upgrade --latest``でパッケージを最新化。気持ちがいいね。バグの原因になりそうだけど。
 ![](img/2020-08-22-21-03-51.webp)

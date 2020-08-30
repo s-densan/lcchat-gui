@@ -51,6 +51,7 @@ function createWindow() {
         y: desktopSize.height - appHeight,
         webPreferences: {
             nodeIntegration: true,
+            enableRemoteModule: true,
         },
         title: 'Communication App'
     });
