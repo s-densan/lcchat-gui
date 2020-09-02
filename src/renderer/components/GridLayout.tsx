@@ -15,12 +15,12 @@ import { userActions } from '../slices/UserSlice';
 import { windowActions } from '../slices/WindowSlice';
 import ChatMessageList from './ChatMessageList';
 import ChatMessagePostBox from './ChatMessagePostBox';
-import { Clock } from './Clock';
+import Clock from './Clock';
 import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
 
 
-export function GridLayout() {
+export default function GridLayout() {
 
   const dialog = useSelector((state: RootState) => state.dialog);
   const message = useSelector((state: RootState) => state.message);

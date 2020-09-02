@@ -1,14 +1,25 @@
 import { v4 as UUID } from 'uuid';
 import { IAttachment } from './IAttachment';
 
+/**
+ * すべてのメッセージ種別に共通のデータ
+ */
 export interface IMessageData {
     reactions?: string[];
 }
+
+/**
+ * 添付メッセージ特有のデータ
+ */
 export type IAttachmentMessageData = {
 } & IMessageData;
+/**
+ * テキストメッセージ特有のデータ
+ */
 export type ITextMessageData = {
     text: string
 } & IMessageData;
+
 export type IChatMessage = ITextMessage | IAttachmentMessage;
 export type ITextMessage = IChatMessageBase & {
     type: 'text';
@@ -18,7 +29,7 @@ export type ITextMessage = IChatMessageBase & {
 export type IAttachmentMessage = IChatMessageBase & {
     type: 'attachment';
     /** メッセージデータ */
-    messageData: IAttachmentMessageData & {reactions? : string[]};
+    messageData: IAttachmentMessageData;
     /** 添付データ */
     attachment: IAttachment;
 };
