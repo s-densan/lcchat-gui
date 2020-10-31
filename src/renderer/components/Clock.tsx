@@ -4,7 +4,7 @@ interface IProps {
   interval: number;
   onTimer: () => void;
 }
-export default const Clock = (props: IProps) => {
+export default function Clock(props: IProps) {
   const [now, setNow] = React.useState(new Date());
   React.useEffect(() => {
     const intervalId = setInterval(() => {
