@@ -10,8 +10,9 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+// see also: https://material-ui.com/ja/components/drawers/
 export default function Top() {
-  const open = () => {};
+  const open = true;
   const handleDrawerClose = () => {};
   return (
     <div>
@@ -20,9 +21,9 @@ export default function Top() {
         variant="persistent"
         anchor="left"
         open={open}
-        classes={/*{
-          paper: classes.drawerPaper,
-        }*/}
+        classes={{
+         /* paper: classes.drawerPaper,*/
+        }}
       >
         <div>
           <IconButton onClick={handleDrawerClose}>

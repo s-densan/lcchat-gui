@@ -77,6 +77,20 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20201031
+``yarn update --latest``実行してやったらビルド時にエラー。
+```
+[webpack-cli] Invalid configuration object. Webpack has been initialized using a configuration object that does not match the API schema.
+ - configuration[0].module.rules[2] has an unknown property 'loaders'. These properties are valid:
+   object { compiler?, dependency?, descriptionData?, enforce?, exclude?, generator?, include?, issuer?, loader?, mimetype?, oneOf?, options?, parser?, realResource?, resolve?, resource?, resourceFragment?, resourceQuery?, rules?, sideEffects?, test?, type?, use? }
+   -> A rule description with conditions and effects for modules.
+ - configuration[1].module.rules[2] has an unknown property 'loaders'. These properties are valid:
+   object { compiler?, dependency?, descriptionData?, enforce?, exclude?, generator?, include?, issuer?, loader?, mimetype?, oneOf?, options?, parser?, realResource?, resolve?, resource?, resourceFragment?, resourceQuery?, rules?, sideEffects?, test?, type?, use? }
+   -> A rule description with conditions and effects for modules.
+error Command failed with exit code 2.
+```
+しゃーない、バージョン戻し。
+多分webpack5のせいな気がするんだけど。
 ### 20200828
 Electronアプでしたら破壊的変更でremoteが設定なしに使えなくなってた。
 https://www.electronjs.org/docs/breaking-changes
