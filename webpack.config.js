@@ -46,7 +46,7 @@ const mainConfig = {
             },
         }, {
             test: /\.css$/,
-            loaders: ['style-loader', 'css-loader'],
+            use: ['style-loader', 'css-loader'],
         }],
     },
    // 処理対象のファイルを記載する
@@ -103,7 +103,7 @@ const rendererConfig = {
             },
         }, {
             test: /\.css$/,
-            loaders: ['style-loader', 'css-loader'],
+            use: ['style-loader', 'css-loader'],
         }],
     },
    // 処理対象のファイルを記載する

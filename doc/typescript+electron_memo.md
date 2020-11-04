@@ -77,6 +77,9 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20201104
+Webpack以外を更新。
+webpack.config.jsのloadersやらuseやらが怪しいんだけどなあ。
 ### 20201031
 ``yarn update --latest``実行してやったらビルド時にエラー。
 ```
