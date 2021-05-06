@@ -139,6 +139,23 @@ ncu -u
 ```
 yarn install
 ```
+で、yarn buildが動かないんだけど。
+```
+$ webpack
+[webpack-cli] TypeError: Cannot read property 'tap' of undefined
+    at Object.exports.tap (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\hard-source-webpack-plugin\lib\util\plugin-compat.js:118:25)
+    at new CacheSerializerFactory (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\hard-source-webpack-plugin\lib\CacheSerializerFactory.js:94:18)
+36)
+    at createCompiler (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\webpack\lib\webpack.js:74:12)
+    at C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\webpack\lib\webpack.js:44:48
+    at Array.map (<anonymous>)
+    at createMultiCompiler (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\webpack\lib\webpack.js:44:33)
+    at create (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\webpack\lib\webpack.js:118:16)
+    at webpack (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\webpack\lib\webpack.js:131:47)
+    at WebpackCLI.f [as webpack] (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\webpack\lib\index.js:54:15)
+error Command failed with exit code 2.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+```
 ### 20201104
 Webpack以外を更新。
 webpack.config.jsのloadersやらuseやらが怪しいんだけどなあ。
