@@ -8,68 +8,70 @@
     1. [GitHub](#github)
 2. [todo](#todo)
 3. [記録](#記録)
-    1. [20201104](#20201104)
-    2. [20201031](#20201031)
-    3. [20200828](#20200828)
-    4. [20200822](#20200822)
-    5. [20200820 通知アイコン変化](#20200820-通知アイコン変化)
-    6. [20200817 Action実行後に次のAction実行](#20200817-action実行後に次のaction実行)
-    7. [20200814 ファイル保存ダイアログ](#20200814-ファイル保存ダイアログ)
-    8. [20200805](#20200805)
-    9. [20200803](#20200803)
-    10. [20200802](#20200802)
-    11. [20200716](#20200716)
-    12. [20200717](#20200717)
-    13. [20200712](#20200712)
-    14. [20200711](#20200711)
-    15. [20200708](#20200708)
-    16. [20200706](#20200706)
-    17. [20200705](#20200705)
-    18. [20200702](#20200702)
-    19. [20200630](#20200630)
-    20. [20200628](#20200628)
-    21. [20200623 通知とか](#20200623-通知とか)
-    22. [20200621 通知](#20200621-通知)
-    23. [20200618 タリーズ滑川](#20200618-タリーズ滑川)
-    24. [20200617 exe化](#20200617-exe化)
-    25. [20200613 滑川図書館にて](#20200613-滑川図書館にて)
-    26. [20200531](#20200531)
-    27. [20200519](#20200519)
-    28. [20200528 memo](#20200528-memo)
-    29. [20200527](#20200527)
-    30. [20200523](#20200523)
-    31. [20200521](#20200521)
-    32. [20200520](#20200520)
-    33. [20200519](#20200519-1)
-    34. [20200518 初回ログイン](#20200518-初回ログイン)
-    35. [20200516 初回ログイン](#20200516-初回ログイン)
-    36. [20200514](#20200514)
-    37. [20200513](#20200513)
-    38. [20200510](#20200510)
-    39. [20200510](#20200510-1)
-    40. [20200509 Electronのパッケージ化](#20200509-electronのパッケージ化)
-    41. [20200506](#20200506)
-    42. [20200505 DBアクセス](#20200505-dbアクセス)
-    43. [20200426 SQL](#20200426-sql)
-    44. [20200424 コマンド実行](#20200424-コマンド実行)
-    45. [20200422 SQLite2](#20200422-sqlite2)
-    46. [20200421 SQLite](#20200421-sqlite)
-    47. [20200408](#20200408)
-    48. [20200407](#20200407)
-    49. [20200406](#20200406)
-    50. [20200403](#20200403)
-    51. [20200401](#20200401)
-    52. [20200330](#20200330)
-    53. [20200108](#20200108)
-    54. [20191202](#20191202)
-    55. [20191202](#20191202-1)
-    56. [20191201-2](#20191201-2)
-    57. [20191201](#20191201)
-    58. [20191130](#20191130)
-    59. [20191129](#20191129)
-    60. [20191127 4日目～7日目](#20191127-4日目~7日目)
-    61. [20191125 3日目](#20191125-3日目)
-    62. [20191105](#20191105)
+    1. [20210507](#20210507)
+    2. [20210506](#20210506)
+    3. [20201104](#20201104)
+    4. [20201031](#20201031)
+    5. [20200828](#20200828)
+    6. [20200822](#20200822)
+    7. [20200820 通知アイコン変化](#20200820-通知アイコン変化)
+    8. [20200817 Action実行後に次のAction実行](#20200817-action実行後に次のaction実行)
+    9. [20200814 ファイル保存ダイアログ](#20200814-ファイル保存ダイアログ)
+    10. [20200805](#20200805)
+    11. [20200803](#20200803)
+    12. [20200802](#20200802)
+    13. [20200716](#20200716)
+    14. [20200717](#20200717)
+    15. [20200712](#20200712)
+    16. [20200711](#20200711)
+    17. [20200708](#20200708)
+    18. [20200706](#20200706)
+    19. [20200705](#20200705)
+    20. [20200702](#20200702)
+    21. [20200630](#20200630)
+    22. [20200628](#20200628)
+    23. [20200623 通知とか](#20200623-通知とか)
+    24. [20200621 通知](#20200621-通知)
+    25. [20200618 タリーズ滑川](#20200618-タリーズ滑川)
+    26. [20200617 exe化](#20200617-exe化)
+    27. [20200613 滑川図書館にて](#20200613-滑川図書館にて)
+    28. [20200531](#20200531)
+    29. [20200519](#20200519)
+    30. [20200528 memo](#20200528-memo)
+    31. [20200527](#20200527)
+    32. [20200523](#20200523)
+    33. [20200521](#20200521)
+    34. [20200520](#20200520)
+    35. [20200519](#20200519-1)
+    36. [20200518 初回ログイン](#20200518-初回ログイン)
+    37. [20200516 初回ログイン](#20200516-初回ログイン)
+    38. [20200514](#20200514)
+    39. [20200513](#20200513)
+    40. [20200510](#20200510)
+    41. [20200510](#20200510-1)
+    42. [20200509 Electronのパッケージ化](#20200509-electronのパッケージ化)
+    43. [20200506](#20200506)
+    44. [20200505 DBアクセス](#20200505-dbアクセス)
+    45. [20200426 SQL](#20200426-sql)
+    46. [20200424 コマンド実行](#20200424-コマンド実行)
+    47. [20200422 SQLite2](#20200422-sqlite2)
+    48. [20200421 SQLite](#20200421-sqlite)
+    49. [20200408](#20200408)
+    50. [20200407](#20200407)
+    51. [20200406](#20200406)
+    52. [20200403](#20200403)
+    53. [20200401](#20200401)
+    54. [20200330](#20200330)
+    55. [20200108](#20200108)
+    56. [20191202](#20191202)
+    57. [20191202](#20191202-1)
+    58. [20191201-2](#20191201-2)
+    59. [20191201](#20191201)
+    60. [20191130](#20191130)
+    61. [20191129](#20191129)
+    62. [20191127 4日目～7日目](#20191127-4日目~7日目)
+    63. [20191125 3日目](#20191125-3日目)
+    64. [20191105](#20191105)
 
 <!-- /code_chunk_output -->
 
@@ -81,7 +83,223 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20210507
+前回のエラーについて、``TypeError: Cannot read property 'tap' of undefined``で検索。
+https://qiita.com/faronan/items/a017d53a8405a44544f2
+```
+解決方法
+https://github.com/vercel/next.js/discussions/19081
+同様のエラーについて、こちらのIssueで案内されています。
+Issueに従って、package.jsonに"webpack": "^4.44.1"を追加し、webpackのバージョンを固定することで解決しました。
+Nest.jsの依存関係を確認したところ、webpackのバージョンは5.9.0が用いられているようです。
+create-next-appでプロジェクトを作成する場合は、webpackのバージョンが変わることが少ないので、初めての気づきでした。
+```
+webpackのバージョンを落とせってさ。悔しい。
+
+もう一回Buildしたがエラー。
+```
+yarn run v1.16.0
+warning ..\..\..\package.json: No license field
+$ webpack
+[hardsource:e55a3bc6] Writing new cache e55a3bc6...
+[hardsource:21121863] Writing new cache 21121863...
+[hardsource:e55a3bc6] Tracking node dependencies with: yarn.lock.
+[hardsource:21121863] Tracking node dependencies with: yarn.lock.
+Hash: 9f98692c0db49b5b093d274e7bf324811af95f7f
+Version: webpack 4.46.0
+Child
+    Hash: 9f98692c0db49b5b093d
+    Time: 15872ms
+    Built at: 2021/05/07 18:46:21
+          Asset      Size  Chunks                   Chunk Names
+        main.js  4.14 KiB    main  [emitted]        main
+    main.js.map  3.53 KiB    main  [emitted] [dev]  main
+    Entrypoint main = main.js main.js.map
+    [./src/main/main.ts] 381 bytes {main} [built] [failed] [1 error]
+
+    ERROR in ./src/main/main.ts
+    Module build failed (from ./node_modules/ts-loader/index.js):
+    TypeError: loaderContext.getOptions is not a function
+        at getLoaderOptions (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\ts-loader\dist\index.js:90:41)
+        at Object.loader (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\ts-loader\dist\index.js:14:21)
+Child
+    Hash: 274e7bf324811af95f7f
+    Time: 15867ms
+    Built at: 2021/05/07 18:46:21
+           Asset      Size  Chunks                   Chunk Names
+        index.js  4.17 KiB    main  [emitted]        main
+    index.js.map  3.53 KiB    main  [emitted] [dev]  main
+    Entrypoint main = index.js index.js.map
+    [./src/renderer/index.tsx] 381 bytes {main} [built] [failed] [1 error]
+
+    ERROR in ./src/renderer/index.tsx
+    Module build failed (from ./node_modules/ts-loader/index.js):
+    TypeError: loaderContext.getOptions is not a function
+        at getLoaderOptions (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\ts-loader\dist\index.js:90:41)
+        at Object.loader (C:\Users\shimp\OneDrive\Documents\lcchat-gui\node_modules\ts-loader\dist\index.js:14:21)
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+```
+ポイントは``TypeError: loaderContext.getOptions is not a function``かな。
+https://frontedcode.com/posts/backend/laravel/1
+```
+React+laravel+Typescript の環境を構築するために初めに、TS の型に関する依存関係をインストールされたと思います。
+その中に、TS トランスパイラの一つとして ts-loader というものがありましたね。今回のエラーの原因はそれです。
+問題は、この ts-loader というパッケージのバージョンが新しすぎた 事が原因です。
+何か一つでもパッケージが、その Laravel のバージョンで認識できるパッケージより新しい場合、Laravel はエラーを吐かざる負えません。
+今回は私は、Laravel6（最新は 8）の環境で行っているためそのようなバグがおこりやすくなったと言えるでしょう。
+では、どのようにしてこのエラーを解消させるのでしょうか。
+解決策
+一度アンインストールして少し古いパッケージにすれば良いだけですね。
+npm uninstall ts-loader
+npm install ts-loader@8.2.0 --save
+```
+次は``ts-loader``のバージョンを落とせってさ。えー
+落としたしたさ。
+
+再Build
+ようやく中身のエラーになってきた。
+```
+    ERROR in C:\Users\shimp\OneDrive\Documents\lcchat-gui\src\renderer\slices\MessageSlice.ts
+    ./src/renderer/slices/MessageSlice.ts 450:56-60
+    [tsl] ERROR in C:\Users\shimp\OneDrive\Documents\lcchat-gui\src\renderer\slices\MessageSlice.ts(450,57)
+          TS2769: No overload matches this call.
+      The last overload gave the following error.
+        Argument of type 'Buffer[]' is not assignable to parameter of type 'WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: 
+"string"): string; }'.
+          Type 'Buffer[]' is not assignable to type 'string'.
+
+    ERROR in C:\Users\shimp\OneDrive\Documents\lcchat-gui\src\renderer\slices\MessageSlice.ts
+    ./src/renderer/slices/MessageSlice.ts 453:54-58
+    [tsl] ERROR in C:\Users\shimp\OneDrive\Documents\lcchat-gui\src\renderer\slices\MessageSlice.ts(453,55)
+          TS2769: No overload matches this call.
+      The last overload gave the following error.
+        Argument of type 'Buffer[]' is not assignable to parameter of type 'WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: 
+"string"): string; }'.
+          Type 'Buffer[]' is not assignable to type 'string'.
+
+    ERROR in C:\Users\shimp\OneDrive\Documents\lcchat-gui\src\renderer\slices\MessageSlice.ts
+    ./src/renderer/slices/MessageSlice.ts 462:50-54
+    [tsl] ERROR in C:\Users\shimp\OneDrive\Documents\lcchat-gui\src\renderer\slices\MessageSlice.ts(462,51)
+          TS2769: No overload matches this call.
+      The last overload gave the following error.
+        Argument of type 'Buffer[]' is not assignable to parameter of type 'WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: 
+"string"): string; }'.
+          Type 'Buffer[]' is not assignable to type 'string'.
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+```
+``Buffer[]``と``ArrayBuffer``が区別されるようになった？ようわからん。
+``Buffer[]``->``ArrayBuffer``に変更してみてBuild。とりあえず通りました。
+``yarn start``
+画面表示されず。コンソールにメッセージ。
+```
+Uncaught ReferenceError: require is not defined
+    at Object.electron (external "electron":1)
+    at __webpack_require__ (bootstrap:19)
+    at Object../src/renderer/slices/MessageSlice.ts (MessageSlice.ts:9)
+    at __webpack_require__ (bootstrap:19)
+    at Object../src/renderer/slices/RootStore.ts (RootStore.ts:6)
+    at __webpack_require__ (bootstrap:19)
+    at Object../src/renderer/index.tsx (index.tsx:9)
+    at __webpack_require__ (bootstrap:19)
+    at bootstrap:83
+    at bootstrap:83
+```
+![](img/2021-05-07-19-02-04.png)
+
+``Uncaught ReferenceError: require is not defined electron``で検索。
+
+https://stackoverflow.com/questions/44391448/electron-require-is-not-defined
+```
+As of version 5, the default for nodeIntegration changed from true to false. You can enable it when creating the Browser Window:
+
+app.on('ready', () => {
+    mainWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        }
+    });
+});
+```
+``main.ts``の``BrowserWindow``の初期化時に``contextIsolation: false``をつけたら何故か動いた。なぞー。
+```typescript
+    win = new BrowserWindow({
+        height: appHeight,
+        width: appWidth,
+        x: desktopSize.width - appWidth,
+        y: desktopSize.height - appHeight,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true,
+        },
+        title: 'Communication App'
+    });
+```
+```typescript
+    win = new BrowserWindow({
+        height: appHeight,
+        width: appWidth,
+        x: desktopSize.width - appWidth,
+        y: desktopSize.height - appHeight,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
+        },
+        title: 'Communication App'
+    });
+```
+
+画面はとりあえず表示できたが、Warningを解決しておこうか。
+![](img/2021-05-07-19-14-51.png)
+
+```
+electron/js2c/renderer_init.js:13 (electron) The remote module is deprecated. Use https://github.com/electron/remote instead.
+log @ electron/js2c/renderer_init.js:13
+```
+https://simple-minds-think-alike.hatenablog.com/entry/disable-electron-remote-module
+```
+remote moduleを無くすためのアプリケーション側の対応
+現状 remote モジュールを使って、レンダラプロセスからあたかもローカルオブジェクトのようにメインプロセス内のオブジェクトを使っている場合、今後どうしたら良いのか。 対応としては2つあるようです。
+
+①明示的にIPC通信で処理するように置き換える
+remote moduleを使ってメインプロセス内のオブジェクトを参照し、暗黙的にIPC通信が行われることによって様々な問題が発生するので、明示的なIPC通信に置き換えていくことを推奨しているようです。
+
+f:id:moritamorie:20200830103205p:plain
+
+② 移管されるelectron-userland/remoteを使う
+build-inで提供されている remote moduleは将来的に削除され、electron-userland/remoteに移管されるのでそれを使い続けるというのもできるようです。
+```
+remoteは使っちゃだめだって。
+ipc通信の解説
+https://camisole-h.hatenablog.jp/entry/2019/12/19/004701
+
+```
+Electron Security Warning (Insecure Content-Security-Policy) This renderer process has either no Content Security
+    Policy set or a policy with "unsafe-eval" enabled. This exposes users of
+    this app to unnecessary security risks.
+
+For more information and help, consult
+https://electronjs.org/docs/tutorial/security.
+This warning will not show up
+once the app is packaged.
+(anonymous) @ electron/js2c/renderer_init.js:113
+```
+https://qiita.com/kuraiL22/items/80e8e77d62cbe39d0b34
+```
+electron上で、http経由のコンテンツを読み込んだ時に発生。
+デバック中は、local上でReactを動かしているので発生する。
+パッケージ化すれば発生しないエラー。
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
+を、 electron.js にて追記すれば表示されなくなる。
+```
+とのこと。消しとこ。
+
+
 ### 20210506
+
 開発続けたくて再始動。
 えーどうすればいいんだっけ？
 

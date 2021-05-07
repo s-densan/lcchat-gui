@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import clone from 'clone';
-import { remote, Tray, nativeImage } from 'electron';
+import { Tray, nativeImage, ipcRenderer } from 'electron';
 import fs from 'fs';
 import path from 'path';
 import { v4 as UUID } from 'uuid';
@@ -17,6 +17,9 @@ import {
 } from '../utils/ChatDatabaseIF';
 import { getAttachmentFilePath } from '../utils/FileUtils'
 import { getMINEType } from '../utils/AttachmentUtils';
+import { IAppConfig } from '../../common/AppConfig';
+import {IGlobal} from '../../common/IGlobal';
+
 
 // Stateの初期状態
 const initialState: IChatMessageList & { editingMessage: IChatMessage | undefined } & {lastLoadDatetime?: Date} = {
@@ -135,13 +138,17 @@ const slice = createSlice({
         lastLoadDatetime: new Date(),
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
-        const trayIcon: Tray = remote.getGlobal('trayIcon');
-        const imagePath = remote.getGlobal('trayIconImagePath2')
+        const global: IGlobal = ipcRenderer.sendSync('global');
+        const trayIcon = global.trayIcon;
+        const imagePath = global.trayIconImagePath2;
         const image = nativeImage.createFromPath(imagePath);
         trayIcon.setImage(image);
 
         const num = chatMessages.length - state.chatMessages.length;
-        const notify = new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
+
+        /*
+         * ToDo
+        const notify =  new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
         notify.show();
         // 通知メッセージクリック時イベント
         notify.on('click', () => {
@@ -152,6 +159,7 @@ const slice = createSlice({
             win.focus();
           }
         });
+        */
       }
       return res;
     },
@@ -292,12 +300,15 @@ const slice = createSlice({
         lastLoadDatetime: newLastLoadDatetime,
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
-        const trayIcon:Tray = remote.getGlobal('trayIcon');
-        const imagePath = remote.getGlobal('trayIconImagePath2')
+        const global: IGlobal = ipcRenderer.sendSync('global');
+        const trayIcon = global.trayIcon;
+        const imagePath = global.trayIconImagePath2;
         const image = nativeImage.createFromPath(imagePath);
         trayIcon.setImage(image);
 
         const num = chatMessages.length - state.chatMessages.length;
+        /*
+         * ToDo
         const notify = new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
         notify.show();
         // 通知メッセージクリック時イベント
@@ -309,6 +320,7 @@ const slice = createSlice({
             win.focus();
           }
         });
+        *****/
       }
       return res;
     },
@@ -409,7 +421,7 @@ const slice = createSlice({
     },
     postAttachmentMessageFromMemory: (state, action) => {
       // クリップボードなどのメモリから添付ファイルを貼り付ける
-      const data: Buffer[] = action.payload.data;
+      const data: ArrayBuffer = action.payload.data;
       // const datatype: 'file' | 'image' = action.datatype;
       const nowDatetime = new Date();
       const newAttachment = createAttachment(

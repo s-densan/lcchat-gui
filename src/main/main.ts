@@ -6,6 +6,7 @@ import {
     nativeImage,
     Tray,
     screen,
+    ipcMain,
 } from 'electron';
 import { join } from 'path';
 import {
@@ -14,12 +15,9 @@ import {
     IAppConfig,
 } from '../common/AppConfig';
 
-interface IGlobal {
-    appConfig: IAppConfig;
-    trayIcon: Tray;
-    trayIconImagePath1: string,
-    trayIconImagePath2: string,
-}
+import {IGlobal} from '../common/IGlobal';
+
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
 
 
 
@@ -27,6 +25,22 @@ interface IGlobal {
 initAppConfig();
 // globalに値をセットするため型をanyに強制する
 declare const global: IGlobal;
+// IPC通信でGlobalを渡す
+ipcMain.handle('global', (e) => {
+    console.log(global);
+    return global;
+})
+ipcMain.on('global', (e) => {
+    console.log(global);
+    e.returnValue = global;
+})
+ipcMain.handle('notify', (e) => {
+    //const notify = new Notification();
+    //e.returnValue = notify;
+})
+ipcMain.handle('getAppPath', (e) => {
+    e.returnValue = app.getAppPath();
+})
 // rendererプロセスからアクセスできるようにglobalに設定
 global.appConfig = appConfig;
 // トレイアイコン
@@ -51,7 +65,8 @@ function createWindow() {
         y: desktopSize.height - appHeight,
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true,
+            contextIsolation: false,
+            //enableRemoteModule: true,
         },
         title: 'Communication App'
     });
@@ -93,7 +108,6 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
-
 });
 
 app.on('activate', () => {
