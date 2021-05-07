@@ -1,21 +1,28 @@
 import child_process from 'child_process';
-import { remote } from 'electron';
 import FsEx from 'fs-extra';
 import Moment from 'moment';
 import os from 'os';
 import Path from 'path';
 import { v4 as UUID } from 'uuid';
-import { IAppConfig } from '../../common/AppConfig';
+// import { IAppConfig } from '../../common/AppConfig';
 import { IUser } from '../slices/UserSlice';
 import { IAttachment } from '../states/IAttachment';
 import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
+// import {IGlobal} from '../../common/IGlobal';
+import { ipcRenderer } from 'electron';
 
 const sqlDatetimeFormat = 'YYYY-MM-DD HH:mm:ss.sss';
-const appPath = remote.app.getAppPath();
-const appConfig: IAppConfig = remote.getGlobal('appConfig');
+const appPath:string = ipcRenderer.sendSync('getAppPath');
+var lcchatCommand:string;
+var dbFilePath:string;
+ipcRenderer.invoke('global').then((global) =>{
+  console.log(typeof(global));
+  console.log(global);
+  const appConfig = global.appConfig;
+  lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
+  dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
+})
 
-const lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
-const dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
 
 const runCommand = (sql: string): any => {
   // 問い合わせコマンドファイル作成
@@ -37,16 +44,7 @@ const runCommand = (sql: string): any => {
 
   return data;
 };
-// export const loadNewChatMessages = (latestMessageId: string, latestUpdatedAt: Date) => {
-//   const sql = `select messages.*, users.user_data from messages
-//                left join users
-//                on
-//                    users.user_id = messages.user_id and
-//                    messages.message_id <> ${latestMessageId} and
-//                    messages.created_at >= ${latestUpdatedAt}`;
-//   const data = runCommand(sql);
-//   return data;
-// };
+
 export const loadChatMessagesDB = () => {
   const sql = `
     SELECT messages.*, users.user_data, attachments.attachment_id, attachments.attachment_data
@@ -70,11 +68,6 @@ export const loadNewChatMessagesDB = (lastLoadDatetime: Date) => {
   const data = runCommand(sql);
   return data;
 };
-// export const loadChatMessagesDB = async () => {
-//   const sql = ` SELECT * FROM messages `;
-//   const data = runCommand(sql);
-//   return data;
-// };
 
 export const insertMessageDB = async (newMessage: IChatMessage) => {
   const sql = `INSERT

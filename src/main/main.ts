@@ -6,6 +6,7 @@ import {
     nativeImage,
     Tray,
     screen,
+    ipcMain,
 } from 'electron';
 import { join } from 'path';
 import {
@@ -14,12 +15,9 @@ import {
     IAppConfig,
 } from '../common/AppConfig';
 
-interface IGlobal {
-    appConfig: IAppConfig;
-    trayIcon: Tray;
-    trayIconImagePath1: string,
-    trayIconImagePath2: string,
-}
+import {IGlobal} from '../common/IGlobal';
+
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
 
 
 
@@ -27,6 +25,29 @@ interface IGlobal {
 initAppConfig();
 // globalに値をセットするため型をanyに強制する
 declare const global: IGlobal;
+// レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
+// オブジェクトが破棄されると、プロセスも終了するので、グローバルオブジェクトとする。
+let win: BrowserWindow | undefined;
+let trayIcon: Tray;
+// IPC通信でGlobalを渡す
+ipcMain.handle('global', (e) => {
+    console.log(global);
+    return global;
+})
+ipcMain.on('global', (e) => {
+    console.log(global);
+    e.returnValue = global;
+})
+ipcMain.handle('notify', (e) => {
+    //const notify = new Notification();
+    //e.returnValue = notify;
+})
+ipcMain.handle('getAppPath', () => {
+    return app.getAppPath();
+})
+ipcMain.handle('getTrayIcon', () => {
+    return trayIcon;
+})
 // rendererプロセスからアクセスできるようにglobalに設定
 global.appConfig = appConfig;
 // トレイアイコン
@@ -34,9 +55,9 @@ global.trayIconImagePath1 = join(app.getAppPath(), 'img', 'talk.png');
 global.trayIconImagePath2 = join(app.getAppPath(), 'img', 'talk2.png');
 
 
-// レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
-// オブジェクトが破棄されると、プロセスも終了するので、グローバルオブジェクトとする。
-let win: BrowserWindow | undefined;
+ipcMain.handle('getCurrentWindow', () => {
+    return win;
+})
 
 function createWindow() {
     // ウィンドウ位置設定
@@ -51,7 +72,8 @@ function createWindow() {
         y: desktopSize.height - appHeight,
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true,
+            contextIsolation: false,
+            //enableRemoteModule: true,
         },
         title: 'Communication App'
     });
@@ -74,7 +96,7 @@ function createWindow() {
                 win.hide();
             }
         });
-        global.trayIcon = addTaskTray();
+        trayIcon = addTaskTray();
         setHotKey();
     }
 
@@ -93,7 +115,6 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
-
 });
 
 app.on('activate', () => {
@@ -105,8 +126,7 @@ app.on('activate', () => {
     }
 });
 app.on('browser-window-focus', () => {
-    if (global.trayIcon) {
-        const trayIcon: Tray = global.trayIcon;
+    if (trayIcon) {
         const image = nativeImage.createFromPath(global.trayIconImagePath1);
         trayIcon.setImage(image);
     }
@@ -120,7 +140,7 @@ const HOTKEY = appConfig.hotkeys.toggleVisible;
 function addTaskTray(): Tray {
     // タスクトレイに格納
 
-    const trayIcon = new Tray(nativeImage.createFromPath(global.trayIconImagePath1));
+    const tray = new Tray(nativeImage.createFromPath(global.trayIconImagePath1));
 
     // タスクトレイに右クリックメニューを追加
     const contextMenu = Menu.buildFromTemplate([
@@ -142,19 +162,19 @@ function addTaskTray(): Tray {
             },
         },
     ]);
-    trayIcon.setContextMenu(contextMenu);
+    tray.setContextMenu(contextMenu);
 
     // タスクトレイのツールチップをアプリ名に
-    trayIcon.setToolTip(app.name);
+    tray.setToolTip(app.name);
 
     // タスクトレイが左クリックされた場合、アプリのウィンドウをアクティブに
-    trayIcon.on('click', () => {
+    tray.on('click', () => {
         if (win) {
             win.show();
             win.focus();
         }
     });
-    return trayIcon;
+    return tray;
     // タスクトレイに格納 ここまで
 }
 function setHotKey() {

@@ -2,7 +2,8 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';;
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
-import { remote } from 'electron';
+import { ipcRenderer, BrowserWindow } from 'electron';
+import { current } from 'immer';
 import os from 'os';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -18,6 +19,7 @@ import ChatMessagePostBox from './ChatMessagePostBox';
 import Clock from './Clock';
 import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
+import {IGlobal} from '../../common/IGlobal';
 
 
 export default function GridLayout() {
@@ -29,7 +31,17 @@ export default function GridLayout() {
   const [initial, setInitial] = useState<boolean>(false);
   const [windowHeight, setWindowHeight] = useState<number>(window.parent.screen.height);
   const dispatch = useDispatch();
-  const appConfig: IAppConfig = remote.getGlobal('appConfig');
+  var appConfig: IAppConfig;
+  ipcRenderer.invoke('global').then((global: IGlobal) =>{
+    console.log(global);
+    appConfig = global.appConfig;
+  })
+  var currentWindow: BrowserWindow;
+  ipcRenderer.invoke('getCurrentWindow').then((win: BrowserWindow) =>{
+    console.log(win);
+    currentWindow = win;
+  })
+
 
   const bottomRef = React.createRef<HTMLDivElement>();
   useEffect(() => {
@@ -40,16 +52,15 @@ export default function GridLayout() {
       setInitial(true);
       // dispatch(windowActions.initWindowState({bottomRef}));
       // Windowリサイズイベント
-      const win = remote.getCurrentWindow();
       const fixWindowHeight = () => {
-        const [, h] = win.getSize();
+        const [, h] = currentWindow.getSize();
         if (h !== windowHeight) {
           setWindowHeight(h);
         }
       };
       fixWindowHeight();
-      if (win !== null) {
-        win.on('resize', fixWindowHeight);
+      if (currentWindow !== null) {
+        currentWindow.on('resize', fixWindowHeight);
       }
       dispatch(windowActions.moveToBottom());
     }
