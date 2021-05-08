@@ -139,8 +139,12 @@ const slice = createSlice({
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
         const global: IGlobal = ipcRenderer.sendSync('global');
+<<<<<<< HEAD
         const trayIcon: Tray = ipcRenderer.sendSync('getTrayIcon');
         // const trayIcon = global.trayIcon;
+=======
+        const trayIcon = global.trayIcon;
+>>>>>>> 57f7ef41f5fb62b5fb6c6076f5990343af12657b
         const imagePath = global.trayIconImagePath2;
         const image = nativeImage.createFromPath(imagePath);
         trayIcon.setImage(image);
@@ -302,8 +306,12 @@ const slice = createSlice({
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
         const global: IGlobal = ipcRenderer.sendSync('global');
+<<<<<<< HEAD
         const trayIcon: Tray = ipcRenderer.sendSync('getTrayIcon');
         // const trayIcon = global.trayIcon;
+=======
+        const trayIcon = global.trayIcon;
+>>>>>>> 57f7ef41f5fb62b5fb6c6076f5990343af12657b
         const imagePath = global.trayIconImagePath2;
         const image = nativeImage.createFromPath(imagePath);
         trayIcon.setImage(image);

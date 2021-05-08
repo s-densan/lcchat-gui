@@ -83,6 +83,7 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+<<<<<<< HEAD
 ### 20210508
 プロセス間通信がうまくいきません。
 ```
@@ -189,6 +190,8 @@ Error occurred in handler for 'getCurrentWindow': Error: An object could not be 
     at Object.on.e._reply (electron/js2c/browser_init.js:161:9791)
     at electron/js2c/browser_init.js:201:556
 ```
+=======
+>>>>>>> 57f7ef41f5fb62b5fb6c6076f5990343af12657b
 ### 20210507
 前回のエラーについて、``TypeError: Cannot read property 'tap' of undefined``で検索。
 https://qiita.com/faronan/items/a017d53a8405a44544f2
