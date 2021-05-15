@@ -32,14 +32,18 @@ export default function GridLayout() {
   const [windowHeight, setWindowHeight] = useState<number>(window.parent.screen.height);
   const dispatch = useDispatch();
   var appConfig: IAppConfig;
+  var currentWindow: BrowserWindow;
+  var reloadIntervalSecond: number;
   ipcRenderer.invoke('global').then((global: IGlobal) =>{
     console.log(global);
     appConfig = global.appConfig;
   })
-  var currentWindow: BrowserWindow;
-  ipcRenderer.invoke('getCurrentWindow').then((win: BrowserWindow) =>{
+  let pms = ipcRenderer.invoke('getCurrentWindow').then((win: BrowserWindow) =>{
     console.log(win);
     currentWindow = win;
+  })
+  ipcRenderer.invoke('getReloadIntervalSecond').then((num: number) =>{
+    reloadIntervalSecond = num;
   })
 
 
@@ -117,7 +121,7 @@ export default function GridLayout() {
   const clockArea = () => {
     if (message.editingMessage === undefined) {
       // 編集中モードでない場合
-      return <Clock interval={appConfig.reloadIntervalSecond * 1000} onTimer={onTimer}></Clock>;
+      return <Clock interval={reloadIntervalSecond * 1000} onTimer={onTimer}></Clock>;
     } else {
       return <div></div>;
     }
