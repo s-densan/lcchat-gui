@@ -8,31 +8,19 @@ import { v4 as UUID } from 'uuid';
 import { IUser } from '../slices/UserSlice';
 import { IAttachment } from '../states/IAttachment';
 import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
-<<<<<<< HEAD
 // import {IGlobal} from '../../common/IGlobal';
-=======
-import {IGlobal} from '../../common/IGlobal';
->>>>>>> 57f7ef41f5fb62b5fb6c6076f5990343af12657b
 import { ipcRenderer } from 'electron';
 
 const sqlDatetimeFormat = 'YYYY-MM-DD HH:mm:ss.sss';
 const appPath:string = ipcRenderer.sendSync('getAppPath');
-<<<<<<< HEAD
 var lcchatCommand:string;
 var dbFilePath:string;
-=======
->>>>>>> 57f7ef41f5fb62b5fb6c6076f5990343af12657b
 ipcRenderer.invoke('global').then((global) =>{
   console.log(typeof(global));
   console.log(global);
   const appConfig = global.appConfig;
-<<<<<<< HEAD
   lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
   dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
-=======
-  const lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
-  const dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
->>>>>>> 57f7ef41f5fb62b5fb6c6076f5990343af12657b
 })
 
 

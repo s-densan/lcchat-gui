@@ -25,13 +25,10 @@ process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
 initAppConfig();
 // globalに値をセットするため型をanyに強制する
 declare const global: IGlobal;
-<<<<<<< HEAD
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
 // オブジェクトが破棄されると、プロセスも終了するので、グローバルオブジェクトとする。
 let win: BrowserWindow | undefined;
 let trayIcon: Tray;
-=======
->>>>>>> 57f7ef41f5fb62b5fb6c6076f5990343af12657b
 // IPC通信でGlobalを渡す
 ipcMain.handle('global', (e) => {
     console.log(global);
@@ -45,16 +42,11 @@ ipcMain.handle('notify', (e) => {
     //const notify = new Notification();
     //e.returnValue = notify;
 })
-<<<<<<< HEAD
 ipcMain.handle('getAppPath', () => {
     return app.getAppPath();
 })
 ipcMain.handle('getTrayIcon', () => {
     return trayIcon;
-=======
-ipcMain.handle('getAppPath', (e) => {
-    e.returnValue = app.getAppPath();
->>>>>>> 57f7ef41f5fb62b5fb6c6076f5990343af12657b
 })
 // rendererプロセスからアクセスできるようにglobalに設定
 global.appConfig = appConfig;
@@ -65,6 +57,9 @@ global.trayIconImagePath2 = join(app.getAppPath(), 'img', 'talk2.png');
 
 ipcMain.handle('getCurrentWindow', () => {
     return win;
+})
+ipcMain.handle('getReloadIntervalSecond', () => {
+    return appConfig.reloadIntervalSecond ;
 })
 
 function createWindow() {
