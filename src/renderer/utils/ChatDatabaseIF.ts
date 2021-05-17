@@ -15,6 +15,8 @@ const sqlDatetimeFormat = 'YYYY-MM-DD HH:mm:ss.sss';
 const appPath:string = ipcRenderer.sendSync('getAppPath');
 var lcchatCommand:string;
 var dbFilePath:string;
+
+Promise.all([
 ipcRenderer.invoke('global').then((global) =>{
   console.log(typeof(global));
   console.log(global);
@@ -22,6 +24,7 @@ ipcRenderer.invoke('global').then((global) =>{
   lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
   dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
 })
+])
 
 
 const runCommand = (sql: string): any => {

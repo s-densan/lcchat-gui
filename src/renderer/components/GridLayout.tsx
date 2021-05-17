@@ -34,18 +34,22 @@ export default function GridLayout() {
   var appConfig: IAppConfig;
   var currentWindow: BrowserWindow;
   var reloadIntervalSecond: number;
-  ipcRenderer.invoke('global').then((global: IGlobal) =>{
-    console.log(global);
-    appConfig = global.appConfig;
-  })
-  let pms = ipcRenderer.invoke('getCurrentWindow').then((win: BrowserWindow) =>{
-    console.log(win);
-    currentWindow = win;
-  })
-  ipcRenderer.invoke('getReloadIntervalSecond').then((num: number) =>{
-    reloadIntervalSecond = num;
-  })
 
+  // Electronから情報取得
+  // すべてのPromiseの実行完了まで待機する。
+  Promise.all([
+    ipcRenderer.invoke('global').then((global: IGlobal) =>{
+      console.log(global);
+      appConfig = global.appConfig;
+    }),
+    ipcRenderer.invoke('getCurrentWindow').then((win: BrowserWindow) =>{
+      console.log(win);
+      currentWindow = win;
+    }),
+    ipcRenderer.invoke('getReloadIntervalSecond').then((num: number) =>{
+      reloadIntervalSecond = num;
+    })
+  ])
 
   const bottomRef = React.createRef<HTMLDivElement>();
   useEffect(() => {
