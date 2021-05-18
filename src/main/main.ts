@@ -7,6 +7,7 @@ import {
     Tray,
     screen,
     ipcMain,
+    dialog
 } from 'electron';
 import { join } from 'path';
 import {
@@ -14,6 +15,8 @@ import {
     initAppConfig,
     IAppConfig,
 } from '../common/AppConfig';
+import path from 'path';
+import fs from 'fs';
 
 import {IGlobal} from '../common/IGlobal';
 
@@ -29,6 +32,7 @@ declare const global: IGlobal;
 // オブジェクトが破棄されると、プロセスも終了するので、グローバルオブジェクトとする。
 let win: BrowserWindow | undefined;
 let trayIcon: Tray;
+/*
 // IPC通信でGlobalを渡す
 ipcMain.handle('global', (e) => {
     console.log(global);
@@ -38,6 +42,7 @@ ipcMain.on('global', (e) => {
     console.log(global);
     e.returnValue = global;
 })
+*/
 ipcMain.handle('notify', (e) => {
     //const notify = new Notification();
     //e.returnValue = notify;
@@ -54,9 +59,61 @@ global.appConfig = appConfig;
 global.trayIconImagePath1 = join(app.getAppPath(), 'img', 'talk.png');
 global.trayIconImagePath2 = join(app.getAppPath(), 'img', 'talk2.png');
 
+ipcMain.handle('getTrayIconPath1', () => {
+    return join(app.getAppPath(), 'img', 'talk.png');
+})
+ipcMain.handle('getTrayIconPath2', () => {
+    return join(app.getAppPath(), 'img', 'talk2.png');
+})
 
 ipcMain.handle('getCurrentWindow', () => {
     return win;
+})
+ipcMain.handle('getReloadIntervalSecond', () => {
+    return appConfig.reloadIntervalSecond ;
+})
+ipcMain.handle('getLcchatCuiCommand', () => {
+    return appConfig.lcchatCuiCommand;
+})
+ipcMain.handle('getDBFilePath', () => {
+    return appConfig.dbFilePath;
+})
+ipcMain.handle('saveFile', (e, d) => {
+    
+  const defaultFileName:string = d.defaultFileName
+  const attachmentFilePath = d.attachmentFilePath
+  const ext = path.extname(defaultFileName)
+  if(win === undefined){
+      return
+  }
+  const dialogOptions = {
+      title: '保存先パス選択',
+      defaultPath: defaultFileName,
+      filters: [
+      { name: 'Source File Extention', extensions: [ext.slice(1)/*ドットは除く*/] },
+      { name: 'All Files', extensions: ['*'] },
+      ],
+  };
+  dialog.showSaveDialog(win, dialogOptions).then(
+    (value) => {
+      if (value.filePath) {
+        // キャンセルをしなかった場合
+        fs.copyFileSync(attachmentFilePath, value.filePath);
+      }
+    },
+  );
+})
+ipcMain.handle('getWindowSize', () => {
+  if(win === undefined) {
+      return undefined
+  }
+  return win.getSize()
+})
+ipcMain.handle('setWindowSize', (e, d) => {
+  const windowHeight = d.windowHeight
+  if (win !== undefined) {
+    win.on('resize', windowHeight);
+  }
 })
 
 function createWindow() {

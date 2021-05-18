@@ -12,19 +12,39 @@ import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
 import { ipcRenderer } from 'electron';
 
 const sqlDatetimeFormat = 'YYYY-MM-DD HH:mm:ss.sss';
-const appPath:string = ipcRenderer.sendSync('getAppPath');
+var appPath:string
 var lcchatCommand:string;
 var dbFilePath:string;
+async ()=>{
+  appPath = await ipcRenderer.invoke('somethingYouWantToPass');
+  console.info(appPath)
+}
+async () => {
+  let lcchatCuiCommand = await ipcRenderer.invoke('getLcchatCuiCommand')
+  lcchatCommand = lcchatCuiCommand.replace('${appPath}', appPath)
+  console.info(lcchatCommand)
+}
+async () => {
+  let dbFilePathTmp = await ipcRenderer.invoke('getDBFilePath')
+  dbFilePath = dbFilePathTmp.replace('${appPath}', appPath)
+  console.info(dbFilePath)
+}
+
+/*
 ipcRenderer.invoke('global').then((global) =>{
-  console.log(typeof(global));
-  console.log(global);
+  // console.log("-------------------------------------------");
+  // console.log(typeof(global));
+  // console.log(global);
   const appConfig = global.appConfig;
   lcchatCommand = appConfig.lcchatCuiCommand.replace('${appPath}', appPath);
   dbFilePath = appConfig.dbFilePath.replace('${appPath}', appPath);
 })
+*/
 
 
 const runCommand = (sql: string): any => {
+  console.info(sql)
+  console.info(dbFilePath)
   // 問い合わせコマンドファイル作成
   const requestFilePath = Path.join(os.tmpdir(), UUID() + '.json');
   const resultFilePath = Path.join(os.tmpdir(), UUID() + '.json');
