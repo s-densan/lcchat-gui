@@ -50,7 +50,8 @@ export default function GridLayout() {
       currentWindow = win;
     }),
     */
-    ipcRenderer.invoke('getReloadIntervalSecond').then((num: number) =>{
+    ipcRenderer.invoke('getReloadIntervalSecond').then((num) =>{
+      console.log('getReloadIntervalSecond:' + num)
       reloadIntervalSecond = num;
     })
   ])

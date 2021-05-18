@@ -18,6 +18,7 @@ export interface IAppConfig {
 }
 
 export const initAppConfig = () => {
+    console.info('initAppConfig')
     const fileName = 'appconfig.toml';
     // ファイルパスは、アプリフォルダ以下のconfig/appconfig.toml
     const filePath = path.join(app.getAppPath(), 'config', fileName);
