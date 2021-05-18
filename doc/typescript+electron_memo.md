@@ -84,6 +84,17 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20210518
+
+これか？オイラに足りない、非同期処理を同期処理にする方法は！？
+#### MainProcessからRendererProcessにパラメータを渡す（Electron）
+http://once-and-only.com/programing/electron/mainprocess%E3%81%8B%E3%82%89rendererprocess%E3%81%AB%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%82%92%E6%B8%A1%E3%81%99%EF%BC%88electron%EF%BC%89/#toc2
+```javascript
+async ()=>{
+    const whatIWant = await ipcRenderer.invoke('somethingYouWantToPass');
+    // do something
+}
+```
 ### 20210508
 プロセス間通信がうまくいきません。
 ```

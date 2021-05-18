@@ -32,20 +32,24 @@ export default function GridLayout() {
   const [windowHeight, setWindowHeight] = useState<number>(window.parent.screen.height);
   const dispatch = useDispatch();
   var appConfig: IAppConfig;
-  var currentWindow: BrowserWindow;
+  // var currentWindow: BrowserWindow;
   var reloadIntervalSecond: number;
 
   // Electronから情報取得
   // すべてのPromiseの実行完了まで待機する。
   Promise.all([
+    /*
     ipcRenderer.invoke('global').then((global: IGlobal) =>{
       console.log(global);
       appConfig = global.appConfig;
     }),
+    */
+    /*
     ipcRenderer.invoke('getCurrentWindow').then((win: BrowserWindow) =>{
       console.log(win);
       currentWindow = win;
     }),
+    */
     ipcRenderer.invoke('getReloadIntervalSecond').then((num: number) =>{
       reloadIntervalSecond = num;
     })
@@ -60,6 +64,7 @@ export default function GridLayout() {
       setInitial(true);
       // dispatch(windowActions.initWindowState({bottomRef}));
       // Windowリサイズイベント
+      /* 一時コメントアウト mainprocess に持っていく
       const fixWindowHeight = () => {
         const [, h] = currentWindow.getSize();
         if (h !== windowHeight) {
@@ -70,6 +75,7 @@ export default function GridLayout() {
       if (currentWindow !== null) {
         currentWindow.on('resize', fixWindowHeight);
       }
+      */
       dispatch(windowActions.moveToBottom());
     }
     // 初期化が済んでもユーザがundefinedの場合

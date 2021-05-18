@@ -10,7 +10,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { remote } from 'electron';
 import fs from 'fs';
 import Moment from 'moment';
 import path from 'path';
@@ -24,6 +23,7 @@ import { RootState } from '../slices/RootStore';
 import { IAttachmentMessage } from '../states/IChatMessage';
 import { isAudioFile, isImageFile, isVideoFile } from '../utils/AttachmentUtils';
 import { getAttachmentFilePath } from '../utils/FileUtils';
+import { ipcRenderer } from 'electron';
 // import store from '../Store';
 
 export default function ChatMessageBox(props: IAttachmentMessage) {
@@ -71,28 +71,11 @@ export default function ChatMessageBox(props: IAttachmentMessage) {
   /**
    * 添付ファイル保存ボタン
    */
-  const onClickSaveAttachmentFile = (e: React.MouseEvent) => {
+  const onClickSaveAttachmentFile = async (e: React.MouseEvent) => {
     // クリックイベントを親要素の伝播させない
     setAnchorEl(null);
-    const win = remote.getCurrentWindow();
     const defaultFileName = path.basename(sourceFilePath);
-    const ext = path.extname(defaultFileName);
-    const dialogOptions = {
-      title: '保存先パス選択',
-      defaultPath: defaultFileName,
-      filters: [
-        { name: 'Source File Extention', extensions: [ext.slice(1)/*ドットは除く*/] },
-        { name: 'All Files', extensions: ['*'] },
-      ],
-    };
-    remote.dialog.showSaveDialog(win, dialogOptions).then(
-      (value) => {
-        if (value.filePath) {
-          // キャンセルをしなかった場合
-          fs.copyFileSync(attachmentFilePath, value.filePath);
-        }
-      },
-    );
+    await ipcRenderer.invoke('saveFile')
   };
   const onOpenMenu = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setAnchorEl(e.currentTarget);

@@ -138,29 +138,16 @@ const slice = createSlice({
         lastLoadDatetime: new Date(),
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
-        const global: IGlobal = ipcRenderer.sendSync('global');
+        const trayIconImagePath1 = ipcRenderer.invoke('getTrayIconPath1');
+        const trayIconImagePath2 = ipcRenderer.invoke('getTrayIconPath2');
         const trayIcon: Tray = ipcRenderer.sendSync('getTrayIcon');
         // const trayIcon = global.trayIcon;
-        const imagePath = global.trayIconImagePath2;
-        const image = nativeImage.createFromPath(imagePath);
-        trayIcon.setImage(image);
+        trayIconImagePath2.then((imagePath: string) => {
+          const image = nativeImage.createFromPath(imagePath);
+          trayIcon.setImage(image);
 
-        const num = chatMessages.length - state.chatMessages.length;
-
-        /*
-         * ToDo
-        const notify =  new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
-        notify.show();
-        // 通知メッセージクリック時イベント
-        notify.on('click', () => {
-          // 全ウィンドウを表示してフォーカスする
-          const wins = remote.BrowserWindow.getAllWindows();
-          for (const win of wins) {
-            win.show();
-            win.focus();
-          }
-        });
-        */
+          const num = chatMessages.length - state.chatMessages.length;
+        })
       }
       return res;
     },
@@ -301,28 +288,16 @@ const slice = createSlice({
         lastLoadDatetime: newLastLoadDatetime,
       };
       if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
-        const global: IGlobal = ipcRenderer.sendSync('global');
+        const trayIconImagePath1 = ipcRenderer.invoke('getTrayIconPath1');
+        const trayIconImagePath2 = ipcRenderer.invoke('getTrayIconPath2');
         const trayIcon: Tray = ipcRenderer.sendSync('getTrayIcon');
         // const trayIcon = global.trayIcon;
-        const imagePath = global.trayIconImagePath2;
-        const image = nativeImage.createFromPath(imagePath);
-        trayIcon.setImage(image);
+        trayIconImagePath2.then((imagePath: string) => {
+          const image = nativeImage.createFromPath(imagePath);
+          trayIcon.setImage(image);
 
-        const num = chatMessages.length - state.chatMessages.length;
-        /*
-         * ToDo
-        const notify = new remote.Notification({ body: `新着メッセージが${num}あります`, title: 'LcChat - 新規メッセージ' });
-        notify.show();
-        // 通知メッセージクリック時イベント
-        notify.on('click', () => {
-          // 全ウィンドウを表示してフォーカスする
-          const wins = remote.BrowserWindow.getAllWindows();
-          for (const win of wins) {
-            win.show();
-            win.focus();
-          }
-        });
-        *****/
+          const num = chatMessages.length - state.chatMessages.length;
+        })
       }
       return res;
     },
