@@ -84,9 +84,48 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20210520
+> Uncaught Error: Objects are not valid as a React child (found: [object Promise]). If you meant to render a collection of children, use an array instead.
+>     at throwOnInvalidObjectType (react-dom.development.js:13231)
+>     at createChild (react-dom.development.js:13469)
+>     at reconcileChildrenArray (react-dom.development.js:13719)
+>     at reconcileChildFibers (react-dom.development.js:14125)
+>     at reconcileChildren (react-dom.development.js:16990)
+>     at updateHostComponent (react-dom.development.js:17632)
+>     at beginWork (react-dom.development.js:19080)
+>     at HTMLUnknownElement.callCallback (react-dom.development.js:3945)
+>     at Object.invokeGuardedCallbackDev (react-dom.development.js:3994)
+>     at invokeGuardedCallback (react-dom.development.js:4056)
+
+#### Objects are not valid as a React child (found: [object Promise])
+https://stackoverflow.com/questions/47658765/objects-are-not-valid-as-a-react-child-found-object-promise
+
+```javascript
+componentDidMount() {
+  this.renderPosts();
+}
+```
+
+
+なるほど、いかが悪そう。
+```javascript
+  // タイマークロック用エリア
+  const clockArea = async () => {
+    if (message.editingMessage === undefined) {
+      const reloadIntervalSecond = await ipcRenderer.invoke('getReloadIntervalSecond')
+      console.log('getReloadIntervalSecond:' + reloadIntervalSecond )
+      // 編集中モードでない場合
+      return <Clock interval={reloadIntervalSecond * 1000} onTimer={onTimer}></Clock>;
+    } else {
+      return <div></div>;
+    }
+  };
+```
+
 ### 20210518
 
 これか？オイラに足りない、非同期処理を同期処理にする方法は！？
+→違ってました
 #### MainProcessからRendererProcessにパラメータを渡す（Electron）
 http://once-and-only.com/programing/electron/mainprocess%E3%81%8B%E3%82%89rendererprocess%E3%81%AB%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%82%92%E6%B8%A1%E3%81%99%EF%BC%88electron%EF%BC%89/#toc2
 ```javascript
