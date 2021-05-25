@@ -47,25 +47,27 @@ const slice = createSlice<IUserState, SliceCaseReducers<IUserState>>({
 
     },
     loadUserFromComputerName: (state: IUserState, action) => {
-      // コンピュータ名
-      const computerName = action.payload.computerName;
-      const userList = loadUserListDB();
-      for (const user of userList) {
-        // user_dataはstringのため、JSONパースする
-        const userData: IUserData = JSON.parse(user.userData);
-        // user_dataが空辞書、存在しないかnullの場合
-        if (userData.authentication !== undefined) {
-          if (userData.authentication.computerName === computerName) {
-            return {
-              user: {
-                userData,
-                userId : user.userId,
-              },
-            };
+      async () => {
+        // コンピュータ名
+        const computerName = action.payload.computerName;
+        const userList = await loadUserListDB();
+        for (const user of userList) {
+          // user_dataはstringのため、JSONパースする
+          const userData: IUserData = JSON.parse(user.userData);
+          // user_dataが空辞書、存在しないかnullの場合
+          if (userData.authentication !== undefined) {
+            if (userData.authentication.computerName === computerName) {
+              return {
+                user: {
+                  userData,
+                  userId: user.userId,
+                },
+              };
+            }
           }
         }
+        return { user: undefined };
       }
-      return {user: undefined};
     },
   },
 });

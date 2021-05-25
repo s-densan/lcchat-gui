@@ -52,254 +52,257 @@ const slice = createSlice({
           }
         });
       }
-
       return newState;
     },
     loadAllChatMessages: (state) => {
-      // DB読み込み後に実行する
-      const chatMessages: IChatMessage[] = [];
-      const chatMessagesJson: any = loadChatMessagesDB();
-      for (const chatMessageJson of chatMessagesJson) {
-        let userName: string;
-        const userData = JSON.parse(chatMessageJson.userData);
-        if (chatMessageJson.userData) {
-          userName = userData.userName;
-        } else {
-          userName = 'unknown';
-        }
-        switch (chatMessageJson.type) {
-          case 'text':
-            const chatMessageData: ITextMessageData = JSON.parse(chatMessageJson.messageData);
-            const textMessage = createTextMessage(
-              chatMessageJson.messageId,
-              chatMessageData.text,
-              chatMessageJson.userId,
-              userName,
-              userName.slice(0, 2),
-              'dummyTalkId',
-              chatMessageJson.reactions,
-              chatMessageJson.postedAt,
-              chatMessageJson.createdAt,
-              chatMessageJson.updatedAt,
-            );
-            chatMessages.push(textMessage);
-            break;
-          case 'attachment':
-            // デフォルト添付
-            let attachmentData: IAttachmentData = {
-              // ファイルタイプ
-              fileType: 'none',
-              // ファイル名
-              fileName: '',
-              // 添付者ID
-              createUserId: '',
-              // 添付者名
-              createUserName: '',
-              // 添付コンピュータ名
-              sourceComputerName: '',
-              // 元ファイルパス
-              sourceFilePath: '',
-            };
-            if (chatMessageJson.attachmentData !== undefined &&
-              chatMessageJson.attachmentData.trim() !== '') {
-              attachmentData = JSON.parse(chatMessageJson.attachmentData);
-            }
-            const attachmentMessage = createAttachmentMessage(
-              chatMessageJson.messageId,
-              chatMessageJson.userId,
-              userName,
-              userName.slice(0, 2),
-              'dummyTalkId',
-              chatMessageJson.reactions,
-              chatMessageJson.postedAt,
-              createAttachment(
-                chatMessageJson.attachmentId,
+      async () => {
+        // DB読み込み後に実行する
+        const chatMessages: IChatMessage[] = [];
+        const chatMessagesJson: any = await loadChatMessagesDB();
+        for (const chatMessageJson of chatMessagesJson) {
+          let userName: string;
+          const userData = JSON.parse(chatMessageJson.userData);
+          if (chatMessageJson.userData) {
+            userName = userData.userName;
+          } else {
+            userName = 'unknown';
+          }
+          switch (chatMessageJson.type) {
+            case 'text':
+              const chatMessageData: ITextMessageData = JSON.parse(chatMessageJson.messageData);
+              const textMessage = createTextMessage(
                 chatMessageJson.messageId,
-                attachmentData.fileType,
-                attachmentData.createUserId,
-                attachmentData.createUserName,
-                attachmentData.sourceComputerName,
-                attachmentData.sourceFilePath,
+                chatMessageData.text,
+                chatMessageJson.userId,
+                userName,
+                userName.slice(0, 2),
+                'dummyTalkId',
+                chatMessageJson.reactions,
+                chatMessageJson.postedAt,
                 chatMessageJson.createdAt,
                 chatMessageJson.updatedAt,
-              ),
-              chatMessageJson.createdAt,
-              chatMessageJson.updatedAt,
-            );
-            chatMessages.push(attachmentMessage);
-            break;
-          default:
-            throw new Error(`Unknown message type: ${chatMessageJson.type}`);
-        }
-      }
-      const res = {
-        chatMessages,
-        editingMessage: state.editingMessage,
-        lastLoadDatetime: new Date(),
-      };
-      if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
-        const trayIconImagePath1 = ipcRenderer.invoke('getTrayIconPath1');
-        const trayIconImagePath2 = ipcRenderer.invoke('getTrayIconPath2');
-        const trayIcon: Tray = ipcRenderer.sendSync('getTrayIcon');
-        // const trayIcon = global.trayIcon;
-        trayIconImagePath2.then((imagePath: string) => {
-          const image = nativeImage.createFromPath(imagePath);
-          trayIcon.setImage(image);
-
-          const num = chatMessages.length - state.chatMessages.length;
-        })
-      }
-      return res;
-    },
-    /**
-     * 更新したメッセージをDBから読み込む
-     */
-    loadNewChatMessages: (state) => {
-      // DB読み込み後に実行する
-      const chatMessages: IChatMessage[] = [];
-      let chatMessagesJson: any;
-      const newLastLoadDatetime = new Date();
-      // 差分更新処理未作成
-      if (state.lastLoadDatetime && false) {
-        // 新規・更新分メッセージ一覧
-        // chatMessagesJson = loadNewChatMessagesDB(state.lastLoadDatetime);
-      } else {
-        // 全メッセージ一覧
-        chatMessagesJson = loadChatMessagesDB();
-      }
-      // 新規・更新メッセージなし
-      if (chatMessagesJson.length === 0) {
-        return state;
-      }
-
-      // 更新メッセージを反映する
-      for (const currentMessage of state.chatMessages) {
-        // currentMessageの更新があるか確認
-        const filtered = chatMessagesJson.filter(
-          (loadedMessage: any) => loadedMessage.messageId === currentMessage.messageId);
-        if (filtered.length === 1) {
-          // 更新あり
-          const userData = JSON.parse(filtered[0].userData);
-          const messageData = JSON.parse(filtered[0].messageData);
-          // ユーザ名デフォルトはunknown
-          let userName = 'unknown';
-          if (userData) {
-            // ユーザデータが設定されている場合
-            userName = userData.userName;
-          }
-          if (messageData.updatedAt !== currentMessage.updatedAt) {
-            // メッセージが変更されている場合
-            switch (filtered[0].type) {
-              case 'text':
-                const loadedMessage = createTextMessage(
-                  filtered[0].messageId,
-                  messageData.text,
-                  filtered[0].userId,
-                  userName,
-                  userName.slice(0, 2),
-                  'dummyTalkId',
-                  filtered[0].reactions,
-                  filtered[0].postedAt,
-                  filtered[0].createdAt,
-                  filtered[0].updatedAt,
-                );
-                chatMessages.push(loadedMessage);
-                break;
-              case 'attachment':
-                // 添付メッセージの編集は不可
-                chatMessages.push(currentMessage)
-                break;
-            }
-          } else {
-            // メッセージが変更されていない場合
-            // 更新なし
-            chatMessages.push(currentMessage);
-          }
-        } else if (filtered.length === 0) {
-          // 削除済み(何もしない)
-          // chatMessages.push(currentMessage);
-        }
-      }
-
-      // 新規メッセージ追加
-      for (const loadedMessage of chatMessagesJson) {
-        const filtered = state.chatMessages.filter(
-          (currentMessage: any) => loadedMessage.messageId === currentMessage.messageId);
-        if (filtered.length === 0) {
-          // メッセージIDが一致するメッセージがない場合、新規メッセージとして追加する
-          const userData = JSON.parse(loadedMessage.userData);
-          // ユーザ名デフォルトはunknown
-          let userName = 'unknown';
-          if (userData) {
-            userName = userData.userName;
-          }
-          switch (loadedMessage.type) {
-            case 'text':
-              const messageData: ITextMessageData = JSON.parse(loadedMessage.messageData);
-              // 新規テキストメッセージ
-              const newMessage = createTextMessage(
-                loadedMessage.messageId,
-                messageData.text,
-                userData.userId,
-                userData.userName,
-                userData.userName.slice(0, 2),
-                'dummyTalkId',
-                messageData.reactions,
-                loadedMessage.postedAt,
-                loadedMessage.createdAt,
-                loadedMessage.updatedAt,
               );
-              chatMessages.push(newMessage);
+              chatMessages.push(textMessage);
               break;
             case 'attachment':
-              // 新規添付メッセージ
-              const attachmentData: IAttachmentData = JSON.parse(loadedMessage.attachmentData);
-              const attachmentMessageData: IAttachmentMessageData = JSON.parse(loadedMessage.messageData);
-              const newAttachmentMessage = createAttachmentMessage(
-                loadedMessage.messageId,
-                userData.userId,
-                userData.userName,
-                userData.userName.slice(0, 2),
+              // デフォルト添付
+              let attachmentData: IAttachmentData = {
+                // ファイルタイプ
+                fileType: 'none',
+                // ファイル名
+                fileName: '',
+                // 添付者ID
+                createUserId: '',
+                // 添付者名
+                createUserName: '',
+                // 添付コンピュータ名
+                sourceComputerName: '',
+                // 元ファイルパス
+                sourceFilePath: '',
+              };
+              if (chatMessageJson.attachmentData !== undefined &&
+                chatMessageJson.attachmentData.trim() !== '') {
+                attachmentData = JSON.parse(chatMessageJson.attachmentData);
+              }
+              const attachmentMessage = createAttachmentMessage(
+                chatMessageJson.messageId,
+                chatMessageJson.userId,
+                userName,
+                userName.slice(0, 2),
                 'dummyTalkId',
-                attachmentMessageData.reactions,
-                loadedMessage.postedAt,
+                chatMessageJson.reactions,
+                chatMessageJson.postedAt,
                 createAttachment(
-                  loadedMessage.attachmentId,
-                  loadedMessage.messageId,
+                  chatMessageJson.attachmentId,
+                  chatMessageJson.messageId,
                   attachmentData.fileType,
                   attachmentData.createUserId,
                   attachmentData.createUserName,
                   attachmentData.sourceComputerName,
                   attachmentData.sourceFilePath,
-                  loadedMessage.createdAt,
-                  loadedMessage.updatedAt,
+                  chatMessageJson.createdAt,
+                  chatMessageJson.updatedAt,
                 ),
-                loadedMessage.createdAt,
-                loadedMessage.updatedAt,
+                chatMessageJson.createdAt,
+                chatMessageJson.updatedAt,
               );
-              chatMessages.push(newAttachmentMessage);
+              chatMessages.push(attachmentMessage);
               break;
+            default:
+              throw new Error(`Unknown message type: ${chatMessageJson.type}`);
           }
         }
-      }
-      const res = {
-        chatMessages,
-        editingMessage: state.editingMessage,
-        lastLoadDatetime: newLastLoadDatetime,
-      };
-      if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
-        const trayIconImagePath1 = ipcRenderer.invoke('getTrayIconPath1');
-        const trayIconImagePath2 = ipcRenderer.invoke('getTrayIconPath2');
-        const trayIcon: Tray = ipcRenderer.sendSync('getTrayIcon');
-        // const trayIcon = global.trayIcon;
-        trayIconImagePath2.then((imagePath: string) => {
-          const image = nativeImage.createFromPath(imagePath);
-          trayIcon.setImage(image);
+        const res = {
+          chatMessages,
+          editingMessage: state.editingMessage,
+          lastLoadDatetime: new Date(),
+        };
+        if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
+          const trayIconImagePath1 = ipcRenderer.invoke('getTrayIconPath1');
+          const trayIconImagePath2 = ipcRenderer.invoke('getTrayIconPath2');
+          const trayIcon: Tray = ipcRenderer.sendSync('getTrayIcon');
+          // const trayIcon = global.trayIcon;
+          trayIconImagePath2.then((imagePath: string) => {
+            const image = nativeImage.createFromPath(imagePath);
+            trayIcon.setImage(image);
 
-          const num = chatMessages.length - state.chatMessages.length;
-        })
+            const num = chatMessages.length - state.chatMessages.length;
+          })
+        }
+        // return res;
       }
-      return res;
+    },
+    /**
+     * 更新したメッセージをDBから読み込む
+     */
+    loadNewChatMessages: (state) => {
+      async () => {
+        // DB読み込み後に実行する
+        const chatMessages: IChatMessage[] = [];
+        let chatMessagesJson: any;
+        const newLastLoadDatetime = new Date();
+        // 差分更新処理未作成
+        if (state.lastLoadDatetime && false) {
+          // 新規・更新分メッセージ一覧
+          // chatMessagesJson = loadNewChatMessagesDB(state.lastLoadDatetime);
+        } else {
+          // 全メッセージ一覧
+          chatMessagesJson = await loadChatMessagesDB();
+        }
+        // 新規・更新メッセージなし
+        if (chatMessagesJson.length === 0) {
+          return state;
+        }
+
+        // 更新メッセージを反映する
+        for (const currentMessage of state.chatMessages) {
+          // currentMessageの更新があるか確認
+          const filtered = chatMessagesJson.filter(
+            (loadedMessage: any) => loadedMessage.messageId === currentMessage.messageId);
+          if (filtered.length === 1) {
+            // 更新あり
+            const userData = JSON.parse(filtered[0].userData);
+            const messageData = JSON.parse(filtered[0].messageData);
+            // ユーザ名デフォルトはunknown
+            let userName = 'unknown';
+            if (userData) {
+              // ユーザデータが設定されている場合
+              userName = userData.userName;
+            }
+            if (messageData.updatedAt !== currentMessage.updatedAt) {
+              // メッセージが変更されている場合
+              switch (filtered[0].type) {
+                case 'text':
+                  const loadedMessage = createTextMessage(
+                    filtered[0].messageId,
+                    messageData.text,
+                    filtered[0].userId,
+                    userName,
+                    userName.slice(0, 2),
+                    'dummyTalkId',
+                    filtered[0].reactions,
+                    filtered[0].postedAt,
+                    filtered[0].createdAt,
+                    filtered[0].updatedAt,
+                  );
+                  chatMessages.push(loadedMessage);
+                  break;
+                case 'attachment':
+                  // 添付メッセージの編集は不可
+                  chatMessages.push(currentMessage)
+                  break;
+              }
+            } else {
+              // メッセージが変更されていない場合
+              // 更新なし
+              chatMessages.push(currentMessage);
+            }
+          } else if (filtered.length === 0) {
+            // 削除済み(何もしない)
+            // chatMessages.push(currentMessage);
+          }
+        }
+
+        // 新規メッセージ追加
+        for (const loadedMessage of chatMessagesJson) {
+          const filtered = state.chatMessages.filter(
+            (currentMessage: any) => loadedMessage.messageId === currentMessage.messageId);
+          if (filtered.length === 0) {
+            // メッセージIDが一致するメッセージがない場合、新規メッセージとして追加する
+            const userData = JSON.parse(loadedMessage.userData);
+            // ユーザ名デフォルトはunknown
+            let userName = 'unknown';
+            if (userData) {
+              userName = userData.userName;
+            }
+            switch (loadedMessage.type) {
+              case 'text':
+                const messageData: ITextMessageData = JSON.parse(loadedMessage.messageData);
+                // 新規テキストメッセージ
+                const newMessage = createTextMessage(
+                  loadedMessage.messageId,
+                  messageData.text,
+                  userData.userId,
+                  userData.userName,
+                  userData.userName.slice(0, 2),
+                  'dummyTalkId',
+                  messageData.reactions,
+                  loadedMessage.postedAt,
+                  loadedMessage.createdAt,
+                  loadedMessage.updatedAt,
+                );
+                chatMessages.push(newMessage);
+                break;
+              case 'attachment':
+                // 新規添付メッセージ
+                const attachmentData: IAttachmentData = JSON.parse(loadedMessage.attachmentData);
+                const attachmentMessageData: IAttachmentMessageData = JSON.parse(loadedMessage.messageData);
+                const newAttachmentMessage = createAttachmentMessage(
+                  loadedMessage.messageId,
+                  userData.userId,
+                  userData.userName,
+                  userData.userName.slice(0, 2),
+                  'dummyTalkId',
+                  attachmentMessageData.reactions,
+                  loadedMessage.postedAt,
+                  createAttachment(
+                    loadedMessage.attachmentId,
+                    loadedMessage.messageId,
+                    attachmentData.fileType,
+                    attachmentData.createUserId,
+                    attachmentData.createUserName,
+                    attachmentData.sourceComputerName,
+                    attachmentData.sourceFilePath,
+                    loadedMessage.createdAt,
+                    loadedMessage.updatedAt,
+                  ),
+                  loadedMessage.createdAt,
+                  loadedMessage.updatedAt,
+                );
+                chatMessages.push(newAttachmentMessage);
+                break;
+            }
+          }
+        }
+        const res = {
+          chatMessages,
+          editingMessage: state.editingMessage,
+          lastLoadDatetime: newLastLoadDatetime,
+        };
+        if (state.chatMessages.length !== 0 && state.chatMessages.length < chatMessages.length) {
+          const trayIconImagePath1 = ipcRenderer.invoke('getTrayIconPath1');
+          const trayIconImagePath2 = ipcRenderer.invoke('getTrayIconPath2');
+          const trayIcon: Tray = ipcRenderer.sendSync('getTrayIcon');
+          // const trayIcon = global.trayIcon;
+          trayIconImagePath2.then((imagePath: string) => {
+            const image = nativeImage.createFromPath(imagePath);
+            trayIcon.setImage(image);
+
+            const num = chatMessages.length - state.chatMessages.length;
+          })
+        }
+        // return res;
+      }
     },
     postTextMessage: (state, action) => {
       if (action.payload.text === '') {
@@ -327,7 +330,7 @@ const slice = createSlice({
         return {
           chatMessages: messageList,
           editingMessage: state.editingMessage,
-        };
+        }
       }
     },
     postAttachmentMessage: (state, action) => {
@@ -374,7 +377,7 @@ const slice = createSlice({
               // 添付フォルダが存在しない場合、作成する。
               fs.mkdirSync(dstDirPath)
             }
-              fs.copyFileSync(srcFilePath, dstFilePath);
+            fs.copyFileSync(srcFilePath, dstFilePath);
           });
         } else {
           const exists = fs.existsSync(dstDirPath);
@@ -393,7 +396,7 @@ const slice = createSlice({
         return {
           chatMessages: messageList,
           editingMessage: state.editingMessage,
-        };
+        }
       }
     },
     postAttachmentMessageFromMemory: (state, action) => {
@@ -458,7 +461,7 @@ const slice = createSlice({
       return {
         chatMessages: messageList,
         editingMessage: state.editingMessage,
-      };
+      }
     },
     showChatMessage: (state, action) => {
       return {

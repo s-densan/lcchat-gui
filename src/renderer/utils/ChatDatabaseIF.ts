@@ -12,23 +12,6 @@ import { IChatMessage, ITextMessageData } from '../states/IChatMessage';
 import { ipcRenderer } from 'electron';
 
 const sqlDatetimeFormat = 'YYYY-MM-DD HH:mm:ss.sss';
-var appPath:string
-var lcchatCommand:string;
-var dbFilePath:string;
-async ()=>{
-  appPath = await ipcRenderer.invoke('somethingYouWantToPass');
-  console.info(appPath)
-}
-async () => {
-  let lcchatCuiCommand = await ipcRenderer.invoke('getLcchatCuiCommand')
-  lcchatCommand = lcchatCuiCommand.replace('${appPath}', appPath)
-  console.info(lcchatCommand)
-}
-async () => {
-  let dbFilePathTmp = await ipcRenderer.invoke('getDBFilePath')
-  dbFilePath = dbFilePathTmp.replace('${appPath}', appPath)
-  console.info(dbFilePath)
-}
 
 /*
 ipcRenderer.invoke('global').then((global) =>{
@@ -42,13 +25,19 @@ ipcRenderer.invoke('global').then((global) =>{
 */
 
 
-const runCommand = (sql: string): any => {
+const runCommand = async (sql: string) => {
+  const appPath = await ipcRenderer.invoke('getAppPath');
+  const dbFilePathTmp = await ipcRenderer.invoke('getDBFilePath')
+  const dbFilePath = dbFilePathTmp.replace('${appPath}', appPath)
   console.info(sql)
   console.info(dbFilePath)
   // 問い合わせコマンドファイル作成
   const requestFilePath = Path.join(os.tmpdir(), UUID() + '.json');
   const resultFilePath = Path.join(os.tmpdir(), UUID() + '.json');
   const inputData = { query: sql, dbFilePath, resultFilePath };
+  const lcchatCuiCommand = await ipcRenderer.invoke('getLcchatCuiCommand')
+  const lcchatCommand = lcchatCuiCommand.replace('${appPath}', appPath)
+  console.info(lcchatCommand)
 
   FsEx.writeFileSync(requestFilePath, JSON.stringify(inputData));
   // コマンド実行
@@ -65,7 +54,7 @@ const runCommand = (sql: string): any => {
   return data;
 };
 
-export const loadChatMessagesDB = () => {
+export const loadChatMessagesDB = async () => {
   const sql = `
     SELECT messages.*, users.user_data, attachments.attachment_id, attachments.attachment_data
     FROM messages
@@ -73,10 +62,10 @@ export const loadChatMessagesDB = () => {
     ON users.user_id = messages.user_id
     LEFT JOIN attachments
     ON attachments.message_id = messages.message_id`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };
-export const loadNewChatMessagesDB = (lastLoadDatetime: Date) => {
+export const loadNewChatMessagesDB = async (lastLoadDatetime: Date) => {
   const sql = `
     SELECT messages.*, users.user_data, attachments.attachment_id, attachments.attachment_data
     FROM messages
@@ -85,7 +74,7 @@ export const loadNewChatMessagesDB = (lastLoadDatetime: Date) => {
     LEFT JOIN attachments
     ON attachments.message_id = messages.message_id
     WHERE DATETIME("${Moment(lastLoadDatetime).format(sqlDatetimeFormat)}") < DATETIME(messages.updated_at)`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };
 
@@ -104,29 +93,29 @@ export const insertMessageDB = async (newMessage: IChatMessage) => {
                 DATETIME("${Moment(newMessage.createdAt).format(sqlDatetimeFormat)}"),
                 DATETIME("${Moment(newMessage.updatedAt).format(sqlDatetimeFormat)}")
     )`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };
 
-export const updateMessageTextDB = (chatMessageId: string, messageData: ITextMessageData) => {
+export const updateMessageTextDB = async (chatMessageId: string, messageData: ITextMessageData) => {
   const messageDataJson = JSON.stringify(messageData).replace(/"/g, '""').replace('?', '??');
   const sql = `UPDATE messages SET message_data = "${messageDataJson}" WHERE message_id = "${chatMessageId}"`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };
-export const deleteMessageDB = (chatMessageId: string) => {
+export const deleteMessageDB = async (chatMessageId: string) => {
   const sql = ` DELETE FROM messages WHERE message_id = "${chatMessageId}"`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };
 
-export const loadUserFromComputerNameDB = () => {
+export const loadUserFromComputerNameDB = async () => {
   const sql = `SELECT * FROM users`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };
 
-export const insertUser = (user: IUser) => {
+export const insertUser = async (user: IUser) => {
   const nowDatetime = new Date();
   const sql = `INSERT
             INTO
@@ -143,14 +132,14 @@ export const insertUser = (user: IUser) => {
                 -- 更新日時
                 "${Moment(nowDatetime).format(sqlDatetimeFormat)}"
     )`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };
 
 /**
  *
  */
-export const insertAttachmentDB = (newAttachment: IAttachment) => {
+export const insertAttachmentDB = async (newAttachment: IAttachment) => {
   const sql = `INSERT
             INTO
                 attachments
@@ -162,12 +151,12 @@ export const insertAttachmentDB = (newAttachment: IAttachment) => {
                 "${Moment(newAttachment.createdAt).format(sqlDatetimeFormat)}",
                 "${Moment(newAttachment.updatedAt).format(sqlDatetimeFormat)}"
     )`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };
 
-export const deleteAttachmentDB = (attachmentId: string) => {
+export const deleteAttachmentDB = async (attachmentId: string) => {
   const sql = ` DELETE FROM attachments WHERE attachment_id = "${attachmentId}"`;
-  const data = runCommand(sql);
+  const data = await runCommand(sql);
   return data;
 };

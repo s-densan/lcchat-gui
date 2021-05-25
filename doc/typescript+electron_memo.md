@@ -84,6 +84,8 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20210525
+色々消して、とりあえずエラーでず画面が表示されるようになった。次は機能を戻していくか。
 ### 20210520
 > Uncaught Error: Objects are not valid as a React child (found: [object Promise]). If you meant to render a collection of children, use an array instead.
 >     at throwOnInvalidObjectType (react-dom.development.js:13231)

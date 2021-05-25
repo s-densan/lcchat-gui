@@ -26,7 +26,7 @@ process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
 
 // configファイル読み込み
 initAppConfig();
-console.log(appConfig)
+// console.log(appConfig)
 // globalに値をセットするため型をanyに強制する
 declare const global: IGlobal;
 // レンダープロセスとなるブラウザ・ウィンドウのオブジェクト。
@@ -128,7 +128,6 @@ ipcMain.handle('setWindowSize', (e, d) => {
 })
 
 function createWindow() {
-    console.log('createWindow')
     // ウィンドウ位置設定
     const desktopSize = screen.getPrimaryDisplay().workAreaSize;
     const appHeight = 800
@@ -146,7 +145,6 @@ function createWindow() {
         },
         title: 'Communication App'
     });
-    console.log('createWindow')
     // index.html をロードする
     win.loadFile('index.html');
     // 起動オプションに、 "--debug"があれば開発者ツールを起動する
@@ -159,7 +157,6 @@ function createWindow() {
         // 閉じたウィンドウオブジェクトにはアクセスできない
         win = undefined;
     });
-    console.log('createWindow')
 
     // 最小化ボタンでタスクトレイに入れる
     if (appConfig.useTasktray) {
@@ -172,7 +169,6 @@ function createWindow() {
         trayIcon = addTaskTray();
         setHotKey();
     }
-    console.log('createWindow')
 
 }
 
@@ -215,13 +211,11 @@ app.on('browser-window-focus', () => {
 const HOTKEY = appConfig.hotkeys.toggleVisible;
 
 function addTaskTray(): Tray {
-    console.info('addTaskTray')
     // タスクトレイに格納
 
     console.info(nativeImage)
     const tray = new Tray(nativeImage.createFromPath(global.trayIconImagePath1));
 
-    console.info('addTaskTray')
     // タスクトレイに右クリックメニューを追加
     const contextMenu = Menu.buildFromTemplate([
         {
@@ -242,12 +236,10 @@ function addTaskTray(): Tray {
             },
         },
     ]);
-    console.info('addTaskTray')
     tray.setContextMenu(contextMenu);
 
     // タスクトレイのツールチップをアプリ名に
     tray.setToolTip(app.name);
-    console.info('addTaskTray')
 
     // タスクトレイが左クリックされた場合、アプリのウィンドウをアクティブに
     tray.on('click', () => {
@@ -256,12 +248,10 @@ function addTaskTray(): Tray {
             win.focus();
         }
     });
-    console.info('addTaskTray')
     return tray;
     // タスクトレイに格納 ここまで
 }
 function setHotKey() {
-    console.info('setHotKey')
     globalShortcut.register(HOTKEY, () => {
         if (win) {
             // ホットキーでウィンドウをアクティベート
