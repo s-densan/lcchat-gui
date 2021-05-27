@@ -114,10 +114,17 @@ export default function GridLayout() {
     if (message.editingMessage === undefined) {
       //const reloadIntervalSecond = await ipcRenderer.invoke('getReloadIntervalSecond')
       // const reloadIntervalSecond = useEffect(async () => {await ipcRenderer.invoke('getReloadIntervalSecond')}, [])
-      const reloadIntervalSecond = 1
-      console.log('getReloadIntervalSecond:' + reloadIntervalSecond )
-      // 編集中モードでない場合
-      return <Clock interval={reloadIntervalSecond * 1000} onTimer={onTimer}></Clock>;
+      // const reloadIntervalSecond = 1
+      const [posts, setPosts] = React.useState();
+      React.useEffect(() => {
+        const ggg = async () => {
+          const reloadIntervalSecond = await ipcRenderer.invoke('getReloadIntervalSecond')
+          console.log('getReloadIntervalSecond:' + reloadIntervalSecond )
+          // 編集中モードでない場合
+          return <Clock interval={reloadIntervalSecond * 1000} onTimer={onTimer}></Clock>;
+        }
+        ggg()
+      }, [])
     } else {
       return <div></div>;
     }
