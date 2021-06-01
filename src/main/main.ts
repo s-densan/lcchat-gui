@@ -62,6 +62,7 @@ global.appConfig = appConfig;
 global.trayIconImagePath1 = join(app.getAppPath(), 'img', 'talk.png');
 global.trayIconImagePath2 = join(app.getAppPath(), 'img', 'talk2.png');
 
+// レンダラプロセスからメインプロセスへの機能呼び出し、情報取得
 ipcMain.handle('getTrayIconPath1', () => {
     console.log('getTrayIconPath1')
     return join(app.getAppPath(), 'img', 'talk.png');
@@ -119,6 +120,7 @@ ipcMain.handle('getWindowSize', () => {
   }
   return win.getSize()
 })
+/*
 ipcMain.handle('setWindowSize', (e, d) => {
     console.log('setWindowSize')
   const windowHeight = d.windowHeight
@@ -126,6 +128,11 @@ ipcMain.handle('setWindowSize', (e, d) => {
     win.on('resize', windowHeight);
   }
 })
+*/
+
+
+
+
 
 function createWindow() {
     // ウィンドウ位置設定
@@ -157,6 +164,12 @@ function createWindow() {
         // 閉じたウィンドウオブジェクトにはアクセスできない
         win = undefined;
     });
+    win.on('resize', () => {
+        if (win) {
+            console.log(`resize: ${win.getSize()}`)
+            win.webContents.send("resize", win.getSize());
+        }
+    })
 
     // 最小化ボタンでタスクトレイに入れる
     if (appConfig.useTasktray) {

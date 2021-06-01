@@ -2,7 +2,7 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';;
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
-import { ipcRenderer, BrowserWindow } from 'electron';
+import { ipcRenderer} from 'electron';
 import { current } from 'immer';
 import os from 'os';
 import React, { useEffect, useState } from 'react';
@@ -20,6 +20,12 @@ import Clock from './Clock';
 import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
 import {IGlobal} from '../../common/IGlobal';
+
+
+ipcRenderer.on("resize", (event, arg) => {
+  //$("#txtMessage").val(arg.message);
+  console.log(arg)
+});
 
 
 export default function GridLayout() {
@@ -46,16 +52,28 @@ export default function GridLayout() {
       setInitial(true);
       // dispatch(windowActions.initWindowState({bottomRef}));
       // Windowリサイズイベント
-      /* 一時コメントアウト mainprocess に持っていく
+      ///* 一時コメントアウト mainprocess に持っていく
+      /*
+      async () => {
+        const fixWindowHeight = async () => {
+          const [, h] = await ipcRenderer.invoke('getCurrentWindow')
+          if (h !== windowHeight) {
+            setWindowHeight(h);
+          }
+        };
+        await fixWindowHeight();
+      }
+      */
+     /*
       const fixWindowHeight = () => {
-        const [, h] = currentWindow.getSize();
-        if (h !== windowHeight) {
-          setWindowHeight(h);
+          const [, h] = win.getSize()
+          if (h !== windowHeight) {
+            setWindowHeight(h);
+          }
         }
       };
-      fixWindowHeight();
-      if (currentWindow !== null) {
-        currentWindow.on('resize', fixWindowHeight);
+      if (win) {
+        win.on('resize', fixWindowHeight);
       }
       */
       dispatch(windowActions.moveToBottom());
@@ -104,11 +122,12 @@ export default function GridLayout() {
   const chatMessagePostBoxStyle = {
     bottom: 0,
     width: '100%',
-  };
+  }
   // DBファイルから新規メッセージ読み込み
   const onTimer = () => {
-    dispatch(messageActions.loadNewChatMessages());
-  };
+    console.info('GridLayout.onTimer')
+    dispatch(messageActions.loadNewChatMessages())
+  }
   // タイマークロック用エリア
   const clockArea = () => {
     if (message.editingMessage === undefined) {

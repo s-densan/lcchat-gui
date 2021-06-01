@@ -84,6 +84,11 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20210601
+#### Electron の プロセス間通信 まとめ
+https://garafu.blogspot.com/2020/07/interprocess-communication-electron.html
+メインプロセス起点
+非同期通信（send）
 ### 20210527
 これでうまくいきそうなのだけどよくわからない。
 https://kaleido01.com/js-to-react-part2/
