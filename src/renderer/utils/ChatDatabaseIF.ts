@@ -110,6 +110,7 @@ export const deleteMessageDB = async (chatMessageId: string) => {
 };
 
 export const loadUserFromComputerNameDB = async () => {
+  console.log("loadUserFromComputerNameDB")
   const sql = `SELECT * FROM users`;
   const data = await runCommand(sql);
   return data;

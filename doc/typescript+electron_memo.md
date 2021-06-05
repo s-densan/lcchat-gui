@@ -85,6 +85,10 @@ https://trello.com/b/Dmnn4KKp
 ## 記録
 
 ### 20210601
+#### Sliceでメインプロセスと通信するときにasyncを解決する
+createAsyncThunkというのを使えばいいっぽい？？？
+https://redux-toolkit.js.org/api/createAsyncThunk
+理解不能！！
 #### Electron の プロセス間通信 まとめ
 https://garafu.blogspot.com/2020/07/interprocess-communication-electron.html
 メインプロセス起点

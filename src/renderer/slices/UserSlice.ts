@@ -1,4 +1,4 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
+import { createSlice, SliceCaseReducers, createAsyncThunk} from '@reduxjs/toolkit';
 import {
   insertUser,
   loadUserFromComputerNameDB as loadUserListDB,
@@ -18,6 +18,34 @@ export interface IUser {
 interface IUserState {
   user: IUser | undefined;
 }
+// First, create the thunk
+const fetchUserById = createAsyncThunk(
+  'users/fetchByIdStatus',
+      async (action:any) => {
+        console.log("loadUserFromComputerName2")
+        console.log(action)
+        // コンピュータ名
+        const computerName = action.payload.computerName;
+        const userList = await loadUserListDB();
+        for (const user of userList) {
+          // user_dataはstringのため、JSONパースする
+          const userData: IUserData = JSON.parse(user.userData);
+          // user_dataが空辞書、存在しないかnullの場合
+          if (userData.authentication !== undefined) {
+            if (userData.authentication.computerName === computerName) {
+              return {
+                user: {
+                  userData,
+                  userId: user.userId,
+                },
+              };
+            }
+          }
+        }
+        return { user: undefined }
+      }
+)
+
 
 // Stateの初期状態
 const initialState: IUserState = {
@@ -46,29 +74,17 @@ const slice = createSlice<IUserState, SliceCaseReducers<IUserState>>({
       };
 
     },
+    /*
     loadUserFromComputerName: (state: IUserState, action) => {
-      async () => {
-        // コンピュータ名
-        const computerName = action.payload.computerName;
-        const userList = await loadUserListDB();
-        for (const user of userList) {
-          // user_dataはstringのため、JSONパースする
-          const userData: IUserData = JSON.parse(user.userData);
-          // user_dataが空辞書、存在しないかnullの場合
-          if (userData.authentication !== undefined) {
-            if (userData.authentication.computerName === computerName) {
-              return {
-                user: {
-                  userData,
-                  userId: user.userId,
-                },
-              };
-            }
-          }
-        }
-        return { user: undefined };
-      }
+      console.log("loadUserFromComputerName1")
+      console.log(action)
+      var user: IUserState
+      /////
     },
+    */
+  },
+  extraReducers: builder => {
+    builder.addCase(fetchUserById.fulfilled, (state, action) => {state.user = action.payload.user})
   },
 });
 

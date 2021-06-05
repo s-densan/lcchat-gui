@@ -22,10 +22,6 @@ import OkDialog from './dialogs/OkDialog';
 import {IGlobal} from '../../common/IGlobal';
 
 
-ipcRenderer.on("resize", (event, arg) => {
-  //$("#txtMessage").val(arg.message);
-  console.log(arg)
-});
 
 
 export default function GridLayout() {
@@ -38,7 +34,12 @@ export default function GridLayout() {
   const [windowHeight, setWindowHeight] = useState<number>(window.parent.screen.height);
   const dispatch = useDispatch();
   var appConfig: IAppConfig;
+
   // var currentWindow: BrowserWindow;
+  ipcRenderer.on("resize", (event, arg) => {
+    const [_, h] = arg
+    setWindowHeight(h)
+  });
 
   // Electronから情報取得
   // すべてのPromiseの実行完了まで待機する。
