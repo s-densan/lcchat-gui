@@ -19,7 +19,7 @@ interface IUserState {
   user: IUser | undefined;
 }
 // First, create the thunk
-const fetchUserById = createAsyncThunk(
+export const fetchUserById = createAsyncThunk(
   'users/fetchByIdStatus',
       async (action:any) => {
         console.log("loadUserFromComputerName2")
@@ -83,8 +83,11 @@ const slice = createSlice<IUserState, SliceCaseReducers<IUserState>>({
     },
     */
   },
-  extraReducers: builder => {
-    builder.addCase(fetchUserById.fulfilled, (state, action) => {state.user = action.payload.user})
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserById.fulfilled, (state, action) => {
+      console.log('gogogogogo')
+      state.user = action.payload.user
+    })
   },
 });
 

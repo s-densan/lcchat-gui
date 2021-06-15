@@ -84,6 +84,31 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20210615
+元の機能が動くようになってほしい。
+- DBの読み込み失敗（毎回ユーザを求められる、メッセージが読み込まれない）
+- 編集ボタンでエラー
+
+
+DB読み込み失敗する件、非同期処理をなんとかしなければ。
+ここがわかりやすい。公式のサンプルはTypescriptでは相性が悪いっぽい。
+https://future-architect.github.io/articles/20200501/
+
+> 非同期なコードはReduxからも独立したコードとして書けるので（上記の2つめの関数の中にはRedux関係の呼び出しが発生していない）、こちらの方が他の環境に持っていくとか、テストするのはしやすいかなと思います。
+> 
+> JS側のサンプルだと、extraReducersに次のように追加するコードがありますが、これだとコード補完がされないので、TypeScriptの場合はちょっとかっこ悪くてもbuilder経由で登録する必要があります。
+> 
+> ```javascript
+> extraReducers: {
+>   [fetchLastCounter.fulfilled]: (state, action) => {
+>      return {
+>        ...state,
+>        count: action.payload.count,
+>      };
+>   });
+> }
+> ```
+
 ### 20210601
 #### Sliceでメインプロセスと通信するときにasyncを解決する
 createAsyncThunkというのを使えばいいっぽい？？？

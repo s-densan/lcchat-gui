@@ -12,7 +12,7 @@ import { IAppConfig } from '../../common/AppConfig';
 import { dialogActions } from '../slices/DialogSlice';
 import { messageActions } from '../slices/MessageSlice';
 import { RootState } from '../slices/RootStore';
-import { userActions } from '../slices/UserSlice';
+import { userActions, fetchUserById } from '../slices/UserSlice';
 import { windowActions } from '../slices/WindowSlice';
 import ChatMessageList from './ChatMessageList';
 import ChatMessagePostBox from './ChatMessagePostBox';
@@ -49,7 +49,9 @@ export default function GridLayout() {
     // 初回のみ実行
     if (initial === false) {
       // store.dispatch(createScrollToBottomAction(bottomRef));
-      dispatch(userActions.loadUserFromComputerName({computerName: os.hostname()}));
+      console.log('loadUser')
+      // dispatch(userActions.loadUserFromComputerName({computerName: os.hostname()}));
+      dispatch(fetchUserById({computerName: os.hostname()}));
       setInitial(true);
       // dispatch(windowActions.initWindowState({bottomRef}));
       // Windowリサイズイベント
