@@ -21,18 +21,24 @@ interface IUserState {
 // First, create the thunk
 export const fetchUserById = createAsyncThunk(
   'users/fetchByIdStatus',
-      async (action:any) => {
+      async (args:any, thunkAPI) => {
         console.log("loadUserFromComputerName2")
-        console.log(action)
+        console.log(args)
         // コンピュータ名
-        const computerName = action.payload.computerName;
+        const computerName = args.computerName;
+        console.log(computerName)
         const userList = await loadUserListDB();
+        console.log(userList)
         for (const user of userList) {
           // user_dataはstringのため、JSONパースする
           const userData: IUserData = JSON.parse(user.userData);
           // user_dataが空辞書、存在しないかnullの場合
           if (userData.authentication !== undefined) {
             if (userData.authentication.computerName === computerName) {
+              console.log({
+                  userData,
+                  userId: user.userId,
+                })
               return {
                 user: {
                   userData,
@@ -42,6 +48,7 @@ export const fetchUserById = createAsyncThunk(
             }
           }
         }
+        console.log('undef!!!')
         return { user: undefined }
       }
 )

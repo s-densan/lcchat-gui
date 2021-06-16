@@ -6,8 +6,7 @@ import { ipcRenderer} from 'electron';
 import { current } from 'immer';
 import os from 'os';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IAppConfig } from '../../common/AppConfig';
 import { dialogActions } from '../slices/DialogSlice';
 import { messageActions } from '../slices/MessageSlice';
@@ -51,7 +50,10 @@ export default function GridLayout() {
       // store.dispatch(createScrollToBottomAction(bottomRef));
       console.log('loadUser')
       // dispatch(userActions.loadUserFromComputerName({computerName: os.hostname()}));
-      dispatch(fetchUserById({computerName: os.hostname()}));
+      const f = fetchUserById({computerName: os.hostname()})
+      console.log(f)
+      dispatch(f)
+      console.log('dispatched')
       setInitial(true);
       // dispatch(windowActions.initWindowState({bottomRef}));
       // Windowリサイズイベント

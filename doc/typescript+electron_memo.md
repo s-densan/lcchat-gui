@@ -84,6 +84,40 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20210616
+#### reduxにて「Use custom middleware for async actions.」のエラー
+
+https://teratail.com/questions/151413
+```
+export const fetchUsers = async(dispatch) => {
+↓
+export const fetchUsers = () => async(dispatch) => {
+
+//dispatchを引数として渡していたためおこったバグでした
+```
+対応したけどなおんねーぞ！！！もうわからーんん。
+
+#### redux-thunk入門、簡単まとめ
+https://qiita.com/hiroya8649/items/c202742c99d2cc6159b8
+そもそもthunkってなんやねん、という説明。
+
+#### Redux Toolkit で Async Thunk が曲者なので詳しく解説する
+https://times.hrbrain.co.jp/entry/2020/12/08/redux-toolkit-async-thunk
+
+#### Redux-Thunkで非同期処理ができる仕組みを理解しよう
+https://qiita.com/jima-r20/items/7fee2f00dbd1f302e373
+![](img/2021-06-16-20-37-14.png)
+これかなあ。重要と書いてあるし。
+→→→→きききききたーーーー！！！
+おいおい、前提としてthunk対応してなかったんかいなーーー。
+
+次
+#### useDispatchでredux-thunkを使ったらthenができない件の解決法 (Typescript)
+
+https://qiita.com/hiroya8649/items/73d80a52636a787fefa5
+
+ユーザ読み込むまで待ちたいんだよ。
+
 ### 20210615
 元の機能が動くようになってほしい。
 - DBの読み込み失敗（毎回ユーザを求められる、メッセージが読み込まれない）

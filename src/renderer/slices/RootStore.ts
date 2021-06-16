@@ -1,8 +1,11 @@
-import { combineReducers, createStore } from '@reduxjs/toolkit';
+import { combineReducers, createStore, applyMiddleware  } from '@reduxjs/toolkit';
 import { dialogReducer } from './DialogSlice';
 import { messageReducer } from './MessageSlice';
 import { userReducer } from './UserSlice';
 import { windowReducer } from './WindowSlice';
+import thunk from 'redux-thunk';
+
+
 
 export const reducer = combineReducers({
   dialog: dialogReducer,
@@ -11,6 +14,6 @@ export const reducer = combineReducers({
   window: windowReducer,
 });
 
-export const store = createStore(reducer);
+export const store = createStore(reducer, applyMiddleware(thunk));
 
 export type RootState = ReturnType<typeof reducer>;
