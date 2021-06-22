@@ -3,7 +3,6 @@ import Paper from '@material-ui/core/Paper';;
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { ipcRenderer} from 'electron';
-import { current } from 'immer';
 import os from 'os';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +17,10 @@ import ChatMessagePostBox from './ChatMessagePostBox';
 import Clock from './Clock';
 import InputDialog from './dialogs/InputDialog';
 import OkDialog from './dialogs/OkDialog';
-import {IGlobal} from '../../common/IGlobal';
+import { ThunkDispatch } from 'redux-thunk';
+import { IPostChatMessageAction } from '../actions/ChatMessageActions';
+import { Action } from 'redux';
+
 
 
 
@@ -31,7 +33,8 @@ export default function GridLayout() {
   const windowSlice = useSelector((state: RootState) => state.window);
   const [initial, setInitial] = useState<boolean>(false);
   const [windowHeight, setWindowHeight] = useState<number>(window.parent.screen.height);
-  const dispatch = useDispatch();
+  type MyDispatch = ThunkDispatch<RootState, any, Action>;
+  const dispatch = useDispatch<MyDispatch>();
   var appConfig: IAppConfig;
 
   // var currentWindow: BrowserWindow;
@@ -52,36 +55,14 @@ export default function GridLayout() {
       // dispatch(userActions.loadUserFromComputerName({computerName: os.hostname()}));
       const f = fetchUserById({computerName: os.hostname()})
       console.log(f)
-      dispatch(f)
-      console.log('dispatched')
-      setInitial(true);
-      // dispatch(windowActions.initWindowState({bottomRef}));
-      // Windowリサイズイベント
-      ///* 一時コメントアウト mainprocess に持っていく
-      /*
-      async () => {
-        const fixWindowHeight = async () => {
-          const [, h] = await ipcRenderer.invoke('getCurrentWindow')
-          if (h !== windowHeight) {
-            setWindowHeight(h);
-          }
-        };
-        await fixWindowHeight();
-      }
-      */
-     /*
-      const fixWindowHeight = () => {
-          const [, h] = win.getSize()
-          if (h !== windowHeight) {
-            setWindowHeight(h);
-          }
-        }
-      };
-      if (win) {
-        win.on('resize', fixWindowHeight);
-      }
-      */
-      dispatch(windowActions.moveToBottom());
+      dispatch(f).then(()=>{
+        console.log('dispatched')
+        setInitial(true);
+        // dispatch(windowActions.initWindowState({bottomRef}));
+        // Windowリサイズイベント
+        ///* 一時コメントアウト mainprocess に持っていく
+        dispatch(windowActions.moveToBottom());
+      })
     }
     // 初期化が済んでもユーザがundefinedの場合
     if (user.user === undefined && dialog.dialogData === undefined && initial) {

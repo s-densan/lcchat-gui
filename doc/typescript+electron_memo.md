@@ -84,6 +84,41 @@ Trelloで管理
 https://trello.com/b/Dmnn4KKp
 ## 記録
 
+### 20210622
+前回に引き続き。
+
+- useDispatchでredux-thunkを使ったらthenができない件の解決法 (Typescript)
+https://qiita.com/hiroya8649/items/73d80a52636a787fefa5
+- typescriptでuseDispatchでRedux Thunkのthenが型エラーになる時の対応
+https://tech.frenps.co.jp/archives/742
+
+この2つを参照。
+予め
+```typescript
+  type MyDispatch = ThunkDispatch<RootState, any, Action>;
+  const dispatch = useDispatch<MyDispatch>();
+```
+としておくことで
+```typescript
+  useEffect(() => {
+    // 初回のみ実行
+    if (initial === false) {
+      // store.dispatch(createScrollToBottomAction(bottomRef));
+      console.log('loadUser')
+      // dispatch(userActions.loadUserFromComputerName({computerName: os.hostname()}));
+      const f = fetchUserById({computerName: os.hostname()})
+      console.log(f)
+      dispatch(f).then(()=>{
+        console.log('dispatched')
+        setInitial(true);
+        // dispatch(windowActions.initWindowState({bottomRef}));
+        // Windowリサイズイベント
+        ///* 一時コメントアウト mainprocess に持っていく
+        dispatch(windowActions.moveToBottom());
+      })
+    }
+```
+というのが可能になる。
 ### 20210616
 #### reduxにて「Use custom middleware for async actions.」のエラー
 

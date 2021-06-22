@@ -39,12 +39,13 @@ export const fetchUserById = createAsyncThunk(
                   userData,
                   userId: user.userId,
                 })
-              return {
+              const result = {
                 user: {
                   userData,
                   userId: user.userId,
-                },
-              };
+                }
+              }
+              return result
             }
           }
         }
