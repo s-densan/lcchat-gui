@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import clone from 'clone';
 import { Tray, nativeImage, ipcRenderer } from 'electron';
 import fs from 'fs';
@@ -11,14 +11,11 @@ import {
   insertAttachmentDB,
   insertMessageDB,
   loadChatMessagesDB,
-  loadNewChatMessagesDB,
   updateMessageTextDB,
   deleteAttachmentDB,
 } from '../utils/ChatDatabaseIF';
 import { getAttachmentFilePath } from '../utils/FileUtils'
 import { getMINEType } from '../utils/AttachmentUtils';
-import { IAppConfig } from '../../common/AppConfig';
-import {IGlobal} from '../../common/IGlobal';
 
 
 // Stateの初期状態
@@ -46,8 +43,8 @@ const slice = createSlice({
         // 添付ファイルの場合、attachmentsテーブルと添付データを削除
         deleteAttachmentDB(target.attachment.attachmentId);
         const attachmentFilePath = getAttachmentFilePath(target.attachment.attachmentId);
-        fs.exists(attachmentFilePath, (exists: boolean) => {
-          if (exists) {
+        fs.stat(attachmentFilePath, (err, stats) => {
+          if (stats.isFile()) {
             fs.unlink(attachmentFilePath, () => { });
           }
         });
@@ -156,6 +153,7 @@ const slice = createSlice({
      * 更新したメッセージをDBから読み込む
      */
     loadNewChatMessages: (state) => {
+      console.log('loadNewChatMessage')
       async () => {
         // DB読み込み後に実行する
         const chatMessages: IChatMessage[] = [];
@@ -515,6 +513,45 @@ const slice = createSlice({
     },
   },
 });
+
+/**
+ * 
+ */
+export const updateChatMessage = createAsyncThunk(
+  'users/fetchByIdStatus',
+  async (args: any, thunkAPI) => {
+    const { chatMessages: chatMessages }: IChatMessageList = state;
+    const newChatMessages: IChatMessage[] = chatMessages.map((it) => {
+      if (it.messageId === args.chatMessageId) {
+        const messageData: ITextMessageData = {
+          text: args.text,
+        };
+        // テキストのみ更新
+        updateMessageTextDB(args.chatMessageId, messageData);
+        const res: IChatMessage = {
+          createdAt: it.createdAt,
+          id: it.id,
+          type: 'text',
+          messageData,
+          messageId: it.messageId,
+          postedAt: it.postedAt,
+          talkId: it.talkId,
+          updatedAt: it.updatedAt,
+          userId: it.userId,
+          userName: it.userName,
+          userAvaterText: it.userAvaterText,
+        };
+        return res;
+      } else {
+        return it;
+      }
+    });
+    return {
+      chatMessages: newChatMessages,
+      editingMessage: state.editingMessage,
+    };
+  }
+)
 
 // Action Creatorsをエクスポートする
 export const messageActions = slice.actions;
