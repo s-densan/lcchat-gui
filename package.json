@@ -34,7 +34,7 @@
     "graceful-fs": "^4.2.6",
     "hard-source-webpack-plugin": "^0.13.1",
     "jest": "^26.6.3",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "os": "^0.1.1",
     "react": "^17.0.2",
     "react-datepicker": "3.8.0",
